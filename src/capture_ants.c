@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 10:12:54 by cphillip          #+#    #+#             */
-/*   Updated: 2020/08/31 12:04:08 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/08/31 13:07:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@
 
 void	capture_ants(t_master *master, char *line)
 {
+	ft_printf("in ant capture. ");
+	ft_printf("line: %s\n", line);
 	int nbr_ants;
 
 	nbr_ants = 0;
 	nbr_ants = ft_atoi(line);
 	
-	ft_printf("in capture ants\n");
-	ft_printf("line: %s\n", line);
-	master->nbr_ants = 10;
+	master->nbr_ants = nbr_ants;
+	master->ants_captured = 1;
+	ft_printf("captured ants: %d\n", master->nbr_ants);
 }

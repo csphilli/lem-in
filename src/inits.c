@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/08/31 12:24:30 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/08/31 12:59:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	init_master(t_master *master)
 		master->e_toggle = 0;
 		master->s_toggle = 0;
 		master->nbr_ants = 0;
+		master->a_errors = 0;
+		master->ants_captured = 0;
 		master->comment = NULL;
 	}
 }

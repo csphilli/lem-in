@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/08/31 12:16:09 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/08/31 13:22:52 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ int	main(int ac, char **av)
 			ac--;
 		}
 		// ft_printf("ac 0: %s", av[0]);
-		parse_line(master, av, fd);
+		parsing(master, fd);
 	}
 	else
 		ft_printf("Error: No file specified\n");
 	return (0);
 }
+
