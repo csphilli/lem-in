@@ -1,0 +1,5 @@
+.gitignore
+lem-in
+.DS_Store
+*.o
+*.txt
