@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 09:01:34 by cphillip          #+#    #+#             */
-/*   Updated: 2020/08/31 13:20:26 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/01 12:38:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,20 @@
 
 
 
+// static void		capture_room_part_two(t_master *master, t_room *room)
+// {
+// }
+
+void			capture_room(t_master *master, char *line)
+{
+	if (master && line)
+	{
+		ft_printf("inside room capture. Line: %s\n", line);
+		// assign room address to master struct of latest room.
+	}
+}
+
+/*
 static void		capture_room_part_two(t_master *master, t_room *room)
 {
 	if (master->s_toggle == 1)
@@ -49,3 +63,4 @@ t_room			*capture_room(t_master *master, char *line)
 	capture_room_part_two(master, new);
 	return (new);
 }
+*/

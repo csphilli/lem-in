@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/08/31 13:20:51 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/01 12:19:25 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,14 @@ typedef struct 	s_master
 {
 	t_room 			*room_head;
 	char			*comment;
+	t_room			*latest_room;
 	int 			s_toggle;
 	int				e_toggle;
 	int 			nbr_ants;
 	int				a_errors;
 	int				ants_captured;
+	int				room_captured;
+	int				link_captured;
 }				t_master;
 
 /*
@@ -74,9 +77,11 @@ void	init_room(t_room *room);
 // void	parse_line(t_master *master, char **av, int fd);
 // void	parse_line(t_master *master, char *line);
 void	parsing(t_master *master, int fd);
-t_room	*capture_room(t_master *master, char *line);
+// t_room	*capture_room(t_master *master, char *line);
+void	capture_room(t_master *master, char *line);
 void	capture_ants(t_master *master, char *line);
 void	capture_flags(t_master *master, char *av);
 void	capture_comment(t_master *master, char *str);
+void	capture_link(t_master *master, char *line);
 
 #endif

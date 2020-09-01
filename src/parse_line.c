@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/08/31 13:30:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/01 15:12:12 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,65 +14,57 @@
 
 
 
-static void 	append_room(t_master *master, t_room *room)
-{
-	t_room *tmp;
+// static void 	append_room(t_master *master, t_room *room)
+// {
+// 	t_room *tmp;
 
-	tmp = master->room_head;
-	if (master && room)
-	{
-		if (!master->room_head)
-			master->room_head = room;
-		else
-		{
-			while (tmp->next != NULL)
-				tmp = tmp->next;
-			tmp->next = room;
-		}
-	}
-}
+// 	tmp = master->room_head;
+// 	if (master && room)
+// 	{
+// 		if (!master->room_head)
+// 			master->room_head = room;
+// 		else
+// 		{
+// 			while (tmp->next != NULL)
+// 				tmp = tmp->next;
+// 			tmp->next = room;
+// 		}
+// 	}
+// 	master->latest_room = room;
+// }
 
 // void			parse_line(t_master *master, char **av, int fd)
-static void			parse_line(t_master *master, char *line)
-{
-	t_room 	*room;
-	
-	if (!(room = (t_room*)malloc(sizeof(t_room))))
-		exit (-1); // Need proper error handling.
-	ft_printf("inside while loop\n");
-		// ft_printf("line: %s\n", line);
-	if (master->ants_captured != 1)
-	{
-		ft_printf("going to capture ants. Line: %s\n", line);
-		capture_ants(master, line);
-	}
-	else
-	{
-		while (*line)
-			line++;
-		line--;
-		while (ft_isdigit(*line))
-			line--;
-		if (*line == '-')
-			ft_printf("capture connection\n");
-			// capture_connection(master, line);
-		else if (ft_strncmp(line, "##", 2) == 0)
-			capture_comment(master, line);
-		else
-			room = capture_room(master, line);
-		append_room(master, room);
-	}
-	ft_printf("End Parse Line\n");
-}
+// static void			parse_line(t_master *master, char *line)
+// {
+// }
 
 void		parsing(t_master *master, int fd)
 {
-	char *line;
-	
+	char	*line;
+	int		i;
+
+	i = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
-		ft_printf("parsing line: %s\n", line);
-		parse_line(master, line);
+		i = 0;
+		if (master->ants_captured == 0)
+		{
+			ft_printf("going to capture ants. Line: %s\n", line);
+			capture_ants(master, line);
+		}
+		while (ft_isalpha(line[i]))
+			i++;
+		if (line[i] == '#')
+		{
+			ft_strdel(&master->comment);
+			capture_comment(master, line);
+		}
+		else if (line[i] == ' ')
+			capture_room(master, line); // have toggle for captured room to check for double entries per line
+		else if (line[i] == '-')
+			capture_link(master, line); // have toggle for captured links to check for double entires per line
+		// ft_printf("parsing line: %s\n", line);
+		// parse_line(master, line);
 		ft_strdel(&line);
 	}
 }

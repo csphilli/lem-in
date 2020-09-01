@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_s_toupper.c                                     :+:      :+:    :+:   */
+/*   capture_link.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/01 14:28:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/01 14:28:54 by cphillip         ###   ########.fr       */
+/*   Created: 2020/09/01 12:16:07 by cphillip          #+#    #+#             */
+/*   Updated: 2020/09/01 12:17:02 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/libft.h"
+#include "../includes/lem_in.h"
 
-void	ft_s_toupper(char *str)
+void	capture_link(t_master *master, char *line)
 {
-	int		i;
-
-	i = 0;
-	while (str[i])
+	if (master && line)
 	{
-		if (!ft_isalpha(str[i]))
-			ft_putchar(str[i]);
-		else if (ft_isalpha(str[i]))
-			ft_putchar(ft_toupper(str[i]));
-		i++;
+		ft_printf("inside capture link\n");
 	}
 }

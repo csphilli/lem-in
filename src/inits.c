@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/08/31 12:59:17 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/01 12:14:10 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	init_master(t_master *master)
 		master->a_errors = 0;
 		master->ants_captured = 0;
 		master->comment = NULL;
+		master->latest_room = NULL;
+		master->room_captured = 0;
+		master->link_captured = 0;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 16:37:29 by cphillip          #+#    #+#             */
-/*   Updated: 2020/08/30 12:40:40 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/01 14:30:03 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # include <sys/types.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include <stdbool.h>
 # include "../ft_printf/includes/ft_printf.h"
 
 typedef struct		s_list
@@ -103,6 +102,8 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_nbr_size_base(uintmax_t nbr, int base);
 char				*ft_revstr(char *str);
+void				*ft_s_inlower(char *str);
+void				*ft_s_inupper(char *str);
 void				ft_s_toupper(char *str);
 char				*ft_strndup(char *str, int size);
 int					ft_intlen_max(uintmax_t nbr);
