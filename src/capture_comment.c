@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 09:05:39 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/01 15:11:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/01 15:26:47 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static void	validate_comment(t_master *master, char *comment)
 	if (master && comment)
 	{
 		if (master->s_toggle == 1 && \
-			ft_strcmp(ft_s_inlower(comment), "start") == 0)
+			ft_strcmp(comment, "start") == 0)
 		{
 			ft_printf("error, start room already designated\n");
 			exit(-1);
 		}
 		else if (master->e_toggle == 1 && \
-			ft_strcmp(ft_s_inlower(comment), "end") == 0)
+			ft_strcmp(comment, "end") == 0)
 		{
 			ft_printf("error, end room already designated\n");
 			exit(-1);
@@ -50,8 +50,9 @@ void		capture_comment(t_master *master, char *str)
 		}
 		// ft_printf("len: %d\n", i - j);
 		ft_strcpy(master->comment, &str[j]);
+		
 	}
-	// ft_printf("comment: %s\n", master->comment);
+	ft_printf("comment: %s\n", master->comment);
 	validate_comment(master, &str[j]);
 	if (ft_strcmp(master->comment, "start") == 0)
 		master->s_toggle = 1;

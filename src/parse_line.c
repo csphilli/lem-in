@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/01 15:12:12 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/01 15:26:16 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,14 @@ void		parsing(t_master *master, int fd)
 			i++;
 		if (line[i] == '#')
 		{
-			ft_strdel(&master->comment);
+			master->comment = NULL;
 			capture_comment(master, line);
 		}
 		else if (line[i] == ' ')
 			capture_room(master, line); // have toggle for captured room to check for double entries per line
 		else if (line[i] == '-')
 			capture_link(master, line); // have toggle for captured links to check for double entires per line
+		ft_strdel(&master->comment);
 		// ft_printf("parsing line: %s\n", line);
 		// parse_line(master, line);
 		ft_strdel(&line);

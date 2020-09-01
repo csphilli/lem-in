@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/08/31 13:22:52 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/01 15:18:29 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ int	main(int ac, char **av)
 	}
 	else
 		ft_printf("Error: No file specified\n");
+	while (1)
+	{
+		
+	}
 	return (0);
 }
 
