@@ -6,19 +6,40 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/08/31 12:47:20 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/02 19:24:36 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	capture_flags(t_master *master, char *av)
+static void	add_flag(t_master *master, char *c)
 {
-	if (ft_strstr("e", (av + 1)))
+	c++;
+	if (!master->input_flags)
 	{
-		if (ft_strequ(av, "-e"))
-			master->a_errors = 1;
+		master->input_flags = (char*)malloc(sizeof(char) * ft_strlen(c));
+		ft_strcat(master->input_flags, c);
 	}
-	else // need proper error management handling to exit code.
-		ft_printf("Error: Invalid flag. Type <./lem-in -h> for list of options\n"); // need highlighting on error text	
+	else
+		ft_strcat(master->input_flags, c);
+}
+
+void	capture_flags(t_master *master, int ac, char **av)
+{
+	int i;
+
+	i = 1;
+	while (ac > 1 && av[1] && av[1][0] == '-')
+	{
+		if (ft_strchr(master->accepted_flags, av[i][i + 1]))
+		{
+			if (!master->has_flags)
+				master->has_flags = 1;
+			add_flag(master, av[i]);
+		}
+		else
+			ft_printf("bad flag\n"); // need error mgmt.
+		av++;
+	}
+	ft_printf("flags in master: %s\n", master->input_flags);
 }

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/01 12:14:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/02 19:23:47 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	init_master(t_master *master)
 		master->e_toggle = 0;
 		master->s_toggle = 0;
 		master->nbr_ants = 0;
-		master->a_errors = 0;
+		// master->adv_errors = 0;
+		master->input_flags = NULL;
+		master->accepted_flags = "aechp";
+		master->has_flags = 0;
 		master->ants_captured = 0;
 		master->comment = NULL;
 		master->latest_room = NULL;
