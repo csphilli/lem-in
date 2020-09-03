@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/02 19:24:36 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/03 14:16:36 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void	capture_flags(t_master *master, int ac, char **av)
 			ft_printf("bad flag\n"); // need error mgmt.
 		av++;
 	}
-	ft_printf("flags in master: %s\n", master->input_flags);
+	ft_printf("total flags: %d\nCaptured flags: %s\n", ft_strlen(master->input_flags), master->input_flags);
 }

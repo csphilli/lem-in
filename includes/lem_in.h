@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/02 19:23:36 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/03 14:20:04 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct 	s_master
 	int				has_flags;
 	char			*input_flags;
 	char			*accepted_flags;
-	int				ants_captured;
+	bool			ants_added;
 	int				room_captured;
 	int				link_captured;
 }				t_master;
@@ -79,12 +79,15 @@ void	init_room(t_room *room);
 
 // void	parse_line(t_master *master, char **av, int fd);
 // void	parse_line(t_master *master, char *line);
-void	parsing(t_master *master, int fd);
+// void	parsing(t_master *master, int fd);
+void	parse_input(t_master *master, int fd);
 // t_room	*capture_room(t_master *master, char *line);
 void	capture_room(t_master *master, char *line);
 void	capture_ants(t_master *master, char *line);
 void	capture_flags(t_master *master, int ac, char **av);
 void	capture_comment(t_master *master, char *str);
 void	capture_link(t_master *master, char *line);
+
+void	load_help(void);
 
 #endif

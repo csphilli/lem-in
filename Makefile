@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/09/01 12:17:22 by cphillip         ###   ########.fr        #
+#    Updated: 2020/09/03 12:29:34 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRC_FILES = lem_in.c\
 			capture_flags.c\
 			capture_link.c\
 			inits.c\
-			parse_line.c\
+			parse_input.c\
+			load_help.c\
 
 OBJ_DIR = ./obj/
 OBJ_FILES = $(SRC_FILES:%.c=%.o)

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 10:12:54 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/01 14:40:08 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/03 14:22:30 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ void		capture_ants(t_master *master, char *line)
 
 	nbr_ants = valid_int(line);
 	master->nbr_ants = nbr_ants;
-	master->ants_captured = 1;
+	master->ants_added = true;
 	ft_printf("captured ants: %d\n", master->nbr_ants);
 }
