@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/03 14:16:36 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/16 18:23:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ static void	add_flag(t_master *master, char *c)
 	if (!master->input_flags)
 	{
 		master->input_flags = (char*)malloc(sizeof(char) * ft_strlen(c));
+		if (ft_strcmp(c, "h") == 0)
+		{
+			ft_printf("inside strcmp for help\n");
+			load_help(master);
+		}		
 		ft_strcat(master->input_flags, c);
 	}
 	else
@@ -38,8 +43,9 @@ void	capture_flags(t_master *master, int ac, char **av)
 			add_flag(master, av[i]);
 		}
 		else
-			ft_printf("bad flag\n"); // need error mgmt.
+			exit_error(master, "flags");
 		av++;
 	}
-	ft_printf("total flags: %d\nCaptured flags: %s\n", ft_strlen(master->input_flags), master->input_flags);
+	ft_printf("total flags: %d | Captured flags: %s\n", ft_strlen(master->input_flags), master->input_flags); // wont need after
 }
+

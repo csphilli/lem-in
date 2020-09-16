@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/03 14:20:04 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/16 18:22:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ typedef struct 	s_room
 	int				x;
 	int				y;
 	int				L_toggle;
-	char			*c1;
-	int				*c1_loc; // maybe not needed here. In hash table preferably
-	char			*c2;
-	int				*c2_loc; // maybe not needed here. In hash table preferably
+	char			*room_links;
 	struct s_room	*next;
 }				t_room;
 
@@ -87,7 +84,8 @@ void	capture_ants(t_master *master, char *line);
 void	capture_flags(t_master *master, int ac, char **av);
 void	capture_comment(t_master *master, char *str);
 void	capture_link(t_master *master, char *line);
+void	exit_error(t_master *master, char *error_code);
 
-void	load_help(void);
+void	load_help(t_master *master);
 
 #endif

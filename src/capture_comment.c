@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 09:05:39 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/01 15:26:47 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/03 17:49:59 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,5 @@ void		capture_comment(t_master *master, char *str)
 	else if (ft_strcmp(master->comment, "end") == 0)
 		master->e_toggle = 1;
 	// ft_printf("comment: %s\n", str[j]);
+	// ft_strdel(&str);
 }

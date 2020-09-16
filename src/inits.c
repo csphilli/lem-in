@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/03 14:22:21 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/16 17:41:34 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ void	init_room(t_room *room)
 		room->x = 0;
 		room->y = 0;
 		room->L_toggle = 0;
-		room->c1 = NULL;
-		room->c2 = NULL;
-		room->c1_loc = NULL;
-		room->c2_loc = NULL;
+		room->room_links = NULL;
 		room->next = NULL;
 	}
 }

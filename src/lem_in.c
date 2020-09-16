@@ -6,19 +6,21 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/03 14:14:45 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/16 13:39:54 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static void	verify_input(int ac, char **av)
+static void	verify_input(t_master *master, int ac, char **av)
 {
 	int i;
 	int flag_counter;
 
 	i = 0;
 	flag_counter = 0;
+	if (ft_strchr(master->input_flags, 'f'))
+		flag_counter++;
 	while (av[i])
 		if (av[i++][0] == '-')
 			flag_counter++;
@@ -41,16 +43,16 @@ int	main(int ac, char **av)
 	if (!(master = (t_master*)malloc(sizeof(t_master))))
 		return (0);
 	init_master(master);
-	
 	ft_printf("ac: %d\n", ac);
-	
+	capture_flags(master, ac, av);
 	if (ac > 1)
-		capture_flags(master, ac, av);
-	verify_input(ac, av);
-		// capture_flags(master, ac, av);
+	{
+		verify_input(master, ac, av);
+		parse_input(master, fd);
+		
+	}
 	
-	// parsing(master, );
-	parse_input(master, fd);
+	// exit_error(master, "nofile");
 	// while (1)
 	// {
 		
