@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 20:17:06 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/16 13:47:59 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/17 22:01:29 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ void	exit_error(t_master *master, char *error_code)
 	else if (ft_strcmp(error_code, "flags") == 0)
 		ft_printf("Error: Invalid flag specified. Accepted: %s\n",\
 		master->accepted_flags);
+	else if (ft_strcmp(error_code, "negants") == 0)
+		ft_printf("Error: Number of ants must be positive.\n");
+	else if (ft_strcmp(error_code, "invalid_ant_int") == 0)
+		ft_printf("Error: Ant count must be >= 1 and an integer size.\n");
 		
 	
-	// exit(-1);
+	exit(-1);
 }
