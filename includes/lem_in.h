@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/16 18:22:32 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/18 09:56:22 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,17 @@ typedef struct 	s_master
 	t_room 			*room_head;
 	char			*comment;
 	t_room			*latest_room;
-	int 			s_toggle;
-	int				e_toggle;
+	bool			s_toggle;
+	bool			e_toggle;
 	int 			nbr_ants;
-	int				adv_errors;
+	bool			adv_errors;
+	bool			colors;
 	int				has_flags;
+	int				line_nbr;
 	char			*input_flags;
 	char			*accepted_flags;
 	bool			ants_added;
+	bool			debugger;
 	int				room_captured;
 	int				link_captured;
 }				t_master;

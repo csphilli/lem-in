@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/03 17:52:15 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/18 10:04:12 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,9 @@ static void		parsing_lines(t_master *master, int fd)
 	i = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
-		ft_printf(CYAN"\nLINE: %s\n"RESET, line);
 		i = 0;
-		if (master->ants_added == false)
-		{
-			ft_printf("going to capture ants. Line: %s\n", line);
+		if (!master->ants_added)
 			capture_ants(master, line);
-		}
 		else if (line[i] == '#')
 			capture_comment(master, line);
 		else if (master->ants_added == false)
@@ -61,26 +57,14 @@ static void		parsing_lines(t_master *master, int fd)
 			ft_printf(RED"char at line[%d]: %c\n"RESET, i, *line);	
 		}
 		
-		// ft_printf(RED"char at line[%d]: %c\n"RESET, i, *line);
-		capture_room(master, line);
-		// while (ft_isalpha(line[i]))
-		// 	i++;
-		// ft_printf(RED"char at line[%d]: %c\n"RESET, i, *line);
-		// if (line[i] == '#')
-		// {
-		// 	master->comment = NULL;
-		// 	capture_comment(master, line);
-		// }
-		// 	capture_room(master, line); // have toggle for captured room to check for double entries per line
-		// else if (line[i] != ' ' && line[i + 1] == '-')
-		// 	capture_link(master, line); // have toggle for captured links to check for double entires per line
-		// else
-		// 	ft_printf("Failure : Empty or invalid command\n");
+		capture_room(master, line); // this needs to be within an if else statement otherwise previous
+									// line values are not yet deleted.
 			
 		ft_strdel(&master->comment); // before deleting comment, must add it to respective room.
 		// ft_printf("parsing line: %s\n", line);
 		// parse_line(master, line);
 		ft_strdel(&line);
+		master->line_nbr++;
 	}
 }
 
@@ -95,50 +79,9 @@ void		parse_input(t_master *master, int fd)
 
 	i = 1;
 	if (fd < 0)
-	{
-		ft_printf("Failure : File not found.\n");
-		exit(-1); // Need error mgmt.
-	}
-	else
-		parsing_lines(master, fd);
-	// ft_printf("fd: %d\n", fd);
-
+		exit_error(master, "nofile");
+	parsing_lines(master, fd);
 	close(fd);
 	ft_printf("flags: %s\n", master->input_flags);
 	
 }
-
-/*
-
-void		parsing(t_master *master, int fd)
-{
-	char	*line;
-	int		i;
-
-	i = 0;
-	while (get_next_line(fd, &line) > 0)
-	{
-		i = 0;
-		if (master->ants_captured == 0)
-		{
-			ft_printf("going to capture ants. Line: %s\n", line);
-			capture_ants(master, line);
-		}
-		while (ft_isalpha(line[i]))
-			i++;
-		if (line[i] == '#')
-		{
-			master->comment = NULL;
-			capture_comment(master, line);
-		}
-		else if (line[i] == ' ')
-			capture_room(master, line); // have toggle for captured room to check for double entries per line
-		else if (line[i] == '-')
-			capture_link(master, line); // have toggle for captured links to check for double entires per line
-		ft_strdel(&master->comment); // before deleting comment, must add it to respective room.
-		// ft_printf("parsing line: %s\n", line);
-		// parse_line(master, line);
-		ft_strdel(&line);
-	}
-}
-*/

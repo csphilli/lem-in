@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 12:03:09 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/17 07:38:27 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/18 09:20:10 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ void	load_help(t_master *master)
 	ft_printf("\tAcceptable options: %s\n", master->accepted_flags);
 	ft_printf("\nOPTION FUNCTIONS\n");
 	ft_printf("\ta: I don't know at this time\n");
-	ft_printf("\te: Allows output of more descriptive error messages.\n");
 	ft_printf("\tc: Adds highlighting to important areas of the output.\n");
-	ft_printf("\th: Displays this help list.\n");
+	ft_printf("\td: Debugger. Outputs text in key locations to assist with\
+		program creation.\n");
+	ft_printf("\te: Allows output of more descriptive error messages.\n");
 	ft_printf("\tf: Allows to read from file. No '"CYAN"<"RESET"' needed.\n");
 	ft_printf(CYAN"\t   Usage is: ./lem-in -f [file-name]\n"RESET);
+	ft_printf("\th: Displays this help list.\n");
+	
 	exit(-1);
 }

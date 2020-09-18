@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/16 18:23:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/18 10:13:14 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ void	capture_flags(t_master *master, int ac, char **av)
 			exit_error(master, "flags");
 		av++;
 	}
-	ft_printf("total flags: %d | Captured flags: %s\n", ft_strlen(master->input_flags), master->input_flags); // wont need after
+	// ft_printf("total flags: %d | Captured flags: %s\n", ft_strlen(master->input_flags), master->input_flags); // wont need after
 }
 

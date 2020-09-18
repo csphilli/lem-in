@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/16 17:41:34 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/18 09:56:38 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ void	init_master(t_master *master)
 	if (master)
 	{
 		master->room_head = NULL;
-		master->e_toggle = 0;
-		master->s_toggle = 0;
+		master->s_toggle = false;
+		master->e_toggle = false;
 		master->nbr_ants = 0;
-		// master->adv_errors = 0;
+		master->adv_errors = false;
+		master->debugger = false;
+		master->colors = false;
 		master->input_flags = NULL;
-		master->accepted_flags = "aechp";
+		master->accepted_flags = "acdehf";
+		master->line_nbr = 1;		
 		master->has_flags = 0;
 		master->ants_added = false;
 		master->comment = NULL;
