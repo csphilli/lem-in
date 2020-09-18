@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/18 09:56:38 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/18 15:05:47 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	init_master(t_master *master)
 		master->latest_room = NULL;
 		master->room_captured = 0;
 		master->link_captured = 0;
+		master->dummy = false;
 	}
 }
 
@@ -41,9 +42,10 @@ void	init_room(t_room *room)
 	{
 		room->name = NULL;
 		room->start_or_end = NULL;
-		room->x = 0;
-		room->y = 0;
-		room->L_toggle = 0;
+		room->comment = NULL;
+		// room->x = 0;
+		// room->y = 0;
+		room->occupied = false;
 		room->room_links = NULL;
 		room->next = NULL;
 	}

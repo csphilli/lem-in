@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/18 10:13:27 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/18 15:45:09 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ static void	print_bools(t_master *master)
 {
 	if (master->colors == true)
 	{
-		ft_printf("Adv Errors: \t");
+		ft_printf("%2cAdv Errors: \t", ' ');
 			if(master->adv_errors == true)
 				ft_printf(GREEN"[%s]"RESET"\n", "ON");
 			else
 				ft_printf(RED"[%s]"RESET"\n", "OFF");
-		ft_printf("Debugger: \t");
+		ft_printf("%2cDebugger: \t", ' ');
 			if(master->debugger == true)
 				ft_printf(GREEN"[%s]"RESET"\n", "ON");
 			else
@@ -51,20 +51,26 @@ static void	print_bools(t_master *master)
 
 static void	toggle_bools(t_master *master)
 {
-	while (*(master->input_flags))
-	{
-		if (*(master->input_flags) == 'a')
+	char *s;
+
+	s = master->input_flags;
+	ft_printf("Boolean Values:\n");
+	ft_printf("string of flags: %s\n", s);
+	while (*s)
+	{		
+		if (*s == 'a')
 			ft_printf("a toggle enabled.\n");
-		else if (*(master->input_flags) == 'c')
+		else if (*s == 'c')
 			master->colors = true;
-		else if (*(master->input_flags) == 'd')
+		else if (*s == 'd')
 			master->debugger = true;
-		else if (*(master->input_flags) == 'e')
+		else if (*s == 'e')
 			master->adv_errors = true;
-		master->input_flags++;
+		s++;
 	}
 	if (master->debugger == true)
 		print_bools(master);
+	ft_printf("\n");
 }
 
 int	main(int ac, char **av)
@@ -78,7 +84,7 @@ int	main(int ac, char **av)
 	if (!(master = (t_master*)malloc(sizeof(t_master))))
 		return (0);
 	init_master(master);
-	ft_printf("ac: %d\n", ac);
+	// ft_printf("ac: %d\n", ac);
 	capture_flags(master, ac, av);
 	if (master->input_flags != NULL)
 		toggle_bools(master);

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/18 09:56:22 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/18 15:05:37 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ typedef struct 	s_room
 {
 	char			*name;
 	char			*start_or_end;
-	int				x;
-	int				y;
-	int				L_toggle;
+	// int				x; // dont think i need these unless doing graphical work
+	// int				y;// dont think i need these unless doing graphical work
+	bool			occupied;
 	char			*room_links;
+	char			*comment;
 	struct s_room	*next;
 }				t_room;
 
@@ -49,21 +50,22 @@ typedef struct 	s_room
 typedef struct 	s_master
 {
 	t_room 			*room_head;
-	char			*comment;
 	t_room			*latest_room;
+	char			*comment;	
 	bool			s_toggle;
 	bool			e_toggle;
-	int 			nbr_ants;
 	bool			adv_errors;
 	bool			colors;
+	bool			ants_added;
+	bool			debugger;
+	int 			nbr_ants;
 	int				has_flags;
 	int				line_nbr;
 	char			*input_flags;
-	char			*accepted_flags;
-	bool			ants_added;
-	bool			debugger;
+	char			*accepted_flags;	
 	int				room_captured;
 	int				link_captured;
+	bool			dummy; // remove before submission
 }				t_master;
 
 /*
