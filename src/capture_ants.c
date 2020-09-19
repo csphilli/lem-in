@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 10:12:54 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/18 15:14:03 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/19 10:24:12 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	ant_debugger(t_master *master)
 {
 	if (master->colors == true)
 	{
-		ft_printf("Capturing Ants!\n");
-		ft_printf("\tNumber of ants captured: "CYAN"%d\n"RESET,\
+		ft_printf("CAPTURING ANTS:\n");
+		ft_printf("%2cNumber of ants captured: "CYAN"%d\n"RESET, ' ',\
 			master->nbr_ants);
 	}
 	else

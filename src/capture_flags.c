@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/18 16:30:01 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/19 11:55:19 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void	toggle_bools(t_master *master)
 			master->debugger = true;
 		else if (*s == 'e')
 			master->adv_errors = true;
+		else if (*s == 'l')
+			master->leaks = true;
 		else
 			exit_error(master, "flags");
 		s++;

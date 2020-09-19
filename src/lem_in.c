@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/18 15:45:09 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/19 21:39:29 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,49 +29,11 @@ static void	verify_input(t_master *master, int ac, char **av)
 		ft_printf("Error: Invalid Usage. Type "CYAN"./lem-in -h"RESET" for assistance\n");
 		exit(-1);
 	}
-	// Need to add error mgmt
 }
 
-static void	print_bools(t_master *master)
-{
-	if (master->colors == true)
-	{
-		ft_printf("%2cAdv Errors: \t", ' ');
-			if(master->adv_errors == true)
-				ft_printf(GREEN"[%s]"RESET"\n", "ON");
-			else
-				ft_printf(RED"[%s]"RESET"\n", "OFF");
-		ft_printf("%2cDebugger: \t", ' ');
-			if(master->debugger == true)
-				ft_printf(GREEN"[%s]"RESET"\n", "ON");
-			else
-				ft_printf(RED"[%s]"RESET"\n", "OFF");
-	}
-}
 
-static void	toggle_bools(t_master *master)
-{
-	char *s;
 
-	s = master->input_flags;
-	ft_printf("Boolean Values:\n");
-	ft_printf("string of flags: %s\n", s);
-	while (*s)
-	{		
-		if (*s == 'a')
-			ft_printf("a toggle enabled.\n");
-		else if (*s == 'c')
-			master->colors = true;
-		else if (*s == 'd')
-			master->debugger = true;
-		else if (*s == 'e')
-			master->adv_errors = true;
-		s++;
-	}
-	if (master->debugger == true)
-		print_bools(master);
-	ft_printf("\n");
-}
+
 
 int	main(int ac, char **av)
 {
@@ -85,21 +47,21 @@ int	main(int ac, char **av)
 		return (0);
 	init_master(master);
 	// ft_printf("ac: %d\n", ac);
-	capture_flags(master, ac, av);
-	if (master->input_flags != NULL)
-		toggle_bools(master);
+	capture_flags(master, ac, av);	
 	if (ac > 1)
 	{
 		verify_input(master, ac, av);
 		parse_input(master, fd);
 		
 	}
-	
-	// exit_error(master, "nofile");
-	// while (1)
-	// {
-		
-	// }
+	print_list(master); // Found in Capture Room.
+	if (master->leaks == true)
+	{
+		while (1)
+		{
+			
+		}
+	}
 	return (0);
 	
 }

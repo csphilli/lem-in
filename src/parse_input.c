@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/18 15:18:17 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/19 21:43:38 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@
 // static void			parse_line(t_master *master, char *line)
 // {
 // }
+
+// If comment of start or end is the last line, must return error because those values
+// need to be known. Would be good to have an if else to either capture another comment
+// or to verify that there is another line.
+
 static void		parsing_lines(t_master *master, int fd)
 {
 	char	*line;
@@ -46,7 +51,7 @@ static void		parsing_lines(t_master *master, int fd)
 	while (get_next_line(fd, &line) > 0)
 	{
 		i = 0;
-	
+		// ft_printf("Line: %s\n", line);
 		if (!master->ants_added)
 			capture_ants(master, line);
 		else if (line[i] == '#')
@@ -57,32 +62,21 @@ static void		parsing_lines(t_master *master, int fd)
 			{
 				if (line[i] == ' ')
 					capture_room(master, line);
-				else if (line[i] == '-')
-					capture_link(master, line);
+				// else if (line[i] == '-')
+				// 	capture_link(master, line);
 			}
 		}
-		// else if (master->ants_added == false)
-		// {
-		// 	while (ft_isalnum(line[i]))
-		// 		i++;
-		// 	ft_printf(RED"char at line[%d]: %c\n"RESET, i, *line);	
+		else
+			ft_printf("random printf\n");
+		// if (master->comment != NULL)
+		// {	
+		// 	ft_strdel(&master->comment);
+		// 	master->comment = NULL;
 		// }
-		
-		// capture_room(master, line); // this needs to be within an if else statement otherwise previous
-									// line values are not yet deleted.
-			
-		ft_strdel(&master->comment); // before deleting comment, must add it to respective room.
-		// ft_printf("parsing line: %s\n", line);
-		// parse_line(master, line);
 		ft_strdel(&line);
 		master->line_nbr++;
 	}
 }
-
-// need to add conditionals to step into help or other bonus functions. 
-// IDEAS
-// usage flag
-//	output map for smaller room counts (less than 10?)
 
 void		parse_input(t_master *master, int fd)
 {

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/18 15:05:47 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/19 21:27:39 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_master(t_master *master)
 {
 	if (master)
 	{
-		master->room_head = NULL;
+		master->list_head = NULL;
 		master->s_toggle = false;
 		master->e_toggle = false;
 		master->nbr_ants = 0;
@@ -24,7 +24,7 @@ void	init_master(t_master *master)
 		master->debugger = false;
 		master->colors = false;
 		master->input_flags = NULL;
-		master->accepted_flags = "acdehf";
+		master->accepted_flags = "acdehfl";
 		master->line_nbr = 1;		
 		master->has_flags = 0;
 		master->ants_added = false;
@@ -32,21 +32,21 @@ void	init_master(t_master *master)
 		master->latest_room = NULL;
 		master->room_captured = 0;
 		master->link_captured = 0;
+		master->room_count = 0;
 		master->dummy = false;
+		master->leaks = false;
 	}
 }
 
-void	init_room(t_room *room)
+t_room	*init_room(t_room *room)
 {
-	if (room)
-	{
-		room->name = NULL;
-		room->start_or_end = NULL;
-		room->comment = NULL;
-		// room->x = 0;
-		// room->y = 0;
-		room->occupied = false;
-		room->room_links = NULL;
-		room->next = NULL;
-	}
+	room->name = NULL;
+	room->start_or_end = NULL;
+	room->x = -1;
+	room->y = -1;
+	room->comment = NULL;
+	room->occupied = false;
+	room->room_links = NULL;
+	room->next = NULL;
+	return (room);
 }

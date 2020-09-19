@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/18 15:05:37 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/19 21:21:06 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct 	s_room
 {
 	char			*name;
 	char			*start_or_end;
-	// int				x; // dont think i need these unless doing graphical work
-	// int				y;// dont think i need these unless doing graphical work
+	int				x; // dont think i need these unless doing graphical work
+	int				y;// dont think i need these unless doing graphical work
 	bool			occupied;
 	char			*room_links;
 	char			*comment;
@@ -49,7 +49,7 @@ typedef struct 	s_room
 
 typedef struct 	s_master
 {
-	t_room 			*room_head;
+	t_room 			*list_head;
 	t_room			*latest_room;
 	char			*comment;	
 	bool			s_toggle;
@@ -58,11 +58,13 @@ typedef struct 	s_master
 	bool			colors;
 	bool			ants_added;
 	bool			debugger;
+	bool			leaks;
 	int 			nbr_ants;
 	int				has_flags;
 	int				line_nbr;
 	char			*input_flags;
-	char			*accepted_flags;	
+	char			*accepted_flags;
+	int				room_count;	
 	int				room_captured;
 	int				link_captured;
 	bool			dummy; // remove before submission
@@ -73,7 +75,7 @@ typedef struct 	s_master
 */
 
 void	init_master(t_master *master);
-void	init_room(t_room *room);
+t_room	*init_room(t_room *room);
 
 /*
 **	DATA CAPTURING
@@ -90,7 +92,9 @@ void	capture_flags(t_master *master, int ac, char **av);
 void	capture_comment(t_master *master, char *str);
 void	capture_link(t_master *master, char *line);
 void	exit_error(t_master *master, char *error_code);
+t_room	*create_room_node(t_master *master, char *line);
 
 void	load_help(t_master *master);
+void	print_list(t_master *master);
 
 #endif
