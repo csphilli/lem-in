@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 09:01:34 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/19 21:55:38 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/20 07:52:03 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,3 @@ void			capture_room(t_master *master, char *line)
 	}
 	master->room_count++;
 }
-
-
-// void	push_a(t_stacks *stacks, int nbr)
-// {
-// 	t_lists *tmp;
-// 	t_lists *node;
-
-// 	node = create_new_node(nbr);
-// 	tmp = stacks->head_a;
-// 	if (stacks && node)
-// 	{
-// 		if (!stacks->head_a)
-// 			stacks->head_a = node;
-// 		else
-// 		{
-// 			while (tmp->next != NULL)
-// 				tmp = tmp->next;
-// 			tmp->next = node;
-// 		}
-// 	}
-// }

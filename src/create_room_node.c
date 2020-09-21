@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 11:39:22 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/19 21:56:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/20 07:47:55 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ t_room	*create_room_node(t_master *master, char *line)
 	// ft_printf("data[%d]: %s | data[%d]: %d | data[%d]: %d\n", 0, data[0], 1, ft_atoi(data[1]), 2, ft_atoi(data[2]));
 	new->name = ft_strdup(data[0]);
 	validate_room_name(master, new->name);
+	if (!ft_isdigit(data[1][0]))
+		exit_error(master, "not_digit");
 	new->x = ft_atoi(data[1]);
+	if (!ft_isdigit(data[2][0]))
+		exit_error(master, "not_digit");
 	new->y = ft_atoi(data[2]);
 	free_split(data);
 	return(new);

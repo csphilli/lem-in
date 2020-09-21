@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 20:17:06 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/19 11:52:57 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/20 07:58:18 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,18 @@ static void	bad_malloc(void)
 
 static void	exit_error_2(t_master *master, char *error_code)
 {
-	if (ft_strcmp(error_code, "no_rooms_or_links"))
-		ft_printf("Error: No rooms or links specified\n");
+	if (ft_strequ(error_code, "no_rooms_or_links"))
+		ft_printf("Error: No rooms or links specified.\n");
 	else if (ft_strequ(error_code, "L_present"))
 	{
 		ft_printf("Error: 'L' not permitted in room name.\n");
-		ft_printf("%2cFound on line number: %d\n", master->line_nbr);
+		ft_printf("Found on line number: %d\n", master->line_nbr);
 	}
-	else	
+	else if (ft_strequ(error_code, "not_digit"))
+		ft_printf("Error: Non-digit value for coordinate found on line %d.\n",\
+			master->line_nbr);
+	else
 		ft_printf("Error. To see advanced errors, use the '-e' flag.\n");
-	master->dummy = true; // remove before submission. Just using up master. Might need it in the future.
 }
 
 void	exit_error(t_master *master, char *error_code)

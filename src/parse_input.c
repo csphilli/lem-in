@@ -6,37 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/19 21:43:38 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/20 07:51:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-
-
-// static void 	append_room(t_master *master, t_room *room)
-// {
-// 	t_room *tmp;
-
-// 	tmp = master->room_head;
-// 	if (master && room)
-// 	{
-// 		if (!master->room_head)
-// 			master->room_head = room;
-// 		else
-// 		{
-// 			while (tmp->next != NULL)
-// 				tmp = tmp->next;
-// 			tmp->next = room;
-// 		}
-// 	}
-// 	master->latest_room = room;
-// }
-
-// void			parse_line(t_master *master, char **av, int fd)
-// static void			parse_line(t_master *master, char *line)
-// {
-// }
 
 // If comment of start or end is the last line, must return error because those values
 // need to be known. Would be good to have an if else to either capture another comment
