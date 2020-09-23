@@ -6,12 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/19 21:21:06 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/23 08:41:05 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
+# define HT_SIZE 1000000
 
 
 #include "../libft/header/libft.h"
@@ -29,12 +30,13 @@
 
 typedef struct 	s_room
 {
+	int				index;
 	char			*name;
 	char			*start_or_end;
 	int				x; // dont think i need these unless doing graphical work
 	int				y;// dont think i need these unless doing graphical work
 	bool			occupied;
-	char			*room_links;
+	char			*room_links; // Look into how this will be created
 	char			*comment;
 	struct s_room	*next;
 }				t_room;
@@ -76,6 +78,7 @@ typedef struct 	s_master
 
 void	init_master(t_master *master);
 t_room	*init_room(t_room *room);
+void	init_ht(t_room *ht[]);
 
 /*
 **	DATA CAPTURING
@@ -84,9 +87,9 @@ t_room	*init_room(t_room *room);
 // void	parse_line(t_master *master, char **av, int fd);
 // void	parse_line(t_master *master, char *line);
 // void	parsing(t_master *master, int fd);
-void	parse_input(t_master *master, int fd);
+void	parse_input(t_master *master, int fd, t_room *ht[]);
 // t_room	*capture_room(t_master *master, char *line);
-void	capture_room(t_master *master, char *line);
+void	capture_room(t_master *master, char *line, t_room *ht[]);
 void	capture_ants(t_master *master, char *line);
 void	capture_flags(t_master *master, int ac, char **av);
 void	capture_comment(t_master *master, char *str);
@@ -96,5 +99,13 @@ t_room	*create_room_node(t_master *master, char *line);
 
 void	load_help(t_master *master);
 void	print_list(t_master *master);
+
+/*
+**	Hash Table Functions
+*/
+
+void	insert_room(t_room *ht[], char *name, t_master *master);
+int		gen_key(char *str);
+void	print_ht(t_room *ht[]);
 
 #endif

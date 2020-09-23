@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/20 07:51:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/23 08:37:09 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // need to be known. Would be good to have an if else to either capture another comment
 // or to verify that there is another line.
 
-static void		parsing_lines(t_master *master, int fd)
+static void		parsing_lines(t_master *master, int fd, t_room *ht[])
 {
 	char	*line;
 	int		i;
@@ -35,31 +35,26 @@ static void		parsing_lines(t_master *master, int fd)
 			while (ft_isalnum(line[i++]))
 			{
 				if (line[i] == ' ')
-					capture_room(master, line);
+					insert_room(ht, line, master);
 				// else if (line[i] == '-')
 				// 	capture_link(master, line);
 			}
 		}
 		else
 			ft_printf("random printf\n");
-		// if (master->comment != NULL)
-		// {	
-		// 	ft_strdel(&master->comment);
-		// 	master->comment = NULL;
-		// }
 		ft_strdel(&line);
 		master->line_nbr++;
 	}
 }
 
-void		parse_input(t_master *master, int fd)
+void		parse_input(t_master *master, int fd, t_room *ht[])
 {
 	int		i;
 
 	i = 1;
 	if (fd < 0)
 		exit_error(master, "nofile");
-	parsing_lines(master, fd);
+	parsing_lines(master, fd, ht);
 	close(fd);
 	ft_printf("flags: %s\n", master->input_flags);
 	

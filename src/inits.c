@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/19 21:27:39 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/23 07:57:15 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,16 @@ t_room	*init_room(t_room *room)
 	room->room_links = NULL;
 	room->next = NULL;
 	return (room);
+}
+
+void	init_ht(t_room *ht[])
+{
+	int i;
+
+	i = 0;
+	while (i < HT_SIZE)
+	{
+		ht[i] = 0;
+		i++;
+	}
 }

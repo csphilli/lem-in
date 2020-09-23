@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/09/19 11:57:20 by cphillip         ###   ########.fr        #
+#    Updated: 2020/09/23 08:38:46 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC_DIR = ./src/
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
 SRC_FILES = lem_in.c\
 			capture_comment.c\
-			capture_room.c\
+			insert_room.c\
 			capture_ants.c\
 			capture_flags.c\
 			capture_link.c\
