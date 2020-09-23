@@ -6,29 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/23 08:39:41 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/23 11:59:16 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static void	free_split(char **str) // Move this to Lib once hashing is verified to function.
-{
-	int i;
-	int j;
 
-	i = 0;
-	j = 0;
-	while (str[j])
-	{
-		i = 0;
-		while (str[j][i])
-			str[j][i++] = '\0';
-		free(str[j]);
-		j++;
-	}
-	free(str);
-}
 
 static int	hash_code(int key)
 {
@@ -77,10 +61,10 @@ void	insert_room(t_room *ht[], char *line, t_master *master) // must validate da
 	new->name = ft_strdup(data[0]);
 	new->x = ft_atoi(data[1]);
 	new->y = ft_atoi(data[2]);
-	if (master->comment != NULL)
+	if (master->comment != NULL) // fix comments. Not deleting after inserting properly
 		new->comment = master->comment;
 	ht[index] = new;
-	free_split(data);
+	ft_free_strsplit(data);
 }
 
 void	print_ht(t_room *ht[])
@@ -91,7 +75,13 @@ void	print_ht(t_room *ht[])
 	while (i < HT_SIZE)
 	{
 		if (ht[i] != 0)
-			printf("HT[%d]:\n Room Key: %d\n Room Name: %s\n", i, ht[i]->index, ht[i]->name);
+		{
+			ft_printf("HT[%d]:\n Room Index: %d\n Room Name: %s\n"\
+				, i, ht[i]->index, ht[i]->name);
+			ft_printf(" X: %d\n Y: %d\n", ht[i]->x, ht[i]->y);
+			ht[i]->comment != NULL ? ft_printf(" Comment: %s\n"\
+			, ht[i]->comment) : ft_printf(" Comment: ---\n");
+		}
 		i++;
 	}
 }
