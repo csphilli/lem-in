@@ -6,16 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 10:22:23 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 11:41:44 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-static int	hash_code(int key)
-{
-	return (key % HT_SIZE);
-}
 
 int gen_key(char *str)
 {
@@ -50,18 +45,17 @@ void	insert_room(t_room *ht[], char *line, t_master *master) // must validate da
 	int key;
 
 	data = ft_strsplit(line, ' ');
+	validate_coords(master, data[1], data[2]);
 	new = (t_room*)malloc(sizeof(t_room));	
 	key = gen_key(data[0]);
-	index = hash_code(key);
+	index = key % HT_SIZE;
 	if (ht[index] != NULL)
-	{
-		duplicate_check(master, ht[index]->name, data[0]);
 		index = probe(ht, index);
-	}
 	new->index = index;
 	new->name = ft_strdup(data[0]);
 	new->x = ft_atoi(data[1]);
 	new->y = ft_atoi(data[2]);
+	new->on_line = master->line_nbr;
 	if (master->comment != NULL)
 	{
 		new->comment = ft_strdup(master->comment);
@@ -69,6 +63,7 @@ void	insert_room(t_room *ht[], char *line, t_master *master) // must validate da
 	}
 	ht[index] = new;
 	ft_free_strsplit(data);
+
 }
 
 void	print_ht(t_room *ht[])

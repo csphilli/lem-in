@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 10:08:02 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 11:38:37 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void		parsing_lines(t_master *master, int fd, t_room *ht[])
 		else
 			ft_printf("random printf\n");
 		ft_strdel(&line);
-		master->line_nbr++;
+		master->line_nbr++;		
 	}
 }
 
@@ -55,6 +55,7 @@ void		parse_input(t_master *master, int fd, t_room *ht[])
 	if (fd < 0)
 		exit_error(master, "nofile");
 	parsing_lines(master, fd, ht);
+	duplicate_rooms(master, ht);
 	close(fd);
 	// ft_printf("flags: %s\n", master->input_flags);
 	

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 20:17:06 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 10:27:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 11:44:05 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@ static void	exit_error_2(t_master *master, char *error_code)
 	else if (ft_strequ(error_code, "L_present"))
 	{
 		ft_printf("Error: 'L' not permitted in room name.\n");
-		ft_printf("Found on line number: %d\n", master->line_nbr);
+		ft_printf(" Found on line number %d\n", master->line_nbr);
 	}
 	else if (ft_strequ(error_code, "not_digit"))
 		ft_printf("Error: Non-digit value for coordinate found on line %d.\n",\
 			master->line_nbr);
 	else if (ft_strequ(error_code, "duplicate"))
 		ft_printf("Error: Duplicate room name found on line %d\n", master->line_nbr);
+	else if (ft_strequ(error_code, "invalid_coord"))
+		ft_printf("Error: Invalid coordinate found on line %d\n", master->line_nbr);
 	else
 		ft_printf("Error. To see advanced errors, use the '-e' flag.\n");
 }
@@ -56,12 +58,12 @@ void	exit_error(t_master *master, char *error_code)
 		else if (ft_strequ(error_code, "start_exists"))
 		{
 			ft_printf("Error: Start room has already been designated.\n");
-			ft_printf("\tDuplicate found on line: %d\n", master->line_nbr);
+			ft_printf(" Duplicate found on line: %d\n", master->line_nbr);
 		}
 		else if (ft_strequ(error_code, "end_exists"))
 		{
 			ft_printf("Error: End room has already been designated.\n");
-			ft_printf("\tDuplicate found on line: %d\n", master->line_nbr);
+			ft_printf(" Duplicate found on line: %d\n", master->line_nbr);
 		}
 		else
 			exit_error_2(master, error_code);

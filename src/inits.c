@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 10:29:28 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 10:57:10 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_master(t_master *master)
 		master->colors = false;
 		master->input_flags = NULL;
 		master->accepted_flags = "acdehfl";
-		master->line_nbr = 1;		
+		master->line_nbr = 0;		
 		master->has_flags = 0;
 		master->ants_added = false;
 		master->comment = NULL;
