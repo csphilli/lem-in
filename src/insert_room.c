@@ -6,13 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/23 11:59:16 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 10:22:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-
 
 static int	hash_code(int key)
 {
@@ -56,13 +54,19 @@ void	insert_room(t_room *ht[], char *line, t_master *master) // must validate da
 	key = gen_key(data[0]);
 	index = hash_code(key);
 	if (ht[index] != NULL)
+	{
+		duplicate_check(master, ht[index]->name, data[0]);
 		index = probe(ht, index);
+	}
 	new->index = index;
 	new->name = ft_strdup(data[0]);
 	new->x = ft_atoi(data[1]);
 	new->y = ft_atoi(data[2]);
-	if (master->comment != NULL) // fix comments. Not deleting after inserting properly
-		new->comment = master->comment;
+	if (master->comment != NULL)
+	{
+		new->comment = ft_strdup(master->comment);
+		ft_strdel(&master->comment);
+	}
 	ht[index] = new;
 	ft_free_strsplit(data);
 }
@@ -74,29 +78,14 @@ void	print_ht(t_room *ht[])
 	i = 0;
 	while (i < HT_SIZE)
 	{
-		if (ht[i] != 0)
+		if (ht[i])
 		{
 			ft_printf("HT[%d]:\n Room Index: %d\n Room Name: %s\n"\
 				, i, ht[i]->index, ht[i]->name);
 			ft_printf(" X: %d\n Y: %d\n", ht[i]->x, ht[i]->y);
-			ht[i]->comment != NULL ? ft_printf(" Comment: %s\n"\
-			, ht[i]->comment) : ft_printf(" Comment: ---\n");
+			// ht[i]->comment != NULL ? ft_printf(" Comment: %s\n"\
+			// , ht[i]->comment) : ft_printf(" Comment: ---\n");
 		}
 		i++;
 	}
 }
-
-// void	insert(t_room *ht[], char *name, t_master *master)
-// {
-// 	t_room *new;
-// 	new = (t_room*)malloc(sizeof(t_room));
-// 	int index;
-// 	int key;
-// 	key = gen_key(name);
-// 	index = hash_code(key);
-// 	if (ht[index] != NULL)
-// 		index = probe(ht, index);
-// 	new->index = index;
-// 	new->name = ft_strdup(name);
-// 	ht[index] = new;
-// }

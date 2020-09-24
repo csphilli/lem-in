@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/19 11:55:19 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 10:07:49 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static void	print_bools(t_master *master)
 {
 	if (master->colors == true)
 	{
-		ft_printf("%2cAdv Errors: \t", ' ');
+		ft_printf(" Adv Errors: \t");
 			if(master->adv_errors == true)
 				ft_printf(GREEN"[%s]"RESET"\n", "ON");
 			else
 				ft_printf(RED"[%s]"RESET"\n", "OFF");
-		ft_printf("%2cDebugger: \t", ' ');
+		ft_printf(" Debugger: \t");
 			if(master->debugger == true)
 				ft_printf(GREEN"[%s]"RESET"\n", "ON");
 			else
@@ -37,7 +37,7 @@ static void	toggle_bools(t_master *master)
 	i = 0;
 	s = master->input_flags;
 	// ft_printf("Boolean Values:\n");
-	ft_printf("string of flags: %s\n", s);
+	// ft_printf("string of flags: %s\n", s);
 	while (s[i++])
 		if (s[i] == 'h')
 			load_help(master);
@@ -59,7 +59,6 @@ static void	toggle_bools(t_master *master)
 	}
 	if (master->debugger == true)
 		print_bools(master);
-	ft_printf("\n");
 }
 
 static void	add_flag(t_master *master, char *c)

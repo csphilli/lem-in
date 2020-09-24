@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/23 08:41:05 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 10:29:34 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct 	s_room
 	bool			occupied;
 	char			*room_links; // Look into how this will be created
 	char			*comment;
-	struct s_room	*next;
+	// struct s_room	*next;
 }				t_room;
 
 /*
@@ -99,6 +99,7 @@ t_room	*create_room_node(t_master *master, char *line);
 
 void	load_help(t_master *master);
 void	print_list(t_master *master);
+void	duplicate_check(t_master *master, char *s1, char *s2);
 
 /*
 **	Hash Table Functions

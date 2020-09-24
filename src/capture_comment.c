@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 09:05:39 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/19 20:38:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 10:02:38 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ void		capture_comment(t_master *master, char *str)
 {
 	if (master && str)
 	{
+		// ft_printf("capture comment: %s\n", &str[2]);
 		if (master->comment != NULL)
 			ft_strdel(&master->comment);
 		master->comment = ft_strdup(&str[2]);
-		validate_comment(master);
+		if (master->debugger == true)
+			validate_comment(master);
 	}	
 }

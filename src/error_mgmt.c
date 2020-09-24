@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 20:17:06 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/20 07:58:18 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 10:27:10 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	exit_error_2(t_master *master, char *error_code)
 	else if (ft_strequ(error_code, "not_digit"))
 		ft_printf("Error: Non-digit value for coordinate found on line %d.\n",\
 			master->line_nbr);
+	else if (ft_strequ(error_code, "duplicate"))
+		ft_printf("Error: Duplicate room name found on line %d\n", master->line_nbr);
 	else
 		ft_printf("Error. To see advanced errors, use the '-e' flag.\n");
 }
@@ -63,6 +65,8 @@ void	exit_error(t_master *master, char *error_code)
 		}
 		else
 			exit_error_2(master, error_code);
-	}	
+	}
+	else
+		ft_printf("Error Found. To see details, use flag '-e'.\n");
 	exit(-1);
 }

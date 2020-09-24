@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/23 08:37:09 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 10:08:02 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		parsing_lines(t_master *master, int fd, t_room *ht[])
 	while (get_next_line(fd, &line) > 0)
 	{
 		i = 0;
-		// ft_printf("Line: %s\n", line);
+		// ft_printf("Master->comment at start of parse: %s\n", master->comment);
 		if (!master->ants_added)
 			capture_ants(master, line);
 		else if (line[i] == '#')
@@ -56,6 +56,6 @@ void		parse_input(t_master *master, int fd, t_room *ht[])
 		exit_error(master, "nofile");
 	parsing_lines(master, fd, ht);
 	close(fd);
-	ft_printf("flags: %s\n", master->input_flags);
+	// ft_printf("flags: %s\n", master->input_flags);
 	
 }
