@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 15:38:14 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 21:06:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int ac, char **av)
 	fd = 0;
 	i = 0;
 	if (!(master = (t_master*)malloc(sizeof(t_master))))
-		return (0);
+		exit_malloc();
 	initialize_lemin(master, ht);
 	capture_flags(master, ac, av);		
 	if (ac > 1)

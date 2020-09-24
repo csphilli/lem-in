@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 15:35:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 21:07:56 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ static void	add_flag(t_master *master, char *c)
 	c++;
 	if (!master->input_flags)
 	{
-		master->input_flags = (char*)malloc(sizeof(char) * (ft_strlen(c)));
+		if (!(master->input_flags = (char*)malloc(sizeof(char)\
+		 * (ft_strlen(c)))))
+			exit_malloc();		
 		ft_strcat(master->input_flags, c);
 	}
 	else

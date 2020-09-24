@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 12:52:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 20:20:00 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int gen_key(char *str)
   return (key);
 }
 
-static int	probe(t_room *ht[], int index)
+int	probe(t_room *ht[], int index)
 {
 	while (ht[index] != 0)
 		index = (index + 1) % HT_SIZE;
@@ -78,6 +78,7 @@ void	print_ht(t_room *ht[])
 			ft_printf("HT[%d]:\n Room Index: %d\n Room Name: %s\n"\
 				, i, ht[i]->index, ht[i]->name);
 			ft_printf(" X: %d\n Y: %d\n", ht[i]->x, ht[i]->y);
+			ft_printf(" Added on line: %d\n", ht[i]->on_line);
 		}
 		i++;
 	}

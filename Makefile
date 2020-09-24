@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/09/24 13:03:10 by cphillip         ###   ########.fr        #
+#    Updated: 2020/09/24 21:08:34 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,10 @@ SRC_FILES = lem_in.c\
 			inits.c\
 			parse_input.c\
 			load_help.c\
-			error_mgmt.c\
 			validate_rooms.c\
 			validate_coords.c\
+			search_room.c\
+			error_mgmt.c\
 
 OBJ_DIR = ./obj/
 OBJ_FILES = $(SRC_FILES:%.c=%.o)

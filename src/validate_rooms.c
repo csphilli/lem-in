@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 10:08:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 13:02:41 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 20:04:55 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	exit_duplicate(char *name, int i)
 	exit(-1);
 }
 
-void	duplicate_rooms(t_master *master, t_room *ht[])
+void	duplicate_room_check(t_master *master, t_room *ht[])
 {
 	int i;
 	int j;

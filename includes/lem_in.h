@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 15:11:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 21:05:53 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define E_ANTS "Error. Invalid ant size specified.\n"
 # define E_START "Error. Start already defined.\n"
 # define E_END "Error. End already defined.\n"
+# define E_NOFILE "Error. File not found.\n"
+# define E_FAILED_SEARCH "Error. Room not found.\n"
 
 
 #include "../libft/header/libft.h"
@@ -98,11 +100,8 @@ void	initialize_lemin(t_master *master, t_room *ht[]);
 **	DATA CAPTURING
 */
 
-// void	parse_line(t_master *master, char **av, int fd);
-// void	parse_line(t_master *master, char *line);
-// void	parsing(t_master *master, int fd);
+
 void	parse_input(t_master *master, int fd, t_room *ht[]);
-// t_room	*capture_room(t_master *master, char *line);
 void	capture_room(t_master *master, char *line, t_room *ht[]);
 void	capture_ants(t_master *master, char *line);
 void	capture_flags(t_master *master, int ac, char **av);
@@ -110,11 +109,11 @@ void	capture_comment(t_master *master, char *str);
 void	capture_link(t_master *master, char *line);
 void	exit_error(t_master *master, char *error_code);
 t_room	*create_room_node(t_master *master, char *line);
-
 void	load_help(t_master *master);
-void	print_list(t_master *master);
 void	validate_coords(t_master *master, char *n1, char *n2);
-void	duplicate_rooms(t_master *master, t_room *ht[]);
+void	duplicate_room_check(t_master *master, t_room *ht[]);
+void	test_room_search(t_room *ht[], char *name);
+void	exit_malloc(void);
 
 /*
 **	Hash Table Functions
@@ -123,5 +122,6 @@ void	duplicate_rooms(t_master *master, t_room *ht[]);
 void	insert_room(t_room *ht[], char *name, t_master *master);
 int		gen_key(char *str);
 void	print_ht(t_room *ht[]);
+int		probe(t_room *ht[], int index);
 
 #endif

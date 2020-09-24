@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 11:38:37 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 20:55:39 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 // If comment of start or end is the last line, must return error because those values
 // need to be known. Would be good to have an if else to either capture another comment
 // or to verify that there is another line.
+
+static void		exit_no_file(void)
+{
+	ft_printf(E_NOFILE);
+	exit(-1);
+}
 
 static void		parsing_lines(t_master *master, int fd, t_room *ht[])
 {
@@ -53,9 +59,10 @@ void		parse_input(t_master *master, int fd, t_room *ht[])
 
 	i = 1;
 	if (fd < 0)
-		exit_error(master, "nofile");
+		exit_no_file();
 	parsing_lines(master, fd, ht);
-	duplicate_rooms(master, ht);
+	duplicate_room_check(master, ht);
+	test_room_search(ht, "oblong");
 	close(fd);
 	// ft_printf("flags: %s\n", master->input_flags);
 	
