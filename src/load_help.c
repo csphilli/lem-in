@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 12:03:09 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/18 14:44:44 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 15:08:20 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,18 @@ void	load_help(t_master *master)
 	ft_printf("|  |_____ |  |_____ |  | \\  /  |  |          |  | |  | |  |\n");
 	ft_printf("|_______/ |_______/ |__/  \\/   |__/          |__| |__/ |__/\n");
 	ft_printf("************************************************************\n");
-	ft_printf(CYAN"\nUSAGE:\t./lem-in -opt1 -opt2 < [file-name]\n"RESET);
+	ft_printf("\n**** USAGE ****:\n\n");
+	ft_printf("%8s '-f' flag:"CYAN" ./lem-in -opt1 -opt2 < [file-name]\n"RESET, "WITHOUT");
+	ft_printf("%8s '-f' flag:"CYAN" ./lem-in -opt1 -opt2 [file-name]\n"RESET, "WITH");
 	ft_printf("\tOptions are entered one at a time. Example: -a -b -c\n");
 	ft_printf("\tAcceptable options: %s\n", master->accepted_flags);
-	ft_printf("\nOPTION FUNCTIONS\n");
+	ft_printf("\n**** OPTION FUNCTIONS ****\n\n");
 	ft_printf("\ta: I don't know at this time\n");
 	ft_printf("\tc: Adds highlighting to important areas of the output.\n");
 	ft_printf("\td: Debugger. Outputs text in key locations to assist with");
 	ft_printf(" program creation.\n");
 	ft_printf("\te: Allows output of more descriptive error messages.\n");
 	ft_printf("\tf: Allows to read from file. No '"CYAN"<"RESET"' needed.\n");
-	ft_printf(CYAN"\t   Usage is: ./lem-in -f [file-name]\n"RESET);
 	ft_printf("\th: Displays this help list.\n");
 	
 	exit(-1);

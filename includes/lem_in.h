@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 11:53:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 15:11:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 # define E_NO_ROOMS "Error. No rooms specified.\n"
 # define E_NO_LINKS "Error. No links specified.\n"
 # define E_L "Error. 'L' present at beginning of room name.\n"
-# define E_NON_DIGIT "Error. Invalid coordinate.\n"
+# define E_COORD "Error. Invalid coordinate on line "
 # define E_DUPL "Error. Duplicate room name found.\n"
 # define E_FLAG "Error. Invalid flag specified.\n"
-# define E_ANT "Error. Invalid ant size specified.\n"
+# define E_USAGE "Error. Invalid usage. Use '-h' for help.\n"
+# define E_ANTS "Error. Invalid ant size specified.\n"
 # define E_START "Error. Start already defined.\n"
 # define E_END "Error. End already defined.\n"
 
@@ -91,6 +92,7 @@ typedef struct 	s_master
 void	init_master(t_master *master);
 t_room	*init_room(t_room *room);
 void	init_ht(t_room *ht[]);
+void	initialize_lemin(t_master *master, t_room *ht[]);
 
 /*
 **	DATA CAPTURING

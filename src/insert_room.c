@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 11:41:44 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 12:52:10 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ void	print_ht(t_room *ht[])
 			ft_printf("HT[%d]:\n Room Index: %d\n Room Name: %s\n"\
 				, i, ht[i]->index, ht[i]->name);
 			ft_printf(" X: %d\n Y: %d\n", ht[i]->x, ht[i]->y);
-			// ht[i]->comment != NULL ? ft_printf(" Comment: %s\n"\
-			// , ht[i]->comment) : ft_printf(" Comment: ---\n");
 		}
 		i++;
 	}

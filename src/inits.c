@@ -6,11 +6,17 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 10:57:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 15:11:54 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+void	initialize_lemin(t_master *master, t_room *ht[])
+{
+	init_master(master);
+	init_ht(ht);
+}
 
 void	init_master(t_master *master)
 {
