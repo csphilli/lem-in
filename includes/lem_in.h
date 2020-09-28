@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/26 11:13:35 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/28 21:05:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 #include "../libft/header/libft.h"
 
 /*
+**	For Room:
 **	name = room name
 **	start_or_end captures the indicaiton of start or end room
 **	captures any comment about the room
@@ -51,13 +52,21 @@ typedef struct 	s_room
 	int				y;// dont think i need these unless doing graphical work
 	bool			occupied;
 	int				*links; // Look into how this will be created
-	int				arr_size;
+	// int				arr_size;
 	char			*comment;
 	int				on_line;
-	// struct s_room	*next;
+	int				key;
+	struct s_room	*next;
 }				t_room;
 
 /*
+**	For Master:
+**	New size is used when creating a new hash table.
+**	old size is used when reallocting the new table. It's purpose is
+**	to confine the extent parsing is done on the old hash table.
+**	Load is the nbr_keys / size of hash table. This check is used to
+**	maintain an even distribution of indecies and reduce chaining on those
+**	indecies to a minimum.
 **	room_head represents the start of the list
 **	comment is a temporary pointer to comment text
 **	s/e_toggle is used to capture the start or end indicator
@@ -86,6 +95,10 @@ typedef struct 	s_master
 	int				room_captured;
 	int				link_captured;
 	bool			dummy; // remove before submission
+	size_t			new_size;
+	size_t			old_size;
+	int				load;
+	int				nbr_keys;
 }				t_master;
 
 /*
@@ -93,37 +106,50 @@ typedef struct 	s_master
 */
 
 void	init_master(t_master *master);
-t_room	*init_room(t_room *room);
-void	init_ht(t_room *ht[]);
-void	initialize_lemin(t_master *master, t_room *ht[]);
+// t_room	*init_room(t_room *room);
+// void	init_ht(t_room *ht[]);
+// void	init_ht(t_master *master);
+// void	initialize_lemin(t_master *master, t_room *ht[]);
+t_room	*init_room(t_room *room, char **data, int key, int index, t_master *master);
 
 /*
 **	DATA CAPTURING
 */
 
 
-void	parse_input(t_master *master, int fd, t_room *ht[]);
-void	capture_room(t_master *master, char *line, t_room *ht[]);
+void	parse_input(t_master *master, int fd, t_room **ht);
+void	capture_room(t_master *master, char *line, t_room **ht);
 void	capture_ants(t_master *master, char *line);
 void	capture_flags(t_master *master, int ac, char **av);
 void	capture_comment(t_master *master, char *str);
-void	capture_link(t_room *ht[], char *line, t_master *master);
+void	capture_link(t_room **ht, char *line, t_master *master);
 void	exit_error(void);
 t_room	*create_room_node(t_master *master, char *line);
 void	load_help(t_master *master);
 void	validate_coords(t_master *master, char *n1, char *n2);
-void	duplicate_room_check(t_master *master, t_room *ht[]);
-void	test_room_search(t_room *ht[], char *name);
+void	duplicate_room_check(t_master *master, t_room **ht);
+void	test_room_search(t_room **ht, char *name);
 void	exit_malloc(void);
 
 /*
 **	Hash Table Functions
 */
 
-void	insert_room(t_room *ht[], char *name, t_master *master);
+// void	insert_room(t_room *ht[], char *name, t_master *master);
 int		gen_key(char *str);
-void	print_ht(t_room *ht[]);
-int		probe(t_room *ht[], int index);
+// void	print_ht(t_room *ht[]);
+// int		probe(t_room *ht[], int index);
 int		room_search(t_room *ht[], char *name);
+t_room	**realloc_ht(t_room **src, t_master *master);
+t_room	**grow_ht(t_room **ht, t_master *master);
+t_room	**create_ht(t_master *master);
+float	load(t_master *master);
+void	insert_into_ht(t_room **ht, t_master *master, char *name);
+void	print_ht(t_room **ht, t_master *master);
+void	insert_node(t_room **ht, t_room *room, int index);
+void	append_node(t_room **ht, t_room *room, int index);
+void	unshift_node(t_room **ht, t_room *room, int index);
+void	clear_room(t_room *room);
+void	delete_ht(t_room **ht, t_master *master);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 10:08:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/25 14:30:04 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/28 21:06:47 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	exit_l(t_master *master)
 	exit(-1);
 }
 
-static void	exit_duplicate(t_master *master, t_room *ht[], int index)
+static void	exit_duplicate(t_master *master, t_room **ht, int index)
 {
 	if (master->adv_errors == true)
 	{
@@ -32,7 +32,7 @@ static void	exit_duplicate(t_master *master, t_room *ht[], int index)
 		exit_error();
 }
 
-void	duplicate_room_check(t_master *master, t_room *ht[])
+void	duplicate_room_check(t_master *master, t_room **ht)
 {
 	int i;
 	int j;

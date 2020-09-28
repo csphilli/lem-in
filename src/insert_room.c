@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 20:20:00 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/28 21:06:58 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,56 +30,62 @@ int gen_key(char *str)
   return (key);
 }
 
-int	probe(t_room *ht[], int index)
-{
-	while (ht[index] != 0)
-		index = (index + 1) % HT_SIZE;
-	return (index);
-}
 
-void	insert_room(t_room *ht[], char *line, t_master *master) // must validate data on room names (no L) and that in values are ints
+
+// int	probe(t_room *ht[], int index)
+// {
+// 	while (ht[index] != 0)
+// 		index = (index + 1) % HT_SIZE;
+// 	return (index);
+// }
+
+void 	insert_into_ht(t_room **ht, t_master *master, char *line)
 {
-	t_room *new;
-	char **data;
-	int index;
-	int key;
+	t_room	*room;
+	int		index;
+	int		key;
+	char	**data;
 
 	data = ft_strsplit(line, ' ');
-	validate_coords(master, data[1], data[2]);
-	new = (t_room*)malloc(sizeof(t_room));	
+	if (!(room = (t_room*)malloc(sizeof(t_room))))
+		exit_malloc();
 	key = gen_key(data[0]);
-	index = key % HT_SIZE;
-	if (ht[index] != NULL)
-		index = probe(ht, index);
-	new->index = index;
-	new->name = ft_strdup(data[0]);
-	new->x = ft_atoi(data[1]);
-	new->y = ft_atoi(data[2]);
-	new->on_line = master->line_nbr;
-	if (master->comment != NULL)
-	{
-		new->comment = ft_strdup(master->comment);
-		ft_strdel(&master->comment);
-	}
-	ht[index] = new;
+	// ft_printf("inside insert\n");
+	master->nbr_keys++;
+	index = key % master->new_size;
+	room = init_room(room, data, key, index, master);
+	insert_node(ht, room, index);
 	ft_free_strsplit(data);
-
+	// ft_printf("Done with strsplit_free\n");
 }
 
-void	print_ht(t_room *ht[])
-{
-	int i;
+// void	insert_room(t_room *ht[], char *line, t_master *master) // must validate data on room names (no L) and that in values are ints
+// {
+// 	t_room *new;
+// 	char **data;
+// 	int index;
+// 	int key;
 
-	i = 0;
-	while (i < HT_SIZE)
-	{
-		if (ht[i])
-		{
-			ft_printf("HT[%d]:\n Room Index: %d\n Room Name: %s\n"\
-				, i, ht[i]->index, ht[i]->name);
-			ft_printf(" X: %d\n Y: %d\n", ht[i]->x, ht[i]->y);
-			ft_printf(" Added on line: %d\n", ht[i]->on_line);
-		}
-		i++;
-	}
-}
+// 	data = ft_strsplit(line, ' ');
+// 	validate_coords(master, data[1], data[2]);
+// 	new = (t_room*)malloc(sizeof(t_room));	
+// 	key = gen_key(data[0]);
+// 	index = key % HT_SIZE;
+// 	if (ht[index] != NULL)
+// 		index = probe(ht, index);
+// 	new->index = index;
+// 	new->name = ft_strdup(data[0]);
+// 	new->x = ft_atoi(data[1]);
+// 	new->y = ft_atoi(data[2]);
+// 	new->on_line = master->line_nbr;
+// 	if (master->comment != NULL)
+// 	{
+// 		new->comment = ft_strdup(master->comment);
+// 		ft_strdel(&master->comment);
+// 	}
+// 	ht[index] = new;
+// 	ft_free_strsplit(data);
+
+// }
+
+

@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/09/24 21:08:34 by cphillip         ###   ########.fr        #
+#    Updated: 2020/09/28 19:23:07 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,10 @@ SRC_FILES = lem_in.c\
 			validate_coords.c\
 			search_room.c\
 			error_mgmt.c\
+			free.c\
+			realloc_ht.c\
+			node_work.c\
+			print_ht.c\
 
 OBJ_DIR = ./obj/
 OBJ_FILES = $(SRC_FILES:%.c=%.o)

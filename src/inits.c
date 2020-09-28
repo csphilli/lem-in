@@ -6,17 +6,17 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/26 11:07:45 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/28 21:04:43 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	initialize_lemin(t_master *master, t_room *ht[])
-{
-	init_master(master);
-	init_ht(ht);
-}
+// void	initialize_lemin(t_master *master, t_room *ht[])
+// {
+// 	init_master(master);
+// 	init_ht(ht);
+// }
 
 void	init_master(t_master *master)
 {
@@ -41,32 +41,30 @@ void	init_master(t_master *master)
 		master->room_count = 0;
 		master->dummy = false;
 		master->leaks = false;
+		master->new_size = 10;
+		master->load = 5;
+		master->old_size = 10;
+		master->nbr_keys = 0;
 	}
 }
 
-t_room	*init_room(t_room *room)
+t_room	*init_room(t_room *room, char **data, int key, int index, t_master *master)
 {
-	room->name = NULL;
+	room->index = index;
+	room->key = key;
+	room->name = ft_strdup(data[0]);
 	room->start_or_end = NULL;
-	room->x = -1;
-	room->y = -1;
+	room->x = ft_atoi(data[1]);
+	room->y = ft_atoi(data[2]);
+	if (master->comment != NULL)
+	{
+		room->comment = ft_strdup(master->comment);
+		ft_strdel(&master->comment);
+	}
 	room->comment = NULL;
 	room->occupied = false;
 	room->links = NULL;
-	room->arr_size = 0;
 	room->on_line = 0;
-
+	room->next = NULL;
 	return (room);
-}
-
-void	init_ht(t_room *ht[])
-{
-	int i;
-
-	i = 0;
-	while (i < HT_SIZE)
-	{
-		ht[i] = 0;
-		i++;
-	}
 }
