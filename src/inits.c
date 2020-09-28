@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 20:19:46 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/26 11:07:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ t_room	*init_room(t_room *room)
 	room->y = -1;
 	room->comment = NULL;
 	room->occupied = false;
-	room->room_links = NULL;
+	room->links = NULL;
+	room->arr_size = 0;
 	room->on_line = 0;
 
 	return (room);

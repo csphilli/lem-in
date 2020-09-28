@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 21:05:06 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 21:05:43 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/25 14:27:04 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,11 @@
 void	exit_malloc(void)
 {
 	ft_printf(E_MALLOC);
+	exit(-1);
+}
+
+void	exit_error(void)
+{
+	ft_printf(E_BASIC);
 	exit(-1);
 }

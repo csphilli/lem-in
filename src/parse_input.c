@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 20:55:39 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/28 14:00:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void		parsing_lines(t_master *master, int fd, t_room *ht[])
 				if (line[i] == ' ')
 					insert_room(ht, line, master);
 				// else if (line[i] == '-')
-				// 	capture_link(master, line);
+				// 	capture_link(ht, line, master);
 			}
 		}
 		else
@@ -62,7 +62,7 @@ void		parse_input(t_master *master, int fd, t_room *ht[])
 		exit_no_file();
 	parsing_lines(master, fd, ht);
 	duplicate_room_check(master, ht);
-	test_room_search(ht, "oblong");
+	test_room_search(ht, "0");
 	close(fd);
 	// ft_printf("flags: %s\n", master->input_flags);
 	

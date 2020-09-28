@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 21:05:53 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/26 11:13:35 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ typedef struct 	s_room
 	int				x; // dont think i need these unless doing graphical work
 	int				y;// dont think i need these unless doing graphical work
 	bool			occupied;
-	char			*room_links; // Look into how this will be created
+	int				*links; // Look into how this will be created
+	int				arr_size;
 	char			*comment;
 	int				on_line;
 	// struct s_room	*next;
@@ -106,8 +107,8 @@ void	capture_room(t_master *master, char *line, t_room *ht[]);
 void	capture_ants(t_master *master, char *line);
 void	capture_flags(t_master *master, int ac, char **av);
 void	capture_comment(t_master *master, char *str);
-void	capture_link(t_master *master, char *line);
-void	exit_error(t_master *master, char *error_code);
+void	capture_link(t_room *ht[], char *line, t_master *master);
+void	exit_error(void);
 t_room	*create_room_node(t_master *master, char *line);
 void	load_help(t_master *master);
 void	validate_coords(t_master *master, char *n1, char *n2);
@@ -123,5 +124,6 @@ void	insert_room(t_room *ht[], char *name, t_master *master);
 int		gen_key(char *str);
 void	print_ht(t_room *ht[]);
 int		probe(t_room *ht[], int index);
+int		room_search(t_room *ht[], char *name);
 
 #endif

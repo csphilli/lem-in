@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 10:08:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 20:04:55 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/25 14:30:04 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,17 @@ static void	exit_l(t_master *master)
 	exit(-1);
 }
 
-static void	exit_duplicate(char *name, int i)
+static void	exit_duplicate(t_master *master, t_room *ht[], int index)
 {
-	ft_printf(E_DUPL);
-	ft_printf(" %s defined at HT[%d].\n", name, i);
-	exit(-1);
+	if (master->adv_errors == true)
+	{
+		ft_printf(E_DUPL);
+		ft_printf("'%s' originally defined on line %d.\n", \
+		ht[index]->name, ht[index]->on_line);
+		exit(-1);
+	}
+	else
+		exit_error();
 }
 
 void	duplicate_room_check(t_master *master, t_room *ht[])
@@ -43,7 +49,7 @@ void	duplicate_room_check(t_master *master, t_room *ht[])
 			while (ht[j + 1])
 			{
 				if (ft_strcmp(ht[j + 1]->name, ht[i]->name) == 0)
-					exit_duplicate(ht[i]->name, i);
+					exit_duplicate(master, ht, i);
 				j++;
 			}
 		}

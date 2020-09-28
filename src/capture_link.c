@@ -6,17 +6,14 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 12:16:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/03 17:50:03 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/28 14:00:55 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	capture_link(t_master *master, char *line)
-{
-	if (master && line)
-	{
-		ft_printf("inside capture link\n");
-	}
-	// ft_strdel(&line);
-}
+
+// void	capture_link(t_room *ht[], char *line, t_master *master)
+// {
+// 	ft_printf("Do anything\n");
+// }

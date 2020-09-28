@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 20:20:37 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/24 20:58:20 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/09/24 21:12:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ int	room_search(t_room *ht[], char *name)
 
 static void	p_results(t_room *ht[], int index)
 {
-	if (index)
-		ft_printf("Room found! Added on line %d\n", ht[index]->on_line);
+	ft_printf("Room found! Added on line %d\n", ht[index]->on_line);
 }
 
 void	test_room_search(t_room *ht[], char *name)
