@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/28 21:05:17 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/01 12:52:25 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ void	validate_coords(t_master *master, char *n1, char *n2);
 void	duplicate_room_check(t_master *master, t_room **ht);
 void	test_room_search(t_room **ht, char *name);
 void	exit_malloc(void);
+void	copy_room(t_room *dest, t_room *src);
+void	parse_lines(t_master *master, char *line, t_room **ht);
 
 /*
 **	Hash Table Functions

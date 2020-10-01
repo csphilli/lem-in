@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/28 21:04:43 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/01 12:42:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,25 @@ t_room	*init_room(t_room *room, char **data, int key, int index, t_master *maste
 		room->comment = ft_strdup(master->comment);
 		ft_strdel(&master->comment);
 	}
-	room->comment = NULL;
 	room->occupied = false;
 	room->links = NULL;
 	room->on_line = 0;
 	room->next = NULL;
 	return (room);
+}
+
+void	copy_room(t_room *dest, t_room *src)
+{
+	dest->index = src->index;
+	dest->key = src->key;
+	dest->name = ft_strdup(src->name);
+	dest->start_or_end = ft_strdup(src->start_or_end);
+	dest->x = src->x;
+	dest->y = src->y;
+	if (src->comment != NULL)
+		dest->comment = ft_strdup(src->comment);
+	dest->occupied = src->occupied;
+	dest->links = NULL; // need to fix later
+	dest->on_line = src->on_line;
+	dest->next = NULL;
 }
