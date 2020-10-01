@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:20:56 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/28 19:21:25 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/01 13:50:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,21 @@ void 	append_node(t_room **ht, t_room *room, int index)
 void	insert_node(t_room **ht, t_room *room, int index)
 {
 	if (ht[index] == NULL)
+	{
+		// ft_printf("\tInsert due to NULL\n");
+		// ft_printf("\tIndex: %d | Key: %d\n", index, room->key);
 		ht[index] = room;
+	}
 	else if (room->key < ht[index]->key)
+	{
+		// ft_printf("\tInsert as UNSHIFT\n");
+		// ft_printf("\tIndex: %d | Key: %d\n", index, room->key);
 		unshift_node(ht, room, index);
+	}
 	else
+	{
+		// ft_printf("\tInsert as APPENDING\n");
+		// ft_printf("\tIndex: %d | Key: %d\n", index, room->key);
 		append_node(ht, room, index);
+	}
 }

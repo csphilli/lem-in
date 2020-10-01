@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/01 12:52:25 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/01 14:26:26 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,13 @@
 
 typedef struct 	s_room
 {
-	int				index;
+	// int				index;
 	char			*name;
 	char			*start_or_end;
-	int				x; // dont think i need these unless doing graphical work
-	int				y;// dont think i need these unless doing graphical work
+	int				x;
+	int				y;
 	bool			occupied;
-	int				*links; // Look into how this will be created
-	// int				arr_size;
+	int				*links;
 	char			*comment;
 	int				on_line;
 	int				key;
@@ -97,7 +96,7 @@ typedef struct 	s_master
 	bool			dummy; // remove before submission
 	size_t			new_size;
 	size_t			old_size;
-	int				load;
+	float			load;
 	int				nbr_keys;
 }				t_master;
 
@@ -105,6 +104,7 @@ typedef struct 	s_master
 **	INITIALIZATION
 */
 
+t_room 	*create_room(void);
 void	init_master(t_master *master);
 // t_room	*init_room(t_room *room);
 // void	init_ht(t_room *ht[]);
@@ -116,7 +116,7 @@ t_room	*init_room(t_room *room, char **data, int key, int index, t_master *maste
 **	DATA CAPTURING
 */
 
-
+void	fill_room(t_room *room, t_master *master, char *line);
 void	parse_input(t_master *master, int fd, t_room **ht);
 void	capture_room(t_master *master, char *line, t_room **ht);
 void	capture_ants(t_master *master, char *line);
@@ -146,7 +146,7 @@ t_room	**realloc_ht(t_room **src, t_master *master);
 t_room	**grow_ht(t_room **ht, t_master *master);
 t_room	**create_ht(t_master *master);
 float	load(t_master *master);
-void	insert_into_ht(t_room **ht, t_master *master, char *name);
+void	insert_into_ht(t_room **ht, t_master *master, t_room *room);
 void	print_ht(t_room **ht, t_master *master);
 void	insert_node(t_room **ht, t_room *room, int index);
 void	append_node(t_room **ht, t_room *room, int index);

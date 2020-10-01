@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_input.c                                      :+:      :+:    :+:   */
+/*   parse_lines.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/01 12:53:20 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/01 14:17:44 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@
 void		parse_lines(t_master *master, char *line, t_room **ht)
 {
 	int		i;
-
+	t_room *room;
 	
 	i = 0;
+	
+	room = NULL;
+	// ft_printf("created room\n");
 	// ft_printf("Master->comment at start of parse: %s\n", master->comment);
 	if (!master->ants_added)
 		capture_ants(master, line);
@@ -38,7 +41,15 @@ void		parse_lines(t_master *master, char *line, t_room **ht)
 		while (ft_isalnum(line[i++]))
 		{
 			if (line[i] == ' ')
-				insert_into_ht(ht, master, line);
+			{
+				room = create_room();
+				fill_room(room, master, line);
+				// ft_printf("Name: %s | Address: %p\n", room->name, room);
+				// ft_printf("filled room\n");
+				insert_into_ht(ht, master, room);
+				// ft_printf("inserted room\n");
+				// clear_room(room);
+			}
 			// else if (line[i] == '-')
 			// 	capture_link(ht, line, master);
 		}
@@ -48,19 +59,3 @@ void		parse_lines(t_master *master, char *line, t_room **ht)
 	ft_strdel(&line);
 	master->line_nbr++;
 }
-
-// void		parse_input(t_master *master, int fd, t_room **ht)
-// {
-// 	int		i;
-
-// 	i = 1;
-// 	if (fd < 0)
-// 		exit_no_file();
-// 	parsing_lines(master, fd, ht);
-// 	// duplicate_room_check(master, ht);
-// 	// print_ht(ht, master);
-// 	// test_room_search(ht, "0");
-// 	close(fd);
-// 	// ft_printf("flags: %s\n", master->input_flags);
-	
-// }

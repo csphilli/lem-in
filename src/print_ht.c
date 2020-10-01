@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:22:15 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/28 21:16:06 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/01 13:48:52 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void 	print_ht(t_room **ht, t_master *master)
 {
+	// ft_printf("into printing\n");
 	size_t	i;
 	t_room	*tmp;
 

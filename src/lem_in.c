@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/01 12:51:20 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/01 14:26:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,28 @@ float 	load(t_master *master)
 	return (res);
 }
 
+static void	do_lemin(int fd, t_master *master, t_room **ht)
+{
+	char	*line;
+
+	while (get_next_line(fd, &line) > 0)
+	{
+		if (load(master) > master->load)
+		{
+
+			ft_printf("load exceeded. Growing HT\n");
+			ht = grow_ht(ht, master);
+		}
+		parse_lines(master, line, ht);
+	}
+	print_ht(ht, master);
+	printf("Load: %f | master->load: %f\n", load(master), master->load);
+}
+
 int	main(int ac, char **av)
 {
 	t_master	*master;
-	t_room		**ht;
-	char		*line;	
+	t_room		**ht;	
 	int			fd;
 
 	fd = 0;
@@ -57,14 +74,8 @@ int	main(int ac, char **av)
 	if (ac > 1)
 	{
 		check_inputs(master, ac);
-		while (get_next_line(fd, &line) > 0)
-		{
-			if (load(master) > master->load)
-				ht = grow_ht(ht, master);
-			parse_lines(master, line, ht);
-		}		
+		do_lemin(fd, master, ht);				
 	}
-	print_ht(ht, master);
 	if (master->leaks == true)
 	{
 		while (1)

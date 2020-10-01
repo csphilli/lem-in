@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/09/28 19:23:07 by cphillip         ###   ########.fr        #
+#    Updated: 2020/10/01 12:58:17 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRC_FILES = lem_in.c\
 			capture_flags.c\
 			capture_link.c\
 			inits.c\
-			parse_input.c\
+			parse_lines.c\
 			load_help.c\
 			validate_rooms.c\
 			validate_coords.c\
