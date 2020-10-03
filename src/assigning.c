@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   realloc_ht.c                                       :+:      :+:    :+:   */
+/*   assigning.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/28 19:18:44 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/03 15:04:08 by cphillip         ###   ########.fr       */
+/*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
+/*   Updated: 2020/10/03 15:32:14 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-t_bucket 	**realloc_ht(t_bucket **src, t_master *master)
+int gen_key(char *str)
 {
-	ft_printf("%d\n", src[0]->entry->name);
-	ft_printf("%d\n", master->nbr_ants);
-	return (0);
+	int key;
+
+	key = 0;
+	while (*str)
+	{
+		if (*str >= (0 + '0') && *str <= (9 + '0'))
+		key += (*str - 48);
+		else if (*str >= 'a' && *str <= 'z')
+		key += *str;
+		else if (*str >= 'A' && *str <= 'Z')
+		key += *str;
+		str++;
+	}
+  return (key);
 }
 
-t_bucket 	**grow_ht(t_bucket **ht, t_master *master)
+void 	assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry)
 {
-	t_bucket **new;
+	size_t	index;
 
-	master->old_size = master->new_size;
-	master->new_size *= 2;
-	master->nbr_keys = 0;
-	new = realloc_ht(ht, master);
-	return (new);
+	index = entry->key % master->new_size;
+	insert_node(ht, entry, index);
+	master->room_count++;
 }
 
 

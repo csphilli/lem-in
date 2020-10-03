@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/01 14:26:32 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/03 15:33:49 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void check_inputs(t_master *master, int ac)
 
 	i = 0;
 	char *s;
-
 	s = master->input_flags;
 	while (*s++)
 		i++;
@@ -40,7 +39,7 @@ float 	load(t_master *master)
 	return (res);
 }
 
-static void	do_lemin(int fd, t_master *master, t_room **ht)
+static void	do_lemin(int fd, t_master *master, t_bucket **ht)
 {
 	char	*line;
 
@@ -48,20 +47,20 @@ static void	do_lemin(int fd, t_master *master, t_room **ht)
 	{
 		if (load(master) > master->load)
 		{
-
 			ft_printf("load exceeded. Growing HT\n");
+			master->room_count = 0;
 			ht = grow_ht(ht, master);
 		}
+		// ft_printf("going into parsing lines\n");
 		parse_lines(master, line, ht);
 	}
-	print_ht(ht, master);
 	printf("Load: %f | master->load: %f\n", load(master), master->load);
 }
 
 int	main(int ac, char **av)
 {
 	t_master	*master;
-	t_room		**ht;	
+	t_bucket	**ht;	
 	int			fd;
 
 	fd = 0;
@@ -71,11 +70,16 @@ int	main(int ac, char **av)
 	init_master(master);
 	capture_flags(master, ac, av);
 	ht = create_ht(master);
+	// ft_printf("done creating ht\n");
 	if (ac > 1)
 	{
+		// ft_printf("checking inputs\n");
 		check_inputs(master, ac);
+		// ft_printf("done checking inputs\n");
 		do_lemin(fd, master, ht);				
 	}
+	print_ht(ht, master);
+	ft_printf("Room Count: %d\n", master->room_count);
 	if (master->leaks == true)
 	{
 		while (1)

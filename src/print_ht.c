@@ -5,40 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/28 19:22:15 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/01 13:48:52 by cphillip         ###   ########.fr       */
+/*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
+/*   Updated: 2020/10/03 18:14:59 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void 	print_ht(t_room **ht, t_master *master)
+void	print_ht(t_bucket **ht, t_master *master)
 {
-	// ft_printf("into printing\n");
 	size_t	i;
-	t_room	*tmp;
 
 	i = 0;
-	tmp = NULL;
-	printf("new size: %zu\n", master->new_size);
-	while (i < master->new_size)
+	while(i < master->new_size)
 	{
-		if (ht[i] != NULL)
+		ft_printf("HT[%d]: ", i);
+		if (ht[i]->entry)
 		{
-			tmp = ht[i];
-			printf("ht[%zu]: ", i);
-			while (tmp)
+			while (ht[i]->entry)
 			{
-				printf("{%s | X:%d Y:%d}", tmp->name, tmp->x, tmp->y);
-				if (tmp->next != NULL)
-					printf("-->");
-				tmp = tmp->next;
+				ft_printf("{Name: %s | Key: %d}", ht[i]->entry->name, ht[i]->entry->key);
+				if (ht[i]->next)
+					ft_printf("-->");
+				if (ht[i]->next)
+					ht[i] = ht[i]->next;
+				else
+					break ;
 			}
-			printf("\n");
 		}
-		else
-			printf("ht[%zu]:\n", i);
+		ft_printf("\n");		
 		i++;
 	}
-	printf("Nbr keys: %d | Load: %f\n", master->nbr_keys, load(master));
 }

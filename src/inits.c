@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/01 14:23:57 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/03 15:15:47 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	init_master(t_master *master)
 {
 	if (master)
 	{
-		master->list_head = NULL;
 		master->s_toggle = false;
 		master->e_toggle = false;
 		master->nbr_ants = 0;
@@ -35,11 +34,7 @@ void	init_master(t_master *master)
 		master->has_flags = 0;
 		master->ants_added = false;
 		master->comment = NULL;
-		master->latest_room = NULL;
-		master->room_captured = 0;
-		master->link_captured = 0;
 		master->room_count = 0;
-		master->dummy = false;
 		master->leaks = false;
 		master->new_size = 10;
 		master->load = 5.0;

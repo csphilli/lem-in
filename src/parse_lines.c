@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/01 14:17:44 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/03 15:30:26 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,13 @@
 // 	exit(-1);
 // }
 
-void		parse_lines(t_master *master, char *line, t_room **ht)
+void		parse_lines(t_master *master, char *line, t_bucket **ht)
 {
-	int		i;
-	t_room *room;
+	int			i;
+	t_entry		*entry;
 	
 	i = 0;
-	
-	room = NULL;
-	// ft_printf("created room\n");
-	// ft_printf("Master->comment at start of parse: %s\n", master->comment);
+	// ft_printf("Parsing Lines\n");
 	if (!master->ants_added)
 		capture_ants(master, line);
 	else if (line[i] == '#')
@@ -42,13 +39,9 @@ void		parse_lines(t_master *master, char *line, t_room **ht)
 		{
 			if (line[i] == ' ')
 			{
-				room = create_room();
-				fill_room(room, master, line);
-				// ft_printf("Name: %s | Address: %p\n", room->name, room);
-				// ft_printf("filled room\n");
-				insert_into_ht(ht, master, room);
-				// ft_printf("inserted room\n");
-				// clear_room(room);
+				// ft_printf("capturing room\n");
+				entry = create_and_fill_entry(master, line);
+				assign_entry_to_ht(ht, master, entry);
 			}
 			// else if (line[i] == '-')
 			// 	capture_link(ht, line, master);

@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/10/01 12:58:17 by cphillip         ###   ########.fr        #
+#    Updated: 2020/10/03 15:29:10 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,20 +27,18 @@ SRC_DIR = ./src/
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
 SRC_FILES = lem_in.c\
 			capture_comment.c\
-			insert_room.c\
+			assigning.c\
 			capture_ants.c\
 			capture_flags.c\
 			capture_link.c\
 			inits.c\
 			parse_lines.c\
 			load_help.c\
-			validate_rooms.c\
 			validate_coords.c\
-			search_room.c\
 			error_mgmt.c\
-			free.c\
 			realloc_ht.c\
 			node_work.c\
+			creating.c\
 			print_ht.c\
 
 OBJ_DIR = ./obj/
