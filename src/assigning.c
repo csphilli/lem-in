@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/03 15:32:14 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/05 13:26:11 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void 	assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry)
 	index = entry->key % master->new_size;
 	insert_node(ht, entry, index);
 	master->room_count++;
+	master->nbr_keys++;
 }
 
 

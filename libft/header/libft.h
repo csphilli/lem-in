@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 16:37:29 by cphillip          #+#    #+#             */
-/*   Updated: 2020/09/23 12:01:57 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/03 20:36:40 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,6 @@ char				*ft_ftoa(long double nbr, int prec, char dot);
 void				ft_putnbrmax(intmax_t nbr);
 char				*ft_itoa_uintmax(uintmax_t n);
 char				*ft_itoa_base(uintmax_t nbr, int base);
-void				ft_free_strsplit(char **str);
+void				free_strsplit(char ***str);
 
 #endif

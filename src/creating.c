@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 12:38:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/03 15:19:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/05 13:28:36 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,14 @@ t_bucket 	**create_ht(t_master *master)
 	size_t		i;
 
 	i = 0;
-	if (!(ht = malloc(sizeof(t_bucket*) * (master->new_size + 1))))
+	if (!(ht = (t_bucket**)malloc(sizeof(t_bucket*) * (master->new_size + 1))))
 		exit_malloc();
 	while (i < master->new_size)
 	{
-		ft_printf("Creating spot %zu in ht\n", i);
-		if (!(ht[i] = malloc(sizeof(t_bucket))))
-			exit_malloc();
-		ht[i]->entry = NULL;
-		ht[i]->next = NULL;
+		ht[i] = NULL;
 		i++;
 	}
 	ht[i] = NULL;
-	print_ht(ht, master);
 	return (ht);
 }
 
@@ -59,7 +54,7 @@ t_entry *create_and_fill_entry(t_master *master, char *line)
 	t_entry *new;
 	char	**data;
 
-	if (!(new = malloc(sizeof(t_entry))))
+	if (!(new = (t_entry*)malloc(sizeof(t_entry))))
 		exit_malloc();
 	init_entry(new);
 	data = ft_strsplit(line, ' ');
@@ -72,6 +67,8 @@ t_entry *create_and_fill_entry(t_master *master, char *line)
 		new->comment = ft_strdup(master->comment);
 		ft_strdel(&master->comment);
 	}
-	ft_free_strsplit(data);
+	
+	free_strsplit(&data);
+	data = NULL;
 	return (new);
 }

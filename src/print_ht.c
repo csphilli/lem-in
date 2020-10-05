@@ -6,34 +6,35 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/03 18:14:59 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/05 14:11:33 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	print_ht(t_bucket **ht, t_master *master)
+void	print_ht(t_bucket **ht, size_t size)
 {
 	size_t	i;
+	t_bucket *tmp;
 
 	i = 0;
-	while(i < master->new_size)
+	tmp = NULL;
+	while(i < size)
 	{
-		ft_printf("HT[%d]: ", i);
-		if (ht[i]->entry)
+		ft_printf("HT[%2d]: ", i);
+		if (ht[i] != NULL)
 		{
-			while (ht[i]->entry)
+			tmp = ht[i];
+			while (tmp != NULL)
 			{
-				ft_printf("{Name: %s | Key: %d}", ht[i]->entry->name, ht[i]->entry->key);
-				if (ht[i]->next)
+				ft_printf("{Name: %s | Key: %d}", tmp->entry->name, tmp->entry->key);
+				if (tmp->next)
 					ft_printf("-->");
-				if (ht[i]->next)
-					ht[i] = ht[i]->next;
-				else
-					break ;
+				tmp = tmp->next;
 			}
+			// ft_printf("\n")
 		}
-		ft_printf("\n");		
+		ft_printf("\n");
 		i++;
 	}
 }

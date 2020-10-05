@@ -6,13 +6,12 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/03 15:13:36 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/05 14:35:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
-# define HT_SIZE 1000000
 # define E_BASIC "Error. For more info, use flag '-e'.\n"
 # define E_MALLOC "Error. Failed to allocate memory.\n"
 # define E_NO_ROOMS "Error. No rooms specified.\n"
@@ -50,6 +49,7 @@ typedef struct 	s_entry
 	int				x;
 	int				y;
 	int				key;
+
 }				t_entry;
 
 typedef struct 	s_bucket
@@ -99,40 +99,27 @@ typedef struct 	s_master
 **	ERROR HANDLING
 */
 
-void	exit_error(void);
-void	exit_malloc(void);
+void		exit_error(void);
+void		exit_malloc(void);
 
 /*
 **	INITIALIZATION
 */
 
-// t_room 	*create_room(void); // not used
-t_entry *create_and_fill_entry(t_master *master, char *line);
-void	init_master(t_master *master);
-// t_room	*init_room(t_room *room);
-// void	init_ht(t_room *ht[]);
-// void	init_ht(t_master *master);
-// void	initialize_lemin(t_master *master, t_room *ht[]);
-// t_room	*init_room(t_room *room, char **data, int key, int index, t_master *master);
+t_entry		*create_and_fill_entry(t_master *master, char *line);
+void		init_master(t_master *master);
 
 /*
 **	DATA CAPTURING
 */
 
-// void	fill_room(t_room *room, t_master *master, char *line);
-// void	parse_input(t_master *master, int fd, t_room **ht);
-// void	capture_room(t_master *master, char *line, t_room **ht);
-void	capture_ants(t_master *master, char *line);
-void	capture_flags(t_master *master, int ac, char **av);
-void	capture_comment(t_master *master, char *str);
-// void	capture_link(t_room **ht, char *line, t_master *master);
-
-// t_room	*create_room_node(t_master *master, char *line);
+void		capture_ants(t_master *master, char *line);
+void		capture_flags(t_master *master, int ac, char **av);
+void		capture_comment(t_master *master, char *str);
 void		load_help(t_master *master);
 void		validate_coords(t_master *master, char *n1, char *n2);
 void		duplicate_room_check(t_master *master, t_bucket **ht);
 void		test_room_search(t_bucket **ht, char *name);
-
 void		copy_room(t_bucket *dest, t_bucket *src);
 void		parse_lines(t_master *master, char *line, t_bucket **ht);
 
@@ -140,20 +127,15 @@ void		parse_lines(t_master *master, char *line, t_bucket **ht);
 **	Hash Table Functions
 */
 
+
+t_bucket	**grow_ht(t_bucket **ht, t_master *master);
+t_bucket	**create_ht(t_master *master);
+t_bucket	*create_bucket(void);
+float		load(t_master *master);
 void		insert_node(t_bucket **ht, t_entry *entry, int index);
 void 		assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry);
+void		print_ht(t_bucket **ht, size_t size);
+int			room_search(t_bucket *ht[], char *name);
 int			gen_key(char *str);
-t_bucket 	**create_ht(t_master *master);
-t_bucket	*create_bucket(void);
-void		print_ht(t_bucket **ht, t_master *master);
-// void	insert_room(t_room *ht[], char *name, t_master *master);
-// void	print_ht(t_room *ht[]);
-// int		probe(t_room *ht[], int index);
-int		room_search(t_bucket *ht[], char *name);
-t_bucket	**realloc_ht(t_bucket **src, t_master *master);
-t_bucket	**grow_ht(t_bucket **ht, t_master *master);
-float	load(t_master *master);
-// void	insert_into_ht(t_room **ht, t_master *master, t_room *room);
-void	print_ht(t_bucket **ht, t_master *master);
 
 #endif
