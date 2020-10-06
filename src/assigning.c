@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/05 13:26:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/06 08:19:30 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int gen_key(char *str)
+int		gen_key(char *str)
 {
 	int key;
 
@@ -20,17 +20,17 @@ int gen_key(char *str)
 	while (*str)
 	{
 		if (*str >= (0 + '0') && *str <= (9 + '0'))
-		key += (*str - 48);
+			key += (*str - 48);
 		else if (*str >= 'a' && *str <= 'z')
-		key += *str;
+			key += *str;
 		else if (*str >= 'A' && *str <= 'Z')
-		key += *str;
+			key += *str;
 		str++;
 	}
-  return (key);
+	return (key);
 }
 
-void 	assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry)
+void	assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry)
 {
 	size_t	index;
 
@@ -39,5 +39,3 @@ void 	assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry)
 	master->room_count++;
 	master->nbr_keys++;
 }
-
-

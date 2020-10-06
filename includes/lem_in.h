@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/05 14:35:45 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/06 09:18:24 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@
 # define E_END "Error. End already defined.\n"
 # define E_NOFILE "Error. File not found.\n"
 # define E_FAILED_SEARCH "Error. Room not found.\n"
-
-
-#include "../libft/header/libft.h"
+# include "../libft/header/libft.h"
 
 /*
 **	For Room:
@@ -42,7 +40,7 @@
 **	next is the pointer to the next room in list.
 */
 
-typedef struct 	s_entry
+typedef struct		s_entry
 {
 	char			*name;
 	char			*comment;
@@ -50,13 +48,13 @@ typedef struct 	s_entry
 	int				y;
 	int				key;
 
-}				t_entry;
+}					t_entry;
 
-typedef struct 	s_bucket
+typedef struct		s_bucket
 {
-	struct s_entry 	*entry;
+	struct s_entry	*entry;
 	struct s_bucket	*next;
-}				t_bucket;
+}					t_bucket;
 
 /*
 **	For Master:
@@ -73,17 +71,18 @@ typedef struct 	s_bucket
 **	a_errors is advanced error messages
 */
 
-typedef struct 	s_master
+typedef struct		s_master
 {
-	char			*comment;	
+	char			*comment;
 	bool			s_toggle;
 	bool			e_toggle;
 	bool			adv_errors;
 	bool			colors;
+	bool			valid_input;
 	bool			ants_added;
 	bool			debugger;
 	bool			leaks;
-	int 			nbr_ants;
+	int				nbr_ants;
 	int				has_flags;
 	int				line_nbr;
 	char			*input_flags;
@@ -93,49 +92,50 @@ typedef struct 	s_master
 	size_t			old_size;
 	float			load;
 	int				nbr_keys;
-}				t_master;
+}					t_master;
 
 /*
 **	ERROR HANDLING
 */
 
-void		exit_error(void);
-void		exit_malloc(void);
+void				exit_error(void);
+void				exit_malloc(void);
+void				exit_usage(void);
+void				error_coord(int line_nbr);
 
 /*
 **	INITIALIZATION
 */
 
-t_entry		*create_and_fill_entry(t_master *master, char *line);
-void		init_master(t_master *master);
+t_entry				*create_and_fill_entry(t_master *master, char *line);
+void				init_master(t_master *master);
 
 /*
 **	DATA CAPTURING
 */
 
-void		capture_ants(t_master *master, char *line);
-void		capture_flags(t_master *master, int ac, char **av);
-void		capture_comment(t_master *master, char *str);
-void		load_help(t_master *master);
-void		validate_coords(t_master *master, char *n1, char *n2);
-void		duplicate_room_check(t_master *master, t_bucket **ht);
-void		test_room_search(t_bucket **ht, char *name);
-void		copy_room(t_bucket *dest, t_bucket *src);
-void		parse_lines(t_master *master, char *line, t_bucket **ht);
+void				capture_ants(t_master *master, char *line);
+void				capture_flags(t_master *master, int ac, char **av);
+void				capture_comment(t_master *master, char *str);
+void				load_help(t_master *master);
+void				validate_coords(t_master *master, char *n1, char *n2);
+void				duplicate_room_check(t_master *master, t_bucket **ht);
+void				test_room_search(t_bucket **ht, char *name);
+void				copy_room(t_bucket *dest, t_bucket *src);
+void				parse_lines(t_master *master, char *line, t_bucket **ht);
 
 /*
 **	Hash Table Functions
 */
 
-
-t_bucket	**grow_ht(t_bucket **ht, t_master *master);
-t_bucket	**create_ht(t_master *master);
-t_bucket	*create_bucket(void);
-float		load(t_master *master);
-void		insert_node(t_bucket **ht, t_entry *entry, int index);
-void 		assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry);
-void		print_ht(t_bucket **ht, size_t size);
-int			room_search(t_bucket *ht[], char *name);
-int			gen_key(char *str);
-
+t_bucket			**grow_ht(t_bucket **ht, t_master *master);
+t_bucket			**create_ht(t_master *master);
+t_bucket			*create_bucket(void);
+float				load(t_master *master);
+void				insert_node(t_bucket **ht, t_entry *entry, int index);
+void				assign_entry_to_ht(t_bucket **ht, t_master *master,\
+					t_entry *entry);
+void				print_ht(t_bucket **ht, size_t size);
+int					room_search(t_bucket *ht[], char *name);
+int					gen_key(char *str);
 #endif

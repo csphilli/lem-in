@@ -6,32 +6,31 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/05 14:23:46 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/06 08:37:19 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static void	exit_usage(void)
+void		check_inputs(t_master *master, int ac)
 {
-	ft_printf(E_USAGE);
-	exit(-1);
-}
-
-static void check_inputs(t_master *master, int ac)
-{
-	int i;
+	int		i;
+	char	*s;
 
 	i = 0;
-	char *s;
-	s = master->input_flags;
-	while (*s++)
-		i++;
-	if (i + 1 != ac && !ft_strchr(master->input_flags, 'f'))
-		exit_usage();
+	s = NULL;
+	if (master->input_flags)
+	{
+		s = master->input_flags;
+		while (*s++)
+			i++;
+		if (i + 1 != ac && !ft_strchr(master->input_flags, 'f'))
+			exit_usage();
+	}
+	master->valid_input = true;
 }
 
-float 	load(t_master *master)
+float		load(t_master *master)
 {
 	float res;
 
@@ -39,7 +38,7 @@ float 	load(t_master *master)
 	return (res);
 }
 
-static t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
+t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
 {
 	char	*line;
 
@@ -47,24 +46,18 @@ static t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
 	{
 		if (load(master) > master->load)
 		{
-			ft_printf("load exceeded. Growing HT\n");
 			master->room_count = 0;
 			ht = grow_ht(ht, master);
-			// print_ht(ht, master->new_size);
 		}
-		
-		// ft_printf("going into parsing lines\n");
 		parse_lines(master, line, ht);
 	}
 	return (ht);
-	
-	ft_printf("Load: %f | master->load: %f\n", load(master), master->load);
 }
 
-int	main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_master	*master;
-	t_bucket	**ht;	
+	t_bucket	**ht;
 	int			fd;
 
 	fd = 0;
@@ -73,25 +66,15 @@ int	main(int ac, char **av)
 		exit_malloc();
 	init_master(master);
 	capture_flags(master, ac, av);
+	check_inputs(master, ac);
 	ht = create_ht(master);
-	// ft_printf("done creating ht\n");
-	if (ac > 1)
-	{
-		// ft_printf("checking inputs\n");
-		check_inputs(master, ac);
-		// ft_printf("done checking inputs\n");
-		ht = do_lemin(fd, master, ht);				
-	}
-	
-	print_ht(ht, master->new_size);
-	
-	ft_printf("Room Count: %d\n", master->room_count);
+	if (master->valid_input == true)
+		ht = do_lemin(fd, master, ht);
 	if (master->leaks == true)
 	{
 		while (1)
 		{
-			
 		}
 	}
-	return (0);	
+	return (0);
 }

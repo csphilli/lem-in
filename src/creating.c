@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 12:38:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/05 13:28:36 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/06 08:32:10 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static void	init_entry(t_entry *entry)
+void		init_entry(t_entry *entry)
 {
 	entry->name = NULL;
 	entry->comment = NULL;
@@ -21,7 +21,7 @@ static void	init_entry(t_entry *entry)
 	entry->key = '\0';
 }
 
-t_bucket 	**create_ht(t_master *master)
+t_bucket	**create_ht(t_master *master)
 {
 	t_bucket	**ht;
 	size_t		i;
@@ -38,7 +38,7 @@ t_bucket 	**create_ht(t_master *master)
 	return (ht);
 }
 
-t_bucket *create_bucket(void)
+t_bucket	*create_bucket(void)
 {
 	t_bucket	*new;
 
@@ -49,7 +49,7 @@ t_bucket *create_bucket(void)
 	return (new);
 }
 
-t_entry *create_and_fill_entry(t_master *master, char *line)
+t_entry		*create_and_fill_entry(t_master *master, char *line)
 {
 	t_entry *new;
 	char	**data;
@@ -67,7 +67,6 @@ t_entry *create_and_fill_entry(t_master *master, char *line)
 		new->comment = ft_strdup(master->comment);
 		ft_strdel(&master->comment);
 	}
-	
 	free_strsplit(&data);
 	data = NULL;
 	return (new);

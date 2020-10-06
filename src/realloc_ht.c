@@ -6,23 +6,20 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:18:44 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/05 14:45:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/06 09:11:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-// static void	clear_entry(t_entry *entry)
-// {
-// 	ft_strdel(&entry->name);
-// 	if (entry->comment)
-// 		ft_strdel(&entry->comment);
-// 	entry->key = '\0';
-// 	entry->x = '\0';
-// 	entry->y = '\0';
-// }
+void		clear_bucket(t_bucket *bucket)
+{
+	bucket->entry = NULL;
+	bucket->next = NULL;
+	free(bucket);
+}
 
-void	delete_old_ht(t_bucket **old, size_t size)
+void		delete_old_ht(t_bucket **old, size_t size)
 {
 	size_t		i;
 	t_bucket	*curr;
@@ -38,16 +35,12 @@ void	delete_old_ht(t_bucket **old, size_t size)
 			{
 				curr = tmp;
 				tmp = tmp->next;
-				curr->entry = NULL;
-				curr->next = NULL;
-				free(curr);
+				clear_bucket(curr);
 				curr = NULL;
-				
 			}
 			free(tmp);
 			tmp = NULL;
 		}
-		// free(old[i]);
 		old[i] = NULL;
 		i++;
 	}
@@ -55,7 +48,7 @@ void	delete_old_ht(t_bucket **old, size_t size)
 	old = NULL;
 }
 
-static void reassign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *ptr)
+void		reassign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *ptr)
 {
 	int		index;
 
@@ -65,7 +58,7 @@ static void reassign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *ptr)
 	master->room_count++;
 }
 
-static t_bucket 	**realloc_ht(t_bucket **src, t_master *master)
+t_bucket	**realloc_ht(t_bucket **src, t_master *master)
 {
 	t_bucket	**new;
 	t_bucket	**tmp;
@@ -82,7 +75,7 @@ static t_bucket 	**realloc_ht(t_bucket **src, t_master *master)
 		{
 			curr = tmp[i];
 			while (curr)
-			{				
+			{
 				reassign_entry_to_ht(new, master, curr->entry);
 				curr = curr->next;
 			}
@@ -90,11 +83,10 @@ static t_bucket 	**realloc_ht(t_bucket **src, t_master *master)
 		i++;
 	}
 	delete_old_ht(src, master->old_size);
-	// ft_printf("master->new_size: %d\n", master->new_size);
 	return (new);
 }
 
-t_bucket 	**grow_ht(t_bucket **ht, t_master *master)
+t_bucket	**grow_ht(t_bucket **ht, t_master *master)
 {
 	t_bucket **new;
 
@@ -102,9 +94,5 @@ t_bucket 	**grow_ht(t_bucket **ht, t_master *master)
 	master->new_size *= 2;
 	master->nbr_keys = 0;
 	new = realloc_ht(ht, master);
-	// print_ht(new, master->new_size);
 	return (new);
 }
-
-
-

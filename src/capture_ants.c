@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 10:12:54 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/03 15:27:31 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/06 08:21:56 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static int validate_ants(char *line)
+int		validate_ants(char *line)
 {
 	if (line)
 	{
@@ -27,7 +27,7 @@ static int validate_ants(char *line)
 	return (0);
 }
 
-static void	ant_debugger(t_master *master)
+void	ant_debugger(t_master *master)
 {
 	if (master->colors == true)
 	{
@@ -42,7 +42,7 @@ static void	ant_debugger(t_master *master)
 	}
 }
 
-static int valid_int_test(char *s)
+int		valid_int_test(char *s)
 {
 	intmax_t nbr;
 
@@ -57,7 +57,7 @@ static int valid_int_test(char *s)
 	return (0);
 }
 
-void		capture_ants(t_master *master, char *line)
+void	capture_ants(t_master *master, char *line)
 {
 	int nbr_ants;
 

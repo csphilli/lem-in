@@ -6,17 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 12:57:50 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/03 15:28:19 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/06 09:12:36 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-static void	error_coord(int line_nbr)
-{
-	ft_printf(E_COORD"%d\n", line_nbr);
-	exit(-1);
-}
 
 void	validate_coords(t_master *master, char *n1, char *n2)
 {

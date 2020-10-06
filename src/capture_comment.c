@@ -6,25 +6,25 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 09:05:39 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/03 15:27:47 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/06 08:22:53 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static void	exit_comment_start(void)
+void	exit_comment_start(void)
 {
 	ft_printf(E_START);
 	exit(-1);
 }
 
-static void	exit_comment_end(void)
+void	exit_comment_end(void)
 {
 	ft_printf(E_END);
 	exit(-1);
 }
 
-static void	validate_comment(t_master *master)
+void	validate_comment(t_master *master)
 {
 	if (master)
 	{
@@ -43,7 +43,7 @@ static void	validate_comment(t_master *master)
 	}
 }
 
-void		capture_comment(t_master *master, char *str)
+void	capture_comment(t_master *master, char *str)
 {
 	if (master && str)
 	{
@@ -51,5 +51,5 @@ void		capture_comment(t_master *master, char *str)
 			ft_strdel(&master->comment);
 		master->comment = ft_strdup(&str[2]);
 		validate_comment(master);
-	}	
+	}
 }
