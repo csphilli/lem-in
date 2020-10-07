@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/06 09:18:24 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/07 10:49:16 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define E_NO_LINKS "Error. No links specified.\n"
 # define E_L "Error. 'L' present at beginning of room name.\n"
 # define E_COORD "Error. Invalid coordinate on line "
-# define E_DUPL "Error. Duplicate room name found.\n"
+# define E_DUPL "Error. Duplicate room name found: "
 # define E_FLAG "Error. Invalid flag specified.\n"
 # define E_USAGE "Error. Invalid usage. Use '-h' for help.\n"
 # define E_ANTS "Error. Invalid ant size specified.\n"
@@ -101,7 +101,8 @@ typedef struct		s_master
 void				exit_error(void);
 void				exit_malloc(void);
 void				exit_usage(void);
-void				error_coord(int line_nbr);
+void				exit_coord(int line_nbr);
+void				exit_dup(char *room_name, size_t index);
 
 /*
 **	INITIALIZATION
@@ -119,6 +120,7 @@ void				capture_flags(t_master *master, int ac, char **av);
 void				capture_comment(t_master *master, char *str);
 void				load_help(t_master *master);
 void				validate_coords(t_master *master, char *n1, char *n2);
+void				validate_rooms(t_bucket **ht, t_master *master);
 void				duplicate_room_check(t_master *master, t_bucket **ht);
 void				test_room_search(t_bucket **ht, char *name);
 void				copy_room(t_bucket *dest, t_bucket *src);
@@ -132,6 +134,8 @@ t_bucket			**grow_ht(t_bucket **ht, t_master *master);
 t_bucket			**create_ht(t_master *master);
 t_bucket			*create_bucket(void);
 float				load(t_master *master);
+// void				insert_node(t_bucket **ht, t_master *master,\
+// 					t_entry *entry, int index);
 void				insert_node(t_bucket **ht, t_entry *entry, int index);
 void				assign_entry_to_ht(t_bucket **ht, t_master *master,\
 					t_entry *entry);

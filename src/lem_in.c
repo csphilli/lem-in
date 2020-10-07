@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/06 08:37:19 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/07 10:18:27 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
 		}
 		parse_lines(master, line, ht);
 	}
+	validate_rooms(ht, master);
 	return (ht);
 }
 
@@ -76,5 +77,6 @@ int			main(int ac, char **av)
 		{
 		}
 	}
+	print_ht(ht, master->new_size);
 	return (0);
 }

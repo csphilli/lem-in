@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/10/03 15:29:10 by cphillip         ###   ########.fr        #
+#    Updated: 2020/10/07 10:47:24 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBRARIES = -lft -L$(LIBFT_DIR)
 
 HEADER_FILE = lem_in.h
 HEADER_DIR = ./includes/
-HEADERS = $(addprefix $(HEADER_DIR), $(HEADER_FILES))
+HEADERS = $(addprefix $(HEADER_DIR), $(HEADER_FILE))
 INCLUDES = -I$(HEADER_DIR) -I$(LIBFT_HEADER)
 
 SRC_DIR = ./src/
@@ -35,11 +35,13 @@ SRC_FILES = lem_in.c\
 			parse_lines.c\
 			load_help.c\
 			validate_coords.c\
+			validate_rooms.c\
 			error_mgmt.c\
 			realloc_ht.c\
 			node_work.c\
 			creating.c\
 			print_ht.c\
+			hex.c\
 
 OBJ_DIR = ./obj/
 OBJ_FILES = $(SRC_FILES:%.c=%.o)
