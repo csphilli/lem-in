@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/08 09:54:21 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/08 20:25:51 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	init_link_arr(char **arr, int len)
 	// ft_printf("Init. Len: %d\n", len);
 	if (arr)
 	{
-		while (i <= len)
+		while (i < len)
 		{
-			arr[i] = NULL;
+			arr[i++] = NULL;
 			// ft_printf("arr[%d]: %s", i, arr[i]);
-			i++;
+			// i++;
 		}
 	}
 }

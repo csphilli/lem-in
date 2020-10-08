@@ -6,41 +6,37 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/08 13:55:00 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/08 20:34:15 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	print_links(t_entry *entry)
+void	print_links(char **arr)
 {
-	char	**tmp;
-	int		len;
 	int		i;
 
-	len = 0;
 	i = 0;
-	tmp = entry->link_arr;
-	while (*tmp++)
-		len++;
 	ft_printf(" | Links:");
-	while (i < len)
-		ft_printf(" %s", entry->link_arr[i++]);
-	ft_printf("}");
+	// ft_printf("arr[%d]: %s", i, arr[i]);
+	while (arr[i])
+	{
+		ft_printf(" %s", arr[i]);
+		i++;
+	}	
 }
 
 void	print_extras(t_entry *entry)
 {
-	if (entry->comment)
+	t_entry *tmp;
+
+	tmp = entry;
+	if (tmp->comment)
 	{
-		ft_printf(" | Comment: %s", entry->comment);
+		ft_printf(" | Comment: %s", tmp->comment);
 	}
-	if (entry->link_arr)
-	{
-		ft_printf(" | Links: ");
-		while (*(entry->link_arr))
-			ft_printf(" %s", *(entry->link_arr++));
-	}
+	if (tmp->link_arr)
+		print_links(tmp->link_arr);
 	ft_printf("}");
 }
 

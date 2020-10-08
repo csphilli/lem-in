@@ -5,106 +5,91 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/01 12:16:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/08 13:45:08 by cphillip         ###   ########.fr       */
+/*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
+/*   Updated: 2020/10/08 21:42:12 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int		check_link_exists(char **arr, char *link)
+int		link_exists(char **arr, char *link)
 {
-	char	**tmp;
+	int	i;
 
-	tmp = arr;
-	while (*tmp)
+	i = 0;
+	if (arr[i])
 	{
-		if (ft_strequ(*tmp++, link))
-			return (1);
+		while (arr[i])
+		{
+			if (ft_strequ(arr[i], link))
+				return (1);
+			i++;
+		}
 	}
 	return (0);
 }
 
-char	**fill_array(char **src, char *new_link)
+void	add_link(t_entry *entry, char *link)
 {
-	char	**new;
 	char	**tmp;
+	char	**new;
 	int		len;
-	int		i;
 
-	tmp = src;
+	tmp = NULL;
 	new = NULL;
 	len = 0;
-	i = 0;
-	while (*tmp++)
-		len++;
-	len += 2;
-	if (!(new = (char**)malloc(sizeof(char*) * (len))))
-		exit_malloc();
-	init_link_arr(new, len);
-	while (i < len - 2)
+	if (!entry->link_arr)
 	{
-		new[i] = ft_strdup(src[i]);
-		i++;
-	}
-	new[i] = ft_strdup(new_link);
-	free_strsplit(&src);
-	src = NULL;
-	return (new);
-}
-
-char	**insert_link(t_bucket *bucket, char *link)
-{
-	char	**arr;
-	char	**tmp_arr;
-	int		len;
-
-	len = 0;
-	tmp_arr = NULL;
-	arr = NULL;
-	if (!bucket->entry->link_arr)
-	{
-		if (!(arr = (char**)malloc(sizeof(char*) * 2)))
+		if (!(entry->link_arr = (char**)malloc(sizeof(char*) * (2))))
 			exit_malloc();
-		init_link_arr(arr, 2);
-		arr[0] = ft_strdup(link);
+		ft_init_arr(entry->link_arr, 2);
+		entry->link_arr[0] = ft_strdup(link);
 	}
 	else
 	{
-		tmp_arr = bucket->entry->link_arr;
-		if (check_link_exists(bucket->entry->link_arr, link))
-			return (bucket->entry->link_arr);
-		arr = fill_array(bucket->entry->link_arr, link);
+		tmp = entry->link_arr;
+		if (!link_exists(entry->link_arr, link))
+			entry->link_arr = ft_arrcat(entry->link_arr, link);
+		free_strsplit(&tmp);
+		free(tmp);
+		tmp = NULL;
 	}
-	return (arr);
 }
 
-void	search_for_room(t_bucket *bucket, char *room, char *link)
+void	do_link(t_bucket *head, char *room, char *link)
 {
 	t_bucket	*tmp;
 
-	tmp = bucket;
-	while (!ft_strequ(room, tmp->entry->name) && tmp->next)
-		tmp = tmp->next;
-	if (tmp->next == NULL && !ft_strequ(room, tmp->entry->name))
-		exit_room_not_found(room);
-	else
+	tmp = head;
+	if (tmp)
 	{
-		bucket = tmp;
-		bucket->entry->link_arr = insert_link(bucket, link);
+		while (tmp)
+		{
+			if (ft_strequ(tmp->entry->name, room))
+			{
+				add_link(tmp->entry, link);
+				break ;
+			}
+			else if (!ft_strequ(tmp->entry->name, room) && !tmp->next)
+				exit_room_not_found(room);
+			tmp = tmp->next;
+		}
 	}
+	else
+		exit_room_not_found(room);
 }
 
 void	add_link_to_room(t_bucket **ht, t_master *master, char *line)
 {
-	char		**data;
-	int			index;
+	char	**data;
+	int		index;
 
 	data = ft_strsplit(line, '-');
 	index = gen_key(data[0]) % master->new_size;
-	search_for_room(ht[index], data[0], data[1]);
+	do_link(ht[index], data[0], data[1]);
 	index = gen_key(data[1]) % master->new_size;
-	search_for_room(ht[index], data[1], data[0]);
+	do_link(ht[index], data[1], data[0]);
 	free_strsplit(&data);
 	data = NULL;
+	// Need to add a room check against the adding links
 }
