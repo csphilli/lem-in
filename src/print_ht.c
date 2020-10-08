@@ -6,11 +6,28 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/06 08:44:22 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/08 09:41:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+void	print_links(t_entry *entry)
+{
+	char	**tmp;
+	int		len;
+	int		i;
+
+	len = 0;
+	i = 0;
+	tmp = entry->link_arr;
+	while (*tmp++)
+		len++;
+	ft_printf(" | Links:");
+	while (i < len)
+		ft_printf(" %s", entry->link_arr[i++]);
+	ft_printf("}");
+}
 
 void	print_ht(t_bucket **ht, size_t size)
 {
@@ -27,8 +44,9 @@ void	print_ht(t_bucket **ht, size_t size)
 			tmp = ht[i];
 			while (tmp != NULL)
 			{
-				ft_printf("{Name: %s | Key: %d}", tmp->entry->name,\
+				ft_printf("{Name: %s | Key: %d", tmp->entry->name,\
 				tmp->entry->key);
+				tmp->entry->link_arr ? print_links(tmp->entry) : ft_printf("}");
 				if (tmp->next)
 					ft_printf("-->");
 				tmp = tmp->next;

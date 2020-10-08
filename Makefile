@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/10/07 10:47:24 by cphillip         ###   ########.fr        #
+#    Updated: 2020/10/07 12:02:54 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,18 +30,18 @@ SRC_FILES = lem_in.c\
 			assigning.c\
 			capture_ants.c\
 			capture_flags.c\
-			capture_link.c\
+			capture_links.c\
 			inits.c\
 			parse_lines.c\
 			load_help.c\
 			validate_coords.c\
 			validate_rooms.c\
 			error_mgmt.c\
+			error_mgmt2.c\
 			realloc_ht.c\
 			node_work.c\
 			creating.c\
 			print_ht.c\
-			hex.c\
 
 OBJ_DIR = ./obj/
 OBJ_FILES = $(SRC_FILES:%.c=%.o)

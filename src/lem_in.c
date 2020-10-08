@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/07 10:18:27 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/07 12:09:01 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,13 @@ int			main(int ac, char **av)
 	ht = create_ht(master);
 	if (master->valid_input == true)
 		ht = do_lemin(fd, master, ht);
+	print_ht(ht, master->new_size);
 	if (master->leaks == true)
 	{
 		while (1)
 		{
 		}
 	}
-	print_ht(ht, master->new_size);
+	
 	return (0);
 }

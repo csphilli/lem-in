@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/07 10:49:16 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/08 09:02:52 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define E_START "Error. Start already defined.\n"
 # define E_END "Error. End already defined.\n"
 # define E_NOFILE "Error. File not found.\n"
-# define E_FAILED_SEARCH "Error. Room not found.\n"
+# define E_FAILED_SEARCH "Error inserting link. Room not found: "
 # include "../libft/header/libft.h"
 
 /*
@@ -44,6 +44,7 @@ typedef struct		s_entry
 {
 	char			*name;
 	char			*comment;
+	char			**link_arr;
 	int				x;
 	int				y;
 	int				key;
@@ -103,6 +104,7 @@ void				exit_malloc(void);
 void				exit_usage(void);
 void				exit_coord(int line_nbr);
 void				exit_dup(char *room_name, size_t index);
+void				exit_room_not_found(char *str);
 
 /*
 **	INITIALIZATION
@@ -110,6 +112,7 @@ void				exit_dup(char *room_name, size_t index);
 
 t_entry				*create_and_fill_entry(t_master *master, char *line);
 void				init_master(t_master *master);
+void				init_link_arr(char **arr, int len);
 
 /*
 **	DATA CAPTURING
@@ -122,6 +125,7 @@ void				load_help(t_master *master);
 void				validate_coords(t_master *master, char *n1, char *n2);
 void				validate_rooms(t_bucket **ht, t_master *master);
 void				duplicate_room_check(t_master *master, t_bucket **ht);
+void				add_link_to_room(t_bucket **ht, t_master *master, char *line);
 void				test_room_search(t_bucket **ht, char *name);
 void				copy_room(t_bucket *dest, t_bucket *src);
 void				parse_lines(t_master *master, char *line, t_bucket **ht);
