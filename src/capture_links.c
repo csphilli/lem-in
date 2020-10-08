@@ -6,11 +6,24 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 12:16:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/08 10:18:46 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/08 13:45:08 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+int		check_link_exists(char **arr, char *link)
+{
+	char	**tmp;
+
+	tmp = arr;
+	while (*tmp)
+	{
+		if (ft_strequ(*tmp++, link))
+			return (1);
+	}
+	return (0);
+}
 
 char	**fill_array(char **src, char *new_link)
 {
@@ -59,44 +72,39 @@ char	**insert_link(t_bucket *bucket, char *link)
 	else
 	{
 		tmp_arr = bucket->entry->link_arr;
+		if (check_link_exists(bucket->entry->link_arr, link))
+			return (bucket->entry->link_arr);
 		arr = fill_array(bucket->entry->link_arr, link);
 	}
 	return (arr);
 }
 
-void	search_for_room(t_bucket *bucket, char *link1, char *link2)
+void	search_for_room(t_bucket *bucket, char *room, char *link)
 {
 	t_bucket	*tmp;
 
 	tmp = bucket;
-	while(!ft_strequ(link1, tmp->entry->name) && tmp->next)
+	while (!ft_strequ(room, tmp->entry->name) && tmp->next)
 		tmp = tmp->next;
-	if (tmp->next == NULL && !ft_strequ(link1, tmp->entry->name))
-		exit_room_not_found(link1);
+	if (tmp->next == NULL && !ft_strequ(room, tmp->entry->name))
+		exit_room_not_found(room);
 	else
 	{
 		bucket = tmp;
-		bucket->entry->link_arr = insert_link(bucket, link2);
+		bucket->entry->link_arr = insert_link(bucket, link);
 	}
 }
 
 void	add_link_to_room(t_bucket **ht, t_master *master, char *line)
 {
 	char		**data;
-	int			index;	
+	int			index;
 
 	data = ft_strsplit(line, '-');
-
 	index = gen_key(data[0]) % master->new_size;
 	search_for_room(ht[index], data[0], data[1]);
-
-	// ft_printf("index2: %d\n", index);
-	// index = gen_key(data[1]) % master->new_size;
-	// search_for_room(ht[index], data[1]);
-	
+	index = gen_key(data[1]) % master->new_size;
+	search_for_room(ht[index], data[1], data[0]);
 	free_strsplit(&data);
 	data = NULL;
-	// ft_printf("link1: %s | link2: %s\n", data[0], data[1]);
-
-	// ft_printf("%s\n", ht[0]->entry->name);
 }

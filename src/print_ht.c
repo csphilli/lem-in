@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/08 09:41:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/08 13:55:00 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,21 @@ void	print_links(t_entry *entry)
 	ft_printf("}");
 }
 
+void	print_extras(t_entry *entry)
+{
+	if (entry->comment)
+	{
+		ft_printf(" | Comment: %s", entry->comment);
+	}
+	if (entry->link_arr)
+	{
+		ft_printf(" | Links: ");
+		while (*(entry->link_arr))
+			ft_printf(" %s", *(entry->link_arr++));
+	}
+	ft_printf("}");
+}
+
 void	print_ht(t_bucket **ht, size_t size)
 {
 	size_t		i;
@@ -46,7 +61,7 @@ void	print_ht(t_bucket **ht, size_t size)
 			{
 				ft_printf("{Name: %s | Key: %d", tmp->entry->name,\
 				tmp->entry->key);
-				tmp->entry->link_arr ? print_links(tmp->entry) : ft_printf("}");
+				print_extras(tmp->entry);
 				if (tmp->next)
 					ft_printf("-->");
 				tmp = tmp->next;
