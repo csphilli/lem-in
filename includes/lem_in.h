@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/08 09:02:52 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/09 16:57:46 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct		s_entry
 	int				x;
 	int				y;
 	int				key;
+	bool			visited;
 
 }					t_entry;
 
@@ -77,6 +78,8 @@ typedef struct		s_master
 	char			*comment;
 	bool			s_toggle;
 	bool			e_toggle;
+	char			*start_room;
+	char			*end_room;
 	bool			adv_errors;
 	bool			colors;
 	bool			valid_input;

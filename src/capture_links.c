@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/08 21:42:12 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/09 17:34:16 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,26 @@ void	add_link(t_entry *entry, char *link)
 	}
 }
 
+int		is_room(t_bucket *head, char *room)
+{
+	t_bucket	*tmp;
+
+	tmp = head;
+	while (tmp)
+	{
+		if (ft_strequ(tmp->entry->name, room))
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 void	do_link(t_bucket *head, char *room, char *link)
 {
 	t_bucket	*tmp;
 
 	tmp = head;
-	if (tmp)
+	if (tmp && is_room(tmp, room))
 	{
 		while (tmp)
 		{
@@ -87,8 +101,8 @@ void	add_link_to_room(t_bucket **ht, t_master *master, char *line)
 	data = ft_strsplit(line, '-');
 	index = gen_key(data[0]) % master->new_size;
 	do_link(ht[index], data[0], data[1]);
-	index = gen_key(data[1]) % master->new_size;
-	do_link(ht[index], data[1], data[0]);
+	// index = gen_key(data[1]) % master->new_size;
+	// do_link(ht[index], data[1], data[0]);
 	free_strsplit(&data);
 	data = NULL;
 	// Need to add a room check against the adding links

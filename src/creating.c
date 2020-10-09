@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 12:38:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/07 11:23:00 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/09 16:57:43 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void		init_entry(t_entry *entry)
 {
+	entry->visited = false;
 	entry->name = NULL;
 	entry->comment = NULL;
 	entry->link_arr = NULL;

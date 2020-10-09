@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/08 20:25:51 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/09 16:53:58 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	init_master(t_master *master)
 		master->valid_input = false;
 		master->s_toggle = false;
 		master->e_toggle = false;
+		master->start_room = NULL;
+		master->end_room = NULL;
 		master->nbr_ants = 0;
 		master->adv_errors = false;
 		master->debugger = false;
