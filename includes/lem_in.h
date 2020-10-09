@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/09 16:57:46 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/09 18:28:27 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ typedef struct		s_bucket
 	struct s_entry	*entry;
 	struct s_bucket	*next;
 }					t_bucket;
+
+typedef struct		s_routes
+{
+	char			*q;
+}					t_routes;
 
 /*
 **	For Master:

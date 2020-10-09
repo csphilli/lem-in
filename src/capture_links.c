@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/09 17:34:16 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/09 18:49:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ void	add_link(t_entry *entry, char *link)
 	len = 0;
 	if (!entry->link_arr)
 	{
-		if (!(entry->link_arr = (char**)malloc(sizeof(char*) * (2))))
-			exit_malloc();
-		ft_init_arr(entry->link_arr, 2);
-		entry->link_arr[0] = ft_strdup(link);
+		// if (!(entry->link_arr = (char**)malloc(sizeof(char*) * (2))))
+		// 	exit_malloc();
+		// ft_init_arr(entry->link_arr, 2);
+		// entry->link_arr[0] = ft_strdup(link);
+		entry->link_arr = ft_arrcat(entry->link_arr, link);
 	}
 	else
 	{
@@ -101,9 +102,8 @@ void	add_link_to_room(t_bucket **ht, t_master *master, char *line)
 	data = ft_strsplit(line, '-');
 	index = gen_key(data[0]) % master->new_size;
 	do_link(ht[index], data[0], data[1]);
-	// index = gen_key(data[1]) % master->new_size;
-	// do_link(ht[index], data[1], data[0]);
+	index = gen_key(data[1]) % master->new_size;
+	do_link(ht[index], data[1], data[0]);
 	free_strsplit(&data);
 	data = NULL;
-	// Need to add a room check against the adding links
 }

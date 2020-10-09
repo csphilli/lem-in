@@ -6,28 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/09 16:53:58 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/09 18:20:16 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-void	init_link_arr(char **arr, int len)
-{
-	int	i;
-
-	i = 0;
-	// ft_printf("Init. Len: %d\n", len);
-	if (arr)
-	{
-		while (i < len)
-		{
-			arr[i++] = NULL;
-			// ft_printf("arr[%d]: %s", i, arr[i]);
-			// i++;
-		}
-	}
-}
 
 void	init_master(t_master *master)
 {
@@ -54,5 +37,13 @@ void	init_master(t_master *master)
 		master->load = 5.0;
 		master->old_size = 10;
 		master->nbr_keys = 0;
+	}
+}
+
+void	init_routes(t_routes *routes)
+{
+	if (routes)
+	{
+		routes->q = NULL;
 	}
 }
