@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/09 18:28:27 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/10 13:51:18 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,23 @@
 **	next is the pointer to the next room in list.
 */
 
-typedef struct		s_entry
-{
-	char			*name;
-	char			*comment;
-	char			**link_arr;
-	int				x;
-	int				y;
-	int				key;
-	bool			visited;
-
-}					t_entry;
-
 typedef struct		s_bucket
 {
 	struct s_entry	*entry;
 	struct s_bucket	*next;
 }					t_bucket;
+
+
+typedef struct		s_entry
+{
+	char			*name;
+	char			*comment;
+	struct s_entry	**link_arr;
+	int				x;
+	int				y;
+	int				key;
+	bool			visited;
+}					t_entry;
 
 typedef struct		s_routes
 {
@@ -120,7 +120,8 @@ void				exit_room_not_found(char *str);
 
 t_entry				*create_and_fill_entry(t_master *master, char *line);
 void				init_master(t_master *master);
-void				init_link_arr(char **arr, int len);
+void				init_link_arr(t_entry **links, int len);
+
 
 /*
 **	DATA CAPTURING
@@ -137,6 +138,10 @@ void				add_link_to_room(t_bucket **ht, t_master *master, char *line);
 void				test_room_search(t_bucket **ht, char *name);
 void				copy_room(t_bucket *dest, t_bucket *src);
 void				parse_lines(t_master *master, char *line, t_bucket **ht);
+int					link_array_len(t_entry **arr);
+t_entry				*get_entry(t_bucket *head, char *name);
+int					link_array_len(t_entry **arr);
+int					link_exists(t_entry **link_arr, t_entry *link);
 
 /*
 **	Hash Table Functions

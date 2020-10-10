@@ -6,24 +6,23 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/08 20:34:15 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/10 13:49:40 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	print_links(char **arr)
+void	print_links(t_entry **arr)
 {
 	int		i;
 
 	i = 0;
 	ft_printf(" | Links:");
-	// ft_printf("arr[%d]: %s", i, arr[i]);
 	while (arr[i])
 	{
-		ft_printf(" %s", arr[i]);
+		ft_printf(" %s", arr[i]->name);
 		i++;
-	}	
+	}
 }
 
 void	print_extras(t_entry *entry)

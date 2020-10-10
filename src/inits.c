@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/09 18:20:16 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/10 13:26:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ void	init_master(t_master *master)
 	}
 }
 
-void	init_routes(t_routes *routes)
+void	init_link_arr(t_entry **links, int len)
 {
-	if (routes)
-	{
-		routes->q = NULL;
-	}
+	int	i;
+
+	i = 0;
+	while (i < len)
+		links[i++] = NULL;
 }
