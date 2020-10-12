@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 12:38:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/09 16:57:43 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/12 16:42:49 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,14 @@ t_bucket	*create_bucket(void)
 	return (new);
 }
 
+void		start_or_end(char *s, t_master *master, char *name)
+{
+	if (ft_strequ(s, "start"))
+		master->start_room = ft_strdup(name);
+	else if (ft_strequ(s, "end"))
+		master->end_room = ft_strdup(name);
+}
+
 t_entry		*create_and_fill_entry(t_master *master, char *line)
 {
 	t_entry *new;
@@ -67,6 +75,7 @@ t_entry		*create_and_fill_entry(t_master *master, char *line)
 	if (master->comment != NULL)
 	{
 		new->comment = ft_strdup(master->comment);
+		start_or_end(new->comment, master, new->name);
 		ft_strdel(&master->comment);
 	}
 	free_strsplit(&data);

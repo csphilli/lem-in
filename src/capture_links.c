@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/12 15:02:13 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/12 16:33:44 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_entry		**append_link(t_entry **link_arr, t_entry *entry)
 	return (link_arr);
 }
 
-void		insert_link(t_entry *entry, t_entry *link, t_master *master)
+void		insert_link(t_entry *entry, t_entry *link)
 {
 	if (!entry->link_arr)
 	{
@@ -46,16 +46,8 @@ void		insert_link(t_entry *entry, t_entry *link, t_master *master)
 		entry->link_arr[0] = link;
 	}
 	else
-	{
 		if (!link_exists(entry->link_arr, link))
-		{
 			entry->link_arr = append_link(entry->link_arr, link);
-		}
-	}
-	if (ft_strequ(link->comment, "start"))
-		master->start_room = link;
-	else if (ft_strequ(link->comment, "end"))
-		master->end_room = link;	
 }
 
 int			is_room(t_bucket *head, char *room)
@@ -72,7 +64,7 @@ int			is_room(t_bucket *head, char *room)
 	return (0);
 }
 
-void		do_link(t_bucket *head, char *room, t_entry *link, t_master *master)
+void		do_link(t_bucket *head, char *room, t_entry *link)
 {
 	t_bucket	*tmp;
 
@@ -83,7 +75,7 @@ void		do_link(t_bucket *head, char *room, t_entry *link, t_master *master)
 		{
 			if (ft_strequ(tmp->entry->name, room))
 			{
-				insert_link(tmp->entry, link, master);
+				insert_link(tmp->entry, link);
 				break ;
 			}
 			else if (!ft_strequ(tmp->entry->name, room) && !tmp->next)
@@ -105,10 +97,10 @@ void		add_link_to_room(t_bucket **ht, t_master *master, char *line)
 	data = ft_strsplit(line, '-');
 	index = gen_key(data[0]) % master->new_size;
 	entry1 = get_entry(ht, master, data[1]);
-	do_link(ht[index], data[0], entry1, master);
+	do_link(ht[index], data[0], entry1);
 	index = gen_key(data[1]) % master->new_size;
 	entry2 = get_entry(ht, master, data[0]);
-	do_link(ht[index], data[1], entry2, master);	
+	do_link(ht[index], data[1], entry2);	
 	free_strsplit(&data);
 	data = NULL;
 	

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/12 15:55:38 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/12 16:53:36 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define E_MALLOC "Error. Failed to allocate memory.\n"
 # define E_NO_ROOMS "Error. No rooms specified.\n"
 # define E_NO_LINKS "Error. No links specified.\n"
+# define E_NOPATH "Error. No path from start to end exists.\n"
 # define E_L "Error. 'L' present at beginning of room name.\n"
 # define E_COORD "Error. Invalid coordinate on line "
 # define E_DUPL "Error. Duplicate room name found: "
@@ -84,8 +85,8 @@ typedef struct		s_master
 	char			*comment;
 	bool			s_toggle;
 	bool			e_toggle;
-	struct s_entry	*start_room;
-	struct s_entry	*end_room;
+	char			*start_room;
+	char			*end_room;
 	bool			adv_errors;
 	bool			colors;
 	bool			valid_input;
@@ -115,6 +116,7 @@ void				exit_usage(void);
 void				exit_coord(int line_nbr);
 void				exit_dup(char *room_name, size_t index);
 void				exit_room_not_found(char *str);
+void				check_path_exists(t_entry *start, t_entry *end, t_routes *routes);
 
 /*
 **	INITIALIZATION
@@ -144,8 +146,9 @@ int					link_array_len(t_entry **arr);
 t_entry				*get_entry(t_bucket **ht, t_master *master, char *name);
 int					link_array_len(t_entry **arr);
 int					link_exists(t_entry **link_arr, t_entry *link);
-void				insert_link(t_entry *entry, t_entry *link, t_master *master);
+void				insert_link(t_entry *entry, t_entry *link);
 t_entry				**append_link(t_entry **link_arr, t_entry *entry);
+
 
 /*
 **	Hash Table Functions
@@ -168,6 +171,6 @@ int					gen_key(char *str);
 **	Routing Algorithm
 */
 
-void				do_dfs(t_master *master);
+void				do_dfs(t_bucket **ht, t_master *master);
 
 #endif
