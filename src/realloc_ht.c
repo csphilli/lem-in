@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:18:44 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/06 09:11:23 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/11 13:52:59 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_bucket	**grow_ht(t_bucket **ht, t_master *master)
 	t_bucket **new;
 
 	master->old_size = master->new_size;
-	master->new_size *= 2;
+	master->new_size *= master->size_factor;
 	master->nbr_keys = 0;
 	new = realloc_ht(ht, master);
 	return (new);

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/10 13:26:45 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/11 19:27:20 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	init_master(t_master *master)
 		master->leaks = false;
 		master->new_size = 10;
 		master->load = 5.0;
+		master->size_factor = 2;
 		master->old_size = 10;
 		master->nbr_keys = 0;
 	}
@@ -46,5 +47,8 @@ void	init_link_arr(t_entry **links, int len)
 
 	i = 0;
 	while (i < len)
-		links[i++] = NULL;
+	{
+		links[i] = NULL;
+		i++;
+	}
 }

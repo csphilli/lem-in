@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/10 13:51:18 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/12 15:55:38 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ typedef struct		s_entry
 
 typedef struct		s_routes
 {
-	char			*q;
+	struct s_entry	**q;
+	
 }					t_routes;
 
 /*
@@ -83,8 +84,8 @@ typedef struct		s_master
 	char			*comment;
 	bool			s_toggle;
 	bool			e_toggle;
-	char			*start_room;
-	char			*end_room;
+	struct s_entry	*start_room;
+	struct s_entry	*end_room;
 	bool			adv_errors;
 	bool			colors;
 	bool			valid_input;
@@ -99,6 +100,7 @@ typedef struct		s_master
 	int				room_count;
 	size_t			new_size;
 	size_t			old_size;
+	size_t			size_factor;
 	float			load;
 	int				nbr_keys;
 }					t_master;
@@ -139,9 +141,11 @@ void				test_room_search(t_bucket **ht, char *name);
 void				copy_room(t_bucket *dest, t_bucket *src);
 void				parse_lines(t_master *master, char *line, t_bucket **ht);
 int					link_array_len(t_entry **arr);
-t_entry				*get_entry(t_bucket *head, char *name);
+t_entry				*get_entry(t_bucket **ht, t_master *master, char *name);
 int					link_array_len(t_entry **arr);
 int					link_exists(t_entry **link_arr, t_entry *link);
+void				insert_link(t_entry *entry, t_entry *link, t_master *master);
+t_entry				**append_link(t_entry **link_arr, t_entry *entry);
 
 /*
 **	Hash Table Functions
@@ -159,4 +163,11 @@ void				assign_entry_to_ht(t_bucket **ht, t_master *master,\
 void				print_ht(t_bucket **ht, size_t size);
 int					room_search(t_bucket *ht[], char *name);
 int					gen_key(char *str);
+
+/*
+**	Routing Algorithm
+*/
+
+void				do_dfs(t_master *master);
+
 #endif

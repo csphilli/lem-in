@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/10 13:49:40 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/11 13:26:50 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,10 @@ void	print_extras(t_entry *entry)
 	t_entry *tmp;
 
 	tmp = entry;
-	if (tmp->comment)
-	{
-		ft_printf(" | Comment: %s", tmp->comment);
-	}
-	if (tmp->link_arr)
-		print_links(tmp->link_arr);
+	if (entry->comment)
+		ft_printf(" | Comment: %s", entry->comment);
+	if (entry->link_arr)
+		print_links(entry->link_arr);
 	ft_printf("}");
 }
 

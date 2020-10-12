@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/10 13:50:08 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/12 15:54:15 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
 		}
 		parse_lines(master, line, ht);
 	}
-	validate_rooms(ht, master);
+	line = NULL;
+	validate_rooms(ht, master);	
 	return (ht);
 }
 
@@ -70,8 +71,12 @@ int			main(int ac, char **av)
 	check_inputs(master, ac);
 	ht = create_ht(master);
 	if (master->valid_input == true)
+	{
 		ht = do_lemin(fd, master, ht);
-	print_ht(ht, master->new_size);
+		// print_ht(ht, master->new_size);
+		do_dfs(master);
+	}
+	
 	if (master->leaks == true)
 	{
 		while (1)
