@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/13 11:12:22 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/13 13:49:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ typedef struct		s_entry
 	bool			visited;
 }					t_entry;
 
-typedef struct		s_routes
+typedef struct		s_dfs
 {
 	struct s_entry	**q;
 	
-}					t_routes;
+}					t_dfs;
 
 /*
 **	For Master:
@@ -116,7 +116,7 @@ void				exit_usage(void);
 void				exit_coord(int line_nbr);
 void				exit_dup(char *room_name, size_t index);
 void				exit_room_not_found(char *str);
-void				check_path_exists(t_entry *start, t_entry *end, t_routes *routes);
+void				check_path_exists(t_entry *start, t_entry *end, t_dfs *dfs);
 
 /*
 **	INITIALIZATION
@@ -171,7 +171,8 @@ int					gen_key(char *str);
 **	Routing Algorithm
 */
 
-t_routes			*do_dfs(t_bucket **ht, t_master *master);
-void				print_routes(t_routes *routes);
+t_dfs				*do_dfs(t_bucket **ht, t_master *master);
+void				print_dfs(t_dfs *dfs);
+void				find_paths(t_dfs *dfs);
 
 #endif

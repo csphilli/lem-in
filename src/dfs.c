@@ -6,19 +6,19 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 15:11:52 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/13 11:10:23 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/13 13:48:57 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	print_routes(t_routes *routes)
+void	print_dfs(t_dfs *dfs)
 {
 	t_entry **tmp;
 	int i;
 
 	i = 0;
-	tmp = routes->q;
+	tmp = dfs->q;
 	ft_printf("Crawled: ");
 	while (tmp[i])
 	{
@@ -30,34 +30,34 @@ void	print_routes(t_routes *routes)
 	ft_printf("\n");
 }
 
-void	crawl(t_entry *entry, t_routes *routes)
+void	crawl(t_entry *entry, t_dfs *dfs)
 {
 	int	n_paths;
 	int	i;
 	
 	i = 0;
 	entry->visited = true;
-	if (!routes->q)
+	if (!dfs->q)
 	{
-		if (!(routes->q = (t_entry**)malloc(sizeof(t_entry*) * 2)))
+		if (!(dfs->q = (t_entry**)malloc(sizeof(t_entry*) * 2)))
 			exit_malloc();
-		routes->q[0] = entry;
-		routes->q[1] = NULL;	
+		dfs->q[0] = entry;
+		dfs->q[1] = NULL;	
 	}
-	else if (!link_exists(routes->q, entry))
-		routes->q = append_link(routes->q, entry);
+	else if (!link_exists(dfs->q, entry))
+		dfs->q = append_link(dfs->q, entry);
 	n_paths = link_array_len(entry->link_arr);
 	while (i < n_paths)
 	{
 		if (!entry->link_arr[i]->visited)
-			crawl(entry->link_arr[i], routes);
+			crawl(entry->link_arr[i], dfs);
 		i++;
 	}
 }
 
-t_routes	*do_dfs(t_bucket **ht, t_master *master)
+t_dfs	*do_dfs(t_bucket **ht, t_master *master) // dont need to seriously return it.
 {
-	t_routes	*routes;
+	t_dfs		*dfs;
 	t_entry		*end;
 	t_entry		*start;
 	int			n_paths;
@@ -67,22 +67,12 @@ t_routes	*do_dfs(t_bucket **ht, t_master *master)
 	i = 0;
 	end = get_entry(ht, master, master->end_room);
 	start = get_entry(ht, master, master->start_room);
-	// ft_printf("S: %s | E: %s\n", master->start_room, master->end_room);
 	n_paths = link_array_len(end->link_arr);
-	if (!(routes = (t_routes*)malloc(sizeof(t_routes))))
+	if (!(dfs = (t_dfs*)malloc(sizeof(t_dfs))))
 		exit_malloc();
-	routes->q = NULL;
-	crawl(end, routes);
-	// print_routes(routes);
-	// while (1)
-	// {
-		
-	// }
-	
-	check_path_exists(start, end, routes);
-	// while (1)
-	// {
-		
-	// }
-	return (routes);
+	dfs->q = NULL;
+	crawl(end, dfs);	
+	check_path_exists(start, end, dfs);
+	find_paths(dfs);
+	return (dfs);
 }

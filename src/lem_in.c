@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/13 11:11:41 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/13 13:48:53 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
 int			main(int ac, char **av)
 {
 	t_master	*master;
-	t_routes	*routes;
+	t_dfs		*dfs;
 	t_bucket	**ht;
 	int			fd;
 
-	routes = NULL;
+	dfs = NULL;
 	fd = 0;
 	ht = NULL;
 	if (!(master = (t_master*)malloc(sizeof(t_master))))
@@ -76,9 +76,9 @@ int			main(int ac, char **av)
 	{
 		ht = do_lemin(fd, master, ht);
 		print_ht(ht, master->new_size);
-		routes = do_dfs(ht, master);
+		dfs = do_dfs(ht, master);
 	}
-	print_routes(routes);
+	// print_dfs(dfs);
 	if (master->leaks == true)
 	{
 		while (1)

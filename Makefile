@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/10/12 16:35:47 by cphillip         ###   ########.fr        #
+#    Updated: 2020/10/13 13:39:52 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRC_FILES = lem_in.c\
 			print_ht.c\
 			link_work.c\
 			dfs.c\
+			find_paths.c\
 
 OBJ_DIR = ./obj/
 OBJ_FILES = $(SRC_FILES:%.c=%.o)

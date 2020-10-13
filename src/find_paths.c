@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_mgmt2.c                                      :+:      :+:    :+:   */
+/*   find_paths.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 12:02:09 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/13 13:47:33 by cphillip         ###   ########.fr       */
+/*   Created: 2020/10/13 13:40:48 by cphillip          #+#    #+#             */
+/*   Updated: 2020/10/13 13:48:28 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	exit_room_not_found(char *str)
+void	find_paths(t_dfs *dfs)
 {
-	ft_printf(E_FAILED_SEARCH"'%s'\n", str);
-	exit(-1);
-}
-
-void	check_path_exists(t_entry *start, t_entry *end, t_dfs *dfs)
-{
-	if (!link_exists(dfs->q, start) || !link_exists(dfs->q, end))
-	{
-		ft_printf(E_NOPATH);
-		exit(-1);
-	}
+	print_dfs(dfs);
 }
