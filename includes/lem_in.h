@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/12 16:53:36 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/13 11:12:22 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ int					gen_key(char *str);
 **	Routing Algorithm
 */
 
-void				do_dfs(t_bucket **ht, t_master *master);
+t_routes			*do_dfs(t_bucket **ht, t_master *master);
+void				print_routes(t_routes *routes);
 
 #endif

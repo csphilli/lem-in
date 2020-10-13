@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/12 16:33:44 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/13 11:09:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_entry		**append_link(t_entry **link_arr, t_entry *entry)
 
 	i = 0;
 	len = link_array_len(link_arr);
+	i = 0;
 	len += 2;
 	tmp = link_arr;
 	if (!(link_arr = (t_entry**)malloc(sizeof(t_entry*) * (len))))
@@ -103,5 +104,4 @@ void		add_link_to_room(t_bucket **ht, t_master *master, char *line)
 	do_link(ht[index], data[1], entry2);	
 	free_strsplit(&data);
 	data = NULL;
-	
 }
