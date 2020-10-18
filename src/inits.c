@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/11 19:27:20 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/18 12:22:58 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	init_master(t_master *master)
 		master->size_factor = 2;
 		master->old_size = 10;
 		master->nbr_keys = 0;
+		master->n_paths = 1;
+		master->loc = 0;
 	}
 }
 
@@ -51,4 +53,24 @@ void	init_link_arr(t_entry **links, int len)
 		links[i] = NULL;
 		i++;
 	}
+}
+
+void	init_paths(t_master *master, t_bucket **paths)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < master->n_paths)
+		paths[i++] = NULL;
+}
+
+void	init_entry(t_entry *entry)
+{
+	entry->visited = false;
+	entry->name = NULL;
+	entry->comment = NULL;
+	entry->link_arr = NULL;
+	entry->x = '\0';
+	entry->y = '\0';
+	entry->key = '\0';
 }

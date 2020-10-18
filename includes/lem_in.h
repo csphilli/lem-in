@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/13 13:49:17 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/18 12:05:21 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ typedef struct		s_dfs
 	
 }					t_dfs;
 
+typedef struct 		s_paths
+{
+	struct s_bucket	**p;
+}					t_paths;
+
+
 /*
 **	For Master:
 **	New size is used when creating a new hash table.
@@ -102,6 +108,9 @@ typedef struct		s_master
 	size_t			new_size;
 	size_t			old_size;
 	size_t			size_factor;
+	size_t			n_paths;
+	int				loc;
+
 	float			load;
 	int				nbr_keys;
 }					t_master;
@@ -125,6 +134,8 @@ void				check_path_exists(t_entry *start, t_entry *end, t_dfs *dfs);
 t_entry				*create_and_fill_entry(t_master *master, char *line);
 void				init_master(t_master *master);
 void				init_link_arr(t_entry **links, int len);
+void				init_paths(t_master *master, t_bucket **p);
+void				init_entry(t_entry *entry);
 
 
 /*
@@ -164,7 +175,7 @@ void				insert_node(t_bucket **ht, t_entry *entry, int index);
 void				assign_entry_to_ht(t_bucket **ht, t_master *master,\
 					t_entry *entry);
 void				print_ht(t_bucket **ht, size_t size);
-int					room_search(t_bucket *ht[], char *name);
+void				delete_old_ht(t_bucket **old, size_t size);
 int					gen_key(char *str);
 
 /*
@@ -173,6 +184,12 @@ int					gen_key(char *str);
 
 t_dfs				*do_dfs(t_bucket **ht, t_master *master);
 void				print_dfs(t_dfs *dfs);
-void				find_paths(t_dfs *dfs);
+void				find_paths(t_bucket **ht, t_master *master);
+
+/*
+**	RANDOM TOOLS
+*/
+
+int					explored(t_entry *entry);
 
 #endif

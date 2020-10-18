@@ -6,22 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 12:38:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/12 16:42:49 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/18 12:24:38 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-void		init_entry(t_entry *entry)
-{
-	entry->visited = false;
-	entry->name = NULL;
-	entry->comment = NULL;
-	entry->link_arr = NULL;
-	entry->x = '\0';
-	entry->y = '\0';
-	entry->key = '\0';
-}
 
 t_bucket	**create_ht(t_master *master)
 {
