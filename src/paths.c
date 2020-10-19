@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 19:07:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 14:33:06 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 14:41:15 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,9 @@ void	find_paths(t_master *master, t_bucket **ht)
 {
 	t_paths	*paths;
 	t_entry	*end;
+	int		i;
 
+	i = 0;
 	end = get_entry(ht, master, master->end_room);
 	if (!(paths = (t_paths*)malloc(sizeof(t_paths))))
 		exit_malloc();
@@ -161,7 +163,12 @@ void	find_paths(t_master *master, t_bucket **ht)
 		exit_malloc();
 	init_paths(2, paths->p);
 	end->visited = true; // put this inside while loop
-	paths->p = crawl(master, paths->p, end);
+	while (i < link_array_len(end->link_arr))
+	{
+		paths->p = crawl(master, paths->p, end->link_arr[i]);
+		clear_visited(master, ht);
+		i++;
+	}
 	print_paths(paths->p);
 	// ft_printf("end room: %s\n", end->name);
 	while (1)
