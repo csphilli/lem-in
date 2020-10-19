@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 19:07:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 15:13:35 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 15:38:40 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,14 @@ t_bucket	*insert_node_to_path(t_bucket *head, t_entry *node)
 
 void	delete_src(t_bucket **src)
 {
-	int	len;
 	int	i;
 	t_bucket	*tmp;
 	t_bucket	*cur;
 
 	i = 0;
-	len = bucket_arr_len(src);
-	ft_printf("LEN: %d\n", len);
 	tmp = NULL;
 	cur = NULL;
-	while (i <= len)
+	while (i < bucket_arr_len(src))
 	{
 		tmp = src[i];
 		while (tmp)
@@ -104,11 +101,7 @@ t_bucket	**grow_path_array(t_bucket **src)
 
 	new = copy_old(src);
 	delete_src(src);
-	// while (1)
-	// {
-		
-	// }
-	free(src);
+	free(src);	
 	src = NULL;
 	return (new);	
 }
@@ -132,6 +125,7 @@ t_bucket	**crawl(t_master *master, t_bucket **paths, t_entry *entry)
 		// ft_printf("master->loc: %d\n", master->loc);
 		paths[master->loc] = insert_node_to_path(paths[master->loc], entry);
 		master->loc++;
+		
 		// print_paths(paths);
 		return (paths);
 	}

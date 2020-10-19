@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 11:56:37 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 15:25:50 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	print_paths(t_bucket **paths)
 {
-	ft_printf("PRINTING PATHS\n");
+	// ft_printf("PRINTING PATHS\n");
 	t_bucket	**tmp;
 	t_bucket	*curr;
 	size_t	i;
 	size_t	len;
 
 	len = bucket_arr_len(paths);
-	ft_printf(" n_paths: %d\n", len);
+	// ft_printf(" n_paths: %d\n", len);
 	tmp = paths;
 	i = 0;
 	while (i < len)
