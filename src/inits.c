@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 12:46:59 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 13:52:14 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,32 +61,4 @@ void	init_paths(int len, t_bucket **paths)
 		paths[len] = NULL;
 }
 
-void	init_entry(t_entry *entry)
-{
-	int	len;
 
-	len = 0;
-	if (entry->name)
-		ft_strdel(&entry->name);
-	if (entry->comment)
-		ft_strdel(&entry->comment);
-	if (entry->link_arr)
-	{
-		len = link_array_len(entry->link_arr);
-		init_link_arr(entry->link_arr, len);
-	}
-	entry->visited = false;
-	entry->name = NULL;
-	entry->comment = NULL;
-	entry->link_arr = NULL;
-	entry->x = '\0';
-	entry->y = '\0';
-	entry->key = '\0';
-}
-
-void		clear_bucket(t_bucket *bucket)
-{
-	bucket->entry = NULL;
-	bucket->next = NULL;
-	free(bucket);
-}

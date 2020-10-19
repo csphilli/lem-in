@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 12:46:00 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 13:53:29 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,12 @@ void				init_link_arr(t_entry **links, int len);
 void				init_paths(int len, t_bucket **p);
 void				init_entry(t_entry *entry); // needed for freeing.
 
+/*
+**	FREEING
+*/
+
+void				free_entry(t_entry *entry);
+void				free_bucket(t_bucket *bucket);
 
 /*
 **	DATA CAPTURING
