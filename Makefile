@@ -6,12 +6,12 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/10/18 12:23:31 by cphillip         ###   ########.fr        #
+#    Updated: 2020/10/19 12:41:08 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
-CC = gcc -Wall -Wextra -Werror
+CC = gcc -Wall -Wextra
 
 LIBFT_DIR = ./libft/
 LIBFT = $(LIBFT_DIR)libft.a
@@ -43,8 +43,8 @@ SRC_FILES = lem_in.c\
 			creating.c\
 			print_ht.c\
 			link_work.c\
-			paths.c\
 			tools.c\
+			paths2.c\
 
 OBJ_DIR = ./obj/
 OBJ_FILES = $(SRC_FILES:%.c=%.o)

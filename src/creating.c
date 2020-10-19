@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 12:38:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/18 12:24:38 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 12:29:39 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,30 @@ t_bucket	*create_bucket(void)
 {
 	t_bucket	*new;
 
-	if (!(new = malloc(sizeof(t_bucket))))
+	if (!(new = (t_bucket*)malloc(sizeof(t_bucket))))
 		exit_malloc();
 	new->entry = NULL;
 	new->next = NULL;
 	return (new);
 }
 
-void		start_or_end(char *s, t_master *master, char *name)
+t_entry		*create_entry(void)
 {
-	if (ft_strequ(s, "start"))
-		master->start_room = ft_strdup(name);
-	else if (ft_strequ(s, "end"))
-		master->end_room = ft_strdup(name);
+	t_entry	*entry;
+
+	if (!(entry = (t_entry*)malloc(sizeof(t_entry))))
+		exit_malloc();
+	entry->visited = false;
+	entry->name = NULL;
+	entry->comment = NULL;
+	entry->link_arr = NULL;
+	entry->x = '\0';
+	entry->y = '\0';
+	entry->key = '\0';
+	return (entry);
 }
 
+/*
 t_entry		*create_and_fill_entry(t_master *master, char *line)
 {
 	t_entry *new;
@@ -71,3 +80,5 @@ t_entry		*create_and_fill_entry(t_master *master, char *line)
 	data = NULL;
 	return (new);
 }
+*/
+

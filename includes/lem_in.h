@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/18 12:05:21 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 12:46:00 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ typedef struct		s_master
 	size_t			size_factor;
 	size_t			n_paths;
 	int				loc;
-
 	float			load;
 	int				nbr_keys;
 }					t_master;
@@ -131,11 +130,11 @@ void				check_path_exists(t_entry *start, t_entry *end, t_dfs *dfs);
 **	INITIALIZATION
 */
 
-t_entry				*create_and_fill_entry(t_master *master, char *line);
+// t_entry				*create_and_fill_entry(t_master *master, char *line);
 void				init_master(t_master *master);
 void				init_link_arr(t_entry **links, int len);
-void				init_paths(t_master *master, t_bucket **p);
-void				init_entry(t_entry *entry);
+void				init_paths(int len, t_bucket **p);
+void				init_entry(t_entry *entry); // needed for freeing.
 
 
 /*
@@ -151,7 +150,8 @@ void				validate_rooms(t_bucket **ht, t_master *master);
 void				duplicate_room_check(t_master *master, t_bucket **ht);
 void				add_link_to_room(t_bucket **ht, t_master *master, char *line);
 void				test_room_search(t_bucket **ht, char *name);
-void				copy_room(t_bucket *dest, t_bucket *src);
+// void				copy_room(t_bucket *dest, t_bucket *src);
+t_entry				*copy_entry(t_entry *src);
 void				parse_lines(t_master *master, char *line, t_bucket **ht);
 int					link_array_len(t_entry **arr);
 t_entry				*get_entry(t_bucket **ht, t_master *master, char *name);
@@ -168,6 +168,8 @@ t_entry				**append_link(t_entry **link_arr, t_entry *entry);
 t_bucket			**grow_ht(t_bucket **ht, t_master *master);
 t_bucket			**create_ht(t_master *master);
 t_bucket			*create_bucket(void);
+t_entry				*create_entry(void);
+t_entry				*fill_entry_from_line(t_master *master, t_entry *dst, char *line);
 float				load(t_master *master);
 // void				insert_node(t_bucket **ht, t_master *master,\
 // 					t_entry *entry, int index);
@@ -184,12 +186,18 @@ int					gen_key(char *str);
 
 t_dfs				*do_dfs(t_bucket **ht, t_master *master);
 void				print_dfs(t_dfs *dfs);
-void				find_paths(t_bucket **ht, t_master *master);
+void				find_paths(t_master *master, t_bucket **ht);
 
 /*
 **	RANDOM TOOLS
 */
 
 int					explored(t_entry *entry);
+void				print_paths(t_bucket **paths);
+int					dead_end(t_master *master, t_entry *entry);
+void				clear_visited(t_master *master, t_bucket **ht);
+void				start_or_end(char *s, t_master *master, char *name);
+int					bucket_arr_len(t_bucket **arr);
+void				clear_bucket(t_bucket *bucket);
 
 #endif

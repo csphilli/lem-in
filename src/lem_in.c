@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/18 11:13:39 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 09:17:30 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int			main(int ac, char **av)
 	{
 		ht = do_lemin(fd, master, ht);
 		print_ht(ht, master->new_size);
-		find_paths(ht, master);
+		find_paths(master, ht);
 	}
 	// print_dfs(dfs);
 	if (master->leaks == true)

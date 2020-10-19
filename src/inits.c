@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/18 12:22:58 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 12:46:59 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_master(t_master *master)
 		master->size_factor = 2;
 		master->old_size = 10;
 		master->nbr_keys = 0;
-		master->n_paths = 1;
+		master->n_paths = 2;
 		master->loc = 0;
 	}
 }
@@ -55,17 +55,26 @@ void	init_link_arr(t_entry **links, int len)
 	}
 }
 
-void	init_paths(t_master *master, t_bucket **paths)
+void	init_paths(int len, t_bucket **paths)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < master->n_paths)
-		paths[i++] = NULL;
+	while (--len >= 0)
+		paths[len] = NULL;
 }
 
 void	init_entry(t_entry *entry)
 {
+	int	len;
+
+	len = 0;
+	if (entry->name)
+		ft_strdel(&entry->name);
+	if (entry->comment)
+		ft_strdel(&entry->comment);
+	if (entry->link_arr)
+	{
+		len = link_array_len(entry->link_arr);
+		init_link_arr(entry->link_arr, len);
+	}
 	entry->visited = false;
 	entry->name = NULL;
 	entry->comment = NULL;
@@ -73,4 +82,11 @@ void	init_entry(t_entry *entry)
 	entry->x = '\0';
 	entry->y = '\0';
 	entry->key = '\0';
+}
+
+void		clear_bucket(t_bucket *bucket)
+{
+	bucket->entry = NULL;
+	bucket->next = NULL;
+	free(bucket);
 }

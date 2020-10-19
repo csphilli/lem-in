@@ -6,11 +6,39 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/11 13:26:50 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 11:56:37 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+void	print_paths(t_bucket **paths)
+{
+	ft_printf("PRINTING PATHS\n");
+	t_bucket	**tmp;
+	t_bucket	*curr;
+	size_t	i;
+	size_t	len;
+
+	len = bucket_arr_len(paths);
+	ft_printf(" n_paths: %d\n", len);
+	tmp = paths;
+	i = 0;
+	while (i < len)
+	{
+		curr = tmp[i];
+		ft_printf("[%d]: ", i);
+		while (curr)
+		{
+			ft_printf("%s", curr->entry->name);
+			if (curr->next)
+				ft_printf(",");
+			curr = curr->next;
+		}
+		ft_printf("\n");
+		i++;
+	}
+}
 
 void	print_links(t_entry **arr)
 {
