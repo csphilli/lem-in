@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   paths.c                                            :+:      :+:    :+:   */
+/*   paths2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 19:07:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 15:05:35 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 15:13:35 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	delete_src(t_bucket **src)
 
 	i = 0;
 	len = bucket_arr_len(src);
+	ft_printf("LEN: %d\n", len);
 	tmp = NULL;
 	cur = NULL;
 	while (i <= len)
@@ -103,6 +104,10 @@ t_bucket	**grow_path_array(t_bucket **src)
 
 	new = copy_old(src);
 	delete_src(src);
+	// while (1)
+	// {
+		
+	// }
 	free(src);
 	src = NULL;
 	return (new);	
@@ -151,9 +156,7 @@ void	find_paths(t_master *master, t_bucket **ht)
 {
 	t_paths	*paths;
 	t_entry	*end;
-	int		i;
 
-	i = 0;
 	end = get_entry(ht, master, master->end_room);
 	if (!(paths = (t_paths*)malloc(sizeof(t_paths))))
 		exit_malloc();
@@ -161,8 +164,7 @@ void	find_paths(t_master *master, t_bucket **ht)
 	if (!(paths->p = (t_bucket**)malloc(sizeof(t_bucket*) * 2)))
 		exit_malloc();
 	init_paths(2, paths->p);
-	end->visited = true;
-	// ft_printf("entry->link_arr[i]: %s", end->link_arr[i]->name);
+	// end->visited = true; // put this inside while loop
 	paths->p = crawl(master, paths->p, end);
 	print_paths(paths->p);
 	// ft_printf("end room: %s\n", end->name);

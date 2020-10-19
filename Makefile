@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/10/19 14:34:10 by cphillip         ###   ########.fr        #
+#    Updated: 2020/10/19 15:12:16 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ SRC_FILES = lem_in.c\
 			print_ht.c\
 			link_work.c\
 			tools.c\
-			paths.c\
+			paths2.c\
 			freeing.c\
 
 OBJ_DIR = ./obj/
