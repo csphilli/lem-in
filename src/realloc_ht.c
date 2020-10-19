@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:18:44 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 09:17:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 13:55:04 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		delete_old_ht(t_bucket **old, size_t size)
 			{
 				curr = tmp;
 				tmp = tmp->next;
-				clear_bucket(curr);
+				free_bucket(curr);
 				curr = NULL;
 			}
 			free(tmp);

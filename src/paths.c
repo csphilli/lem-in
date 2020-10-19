@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   paths2.c                                           :+:      :+:    :+:   */
+/*   paths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 19:07:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 13:34:22 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 14:33:06 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,35 @@ t_bucket	*insert_node_to_path(t_bucket *head, t_entry *node)
 	return (head);
 }
 
-// t_bucket	**deep_copy(t_bucket **dst, t_bucket **src)
-// {
-// }
+void	delete_src(t_bucket **src)
+{
+	int	len;
+	int	i;
+	t_bucket	*tmp;
+	t_bucket	*cur;
 
-// void	delete_src(t_bucket **src)
-// {
-	
-// }
+	i = 0;
+	len = bucket_arr_len(src);
+	ft_printf("LEN: %d\n", len);
+	tmp = NULL;
+	cur = NULL;
+	while (i <= len)
+	{
+		tmp = src[i];
+		while (tmp)
+		{
+			cur = tmp;
+			tmp = tmp->next;
+			free_entry(cur->entry);
+			free_bucket(cur);
+			cur = NULL;
+		}
+		free(tmp);
+		tmp = NULL;
+		src[i] = NULL;
+		i++;
+	}
+}
 
 t_bucket	**copy_old(t_bucket **src)
 {
@@ -77,11 +98,14 @@ t_bucket	**copy_old(t_bucket **src)
 	return (new);
 }
 
-t_bucket	**grow_path_array(t_master *master, t_bucket **src)
+t_bucket	**grow_path_array(t_bucket **src)
 {
 	t_bucket	**new;
 
 	new = copy_old(src);
+	delete_src(src);
+	free(src);
+	src = NULL;
 	return (new);	
 }
 
@@ -100,11 +124,11 @@ t_bucket	**crawl(t_master *master, t_bucket **paths, t_entry *entry)
 	if ((ft_strequ(entry->name, master->start_room) || !entry->link_arr || \
 		explored(entry)) && !dead_end(master, entry))
 	{
-		paths = grow_path_array(master, paths);
+		paths = grow_path_array(paths);
 		// ft_printf("master->loc: %d\n", master->loc);
 		paths[master->loc] = insert_node_to_path(paths[master->loc], entry);
 		master->loc++;
-		print_paths(paths);
+		// print_paths(paths);
 		return (paths);
 	}
 	else if (link_array_len(entry->link_arr) > 0)
@@ -120,6 +144,7 @@ t_bucket	**crawl(t_master *master, t_bucket **paths, t_entry *entry)
 			paths = crawl(master, paths, entry->link_arr[i]);
 		i++;
 	}
+	
 	return (paths);
 }
 
@@ -137,8 +162,9 @@ void	find_paths(t_master *master, t_bucket **ht)
 	init_paths(2, paths->p);
 	end->visited = true; // put this inside while loop
 	paths->p = crawl(master, paths->p, end);
+	print_paths(paths->p);
 	// ft_printf("end room: %s\n", end->name);
-	// while (1)
-	// {	
-	// }
+	while (1)
+	{	
+	}
 }	
