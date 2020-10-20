@@ -1,62 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   paths3.c                                           :+:      :+:    :+:   */
+/*   find_paths.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/19 17:15:03 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/20 17:44:09 by cphillip         ###   ########.fr       */
+/*   Created: 2020/10/20 17:58:07 by cphillip          #+#    #+#             */
+/*   Updated: 2020/10/20 18:07:53 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-void	pop_from_list(t_bucket *head)
-{
-	t_bucket 	*tmp;
-
-	tmp = head;
-	while (tmp->next->next)
-		tmp = tmp->next;	
-	free_entry(tmp->next->entry);
-	free_bucket(tmp->next);
-	tmp->next = NULL;
-}
-
-void	print_list(t_bucket *head)
-{
-	t_bucket *tmp;
-	tmp = head;
-	while (tmp)
-	{
-		ft_printf("%s,", tmp->entry->name);
-		tmp = tmp->next;
-	}
-	ft_printf("\n");
-}
-
-t_bucket	*insert_node_to_path(t_bucket *head, t_entry *node)
-{
-	t_bucket	*bucket;
-	t_entry		*entry;
-	t_bucket	*tmp;
-
-	tmp = NULL;
-	entry = copy_entry(node);
-	bucket = create_bucket();
-	bucket->entry = entry;
-	if (head == NULL)
-		head = bucket;
-	else
-	{
-		tmp = head;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = bucket;
-	}
-	return (head);
-}
 
 t_bucket	*copy_from_array(t_bucket *head, t_bucket *src)
 {
@@ -69,35 +23,6 @@ t_bucket	*copy_from_array(t_bucket *head, t_bucket *src)
 		tmp = tmp->next;
 	}
 	return (head);
-}
-
-void	delete_old_path(t_bucket **paths)
-{
-	t_bucket	**tmp;
-	t_bucket	*curr;
-	t_bucket	*hold;
-	int			i;
-
-	tmp = paths;
-	i = 0;
-	hold = NULL;
-	while (i < bucket_arr_len(paths))
-	{
-		if (tmp[i])
-		{
-			curr = tmp[i];
-			while (curr)
-			{
-				hold = curr;
-				curr = curr->next;
-				free_entry(hold->entry);
-				free_bucket(hold);
-			}
-		}
-		i++;
-	}
-	free(paths);
-	paths = NULL;
 }
 
 t_bucket	**grow_path_array(t_paths *paths)
@@ -129,7 +54,7 @@ t_bucket	**grow_path_array(t_paths *paths)
 	return (new);
 }
 
-t_paths	*crawl(t_master *master, t_paths *paths, t_entry *entry)
+t_paths	*crawl(t_master *master, t_paths *p, t_entry *entry)
 {
 	int	i;
 	
@@ -138,25 +63,24 @@ t_paths	*crawl(t_master *master, t_paths *paths, t_entry *entry)
 		entry->visited = true;
 	if (ft_strequ(entry->name, master->start_room))
 	{
-		paths->p[paths->index] = insert_node_to_path(paths->p[paths->index], entry);
-		paths->p = grow_path_array(paths);
-		paths->index++;
-		pop_from_list(paths->p[paths->index]);
-		return (paths);
+		p->p[p->index] = insert_node_to_path(p->p[p->index], entry);
+		p->p = grow_path_array(p);
+		p->index++;
+		pop_from_list(p->p[p->index]);
+		return (p);
 	}
 	else
-		paths->p[paths->index] = insert_node_to_path(paths->p[paths->index], entry);
+		p->p[p->index] = insert_node_to_path(p->p[p->index], entry);
 	while (i < link_array_len(entry->link_arr))
 	{
 		if (!entry->link_arr[i]->visited)
-			paths = crawl(master, paths, entry->link_arr[i]);
+			p = crawl(master, p, entry->link_arr[i]);
 		i++;
 	}
-	// ft_printf(RED"Returning from %s\n"RESET, entry->name);
 	if (!ft_strequ(entry->name, master->end_room))
-		pop_from_list(paths->p[paths->index]);
+		pop_from_list(p->p[p->index]);
 	entry->visited = false;
-	return (paths);
+	return (p);
 }
 
 void	find_paths(t_master *master, t_bucket **ht)
@@ -180,10 +104,4 @@ void	find_paths(t_master *master, t_bucket **ht)
 	free_bucket(paths->p[paths->index]);
 	paths->p[paths->index] = NULL;
 	print_paths(paths->p);
-	while (1)
-	{
-		
-	}
-	// print_paths(paths->p);
-	// ft_printf("end room: %s\n", end->name);
 }	

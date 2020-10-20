@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 22:38:42 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/20 18:04:37 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,20 @@ void	init_paths(int len, t_bucket **paths)
 {
 	while (--len >= 0)
 		paths[len] = NULL;
+}
+
+void	init_entry(t_entry *entry)
+{
+	if (entry)
+	{
+		entry->visited = false;
+		entry->name = NULL;
+		entry->comment = NULL;
+		entry->link_arr = NULL;
+		entry->x = '\0';
+		entry->y = '\0';
+		entry->key = '\0';
+	}
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:20:56 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/07 10:52:32 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/20 18:07:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,26 @@ void		insert_node(t_bucket **ht, t_entry *entry, int index)
 		else
 			append_or_insert_entry(ht, entry, index);
 	}
+}
+
+t_bucket	*insert_node_to_path(t_bucket *head, t_entry *node)
+{
+	t_bucket	*bucket;
+	t_entry		*entry;
+	t_bucket	*tmp;
+
+	tmp = NULL;
+	entry = copy_entry(node);
+	bucket = create_bucket();
+	bucket->entry = entry;
+	if (head == NULL)
+		head = bucket;
+	else
+	{
+		tmp = head;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = bucket;
+	}
+	return (head);
 }

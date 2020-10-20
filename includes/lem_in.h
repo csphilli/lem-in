@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 19:54:30 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/20 18:06:36 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,8 @@ void				init_entry(t_entry *entry); // needed for freeing.
 
 void				free_entry(t_entry *entry);
 void				free_bucket(t_bucket *bucket);
+void				delete_old_path(t_bucket **paths);
+void				pop_from_list(t_bucket *head);
 
 /*
 **	DATA CAPTURING
@@ -157,7 +159,7 @@ void				validate_coords(t_master *master, char *n1, char *n2);
 void				validate_rooms(t_bucket **ht, t_master *master);
 void				duplicate_room_check(t_master *master, t_bucket **ht);
 void				add_link_to_room(t_bucket **ht, t_master *master, char *line);
-void				test_room_search(t_bucket **ht, char *name);
+// void				test_room_search(t_bucket **ht, char *name);
 // void				copy_room(t_bucket *dest, t_bucket *src);
 t_entry				*copy_entry(t_entry *src);
 void				parse_lines(t_master *master, char *line, t_bucket **ht);
@@ -167,6 +169,7 @@ int					link_array_len(t_entry **arr);
 int					link_exists(t_entry **link_arr, t_entry *link);
 void				insert_link(t_entry *entry, t_entry *link);
 t_entry				**append_link(t_entry **link_arr, t_entry *entry);
+t_bucket			*insert_node_to_path(t_bucket *head, t_entry *node);
 
 
 /*
