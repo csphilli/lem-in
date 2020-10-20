@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 13:51:53 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 15:34:06 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/20 10:49:56 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	free_entry(t_entry *entry)
 	{
 		while (i <= link_array_len(entry->link_arr))
 		{
-			// entry->link_arr[i] = '\0';
 			entry->link_arr[i] = NULL;
 			free(entry->link_arr[i]);
 			i++;

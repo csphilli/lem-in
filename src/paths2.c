@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 19:07:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 15:38:40 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 15:54:03 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_bucket	**copy_old(t_bucket **src)
 	len += 2;
 	if (!(new = (t_bucket**)malloc(sizeof(t_bucket*) * len)))
 		exit_malloc();
-	init_paths(len + 1, new);
+	init_paths(len, new);
 	while (i < len - 2)
 	{
 		tmp = src[i];
@@ -101,7 +101,11 @@ t_bucket	**grow_path_array(t_bucket **src)
 
 	new = copy_old(src);
 	delete_src(src);
-	free(src);	
+	free(src);
+	// while (1)
+	// {
+		
+	// }
 	src = NULL;
 	return (new);	
 }
@@ -124,12 +128,15 @@ t_bucket	**crawl(t_master *master, t_bucket **paths, t_entry *entry)
 		paths = grow_path_array(paths);
 		// ft_printf("master->loc: %d\n", master->loc);
 		paths[master->loc] = insert_node_to_path(paths[master->loc], entry);
+		
 		master->loc++;
 		
 		// print_paths(paths);
+		
 		return (paths);
 	}
-	else if (link_array_len(entry->link_arr) > 0)
+	else if ((link_array_len(entry->link_arr) > 0) && \
+			!ft_strequ(entry->link_arr[i]->name, master->end_room))
 	{
 		paths[master->loc] = insert_node_to_path(paths[master->loc], entry);
 		// print_paths(paths);
@@ -138,7 +145,8 @@ t_bucket	**crawl(t_master *master, t_bucket **paths, t_entry *entry)
 	// print_paths(paths);
 	while (i < n_links)
 	{
-		if (!entry->link_arr[i]->visited && !dead_end(master, entry->link_arr[i]))
+		if (!entry->link_arr[i]->visited && !dead_end(master, entry->link_arr[i]) &&\
+			!ft_strequ(entry->link_arr[i]->name, master->end_room))
 			paths = crawl(master, paths, entry->link_arr[i]);
 		i++;
 	}
@@ -159,10 +167,10 @@ void	find_paths(t_master *master, t_bucket **ht)
 		exit_malloc();
 	init_paths(2, paths->p);
 	// end->visited = true; // put this inside while loop
-	paths->p = crawl(master, paths->p, end);
+	paths->p = crawl(master, paths->p, end->link_arr[1]);
+	// while (1)
+	// {	
+	// }
 	print_paths(paths->p);
 	// ft_printf("end room: %s\n", end->name);
-	while (1)
-	{	
-	}
 }	

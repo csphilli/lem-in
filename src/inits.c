@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 13:52:14 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 22:38:42 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	init_master(t_master *master)
 		master->old_size = 10;
 		master->nbr_keys = 0;
 		master->n_paths = 2;
-		master->loc = 0;
 	}
 }
+
 
 void	init_link_arr(t_entry **links, int len)
 {

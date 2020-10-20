@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:23:28 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 07:36:13 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 22:53:08 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,22 @@
 **	array have been flagged as visited.
 */
 
+void	check_first(t_entry *entry)
+{
+	int i;
+
+	i = 0;
+	while (i < link_array_len(entry->link_arr))
+	{
+		ft_printf("%s = ", entry->link_arr[i]->name);
+		if (entry->link_arr[i]->visited == true)
+			ft_printf("visited\n");
+		else
+			ft_printf("unvisited\n");		
+		i++;
+	}
+}
+
 int		explored(t_entry *entry)
 {
 	int	i;
@@ -25,8 +41,10 @@ int		explored(t_entry *entry)
 	i = 0;
 	if (entry->link_arr)
 	{
+		// check_first(entry);
+		i = 0;
 		while (i < link_array_len(entry->link_arr))
-		{			
+		{
 			if (entry->link_arr[i]->visited == false)
 				return (0);
 			i++;
@@ -36,20 +54,36 @@ int		explored(t_entry *entry)
 }
 
 /*
-**	Checks to see if the entry in question is a dead-end room.
-**	A dead end room is a room with only 1 link in the link array of which
-**	that link will always be the link back to the room it just came from.
-**	If the entry in question is the final destination, it is not considered
-**	a dead-end room.
+**	dead_end_scan is a scan made prior to checking for paths.
+**	It's purpose is to flag any room that is a dead end as visited.
+**	This prevents any unnecessary checking in rooms that won't
+**	help the objective of the program. A dead end is a room that
+**	contains only one link. If that link is not the starting room,
+**	it gets flagged.
 */
 
-int		dead_end(t_master *master, t_entry *entry)
+void	dead_end_scan(t_master *master, t_bucket **ht)
 {
-	if ((link_array_len(entry->link_arr) == 1) && \
-		(!ft_strequ(entry->name, master->start_room)))
-		return (1);
-	else
-		return (0);
+	size_t		i;
+	t_bucket	*tmp;
+
+	i = 0;
+	tmp = NULL;
+	while (i < master->new_size)
+	{
+		if(ht[i])
+		{
+			tmp = ht[i];
+			while (tmp)
+			{
+				if ((link_array_len(tmp->entry->link_arr) == 1) && \
+					(!ft_strequ(tmp->entry->name, master->start_room)))
+					tmp->entry->visited = true;
+				tmp = tmp->next;
+			}
+		}
+		i++;
+	}
 }
 
 void	clear_visited(t_master *master, t_bucket **ht)

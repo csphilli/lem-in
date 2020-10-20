@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 13:53:29 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/19 19:54:30 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ typedef struct		s_dfs
 typedef struct 		s_paths
 {
 	struct s_bucket	**p;
+	int				index;
+	int				len;
+	int				p_len;
 }					t_paths;
 
 
@@ -109,7 +112,6 @@ typedef struct		s_master
 	size_t			old_size;
 	size_t			size_factor;
 	size_t			n_paths;
-	int				loc;
 	float			load;
 	int				nbr_keys;
 }					t_master;
@@ -200,7 +202,7 @@ void				find_paths(t_master *master, t_bucket **ht);
 
 int					explored(t_entry *entry);
 void				print_paths(t_bucket **paths);
-int					dead_end(t_master *master, t_entry *entry);
+void					dead_end_scan(t_master *master, t_bucket **ht);
 void				clear_visited(t_master *master, t_bucket **ht);
 void				start_or_end(char *s, t_master *master, char *name);
 int					bucket_arr_len(t_bucket **arr);
