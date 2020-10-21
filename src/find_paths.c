@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:58:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/21 09:54:53 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/21 10:03:27 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ t_bucket	**grow_path_array(t_paths *paths)
 
 static t_paths	*crawl(t_master *master, t_paths *p, t_entry *entry)
 {
-	// ft_printf("Into %s\n", entry->name);
 	int	i;
 	
 	i = 0;
@@ -68,18 +67,10 @@ static t_paths	*crawl(t_master *master, t_paths *p, t_entry *entry)
 		p->p = grow_path_array(p);
 		p->index++;
 		pop_from_list(p->p[p->index]);
-		system("clear");
-		print_paths(p->p);
-		sleep(.5);
 		return (p);
 	}
 	else
-	{
 		p->p[p->index] = insert_node_to_path(p->p[p->index], entry);
-		system("clear");
-		print_paths(p->p);
-		sleep(.5);
-	}
 	while (i < link_array_len(entry->link_arr))
 	{
 		if (!entry->link_arr[i]->visited)
