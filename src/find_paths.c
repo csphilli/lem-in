@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:58:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/21 10:03:27 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/21 10:37:11 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ t_bucket	**grow_path_array(t_paths *paths)
 	return (new);
 }
 
-static t_paths	*crawl(t_master *master, t_paths *p, t_entry *entry)
+t_paths		*crawl(t_master *master, t_paths *p, t_entry *entry)
 {
 	int	i;
-	
+
 	i = 0;
 	if (!ft_strequ(entry->name, master->start_room))
 		entry->visited = true;
@@ -83,7 +83,7 @@ static t_paths	*crawl(t_master *master, t_paths *p, t_entry *entry)
 	return (p);
 }
 
-void	find_paths(t_master *master, t_bucket **ht)
+void		find_paths(t_master *master, t_bucket **ht)
 {
 	t_paths	*paths;
 	t_entry	*end;
@@ -100,7 +100,6 @@ void	find_paths(t_master *master, t_bucket **ht)
 	if (!(paths->p = (t_bucket**)malloc(sizeof(t_bucket*) * paths->p_len)))
 		exit_malloc();
 	init_paths(paths->p_len, paths->p);
-	dead_end_scan(master, ht);
 	if (end->visited == true || start->visited == true)
 		ft_printf(E_NOPATH);
 	else
@@ -111,4 +110,4 @@ void	find_paths(t_master *master, t_bucket **ht)
 		paths->p[paths->index] = NULL;
 	}
 	print_paths(paths->p);
-}	
+}

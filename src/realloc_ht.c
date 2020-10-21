@@ -6,18 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:18:44 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 13:55:04 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/21 10:37:29 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-// void		clear_bucket(t_bucket *bucket)
-// {
-// 	bucket->entry = NULL;
-// 	bucket->next = NULL;
-// 	free(bucket);
-// }
 
 void		delete_old_ht(t_bucket **old, size_t size)
 {

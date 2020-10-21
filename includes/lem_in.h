@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/21 10:04:06 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/21 10:41:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct		s_bucket
 	struct s_bucket	*next;
 }					t_bucket;
 
-
 typedef struct		s_entry
 {
 	char			*name;
@@ -62,17 +61,15 @@ typedef struct		s_entry
 typedef struct		s_dfs
 {
 	struct s_entry	**q;
-	
 }					t_dfs;
 
-typedef struct 		s_paths
+typedef struct		s_paths
 {
 	struct s_bucket	**p;
 	int				index;
 	int				len;
 	int				p_len;
 }					t_paths;
-
 
 /*
 **	For Master:
@@ -131,11 +128,10 @@ void				check_path_exists(t_entry *start, t_entry *end, t_dfs *dfs);
 **	INITIALIZATION
 */
 
-// t_entry				*create_and_fill_entry(t_master *master, char *line);
 void				init_master(t_master *master);
 void				init_link_arr(t_entry **links, int len);
 void				init_paths(int len, t_bucket **p);
-void				init_entry(t_entry *entry); // needed for freeing.
+void				init_entry(t_entry *entry);
 
 /*
 **	FREEING
@@ -145,6 +141,7 @@ void				free_entry(t_entry *entry);
 void				free_bucket(t_bucket *bucket);
 void				delete_old_path(t_bucket **paths);
 void				pop_from_list(t_bucket *head);
+void				delete_old_ht(t_bucket **old, size_t size);
 
 /*
 **	DATA CAPTURING
@@ -157,19 +154,15 @@ void				load_help(t_master *master);
 void				validate_coords(t_master *master, char *n1, char *n2);
 void				validate_rooms(t_bucket **ht, t_master *master);
 void				duplicate_room_check(t_master *master, t_bucket **ht);
-void				add_link_to_room(t_bucket **ht, t_master *master, char *line);
-// void				test_room_search(t_bucket **ht, char *name);
-// void				copy_room(t_bucket *dest, t_bucket *src);
+void				add_link_to_room(t_bucket **ht, t_master *master,\
+					char *line);
 t_entry				*copy_entry(t_entry *src);
 void				parse_lines(t_master *master, char *line, t_bucket **ht);
-int					link_array_len(t_entry **arr);
 t_entry				*get_entry(t_bucket **ht, t_master *master, char *name);
-int					link_array_len(t_entry **arr);
 int					link_exists(t_entry **link_arr, t_entry *link);
 void				insert_link(t_entry *entry, t_entry *link);
 t_entry				**append_link(t_entry **link_arr, t_entry *entry);
 t_bucket			*insert_node_to_path(t_bucket *head, t_entry *node);
-
 
 /*
 **	Hash Table Functions
@@ -179,35 +172,29 @@ t_bucket			**grow_ht(t_bucket **ht, t_master *master);
 t_bucket			**create_ht(t_master *master);
 t_bucket			*create_bucket(void);
 t_entry				*create_entry(void);
-t_entry				*fill_entry_from_line(t_master *master, t_entry *dst, char *line);
+t_entry				*fill_entry_from_line(t_master *master, t_entry *dst,\
+					char *line);
 float				load(t_master *master);
-// void				insert_node(t_bucket **ht, t_master *master,\
-// 					t_entry *entry, int index);
 void				insert_node(t_bucket **ht, t_entry *entry, int index);
 void				assign_entry_to_ht(t_bucket **ht, t_master *master,\
 					t_entry *entry);
-void				print_ht(t_bucket **ht, size_t size);
-void				delete_old_ht(t_bucket **old, size_t size);
 int					gen_key(char *str);
 
 /*
 **	Routing Algorithm
 */
 
-void				do_dfs(t_bucket **ht, t_master *master);
-void				print_dfs(t_dfs *dfs);
 void				find_paths(t_master *master, t_bucket **ht);
 
 /*
 **	RANDOM TOOLS
 */
 
-int					explored(t_entry *entry);
 void				print_paths(t_bucket **paths);
-void					dead_end_scan(t_master *master, t_bucket **ht);
-void				clear_visited(t_master *master, t_bucket **ht);
+void				dead_end_scan(t_master *master, t_bucket **ht);
 void				start_or_end(char *s, t_master *master, char *name);
 int					bucket_arr_len(t_bucket **arr);
-void				clear_bucket(t_bucket *bucket);
+int					link_array_len(t_entry **arr);
+void				print_ht(t_bucket **ht, size_t size);
 
 #endif

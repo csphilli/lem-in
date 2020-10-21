@@ -6,51 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:23:28 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/21 09:48:30 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/21 10:36:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-/*
-**	'explored' checks to see if a particular entry is fulled explored. It is
-**	considered fully explored when every link in the entry's link
-**	array have been flagged as visited.
-*/
-
-void	check_first(t_entry *entry)
-{
-	int i;
-
-	i = 0;
-	while (i < link_array_len(entry->link_arr))
-	{
-		ft_printf("%s = ", entry->link_arr[i]->name);
-		if (entry->link_arr[i]->visited == true)
-			ft_printf("visited\n");
-		else
-			ft_printf("unvisited\n");		
-		i++;
-	}
-}
-
-int		explored(t_entry *entry)
-{
-	int	i;
-
-	i = 0;
-	if (entry->link_arr)
-	{
-		i = 0;
-		while (i < link_array_len(entry->link_arr))
-		{
-			if (entry->link_arr[i]->visited == false)
-				return (0);
-			i++;
-		}
-	}
-	return (1);
-}
 
 /*
 **	dead_end_scan is a scan made prior to checking for paths.
@@ -68,9 +28,9 @@ void	dead_end_scan(t_master *master, t_bucket **ht)
 
 	i = 0;
 	tmp = NULL;
-	while (i < master->new_size)
+	while (i++ < master->new_size)
 	{
-		if(ht[i])
+		if (ht[i])
 		{
 			tmp = ht[i];
 			while (tmp)
@@ -79,7 +39,7 @@ void	dead_end_scan(t_master *master, t_bucket **ht)
 				{
 					if ((link_array_len(tmp->entry->link_arr) == 1) && \
 						(!ft_strequ(tmp->entry->name, master->start_room) && \
-						 !ft_strequ(tmp->entry->name, master->end_room)))
+						!ft_strequ(tmp->entry->name, master->end_room)))
 						tmp->entry->visited = true;
 				}
 				else if (!tmp->entry->link_arr)
@@ -87,32 +47,6 @@ void	dead_end_scan(t_master *master, t_bucket **ht)
 				tmp = tmp->next;
 			}
 		}
-		i++;
-	}
-}
-
-void	clear_visited(t_master *master, t_bucket **ht)
-{
-	t_bucket	**tmp;
-	t_bucket	*curr;
-	int			i;
-
-	i = 0;
-	tmp = ht;
-	curr = NULL;
-	while (tmp[i])
-	{
-		if (tmp[i])
-		{
-			curr = tmp[i];
-			while (curr)
-			{
-				if (!ft_strequ(curr->entry->name, master->end_room))
-					curr->entry->visited = false;
-				curr = curr->next;
-			}
-		}
-		i++;
 	}
 }
 
@@ -121,7 +55,7 @@ void	clear_visited(t_master *master, t_bucket **ht)
 **	and end room to the master struct for later reference.
 */
 
-void		start_or_end(char *s, t_master *master, char *name)
+void	start_or_end(char *s, t_master *master, char *name)
 {
 	if (ft_strequ(s, "start"))
 		master->start_room = ft_strdup(name);
@@ -133,7 +67,7 @@ void		start_or_end(char *s, t_master *master, char *name)
 **	Calculates the length of an array of pointers to pointers
 */
 
-int			bucket_arr_len(t_bucket **arr)
+int		bucket_arr_len(t_bucket **arr)
 {
 	int	i;
 	int	len;
