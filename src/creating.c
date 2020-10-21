@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 12:38:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 12:29:39 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/20 18:26:08 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,30 +55,3 @@ t_entry		*create_entry(void)
 	entry->key = '\0';
 	return (entry);
 }
-
-/*
-t_entry		*create_and_fill_entry(t_master *master, char *line)
-{
-	t_entry *new;
-	char	**data;
-
-	if (!(new = (t_entry*)malloc(sizeof(t_entry))))
-		exit_malloc();
-	init_entry(new);
-	data = ft_strsplit(line, ' ');
-	new->name = ft_strdup(data[0]);
-	new->x = ft_atoi(data[1]);
-	new->y = ft_atoi(data[2]);
-	new->key = gen_key(new->name);
-	if (master->comment != NULL)
-	{
-		new->comment = ft_strdup(master->comment);
-		start_or_end(new->comment, master, new->name);
-		ft_strdel(&master->comment);
-	}
-	free_strsplit(&data);
-	data = NULL;
-	return (new);
-}
-*/
-

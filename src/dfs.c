@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 15:11:52 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/13 13:48:57 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/20 19:25:44 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_dfs(t_dfs *dfs)
 	ft_printf("\n");
 }
 
-void	crawl(t_entry *entry, t_dfs *dfs)
+static void		search_solution(t_entry *entry, t_dfs *dfs)
 {
 	int	n_paths;
 	int	i;
@@ -50,12 +50,12 @@ void	crawl(t_entry *entry, t_dfs *dfs)
 	while (i < n_paths)
 	{
 		if (!entry->link_arr[i]->visited)
-			crawl(entry->link_arr[i], dfs);
+			search_solution(entry->link_arr[i], dfs);
 		i++;
 	}
 }
 
-t_dfs	*do_dfs(t_bucket **ht, t_master *master) // dont need to seriously return it.
+void	do_dfs(t_bucket **ht, t_master *master) // dont need to seriously return it.
 {
 	t_dfs		*dfs;
 	t_entry		*end;
@@ -71,8 +71,10 @@ t_dfs	*do_dfs(t_bucket **ht, t_master *master) // dont need to seriously return 
 	if (!(dfs = (t_dfs*)malloc(sizeof(t_dfs))))
 		exit_malloc();
 	dfs->q = NULL;
-	crawl(end, dfs);	
+	search_solution(end, dfs);	
 	check_path_exists(start, end, dfs);
-	find_paths(dfs);
-	return (dfs);
+	print_dfs(dfs);
+	
+	// find_paths(dfs);
+	// return (dfs);
 }

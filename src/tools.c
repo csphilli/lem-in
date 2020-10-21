@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:23:28 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 22:53:08 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/21 09:48:30 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int		explored(t_entry *entry)
 	i = 0;
 	if (entry->link_arr)
 	{
-		// check_first(entry);
 		i = 0;
 		while (i < link_array_len(entry->link_arr))
 		{
@@ -76,8 +75,14 @@ void	dead_end_scan(t_master *master, t_bucket **ht)
 			tmp = ht[i];
 			while (tmp)
 			{
-				if ((link_array_len(tmp->entry->link_arr) == 1) && \
-					(!ft_strequ(tmp->entry->name, master->start_room)))
+				if (tmp->entry->link_arr)
+				{
+					if ((link_array_len(tmp->entry->link_arr) == 1) && \
+						(!ft_strequ(tmp->entry->name, master->start_room) && \
+						 !ft_strequ(tmp->entry->name, master->end_room)))
+						tmp->entry->visited = true;
+				}
+				else if (!tmp->entry->link_arr)
 					tmp->entry->visited = true;
 				tmp = tmp->next;
 			}
@@ -102,7 +107,6 @@ void	clear_visited(t_master *master, t_bucket **ht)
 			curr = tmp[i];
 			while (curr)
 			{
-				ft_printf(" Clearing %s\n", curr->entry->name);
 				if (!ft_strequ(curr->entry->name, master->end_room))
 					curr->entry->visited = false;
 				curr = curr->next;

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 11:53:27 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/20 18:27:53 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,8 @@ void		insert_link(t_entry *entry, t_entry *link)
 		init_link_arr(entry->link_arr, 2);
 		entry->link_arr[0] = link;
 	}
-	else
-		if (!link_exists(entry->link_arr, link))
-			entry->link_arr = append_link(entry->link_arr, link);
+	else if (!link_exists(entry->link_arr, link))
+		entry->link_arr = append_link(entry->link_arr, link);
 }
 
 int			is_room(t_bucket *head, char *room)
@@ -101,7 +100,7 @@ void		add_link_to_room(t_bucket **ht, t_master *master, char *line)
 	do_link(ht[index], data[0], entry1);
 	index = gen_key(data[1]) % master->new_size;
 	entry2 = get_entry(ht, master, data[0]);
-	do_link(ht[index], data[1], entry2);	
+	do_link(ht[index], data[1], entry2);
 	free_strsplit(&data);
 	data = NULL;
 }

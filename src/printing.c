@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ht.c                                         :+:      :+:    :+:   */
+/*   printing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/19 15:25:50 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/20 18:57:03 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 void	print_paths(t_bucket **paths)
 {
-	// ft_printf("PRINTING PATHS\n");
 	t_bucket	**tmp;
 	t_bucket	*curr;
-	size_t	i;
-	size_t	len;
+	int			i;
 
-	len = bucket_arr_len(paths);
-	// ft_printf(" n_paths: %d\n", len);
 	tmp = paths;
 	i = 0;
-	while (i < len)
+	while (i < bucket_arr_len(paths))
 	{
 		curr = tmp[i];
 		ft_printf("[%d]: ", i);

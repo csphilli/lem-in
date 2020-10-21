@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/20 18:06:36 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/20 19:15:55 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ typedef struct		s_master
 	size_t			new_size;
 	size_t			old_size;
 	size_t			size_factor;
-	size_t			n_paths;
 	float			load;
 	int				nbr_keys;
 }					t_master;
@@ -195,7 +194,7 @@ int					gen_key(char *str);
 **	Routing Algorithm
 */
 
-t_dfs				*do_dfs(t_bucket **ht, t_master *master);
+void				do_dfs(t_bucket **ht, t_master *master);
 void				print_dfs(t_dfs *dfs);
 void				find_paths(t_master *master, t_bucket **ht);
 
