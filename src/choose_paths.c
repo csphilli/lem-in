@@ -1,0 +1,187 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   choose_paths.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/22 11:00:25 by cphillip          #+#    #+#             */
+/*   Updated: 2020/10/23 11:15:44 by cphillip         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/lem_in.h"
+
+t_bucket	**grow_chosen_array(t_paths *paths, t_bucket *copy)
+{
+	t_bucket	**new;
+	t_bucket	*tmp;
+	int			i;
+	int			len;
+
+	i = 0;
+	tmp = NULL;
+	len = bucket_arr_len(paths->c) + 2;
+	if (!(new = (t_bucket**)malloc(sizeof(t_bucket*) * len)))
+		exit_malloc();
+	init_paths(len, new);
+	while (i < len - 2)
+	{
+		tmp = paths->c[i];
+		while (tmp)
+		{
+			new[i] = insert_node_to_path(new[i], tmp->entry);
+			tmp = tmp->next;
+		}
+		i++;
+	}
+	new[i] = copy_from_array(new[i], copy);
+	delete_old_path(paths->c);
+	return (new);
+}
+
+void	print_path(t_bucket *head)
+{
+	t_bucket *tmp;
+
+	tmp = head;
+	while (tmp)
+	{
+		ft_printf("%s", tmp->entry->name);
+		if (tmp->next)
+			ft_printf(",");
+		tmp = tmp->next;
+	}
+	ft_printf("\n");
+}
+
+
+void		collision_check(t_paths *paths, t_bucket *src)
+{
+	t_bucket	*comp;
+	t_bucket	*tmp;
+	int			i;
+
+	comp = NULL;
+	tmp = src;
+	i = 0;
+	while (i < bucket_arr_len(paths->p))
+	{
+		paths->collision = 0;
+		tmp = src->next;
+		while (tmp)
+		{
+			comp = paths->p[i]->next;
+			while (comp)
+			{
+				if (ft_strequ(comp->entry->name, tmp->entry->name) && \
+					!ft_strequ(comp->entry->name, paths->e_room->name))
+					paths->collision = 1;
+				comp = comp->next;
+			}
+			tmp = tmp->next;
+		}
+		if (paths->collision == 0)
+		{
+			paths->c = grow_chosen_array(paths, src);
+			return ;
+		}
+		// if (paths->collision == 1)
+		// 	{
+		// 		ft_printf("Path ");
+		// 		print_path(src);
+		// 		ft_printf(" collided with ");
+		// 		print_path(paths->p[i]);
+		// 		ft_printf(".\n");
+		// 	}
+		// 	else if (paths->collision == 0)
+		// 	{
+		// 		ft_printf("No collisions between ");
+		// 		print_path(src);
+		// 		ft_printf(" and ");
+		// 		print_path(paths->p[i]);
+		// 		ft_printf(".\n");
+		// 	}
+		i++;
+	}
+	// return (0);
+}
+
+void	collision_parse(t_paths *paths)
+{
+	t_bucket	*tmp;
+	int			index;
+
+	tmp = NULL;
+	index = 0;
+	while (index < bucket_arr_len(paths->p))
+	{
+		tmp = paths->p[index];
+		collision_check(paths, tmp);
+		index++;
+	}
+}
+
+int		list_len(t_bucket *head)
+{
+	t_bucket	*tmp;
+	int			len;
+
+	tmp = head;
+	len = 1;
+	while (tmp->next)
+	{
+		len++;
+		tmp = tmp->next;
+	}
+	return (len);
+}
+
+void	get_shortest_path(t_paths *paths)
+{
+	int			pos;
+	int			min;
+	int			i;
+	int			len;
+
+	pos = 0;
+	min = 100000;
+	i = 0;
+	len = 1;
+	while (i < bucket_arr_len(paths->p))
+	{
+		len = list_len(paths->p[i]);
+		if (len <= min)
+		{
+			min = len;
+			pos = i;
+		}
+		i++;
+	}
+	paths->shortest_index = pos;
+}
+
+void	choose_paths(t_master *master, t_paths *paths)
+{
+	if (!(paths->c = (t_bucket**)malloc(sizeof(t_bucket) * paths->c_len)))
+		exit_malloc();
+	init_paths(paths->c_len, paths->c);
+	ft_printf("printing paths\n");
+	ft_printf("printing random: %s\n", master->start_room);
+	get_shortest_path(paths);
+	// paths->c[0] = copy_from_array(paths->c[0], paths->p[paths->shortest_index]);
+	ft_printf("ALL PATHS:\n");
+	print_paths(paths->p);
+	ft_printf("CHOSEN PATHS:\n");
+	collision_parse(paths);
+	print_paths(paths->c);
+	max_paths(paths);
+	// if (bucket_arr_len(paths->c) > paths->max_paths)
+	// 	choose_wisely(paths);
+	// ft_printf("Max paths: %d\n", paths->max_paths);
+	// ft_printf("Pos %d has the minimum len of %d\n", pos, min);
+	// while (1)
+	// {
+		
+	// }
+}

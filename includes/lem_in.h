@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/21 10:41:45 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/23 11:04:58 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,23 @@ typedef struct		s_dfs
 	struct s_entry	**q;
 }					t_dfs;
 
+/*
+**	**p = all PATHS found from initial DFS
+**	**c = CHOSEN paths from the DFS.
+*/
+
 typedef struct		s_paths
 {
 	struct s_bucket	**p;
+	struct s_bucket	**c;
+	struct s_entry	*s_room;
+	struct s_entry	*e_room;
+	int				max_paths;
+	int				shortest_index;	
 	int				index;
-	int				len;
 	int				p_len;
+	int				c_len;
+	int				collision;
 }					t_paths;
 
 /*
@@ -132,6 +143,7 @@ void				init_master(t_master *master);
 void				init_link_arr(t_entry **links, int len);
 void				init_paths(int len, t_bucket **p);
 void				init_entry(t_entry *entry);
+void				init_paths_struct(t_paths *paths);
 
 /*
 **	FREEING
@@ -185,6 +197,9 @@ int					gen_key(char *str);
 */
 
 void				find_paths(t_master *master, t_bucket **ht);
+void				choose_paths(t_master *master, t_paths *paths);
+void				choose_wisely(t_paths *paths);
+t_bucket			**grow_path_array(t_paths *paths);
 
 /*
 **	RANDOM TOOLS
@@ -196,5 +211,7 @@ void				start_or_end(char *s, t_master *master, char *name);
 int					bucket_arr_len(t_bucket **arr);
 int					link_array_len(t_entry **arr);
 void				print_ht(t_bucket **ht, size_t size);
+t_bucket			*copy_from_array(t_bucket *head, t_bucket *src);
+void				max_paths(t_paths *paths);
 
 #endif

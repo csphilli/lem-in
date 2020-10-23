@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/20 18:33:37 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/22 21:46:22 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,22 @@ void	init_entry(t_entry *entry)
 		entry->x = '\0';
 		entry->y = '\0';
 		entry->key = '\0';
+	}
+}
+
+void	init_paths_struct(t_paths *paths)
+{
+	if (paths)
+	{
+		paths->p = NULL;
+		paths->c = NULL;
+		paths->s_room = NULL;
+		paths->e_room = NULL;
+		paths->index = 0;
+		paths->max_paths = 0;
+		paths->p_len = 2;
+		paths->c_len = 2;
+		paths->shortest_index = '\0';
+		paths->collision = 0;
 	}
 }

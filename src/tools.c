@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:23:28 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/21 10:36:45 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/23 10:51:04 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,21 @@ int		bucket_arr_len(t_bucket **arr)
 	while (arr[i++])
 		len++;
 	return (len);
+}
+
+void	max_paths(t_paths *paths)
+{
+	int	start_paths;
+	int	end_paths;
+
+	start_paths = link_array_len(paths->s_room->link_arr);
+	end_paths = link_array_len(paths->e_room->link_arr);
+
+	// ft_printf("Start paths: %d\n", start_paths);
+	// ft_printf("Start paths: %d\n", end_paths);
+	if (start_paths < end_paths)
+		paths->max_paths = start_paths;
+	else if (start_paths > end_paths)
+		paths->max_paths = end_paths;
+	ft_printf("Number of paths to use is: %d\n", paths->max_paths);
 }
