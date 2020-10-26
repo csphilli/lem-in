@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 10:17:02 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/20 23:13:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/25 10:08:28 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,6 @@ void	validate_rooms(t_bucket **ht, t_master *master)
 			scan_index(ht[i], i);
 		i++;
 	}
+	if (master->start_room == NULL || master->end_room == NULL)
+		exit_no_solution();
 }

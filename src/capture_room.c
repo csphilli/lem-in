@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/20 18:25:29 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/25 09:50:30 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,21 @@ t_entry		*copy_entry(t_entry *src)
 	return (dst);
 }
 
+/*
+**	dup_coord function located in validate_coords.c
+*/
+
 void		assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry)
 {
 	size_t	index;
 
-	index = entry->key % master->new_size;
-	insert_node(ht, entry, index);
-	master->room_count++;
-	master->nbr_keys++;
+	if (!dup_coord(ht, master, entry))
+	{
+		index = entry->key % master->new_size;
+		insert_node(ht, entry, index);
+		master->room_count++;
+		master->nbr_keys++;
+	}
+	else
+		exit_dup_coord(master);
 }

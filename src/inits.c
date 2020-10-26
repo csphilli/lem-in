@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/22 21:46:22 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/26 09:50:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	init_entry(t_entry *entry)
 		entry->x = '\0';
 		entry->y = '\0';
 		entry->key = '\0';
+		entry->occ = 0;
+		entry->n_ants = 0;
 	}
 }
 

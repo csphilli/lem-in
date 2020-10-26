@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 11:00:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/23 11:15:44 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/26 09:44:56 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,25 +86,8 @@ void		collision_check(t_paths *paths, t_bucket *src)
 			paths->c = grow_chosen_array(paths, src);
 			return ;
 		}
-		// if (paths->collision == 1)
-		// 	{
-		// 		ft_printf("Path ");
-		// 		print_path(src);
-		// 		ft_printf(" collided with ");
-		// 		print_path(paths->p[i]);
-		// 		ft_printf(".\n");
-		// 	}
-		// 	else if (paths->collision == 0)
-		// 	{
-		// 		ft_printf("No collisions between ");
-		// 		print_path(src);
-		// 		ft_printf(" and ");
-		// 		print_path(paths->p[i]);
-		// 		ft_printf(".\n");
-		// 	}
 		i++;
 	}
-	// return (0);
 }
 
 void	collision_parse(t_paths *paths)
@@ -122,44 +105,22 @@ void	collision_parse(t_paths *paths)
 	}
 }
 
-int		list_len(t_bucket *head)
-{
-	t_bucket	*tmp;
-	int			len;
+// int		list_len(t_bucket *head)
+// {
+// 	t_bucket	*tmp;
+// 	int			len;
 
-	tmp = head;
-	len = 1;
-	while (tmp->next)
-	{
-		len++;
-		tmp = tmp->next;
-	}
-	return (len);
-}
+// 	tmp = head;
+// 	len = 1;
+// 	while (tmp->next)
+// 	{
+// 		len++;
+// 		tmp = tmp->next;
+// 	}
+// 	return (len);
+// }
 
-void	get_shortest_path(t_paths *paths)
-{
-	int			pos;
-	int			min;
-	int			i;
-	int			len;
 
-	pos = 0;
-	min = 100000;
-	i = 0;
-	len = 1;
-	while (i < bucket_arr_len(paths->p))
-	{
-		len = list_len(paths->p[i]);
-		if (len <= min)
-		{
-			min = len;
-			pos = i;
-		}
-		i++;
-	}
-	paths->shortest_index = pos;
-}
 
 void	choose_paths(t_master *master, t_paths *paths)
 {
@@ -168,7 +129,7 @@ void	choose_paths(t_master *master, t_paths *paths)
 	init_paths(paths->c_len, paths->c);
 	ft_printf("printing paths\n");
 	ft_printf("printing random: %s\n", master->start_room);
-	get_shortest_path(paths);
+	// get_shortest_path(paths);
 	// paths->c[0] = copy_from_array(paths->c[0], paths->p[paths->shortest_index]);
 	ft_printf("ALL PATHS:\n");
 	print_paths(paths->p);
@@ -176,6 +137,7 @@ void	choose_paths(t_master *master, t_paths *paths)
 	collision_parse(paths);
 	print_paths(paths->c);
 	max_paths(paths);
+	ants_marching(master, paths);
 	// if (bucket_arr_len(paths->c) > paths->max_paths)
 	// 	choose_wisely(paths);
 	// ft_printf("Max paths: %d\n", paths->max_paths);

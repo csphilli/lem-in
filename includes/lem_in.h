@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/23 11:04:58 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/26 09:49:42 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define E_MALLOC "Error. Failed to allocate memory.\n"
 # define E_NO_ROOMS "Error. No rooms specified.\n"
 # define E_NO_LINKS "Error. No links specified.\n"
-# define E_NOPATH "Error. No path from start to end exists.\n"
+# define E_NOPATH "Error. No solution. No path from start to end exists.\n"
 # define E_L "Error. 'L' present at beginning of room name.\n"
 # define E_COORD "Error. Invalid coordinate on line "
 # define E_DUPL "Error. Duplicate room name found: "
@@ -27,6 +27,7 @@
 # define E_END "Error. End already defined.\n"
 # define E_NOFILE "Error. File not found.\n"
 # define E_FAILED_SEARCH "Error inserting link. Room not found: "
+# define E_NOSOLUTION "Error. No Solution. Start and/or End room undefined."
 # include "../libft/header/libft.h"
 
 /*
@@ -56,6 +57,8 @@ typedef struct		s_entry
 	int				y;
 	int				key;
 	bool			visited;
+	int				occ;
+	int				n_ants;
 }					t_entry;
 
 typedef struct		s_dfs
@@ -134,6 +137,9 @@ void				exit_coord(int line_nbr);
 void				exit_dup(char *room_name, size_t index);
 void				exit_room_not_found(char *str);
 void				check_path_exists(t_entry *start, t_entry *end, t_dfs *dfs);
+void				exit_dup_coord(t_master *master);
+void				exit_no_solution(void);
+void				exit_no_path(void);
 
 /*
 **	INITIALIZATION
@@ -200,6 +206,7 @@ void				find_paths(t_master *master, t_bucket **ht);
 void				choose_paths(t_master *master, t_paths *paths);
 void				choose_wisely(t_paths *paths);
 t_bucket			**grow_path_array(t_paths *paths);
+void				ants_marching(t_master *master, t_paths *paths);
 
 /*
 **	RANDOM TOOLS
@@ -213,5 +220,6 @@ int					link_array_len(t_entry **arr);
 void				print_ht(t_bucket **ht, size_t size);
 t_bucket			*copy_from_array(t_bucket *head, t_bucket *src);
 void				max_paths(t_paths *paths);
+int					dup_coord(t_bucket **ht, t_master *master, t_entry *entry);
 
 #endif
