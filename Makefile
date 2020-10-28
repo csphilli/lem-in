@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/10/28 11:54:31 by cphillip         ###   ########.fr        #
+#    Updated: 2020/10/28 13:33:20 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRC_FILES = lem_in.c\
 			tools.c\
 			freeing.c\
 			find_paths.c\
-			choose_paths2.c\
+			choose_paths.c\
 			choose_wisely.c\
 			ants_marching.c\
 			write_moves.c\
