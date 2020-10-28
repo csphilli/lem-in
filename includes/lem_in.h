@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/28 10:43:33 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/28 13:29:46 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ int					gen_key(char *str);
 */
 
 void				find_paths(t_master *master, t_bucket **ht);
-void				choose_paths(t_master *master, t_paths *paths);
+void				choose_paths(t_paths *paths);
 void				choose_wisely(t_paths *paths);
 t_bucket			**grow_path_array(t_paths *paths);
 void				ants_marching(t_paths *paths);

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:23:28 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/28 09:46:19 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/28 11:24:27 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	max_paths(t_paths *paths)
 		paths->max_paths = start_paths;
 	else if (start_paths > end_paths)
 		paths->max_paths = end_paths;
+	else if (start_paths == end_paths)
+		paths->max_paths = start_paths;
 	ft_printf("Number of paths to use is: %d\n", paths->max_paths);
 }
 

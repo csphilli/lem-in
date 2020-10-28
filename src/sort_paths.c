@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 09:35:58 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/28 11:09:34 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/28 11:33:06 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ int		sorted(t_paths *paths)
 	int	y;
 	int	i;
 
-	len = bucket_arr_len(paths->c);
+	len = bucket_arr_len(paths->p);
 	i = 0;
 	while (i < len - 1)
 	{
-		x = list_length(paths->c[i]);
-		y = list_length(paths->c[i + 1]);
+		x = list_length(paths->p[i]);
+		y = list_length(paths->p[i + 1]);
 		if (x > y)
 			return (0);
 		i++;
@@ -73,18 +73,16 @@ void	sort_chosen_paths(t_paths *paths)
 	int	i;
 
 	i = 0;
-	len = bucket_arr_len(paths->c);
+	len = bucket_arr_len(paths->p);
 	while (i < len - 1)
 	{
 		if (i == len - 1)
 			break ;
-		x = list_length(paths->c[i]);
-		y = list_length(paths->c[i + 1]);
+		x = list_length(paths->p[i]);
+		y = list_length(paths->p[i + 1]);
 		if (x > y)
 		{
-			print_path(paths->c[i]);
-			swap(paths->c[i], paths->c[i + 1]);
-			print_path(paths->c[i]);
+			swap(paths->p[i], paths->p[i + 1]);
 			i = 0;
 		}
 		i++;

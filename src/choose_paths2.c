@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   choose_paths.c                                     :+:      :+:    :+:   */
+/*   choose_paths2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 11:00:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/28 11:53:35 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/28 13:29:33 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ t_bucket	**grow_chosen_array(t_paths *paths, t_bucket *copy)
 	return (new);
 }
 
-
-
-void		check_p_loop(t_paths *paths, t_bucket *src, int i)
+int		check_loop(t_bucket **arr, t_bucket *src, t_entry *start, int i)
 {
 	t_bucket	*tmp;
 	t_bucket	*comp;
@@ -50,78 +48,95 @@ void		check_p_loop(t_paths *paths, t_bucket *src, int i)
 	tmp = src->next;
 	while (tmp)
 	{
-		comp = paths->p[i]->next;
+		comp = arr[i]->next;
 		while (comp)
 		{
 			if (ft_strequ(comp->entry->name, tmp->entry->name) && \
-				!ft_strequ(comp->entry->name, paths->s_room->name))
-				paths->collision = 1;
+				!ft_strequ(comp->entry->name, start->name))
+					return (1);
 			comp = comp->next;
 		}
 		tmp = tmp->next;
 	}
+	return (0);
 }
 
+/*
+**	Collision check has 2 rounds.
+**	The first round takes an arr which is paths->p and a path 'src'.
+**	It loops through paths->p looking for the first path that has no
+**	intersection with 'src'. Once it finds that, it gets added to
+**	paths->c.
+**	Round 2 is taking 'src' and checking for intersections in paths->c.
+**	The reasoning for the if round == 1 and round == 2 is because
+**	of the checking. In the first round, the loop returns as soon as
+**	it finds a non-intersecting path. But for round 2, the criteria
+**	for being added to paths->c is there cannot be any intersections
+**	at all so it will need to loop through the entire array. For
+**	example, if in round two an non intersecting path was found
+**	at arr[0], the check would return 0. But since round == 2,
+**	the return (0) isn't activated and the loop continues on.
+*/
 
-void		collision_check(t_paths *paths, t_bucket *src)
+int		collision_check(t_bucket **arr, t_bucket *src, t_entry *start, int round)
 {
 	t_bucket	*comp;
 	t_bucket	*tmp;
 	int			i;
+	int			len;
 
 	comp = NULL;
 	tmp = src;
 	i = 0;
-	while (i < bucket_arr_len(paths->p))
+	len = bucket_arr_len(arr);
+	if (arr)
 	{
-		paths->collision = 0;
-		check_p_loop(paths, src, i);
-		// tmp = src->next;
-
-		// while (tmp)
-		// {
-		// 	comp = paths->p[i]->next;
-		// 	while (comp)
-		// 	{
-		// 		if (ft_strequ(comp->entry->name, tmp->entry->name) && \
-		// 			!ft_strequ(comp->entry->name, paths->s_room->name))
-		// 			paths->collision = 1;
-		// 		comp = comp->next;
-		// 	}
-		// 	tmp = tmp->next;
-		// }
-		if (paths->collision == 0)
+		while (i < len)
 		{
-			paths->c = grow_chosen_array(paths, src);
-			return ;
+			if (!check_loop(arr, src, start, i))
+			{
+				if (round == 1)
+					return (0);
+			}
+			else
+			{
+				if (round == 2)
+					return (1);
+			}
+			i++;
 		}
-		i++;
 	}
+	return (0);
 }
 
 void	collision_parse(t_paths *paths)
 {
 	t_bucket	*tmp;
 	int			index;
+	int			collision;
+	t_entry		*start;
 
 	tmp = NULL;
 	index = 0;
+	collision = 0;
+	start = paths->s_room;
 	while (index < bucket_arr_len(paths->p))
 	{
 		tmp = paths->p[index];
-		collision_check(paths, tmp);
+		if (!collision_check(paths->p, tmp, start, 1))
+			if (!collision_check(paths->c, tmp, start, 2))
+				paths->c = grow_chosen_array(paths, tmp);
 		index++;
 	}
 }
 
-
-void	choose_paths(t_master *master, t_paths *paths)
+void	choose_paths(t_paths *paths)
 {
 	if (!(paths->c = (t_bucket**)malloc(sizeof(t_bucket) * paths->c_len)))
 		exit_malloc();
 	init_paths(paths->c_len, paths->c);
-	ft_printf("printing paths\n");
-	ft_printf("printing random: %s\n", master->start_room);
+	// ft_printf("printing paths\n");
+	// ft_printf("printing random: %s\n", master->start_room);
 	// get_shortest_path(paths);
 	// paths->c[0] = copy_from_array(paths->c[0], paths->p[paths->shortest_index]);
 	ft_printf("ALL PATHS:\n");
@@ -131,4 +146,8 @@ void	choose_paths(t_master *master, t_paths *paths)
 	ft_printf("AFTER COLLISION PARSE:\n");
 	print_paths(paths->c);
 	max_paths(paths);
+	while (1)
+	{
+		
+	}
 }
