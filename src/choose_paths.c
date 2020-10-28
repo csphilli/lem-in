@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 11:00:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/26 09:44:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/28 11:09:52 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,7 @@ t_bucket	**grow_chosen_array(t_paths *paths, t_bucket *copy)
 	return (new);
 }
 
-void	print_path(t_bucket *head)
-{
-	t_bucket *tmp;
 
-	tmp = head;
-	while (tmp)
-	{
-		ft_printf("%s", tmp->entry->name);
-		if (tmp->next)
-			ft_printf(",");
-		tmp = tmp->next;
-	}
-	ft_printf("\n");
-}
 
 
 void		collision_check(t_paths *paths, t_bucket *src)
@@ -75,7 +62,7 @@ void		collision_check(t_paths *paths, t_bucket *src)
 			while (comp)
 			{
 				if (ft_strequ(comp->entry->name, tmp->entry->name) && \
-					!ft_strequ(comp->entry->name, paths->e_room->name))
+					!ft_strequ(comp->entry->name, paths->s_room->name))
 					paths->collision = 1;
 				comp = comp->next;
 			}
@@ -133,11 +120,18 @@ void	choose_paths(t_master *master, t_paths *paths)
 	// paths->c[0] = copy_from_array(paths->c[0], paths->p[paths->shortest_index]);
 	ft_printf("ALL PATHS:\n");
 	print_paths(paths->p);
-	ft_printf("CHOSEN PATHS:\n");
+	ft_printf("CHOSEN PATHS (UNSORTED):\n");
 	collision_parse(paths);
 	print_paths(paths->c);
+	ft_printf("CHOSEN PATHS (SORTED):\n");
+	sort_chosen_paths(paths);
+	print_paths(paths->c);
 	max_paths(paths);
-	ants_marching(master, paths);
+	while (1)
+	{
+		
+	}
+	// ants_marching(paths);
 	// if (bucket_arr_len(paths->c) > paths->max_paths)
 	// 	choose_wisely(paths);
 	// ft_printf("Max paths: %d\n", paths->max_paths);

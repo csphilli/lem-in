@@ -6,12 +6,12 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/10/26 09:35:47 by cphillip         ###   ########.fr        #
+#    Updated: 2020/10/28 09:45:16 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
-CC = gcc -Wall -Wextra -Werror
+CC = gcc -Wall -Wextra
 
 LIBFT_DIR = ./libft/
 LIBFT = $(LIBFT_DIR)libft.a
@@ -49,6 +49,8 @@ SRC_FILES = lem_in.c\
 			choose_paths.c\
 			choose_wisely.c\
 			ants_marching.c\
+			write_moves.c\
+			sort_paths.c\
 
 OBJ_DIR = ./obj/
 OBJ_FILES = $(SRC_FILES:%.c=%.o)

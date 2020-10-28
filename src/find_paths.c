@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:58:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/26 09:51:38 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/26 13:50:50 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ t_paths		*crawl(t_master *master, t_paths *p, t_entry *entry)
 	int	i;
 
 	i = 0;
-	if (!ft_strequ(entry->name, master->end_room))
+	if (!ft_strequ(entry->name, master->start_room))
 		entry->visited = true;
-	if (ft_strequ(entry->name, master->end_room))
+	if (ft_strequ(entry->name, master->start_room))
 	{
 		p->p[p->index] = insert_node_to_path(p->p[p->index], entry);
 		p->p = grow_path_array(p);
@@ -77,7 +77,7 @@ t_paths		*crawl(t_master *master, t_paths *p, t_entry *entry)
 			p = crawl(master, p, entry->link_arr[i]);
 		i++;
 	}
-	if (!ft_strequ(entry->name, master->start_room))
+	if (!ft_strequ(entry->name, master->end_room))
 		pop_from_list(p->p[p->index]);
 	entry->visited = false;
 	return (p);
@@ -92,7 +92,7 @@ void		find_paths(t_master *master, t_bucket **ht)
 	init_paths_struct(paths);
 	paths->s_room = get_entry(ht, master, master->start_room);
 	paths->e_room = get_entry(ht, master, master->end_room);
-	paths->s_room->n_ants = master->nbr_ants;
+	paths->nbr_ants_s = master->nbr_ants;
 	if (!(paths->p = (t_bucket**)malloc(sizeof(t_bucket*) * paths->p_len)))
 		exit_malloc();
 	init_paths(paths->p_len, paths->p);
@@ -100,7 +100,7 @@ void		find_paths(t_master *master, t_bucket **ht)
 		exit_no_path();
 	else
 	{
-		paths = crawl(master, paths, paths->s_room);
+		paths = crawl(master, paths, paths->e_room);
 		free_entry(paths->p[paths->index]->entry);
 		free_bucket(paths->p[paths->index]);
 		paths->p[paths->index] = NULL;

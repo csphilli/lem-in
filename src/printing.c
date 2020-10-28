@@ -6,11 +6,34 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/20 18:57:03 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/28 10:43:19 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+/*
+**	Prints a single path from the array.
+*/
+
+void	print_path(t_bucket *head)
+{
+	t_bucket *tmp;
+
+	tmp = head;
+	while (tmp)
+	{
+		ft_printf("%s", tmp->entry->name);
+		if (tmp->next)
+			ft_printf(",");
+		tmp = tmp->next;
+	}
+	ft_printf("\n");
+}
+
+/*
+**	Prints all paths in a path array.
+*/
 
 void	print_paths(t_bucket **paths)
 {

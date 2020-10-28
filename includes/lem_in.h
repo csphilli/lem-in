@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/26 09:49:42 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/28 10:43:33 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct		s_entry
 	int				key;
 	bool			visited;
 	int				occ;
-	int				n_ants;
+	int				ant_id;
 }					t_entry;
 
 typedef struct		s_dfs
@@ -78,11 +78,16 @@ typedef struct		s_paths
 	struct s_entry	*s_room;
 	struct s_entry	*e_room;
 	int				max_paths;
-	int				shortest_index;	
+	int				s_index;	
 	int				index;
 	int				p_len;
 	int				c_len;
 	int				collision;
+	int				nbr_moves;
+	int				nbr_ants_s;
+	int				nbr_ants_e;
+	int				ant_id;
+	int				max_id;
 }					t_paths;
 
 /*
@@ -206,13 +211,17 @@ void				find_paths(t_master *master, t_bucket **ht);
 void				choose_paths(t_master *master, t_paths *paths);
 void				choose_wisely(t_paths *paths);
 t_bucket			**grow_path_array(t_paths *paths);
-void				ants_marching(t_master *master, t_paths *paths);
+void				ants_marching(t_paths *paths);
+void				write_start_to_room(t_paths *paths, t_entry *curr, int index, int len);
+void				write_room_to_room(t_paths *paths, t_entry *curr, t_entry *next, int index, int len);
+void				write_room_to_end(t_paths *paths, t_entry *curr, t_entry *next, int index, int len);
 
 /*
 **	RANDOM TOOLS
 */
 
 void				print_paths(t_bucket **paths);
+void				print_path(t_bucket *head);
 void				dead_end_scan(t_master *master, t_bucket **ht);
 void				start_or_end(char *s, t_master *master, char *name);
 int					bucket_arr_len(t_bucket **arr);
@@ -221,5 +230,8 @@ void				print_ht(t_bucket **ht, size_t size);
 t_bucket			*copy_from_array(t_bucket *head, t_bucket *src);
 void				max_paths(t_paths *paths);
 int					dup_coord(t_bucket **ht, t_master *master, t_entry *entry);
+void				get_shortest_path(t_paths *paths);
+int					list_length(t_bucket *head);
+void				sort_chosen_paths(t_paths *paths);
 
 #endif
