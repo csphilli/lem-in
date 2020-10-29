@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   choose_paths2.c                                    :+:      :+:    :+:   */
+/*   choose_paths.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 11:00:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/28 13:29:33 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/29 09:34:16 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_bucket	**grow_chosen_array(t_paths *paths, t_bucket *copy)
 	return (new);
 }
 
-int		check_loop(t_bucket **arr, t_bucket *src, t_entry *start, int i)
+int			check_loop(t_bucket **arr, t_bucket *src, t_entry *start, int i)
 {
 	t_bucket	*tmp;
 	t_bucket	*comp;
@@ -53,7 +53,7 @@ int		check_loop(t_bucket **arr, t_bucket *src, t_entry *start, int i)
 		{
 			if (ft_strequ(comp->entry->name, tmp->entry->name) && \
 				!ft_strequ(comp->entry->name, start->name))
-					return (1);
+				return (1);
 			comp = comp->next;
 		}
 		tmp = tmp->next;
@@ -78,20 +78,19 @@ int		check_loop(t_bucket **arr, t_bucket *src, t_entry *start, int i)
 **	the return (0) isn't activated and the loop continues on.
 */
 
-int		collision_check(t_bucket **arr, t_bucket *src, t_entry *start, int round)
+int			collision_check(t_bucket **arr, t_bucket *src,\
+			t_entry *start, int round)
 {
 	t_bucket	*comp;
 	t_bucket	*tmp;
 	int			i;
-	int			len;
 
 	comp = NULL;
 	tmp = src;
 	i = 0;
-	len = bucket_arr_len(arr);
 	if (arr)
 	{
-		while (i < len)
+		while (i < bucket_arr_len(arr))
 		{
 			if (!check_loop(arr, src, start, i))
 			{
@@ -109,7 +108,7 @@ int		collision_check(t_bucket **arr, t_bucket *src, t_entry *start, int round)
 	return (0);
 }
 
-void	collision_parse(t_paths *paths)
+void		collision_parse(t_paths *paths)
 {
 	t_bucket	*tmp;
 	int			index;
@@ -130,24 +129,17 @@ void	collision_parse(t_paths *paths)
 	}
 }
 
-void	choose_paths(t_paths *paths)
+void		choose_paths(t_paths *paths)
 {
 	if (!(paths->c = (t_bucket**)malloc(sizeof(t_bucket) * paths->c_len)))
 		exit_malloc();
 	init_paths(paths->c_len, paths->c);
-	// ft_printf("printing paths\n");
-	// ft_printf("printing random: %s\n", master->start_room);
-	// get_shortest_path(paths);
-	// paths->c[0] = copy_from_array(paths->c[0], paths->p[paths->shortest_index]);
-	ft_printf("ALL PATHS:\n");
+	ft_printf("ALL PATHS:\n"); //
 	sort_chosen_paths(paths);
 	print_paths(paths->p);
 	collision_parse(paths);
-	ft_printf("AFTER COLLISION PARSE:\n");
+	ft_printf("AFTER COLLISION PARSE:\n"); //
 	print_paths(paths->c);
 	max_paths(paths);
-	while (1)
-	{
-		
-	}
+	choose_wisely(paths);
 }
