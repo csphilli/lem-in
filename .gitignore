@@ -3,3 +3,4 @@ lem-in
 .DS_Store
 *.o
 *.txt
+src/movecalc.c

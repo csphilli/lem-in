@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 11:00:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/29 09:34:16 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/29 09:43:54 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,5 +141,5 @@ void		choose_paths(t_paths *paths)
 	ft_printf("AFTER COLLISION PARSE:\n"); //
 	print_paths(paths->c);
 	max_paths(paths);
-	choose_wisely(paths);
+	calc_distribution(paths);
 }

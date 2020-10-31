@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/10/28 13:33:20 by cphillip         ###   ########.fr        #
+#    Updated: 2020/10/31 11:13:26 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC_FILES = lem_in.c\
 			capture_flags.c\
 			capture_links.c\
 			inits.c\
+			inits2.c\
 			parse_lines.c\
 			load_help.c\
 			validate_coords.c\
@@ -42,15 +43,17 @@ SRC_FILES = lem_in.c\
 			node_work.c\
 			creating.c\
 			printing.c\
+			printing2.c\
 			link_work.c\
 			tools.c\
 			freeing.c\
 			find_paths.c\
 			choose_paths.c\
-			choose_wisely.c\
+			calc_distribution.c\
 			ants_marching.c\
 			write_moves.c\
 			sort_paths.c\
+			ft_intcat.c\
 
 OBJ_DIR = ./obj/
 OBJ_FILES = $(SRC_FILES:%.c=%.o)

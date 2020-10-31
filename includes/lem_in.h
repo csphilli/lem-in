@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/28 13:29:46 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/31 11:12:55 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,14 @@ typedef struct		s_paths
 	int				max_id;
 }					t_paths;
 
+typedef struct		s_ant_instrux
+{
+	int				*ant_arr;
+	int				*moves_arr;
+	int				max_index;
+	int				n_ants;
+}					t_ant_instrux;
+
 /*
 **	For Master:
 **	New size is used when creating a new hash table.
@@ -155,6 +163,8 @@ void				init_link_arr(t_entry **links, int len);
 void				init_paths(int len, t_bucket **p);
 void				init_entry(t_entry *entry);
 void				init_paths_struct(t_paths *paths);
+void				init_instrux(t_ant_instrux *instrux);
+void				ft_init_int_arr(int *src, int len);
 
 /*
 **	FREEING
@@ -209,7 +219,7 @@ int					gen_key(char *str);
 
 void				find_paths(t_master *master, t_bucket **ht);
 void				choose_paths(t_paths *paths);
-void				choose_wisely(t_paths *paths);
+void				calc_distribution(t_paths *paths);
 t_bucket			**grow_path_array(t_paths *paths);
 void				ants_marching(t_paths *paths);
 void				write_start_to_room(t_paths *paths, t_entry *curr, int index, int len);
@@ -233,5 +243,8 @@ int					dup_coord(t_bucket **ht, t_master *master, t_entry *entry);
 void				get_shortest_path(t_paths *paths);
 int					list_length(t_bucket *head);
 void				sort_chosen_paths(t_paths *paths);
+int					*ft_intcat(int *src, int to_add);
+int					ft_int_arr_len(int *n);
+void				print_int_arr(int *arr);
 
 #endif

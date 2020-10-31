@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   choose_wisely.c                                    :+:      :+:    :+:   */
+/*   printing2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/23 11:06:40 by cphillip         ###   ########.fr       */
+/*   Created: 2020/10/31 11:11:00 by cphillip          #+#    #+#             */
+/*   Updated: 2020/10/31 11:13:16 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	choose_wisely(t_paths *paths)
+void	print_int_arr(int *arr)
 {
-	ft_printf("HERE WE ARE CHOOSING PATHS WISELY\n");
-	print_paths(paths->c);
-	
+	int i;
+
+	i = 0;
+	while (arr[i])
+	{
+		ft_printf("%d", arr[i]);
+		if (arr[i + 1])
+			ft_printf(",");
+		i++;
+	}
+	ft_printf("\n");
 }
