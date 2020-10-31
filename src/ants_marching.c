@@ -5,206 +5,152 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/26 09:35:31 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/28 09:44:49 by cphillip         ###   ########.fr       */
+/*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
+/*   Updated: 2020/10/31 16:55:03 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-/*
 
-int		list_length(t_bucket *head)
+int		most_ants(int *arr)
 {
-	t_bucket	*tmp;
-	int			len;
+	int max;
+	int i;
 
-	tmp = head;
-	len = 1;
-	while (tmp->next)
-	{
-		len++;
-		tmp = tmp->next;
-	}
-	return (len);
-}
-
-
-
-int		another_move(t_paths *paths, t_bucket *head, int index)
-{
-	t_bucket	*tmp;
-	int			arr_len;
-
-	tmp = head;
-	arr_len = bucket_arr_len(paths->c);
-	while (tmp->next)
-	{
-		if (tmp->entry->occ)
-			return (1);
-		tmp = tmp->next;
-	}
-	if (index - 1 < arr_len)
-		index++;
-	while (index < arr_len)
-	{
-		tmp = paths->c[index];
-		while (tmp->next)
-		{
-			if (tmp->entry->occ)
-				return (1);
-			tmp = tmp->next;
-		}
-		index++;
-	}
-	return (0);
-}
-
-void	write_space(t_paths *paths, t_bucket *head, int index, int pos)
-{
-	// ft_printf("Index in write_space: %d\n", index);
-	t_bucket	*tmp;
-	int			list_len;
-	int			arr_paths;
-
-	tmp = head;
-	list_len = list_length(tmp);
-	arr_paths = bucket_arr_len(paths->c);
-	if (another_move(paths, tmp, index))
-	{
-		if (index + 1 < arr_paths)
-		{
-			// ft_printf("index + 1 < arr_paths\n");
-			write(1, " ", 1);
-		}
-		else if (index + 1 == arr_paths)
-		{
-			// ft_printf("at last index\n");
-			if (pos < list_len - 1)
-				write(1, " ", 1);
-		}
-	}
-}
-
-
-void	move_ants(t_paths *paths, t_bucket *path, int index, int len)
-{
-	t_bucket	*tmp;
-	int			list_l;
-	int			i;
-
-	tmp = path;
 	i = 0;
-	list_l = list_length(tmp);
-	// ft_printf("len of tmp at index %d: %d\n", index, length);
-	while (tmp->next && (!tmp->next->entry->occ && \
-		!ft_strequ(paths->s_room->name, tmp->next->entry->name)))
-		{
-			tmp = tmp->next;
-			i++;
-		}
-	// ft_printf("i : %d\n", i);
-	while (tmp->next)
+	max = 0;
+	while (arr[i])
 	{
-		if (ft_strequ(tmp->entry->name, paths->s_room->name))
+		if (arr[i] >= max)
+			max = arr[i];
+		i++;
+	}
+	return (max);
+}
+
+void	write_r2r(t_entry *entry1, t_entry *entry2)
+{
+	entry1->ant_id = entry2->ant_id;
+	entry2->ant_id = 0;
+	entry1->occ = 1;
+	entry2->occ = 0;
+	ft_printf("L%d-%s", entry1->ant_id, entry1->name);
+}
+
+void	write_r2e(t_paths *paths, t_entry *entry1, t_entry *entry2)
+{
+	ft_printf("L%d-%s", entry2->ant_id, entry1->name);
+	entry2->ant_id = 0;
+	entry2->occ = 0;
+	paths->nbr_ants_e++;
+}
+
+void	write_s2r(t_paths *paths, t_entry *entry1)
+{
+	ft_printf("L%d-%s", paths->ant_id, entry1->name);
+	entry1->ant_id = paths->ant_id;
+	entry1->occ = 1;
+	paths->ant_id++;
+	paths->nbr_ants_s--;
+}
+
+void	r2r(t_paths *paths, t_ant_instrux *ins)
+{
+	t_bucket *tmp;
+	int i;
+	// int len;
+
+	i = 0;
+	// len = ft_int_arr_len(ins->ant_arr);
+	tmp = NULL;
+	while (i <= ins->max_index)
+	{
+		tmp = paths->c[i];
+		while (tmp)
 		{
-			// ft_printf(RED"Hit Break\n"RESET);
-			return ;
+			if (tmp->next && ft_strequ(tmp->next->entry->name, \
+				paths->s_room->name))
+				break ;
+			else if (tmp->next && (!ft_strequ(tmp->entry->name,\
+					paths->e_room->name) && tmp->next->entry->occ))
+				write_r2r(tmp->entry, tmp->next->entry);
+			tmp = tmp->next;
 		}
-		if (tmp->next && ft_strequ(tmp->next->entry->name, paths->s_room->name))
-		{
-			// ft_printf("Start to Room\n");
-			write_start_to_room(paths, tmp->entry, index, len);
-			// write(1, " ", 1);
-		}
-		else if (ft_strequ(tmp->entry->name, paths->e_room->name) && tmp->next->entry->occ)
-		{
-			// ft_printf("Room to End\n");
-			write_room_to_end(paths, tmp->entry, tmp->next->entry, index, len);
-			// write(1, " ", 1);
-		}
-		else if (tmp->next && tmp->next->entry->occ)
-		{
-			// ft_printf("Room to Room\n");
-			write_room_to_room(paths, tmp->entry, tmp->next->entry, index, len);
-			// write(1, " ", 1);
-		}
-		else
-			ft_printf(RED"No Hit\n"RESET);
-		write_space(paths, tmp, index, i);
-		tmp = tmp->next;
+		i++;
 	}
 }
 
-void	move_all_but_one(t_paths *paths)
+void	r2e(t_paths *paths, t_ant_instrux *ins)
 {
 	t_bucket	*tmp;
-	int			index;
-	int			len;
-	int			toggle;
+	int 		i;
+	// int			len;
 
-	toggle = 0;
-	len = link_array_len(paths->s_room->link_arr);
-	// index = 0;
-	while (paths->nbr_ants_s > 0)
+	i = 0;
+	// len = ft_int_arr_len(ins->ant_arr);
+	// ft_printf("int array len: %d\n", len);
+	tmp = NULL;
+	while (i <= ins->max_index)
 	{
-		index = 0;
-		while (index < len)
-		{
-			tmp = paths->c[index];
-			// ft_printf("Using index: %d\n", )
-			move_ants(paths, tmp, index, len);
-
-			index++;
-		}
-		write(1, "\n", 1); // print a space and new line?
-		paths->nbr_moves++;
+		tmp = paths->c[i];
+		if (tmp->next->entry->occ)
+			write_r2e(paths, tmp->entry, tmp->next->entry);
+		i++;
 	}
-	ft_printf("nbr ants left: %d\n", paths->nbr_ants_s);
-	// make_shortest_move(paths);
-	// after running through and getting ants into the maze, the initial loop is done. But then I need to
-	//	continue working through it until the maze is empty.
 }
 
-void	ants_marching(t_paths *paths)
+void	s2r(t_paths *paths, t_ant_instrux *ins)
 {
+	t_bucket	*tmp;
+	int			i;
+	// int			len;
+
+	tmp = NULL;
+	i = 0;
+	// len = ft_int_arr_len(ins->ant_arr);
+	// ft_printf("max_index: %d\n", ins->max_index);
+	while (i <= ins->max_index)
+	{
+		if (ins->ant_arr[i] > 0)
+		{
+			tmp = paths->c[i];
+			while (!ft_strequ(tmp->next->entry->name, paths->s_room->name))
+				tmp = tmp->next;
+			write_s2r(paths, tmp->entry);
+			ins->ant_arr[i]--;
+		}
+		i++;
+	}
+}
+
+void	ants_marching(t_paths *paths, t_ant_instrux *ins)
+{
+	int rounds;
 	int	i;
 
-	i = 0;
+	rounds = most_ants(ins->ant_arr);
 	paths->max_id = paths->nbr_ants_s;
-	ft_printf("max id: %d\n", paths->max_id);
-	// get_shortest_path(paths);
-	
-	// print_paths(paths->c);
-	move_all_but_one(paths);
-	// while (1)
-	// {
-		
-	// }
-	ft_printf("nbr moves: %d\n", paths->nbr_moves);
+	i = 0;
+	while (i < rounds)
+	{
+		r2e(paths, ins);
+		r2r(paths, ins);
+		s2r(paths, ins);
+		ft_printf("\n");
+		paths->nbr_moves++;
+		i++;
+	}
+	while (1)
+	{
+		r2e(paths, ins);
+		if (paths->nbr_ants_e == paths->max_id)
+		{
+			paths->nbr_moves++;
+			break ;
+		}
+		r2r(paths, ins);
+		paths->nbr_moves++;
+		ft_printf("\n");
+	}
+	ft_printf("\nnbr moves: %d\n", paths->nbr_moves);
 }
-
-if (ft_strequ(tmp->entry->name, paths->s_room->name))
-		{
-			ft_printf("Hit Break\n");
-			return ;
-		}
-		if (tmp->next && ft_strequ(tmp->next->entry->name, paths->s_room->name))
-		{
-			ft_printf("Start to Room\n");
-			write_start_to_room(paths, tmp->entry, index, len);
-		}
-		else if (ft_strequ(tmp->entry->name, paths->e_room->name) && tmp->next->entry->occ)
-		{
-			ft_printf("Room to End\n");
-			write_room_to_end(paths, tmp->entry, tmp->next->entry, index, len);
-		}
-		else if (tmp->next && tmp->next->entry->occ)
-		{
-			ft_printf("Room to Room\n");
-			write_room_to_room(paths, tmp->entry, tmp->next->entry, index, len);
-		}
-		else
-			ft_printf("No Hit\n");
-		write(1, " ", 1);
-		tmp = tmp->next;
-*/

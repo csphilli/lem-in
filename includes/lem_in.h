@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/31 11:12:55 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/10/31 13:24:03 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,7 @@ void				find_paths(t_master *master, t_bucket **ht);
 void				choose_paths(t_paths *paths);
 void				calc_distribution(t_paths *paths);
 t_bucket			**grow_path_array(t_paths *paths);
-void				ants_marching(t_paths *paths);
+void				ants_marching(t_paths *paths, t_ant_instrux *ins);
 void				write_start_to_room(t_paths *paths, t_entry *curr, int index, int len);
 void				write_room_to_room(t_paths *paths, t_entry *curr, t_entry *next, int index, int len);
 void				write_room_to_end(t_paths *paths, t_entry *curr, t_entry *next, int index, int len);
