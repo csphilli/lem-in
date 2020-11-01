@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:58:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/28 13:30:25 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/01 14:19:37 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_paths		*crawl(t_master *master, t_paths *p, t_entry *entry)
 		pop_from_list(p->p[p->index]);
 		return (p);
 	}
-	else	
+	else
 		p->p[p->index] = insert_node_to_path(p->p[p->index], entry);
 	while (i < link_array_len(entry->link_arr))
 	{
@@ -105,5 +105,6 @@ void		find_paths(t_master *master, t_bucket **ht)
 		free_bucket(paths->p[paths->index]);
 		paths->p[paths->index] = NULL;
 	}
-	choose_paths(paths);
+	choose_paths(paths);	
+	free_paths(paths);
 }

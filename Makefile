@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/10/31 11:13:26 by cphillip         ###   ########.fr        #
+#    Updated: 2020/11/01 14:19:16 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRC_FILES = lem_in.c\
 			link_work.c\
 			tools.c\
 			freeing.c\
+			freeing2.c\
 			find_paths.c\
 			choose_paths.c\
 			calc_distribution.c\

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/31 13:24:03 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/01 14:18:54 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,8 @@ typedef struct		s_master
 /*
 **	ERROR HANDLING
 */
-
+// void	error_master(void);
+// void	error(t_master *master, char *e_code, int line_nbr, char *str);
 void				exit_error(void);
 void				exit_malloc(void);
 void				exit_usage(void);
@@ -171,6 +172,8 @@ void				ft_init_int_arr(int *src, int len);
 */
 
 void				free_entry(t_entry *entry);
+void				free_paths(t_paths *paths);
+void				free_ant_instrux(t_ant_instrux *ins);
 void				free_bucket(t_bucket *bucket);
 void				delete_old_path(t_bucket **paths);
 void				pop_from_list(t_bucket *head);
@@ -222,9 +225,9 @@ void				choose_paths(t_paths *paths);
 void				calc_distribution(t_paths *paths);
 t_bucket			**grow_path_array(t_paths *paths);
 void				ants_marching(t_paths *paths, t_ant_instrux *ins);
-void				write_start_to_room(t_paths *paths, t_entry *curr, int index, int len);
-void				write_room_to_room(t_paths *paths, t_entry *curr, t_entry *next, int index, int len);
-void				write_room_to_end(t_paths *paths, t_entry *curr, t_entry *next, int index, int len);
+void				write_r2r(t_entry *entry1, t_entry *entry2);
+void				write_r2e(t_paths *paths, t_entry *entry1, t_entry *entry2);
+void				write_s2r(t_paths *paths, t_entry *entry1);
 
 /*
 **	RANDOM TOOLS
@@ -246,5 +249,6 @@ void				sort_chosen_paths(t_paths *paths);
 int					*ft_intcat(int *src, int to_add);
 int					ft_int_arr_len(int *n);
 void				print_int_arr(int *arr);
+int					most_ants(int *arr);
 
 #endif

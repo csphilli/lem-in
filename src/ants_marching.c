@@ -6,62 +6,18 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/31 16:55:03 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/01 13:53:50 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int		most_ants(int *arr)
-{
-	int max;
-	int i;
-
-	i = 0;
-	max = 0;
-	while (arr[i])
-	{
-		if (arr[i] >= max)
-			max = arr[i];
-		i++;
-	}
-	return (max);
-}
-
-void	write_r2r(t_entry *entry1, t_entry *entry2)
-{
-	entry1->ant_id = entry2->ant_id;
-	entry2->ant_id = 0;
-	entry1->occ = 1;
-	entry2->occ = 0;
-	ft_printf("L%d-%s", entry1->ant_id, entry1->name);
-}
-
-void	write_r2e(t_paths *paths, t_entry *entry1, t_entry *entry2)
-{
-	ft_printf("L%d-%s", entry2->ant_id, entry1->name);
-	entry2->ant_id = 0;
-	entry2->occ = 0;
-	paths->nbr_ants_e++;
-}
-
-void	write_s2r(t_paths *paths, t_entry *entry1)
-{
-	ft_printf("L%d-%s", paths->ant_id, entry1->name);
-	entry1->ant_id = paths->ant_id;
-	entry1->occ = 1;
-	paths->ant_id++;
-	paths->nbr_ants_s--;
-}
-
 void	r2r(t_paths *paths, t_ant_instrux *ins)
 {
-	t_bucket *tmp;
-	int i;
-	// int len;
+	t_bucket	*tmp;
+	int			i;
 
 	i = 0;
-	// len = ft_int_arr_len(ins->ant_arr);
 	tmp = NULL;
 	while (i <= ins->max_index)
 	{
@@ -83,18 +39,19 @@ void	r2r(t_paths *paths, t_ant_instrux *ins)
 void	r2e(t_paths *paths, t_ant_instrux *ins)
 {
 	t_bucket	*tmp;
-	int 		i;
-	// int			len;
+	int			i;
 
 	i = 0;
-	// len = ft_int_arr_len(ins->ant_arr);
-	// ft_printf("int array len: %d\n", len);
 	tmp = NULL;
 	while (i <= ins->max_index)
 	{
 		tmp = paths->c[i];
 		if (tmp->next->entry->occ)
+		{
 			write_r2e(paths, tmp->entry, tmp->next->entry);
+			if (paths->nbr_ants_e < paths->max_id)
+				write(1, " ", 1);
+		}
 		i++;
 	}
 }
@@ -103,12 +60,9 @@ void	s2r(t_paths *paths, t_ant_instrux *ins)
 {
 	t_bucket	*tmp;
 	int			i;
-	// int			len;
 
 	tmp = NULL;
 	i = 0;
-	// len = ft_int_arr_len(ins->ant_arr);
-	// ft_printf("max_index: %d\n", ins->max_index);
 	while (i <= ins->max_index)
 	{
 		if (ins->ant_arr[i] > 0)
@@ -118,9 +72,19 @@ void	s2r(t_paths *paths, t_ant_instrux *ins)
 				tmp = tmp->next;
 			write_s2r(paths, tmp->entry);
 			ins->ant_arr[i]--;
+			if (i != ins->max_index && ins->ant_arr[i + 1] > 0)
+				write(1, " ", 1);
 		}
 		i++;
 	}
+}
+
+void	ants_marching_parse(t_paths *paths, t_ant_instrux *ins)
+{
+	r2e(paths, ins);
+	r2r(paths, ins);
+	s2r(paths, ins);
+	ft_printf("\n");
 }
 
 void	ants_marching(t_paths *paths, t_ant_instrux *ins)
@@ -133,10 +97,7 @@ void	ants_marching(t_paths *paths, t_ant_instrux *ins)
 	i = 0;
 	while (i < rounds)
 	{
-		r2e(paths, ins);
-		r2r(paths, ins);
-		s2r(paths, ins);
-		ft_printf("\n");
+		ants_marching_parse(paths, ins);
 		paths->nbr_moves++;
 		i++;
 	}
@@ -152,5 +113,4 @@ void	ants_marching(t_paths *paths, t_ant_instrux *ins)
 		paths->nbr_moves++;
 		ft_printf("\n");
 	}
-	ft_printf("\nnbr moves: %d\n", paths->nbr_moves);
 }

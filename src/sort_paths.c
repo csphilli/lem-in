@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 09:35:58 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/28 11:33:06 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/01 13:58:00 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	get_shortest_path(t_paths *paths)
 	paths->s_index = pos;
 }
 
-void  swap(t_bucket *a, t_bucket *b)
+void	swap(t_bucket *a, t_bucket *b)
 {
 	t_bucket	tmp;
 

@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inits2.c                                           :+:      :+:    :+:   */
+/*   freeing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 09:04:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 13:18:14 by cphillip         ###   ########.fr       */
+/*   Created: 2020/11/01 14:11:59 by cphillip          #+#    #+#             */
+/*   Updated: 2020/11/01 14:17:13 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	init_instrux(t_ant_instrux *instrux)
+void	free_paths(t_paths *paths)
 {
-	if (instrux)
-	{
-		instrux->ant_arr = NULL;
-		instrux->moves_arr = NULL;
-		instrux->max_index = 0;
-		instrux->n_ants = 0;
-	}
-}
-
-void	ft_init_int_arr(int *src, int len)
-{
-	int	i;
-
-	i = 0;
-	if (src)
-	{
-		while (i < len)
-		{
-			src[i] = '\0';
-			i++;
-		}
-	}
+	delete_old_path(paths->p);
+	delete_old_path(paths->c);
+	free_entry(paths->s_room);
+	free_entry(paths->e_room);
+	paths->max_paths = '\0';
+	paths->s_index = '\0';
+	paths->index = '\0';
+	paths->p_len = '\0';
+	paths->c_len = '\0';
+	paths->collision = '\0';
+	paths->nbr_moves = '\0';
+	paths->nbr_ants_s = '\0';
+	paths->nbr_ants_e = '\0';
+	paths->ant_id = '\0';
+	paths->max_id = '\0';
+	free(paths);
+	paths = NULL;
 }

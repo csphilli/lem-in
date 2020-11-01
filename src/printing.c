@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/28 12:10:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/01 13:56:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_path(t_bucket *head)
 			ft_printf(",");
 		tmp = tmp->next;
 	}
-	// ft_printf("\n");
+	ft_printf("\n");
 }
 
 /*

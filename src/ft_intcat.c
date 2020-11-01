@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 08:34:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/31 09:45:30 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/01 13:57:35 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int		ft_int_arr_len(int *n)
 		i++;
 	return (i);
 }
-
-
 
 int		*ft_intcat(int *src, int to_add)
 {
@@ -47,6 +45,6 @@ int		*ft_intcat(int *src, int to_add)
 	}
 	src[i] = to_add;
 	ft_init_int_arr(tmp, len);
-	free(tmp);	
-	return (src);    
+	free(tmp);
+	return (src);
 }

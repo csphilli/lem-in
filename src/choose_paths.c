@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 11:00:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/29 09:43:54 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/01 14:17:30 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,4 +142,8 @@ void		choose_paths(t_paths *paths)
 	print_paths(paths->c);
 	max_paths(paths);
 	calc_distribution(paths);
+	// while (1)
+	// {
+		
+	// }
 }

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/31 13:22:41 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/01 14:10:31 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,8 +193,13 @@ void			calc_distribution(t_paths *paths)
 	}
 	paths->max_paths = ins->max_index;
 	initial_moves_arr(paths, ins);
-	print_int_arr(ins->ant_arr);
-	print_int_arr(ins->moves_arr);
-	print_paths(paths->c);
+	// while (1)
+	// {
+		
+	// }
+	// print_int_arr(ins->ant_arr);
+	// print_int_arr(ins->moves_arr);
+	// print_paths(paths->c);
 	ants_marching(paths, ins);
+	free_ant_instrux(ins);
 }
