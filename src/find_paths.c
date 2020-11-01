@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:58:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 14:19:37 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/01 19:23:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,6 @@ void		find_paths(t_master *master, t_bucket **ht)
 		free_bucket(paths->p[paths->index]);
 		paths->p[paths->index] = NULL;
 	}
-	choose_paths(paths);	
+	choose_paths(master, paths);
 	free_paths(paths);
 }

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/20 18:27:53 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/01 18:57:54 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,22 @@ void		add_link_to_room(t_bucket **ht, t_master *master, char *line)
 	t_entry	*entry1;
 	t_entry	*entry2;
 
+	entry1 = NULL;
+	entry2 = NULL;
 	data = ft_strsplit(line, '-');
-	index = gen_key(data[0]) % master->new_size;
 	entry1 = get_entry(ht, master, data[1]);
-	do_link(ht[index], data[0], entry1);
-	index = gen_key(data[1]) % master->new_size;
 	entry2 = get_entry(ht, master, data[0]);
-	do_link(ht[index], data[1], entry2);
+	if (entry1 == NULL)
+		exit_room_not_found(data[1]);
+	if (entry2 == NULL)
+		exit_room_not_found(data[0]);
+	if (entry1 && entry2)
+	{
+		index = gen_key(data[0]) % master->new_size;
+		do_link(ht[index], data[0], entry1);
+		index = gen_key(data[1]) % master->new_size;
+		do_link(ht[index], data[1], entry2);
+	}
 	free_strsplit(&data);
 	data = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 10:12:54 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/06 08:21:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/01 14:32:25 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,6 @@ int		validate_ants(char *line)
 		return (1);
 	}
 	return (0);
-}
-
-void	ant_debugger(t_master *master)
-{
-	if (master->colors == true)
-	{
-		ft_printf("CAPTURING ANTS:\n");
-		ft_printf(" Number of ants captured: "CYAN"%d\n"RESET,\
-			master->nbr_ants);
-	}
-	else
-	{
-		ft_printf("Capturing Ants!\n");
-		ft_printf(" Number of ants captured: %d\n", master->nbr_ants);
-	}
 }
 
 int		valid_int_test(char *s)
@@ -63,7 +48,5 @@ void	capture_ants(t_master *master, char *line)
 
 	nbr_ants = valid_int_test(line);
 	master->nbr_ants = nbr_ants;
-	if (master->debugger)
-		ant_debugger(master);
 	master->ants_added = true;
 }

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 11:00:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 14:17:30 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/01 19:37:36 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,21 +129,23 @@ void		collision_parse(t_paths *paths)
 	}
 }
 
-void		choose_paths(t_paths *paths)
+void		choose_paths(t_master *master, t_paths *paths)
 {
 	if (!(paths->c = (t_bucket**)malloc(sizeof(t_bucket) * paths->c_len)))
 		exit_malloc();
 	init_paths(paths->c_len, paths->c);
-	ft_printf("ALL PATHS:\n"); //
 	sort_chosen_paths(paths);
-	print_paths(paths->p);
 	collision_parse(paths);
-	ft_printf("AFTER COLLISION PARSE:\n"); //
-	print_paths(paths->c);
 	max_paths(paths);
-	calc_distribution(paths);
-	// while (1)
-	// {
-		
-	// }
+	if (master->print_all_paths)
+	{
+		ft_printf("\nALL PATHS FOUND (END to START):\n");
+		print_paths(paths->p);
+	}
+	if (master->print_chosen_paths)
+	{
+		ft_printf("\nCHOSEN PATHS FOR SOLUTION (END to START):\n");
+		print_paths(paths->c);
+	}
+	calc_distribution(master, paths);
 }

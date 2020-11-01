@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 14:18:54 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/01 19:45:29 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,12 @@ typedef struct		s_master
 	bool			e_toggle;
 	char			*start_room;
 	char			*end_room;
-	bool			adv_errors;
-	bool			colors;
+	bool			print_chosen_paths;
+	bool			print_all_paths;
+	bool			print_hash_table;
+	bool			print_ant_distribution;
 	bool			valid_input;
 	bool			ants_added;
-	bool			debugger;
 	bool			leaks;
 	int				nbr_ants;
 	int				has_flags;
@@ -221,8 +222,8 @@ int					gen_key(char *str);
 */
 
 void				find_paths(t_master *master, t_bucket **ht);
-void				choose_paths(t_paths *paths);
-void				calc_distribution(t_paths *paths);
+void				choose_paths(t_master *master, t_paths *paths);
+void				calc_distribution(t_master *master, t_paths *paths);
 t_bucket			**grow_path_array(t_paths *paths);
 void				ants_marching(t_paths *paths, t_ant_instrux *ins);
 void				write_r2r(t_entry *entry1, t_entry *entry2);
@@ -248,7 +249,7 @@ int					list_length(t_bucket *head);
 void				sort_chosen_paths(t_paths *paths);
 int					*ft_intcat(int *src, int to_add);
 int					ft_int_arr_len(int *n);
-void				print_int_arr(int *arr);
+void				print_int_arr(int *ants);
 int					most_ants(int *arr);
 
 #endif

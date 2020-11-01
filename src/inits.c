@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/27 12:37:16 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/01 19:41:20 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ void	init_master(t_master *master)
 		master->start_room = NULL;
 		master->end_room = NULL;
 		master->nbr_ants = 0;
-		master->adv_errors = false;
-		master->debugger = false;
-		master->colors = false;
+		master->print_chosen_paths = false;
+		master->print_hash_table = false;
+		master->print_all_paths = false;
+		master->print_ant_distribution = false;
 		master->input_flags = NULL;
-		master->accepted_flags = "acdehfl";
+		master->accepted_flags = "cdfhtp";
 		master->line_nbr = 1;
 		master->has_flags = 0;
 		master->ants_added = false;

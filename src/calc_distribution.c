@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 14:10:31 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/01 19:45:18 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void			initial_moves_arr(t_paths *paths, t_ant_instrux *ins)
 **	XXXXXXX
 */
 
-void			calc_distribution(t_paths *paths)
+void			calc_distribution(t_master *master, t_paths *paths)
 {
 	t_ant_instrux	*ins;
 	int				len;
@@ -193,13 +193,8 @@ void			calc_distribution(t_paths *paths)
 	}
 	paths->max_paths = ins->max_index;
 	initial_moves_arr(paths, ins);
-	// while (1)
-	// {
-		
-	// }
-	// print_int_arr(ins->ant_arr);
-	// print_int_arr(ins->moves_arr);
-	// print_paths(paths->c);
+	if (master->print_ant_distribution)
+		print_int_arr(ins->ant_arr);
 	ants_marching(paths, ins);
 	free_ant_instrux(ins);
 }
