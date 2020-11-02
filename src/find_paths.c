@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:58:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 19:23:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/02 00:20:51 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_bucket	**grow_path_array(t_paths *paths)
 
 t_paths		*crawl(t_master *master, t_paths *p, t_entry *entry)
 {
+	// ft_printf("into crawl\n");
 	int	i;
 
 	i = 0;
@@ -64,8 +65,9 @@ t_paths		*crawl(t_master *master, t_paths *p, t_entry *entry)
 	if (ft_strequ(entry->name, master->start_room))
 	{
 		p->p[p->index] = insert_node_to_path(p->p[p->index], entry);
-		p->p = grow_path_array(p);
+		// p->p = grow_path_array(p);
 		p->index++;
+		p->p[p->index] = copy_from_array(p->p[p->index], p->p[p->index - 1]);
 		pop_from_list(p->p[p->index]);
 		return (p);
 	}
@@ -86,6 +88,10 @@ t_paths		*crawl(t_master *master, t_paths *p, t_entry *entry)
 void		find_paths(t_master *master, t_bucket **ht)
 {
 	t_paths	*paths;
+	clock_t begin;
+	clock_t end;
+	double time_spent;
+
 
 	if (!(paths = (t_paths*)malloc(sizeof(t_paths))))
 		exit_malloc();
@@ -93,6 +99,7 @@ void		find_paths(t_master *master, t_bucket **ht)
 	paths->s_room = get_entry(ht, master, master->start_room);
 	paths->e_room = get_entry(ht, master, master->end_room);
 	paths->nbr_ants_s = master->nbr_ants;
+	begin = clock();
 	if (!(paths->p = (t_bucket**)malloc(sizeof(t_bucket*) * paths->p_len)))
 		exit_malloc();
 	init_paths(paths->p_len, paths->p);
@@ -105,6 +112,13 @@ void		find_paths(t_master *master, t_bucket **ht)
 		free_bucket(paths->p[paths->index]);
 		paths->p[paths->index] = NULL;
 	}
+	end = clock();
+	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	ft_printf("Time spent finding paths: %f\n", time_spent);
+	begin = clock();
 	choose_paths(master, paths);
+	end = clock();
+	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	ft_printf("Time spent sorting and choosing paths: %f\n", time_spent);
 	free_paths(paths);
 }

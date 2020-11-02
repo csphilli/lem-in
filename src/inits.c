@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 19:41:20 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/02 15:59:57 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	init_paths_struct(t_paths *paths)
 		paths->e_room = NULL;
 		paths->index = 0;
 		paths->max_paths = 0;
-		paths->p_len = 2;
+		paths->p_len = 2000000;
 		paths->c_len = 2;
 		paths->s_index = '\0';
 		paths->collision = 0;

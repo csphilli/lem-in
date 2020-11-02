@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 09:04:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 13:18:14 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/02 13:53:01 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,15 @@ void	ft_init_int_arr(int *src, int len)
 			src[i] = '\0';
 			i++;
 		}
+	}
+}
+
+void	init_bfs(t_bfs *bfs)
+{
+	if (bfs)
+	{
+		bfs->bfs = NULL;
+		bfs->q = NULL;
+		bfs->exit = false;
 	}
 }

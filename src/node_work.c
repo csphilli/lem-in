@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:20:56 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/20 18:07:23 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/02 13:45:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,16 @@ t_bucket	*insert_node_to_path(t_bucket *head, t_entry *node)
 		tmp->next = bucket;
 	}
 	return (head);
+}
+
+void	pop_from_list(t_bucket *head)
+{
+	t_bucket	*tmp;
+
+	tmp = head;
+	while (tmp->next->next)
+		tmp = tmp->next;
+	free_entry(tmp->next->entry);
+	free_bucket(tmp->next);
+	tmp->next = NULL;
 }

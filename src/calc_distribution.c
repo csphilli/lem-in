@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 19:45:18 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/02 00:12:30 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,10 +175,14 @@ void			initial_moves_arr(t_paths *paths, t_ant_instrux *ins)
 
 void			calc_distribution(t_master *master, t_paths *paths)
 {
+	clock_t begin;
+	clock_t end;
+	double time_spent;
 	t_ant_instrux	*ins;
 	int				len;
 	int				i;
 
+	begin = clock();
 	if (!(ins = (t_ant_instrux*)malloc(sizeof(t_ant_instrux))))
 		exit_malloc();
 	init_instrux(ins);
@@ -195,6 +199,13 @@ void			calc_distribution(t_master *master, t_paths *paths)
 	initial_moves_arr(paths, ins);
 	if (master->print_ant_distribution)
 		print_int_arr(ins->ant_arr);
+	end = clock();
+	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	ft_printf("Time spent allocating ants: %f\n", time_spent);
+	begin = clock();
 	ants_marching(paths, ins);
+	end = clock();
+	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	ft_printf("Time spent writing output: %f\n", time_spent);
 	free_ant_instrux(ins);
 }

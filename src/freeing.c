@@ -6,23 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 13:51:53 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 14:07:26 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/02 13:42:01 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-void	pop_from_list(t_bucket *head)
-{
-	t_bucket	*tmp;
-
-	tmp = head;
-	while (tmp->next->next)
-		tmp = tmp->next;
-	free_entry(tmp->next->entry);
-	free_bucket(tmp->next);
-	tmp->next = NULL;
-}
 
 void	free_entry(t_entry *entry)
 {

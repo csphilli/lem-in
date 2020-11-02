@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 19:45:29 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/02 14:31:01 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define E_FAILED_SEARCH "Error inserting link. Room not found: "
 # define E_NOSOLUTION "Error. No Solution. Start and/or End room undefined."
 # include "../libft/header/libft.h"
+# include <time.h>
 
 /*
 **	For Room:
@@ -65,6 +66,13 @@ typedef struct		s_dfs
 {
 	struct s_entry	**q;
 }					t_dfs;
+
+typedef struct		s_bfs
+{
+	struct s_bucket	*bfs;
+	struct s_bucket *q;
+	bool			exit;
+}					t_bfs;
 
 /*
 **	**p = all PATHS found from initial DFS
@@ -167,6 +175,7 @@ void				init_entry(t_entry *entry);
 void				init_paths_struct(t_paths *paths);
 void				init_instrux(t_ant_instrux *instrux);
 void				ft_init_int_arr(int *src, int len);
+void				init_bfs(t_bfs *bfs);
 
 /*
 **	FREEING
@@ -200,6 +209,9 @@ int					link_exists(t_entry **link_arr, t_entry *link);
 void				insert_link(t_entry *entry, t_entry *link);
 t_entry				**append_link(t_entry **link_arr, t_entry *entry);
 t_bucket			*insert_node_to_path(t_bucket *head, t_entry *node);
+// void				shift_list(t_bucket *head, t_entry *entry);
+t_bucket			*unshift_from_list(t_bucket *head);
+t_bucket			*append_to_list_no_dupe(t_bucket *head, t_entry *node);
 
 /*
 **	Hash Table Functions
@@ -229,6 +241,7 @@ void				ants_marching(t_paths *paths, t_ant_instrux *ins);
 void				write_r2r(t_entry *entry1, t_entry *entry2);
 void				write_r2e(t_paths *paths, t_entry *entry1, t_entry *entry2);
 void				write_s2r(t_paths *paths, t_entry *entry1);
+void				do_bfs(t_master *master, t_bucket **ht);
 
 /*
 **	RANDOM TOOLS
@@ -246,7 +259,7 @@ void				max_paths(t_paths *paths);
 int					dup_coord(t_bucket **ht, t_master *master, t_entry *entry);
 void				get_shortest_path(t_paths *paths);
 int					list_length(t_bucket *head);
-void				sort_chosen_paths(t_paths *paths);
+void				sort_all_paths(t_paths *paths);
 int					*ft_intcat(int *src, int to_add);
 int					ft_int_arr_len(int *n);
 void				print_int_arr(int *ants);

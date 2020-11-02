@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 11:00:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 19:37:36 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/02 12:54:33 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,16 @@ void		collision_parse(t_paths *paths)
 	t_bucket	*tmp;
 	int			index;
 	int			collision;
+	int			len;
 	t_entry		*start;
+
 
 	tmp = NULL;
 	index = 0;
 	collision = 0;
 	start = paths->s_room;
-	while (index < bucket_arr_len(paths->p))
+	len = bucket_arr_len(paths->p);
+	while (index < len)
 	{
 		tmp = paths->p[index];
 		if (!collision_check(paths->p, tmp, start, 1))
@@ -131,11 +134,22 @@ void		collision_parse(t_paths *paths)
 
 void		choose_paths(t_master *master, t_paths *paths)
 {
+	clock_t begin;
+	clock_t end;
+	double time_spent;
 	if (!(paths->c = (t_bucket**)malloc(sizeof(t_bucket) * paths->c_len)))
 		exit_malloc();
 	init_paths(paths->c_len, paths->c);
-	sort_chosen_paths(paths);
+	begin = clock();
+	sort_all_paths(paths);
+	end = clock();
+	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	ft_printf("Time spent sorting: %f\n", time_spent);
+	begin = clock();
 	collision_parse(paths);
+	end = clock();
+	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	ft_printf("Time spent checking collisions: %f\n", time_spent);
 	max_paths(paths);
 	if (master->print_all_paths)
 	{

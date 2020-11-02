@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/11/01 14:19:16 by cphillip         ###   ########.fr        #
+#    Updated: 2020/11/02 13:41:53 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC_FILES = lem_in.c\
 			error_mgmt2.c\
 			realloc_ht.c\
 			node_work.c\
+			node_work2.c\
 			creating.c\
 			printing.c\
 			printing2.c\
@@ -55,6 +56,7 @@ SRC_FILES = lem_in.c\
 			write_moves.c\
 			sort_paths.c\
 			ft_intcat.c\
+			bfs.c\
 
 OBJ_DIR = ./obj/
 OBJ_FILES = $(SRC_FILES:%.c=%.o)
