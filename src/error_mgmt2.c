@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 12:02:09 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 18:49:21 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/06 21:07:08 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,26 @@ void	exit_room_not_found(char *str)
 	exit(-1);
 }
 
-void	check_path_exists(t_entry *start, t_entry *end, t_dfs *dfs)
+void	check_path_exists(t_entry *start, t_entry *end, t_bfs *bfs)
 {
-	if (!link_exists(dfs->q, start) || !link_exists(dfs->q, end))
+	t_bucket *tmp;
+	int	s;
+	int	e;
+
+	s = 0;
+	e = 0;
+	tmp = bfs->bfs;
+	while (tmp)
+	{	
+		if (ft_strequ(tmp->entry->name, start->name))
+			s = 1;
+		if (ft_strequ(tmp->entry->name, end->name))
+			e = 1;
+		if (s == 1 && e == 1)
+			break ;
+		tmp = tmp->next;
+	}
+	if (s == 0 || e == 0)
 	{
 		ft_printf(E_NOPATH);
 		exit(-1);

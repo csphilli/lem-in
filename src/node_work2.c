@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 13:34:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/02 15:48:30 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/07 13:11:28 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,43 +26,77 @@ int		dupe(t_bucket *head, t_entry *entry)
 	return (0);
 }
 
-t_bucket	*unshift_from_list(t_bucket *head)
+void	pop_bfsq(t_bfs *bfs)
 {
 	t_bucket *tmp;
+	t_bucket *head;
 
-	tmp = head;
+	tmp = bfs->bfsq;
 	if (tmp->next)
-		tmp = tmp->next;
+	{
+		head = tmp->next;
+		free_node(tmp);
+		bfs->bfsq = head;
+	}
 	else
-		tmp = NULL;
-	// free_entry(head->entry);
-	free_bucket(head);
-	head = tmp;
-	return (head);
+	{	
+		free_node(bfs->bfsq);
+		bfs->bfsq = NULL;
+	}
 }
 
-t_bucket	*append_to_list_no_dupe(t_bucket *head, t_entry *node)
+void	append_to_bfsq(t_bfs *bfs, t_entry *node)
 {
-	t_bucket	*bucket;
 	t_entry		*entry;
 	t_bucket	*tmp;
+	t_bucket	*head;
 
+	head = bfs->bfsq;
 	tmp = NULL;
 	if (!dupe(head, node))
 	{
-		entry = node;
-		bucket = create_bucket();
-		bucket->entry = entry;
+		entry = copy_entry(node);
 		if (head == NULL)
-			head = bucket;
+		{
+			head = create_bucket();
+			head->entry = entry;
+		}
 		else
 		{
 			tmp = head;
 			while (tmp->next)
 				tmp = tmp->next;
-			tmp->next = bucket;
+			tmp->next = create_bucket();
+			tmp->next->entry = entry;
 		}
+		bfs->bfsq = head;
 	}
-	return (head);
 }
 
+void	append_to_bfs(t_bfs *bfs, t_entry *node)
+{
+	t_entry		*entry;
+	t_bucket	*tmp;
+	t_bucket	*head;
+
+	head = bfs->bfs;
+	tmp = NULL;
+	if (!dupe(head, node))
+	{
+		entry = copy_entry(node);
+		if (head == NULL)
+		{
+			head = create_bucket();
+			head->entry = entry;
+		}
+		else
+		{
+			tmp = head;
+			while (tmp->next)
+				tmp = tmp->next;
+			tmp->next = create_bucket();
+			tmp->next->entry = entry;
+		}
+	}
+	bfs->bfs = head;
+}

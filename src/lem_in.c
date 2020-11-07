@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/02 14:24:46 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/07 13:12:54 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,10 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
 int			main(int ac, char **av)
 {
 	t_master	*master;
-	t_dfs		*dfs;
 	t_bucket	**ht;
 	int			fd;
 
-	dfs = NULL;
+
 	fd = 0;
 	ht = NULL;
 	if (!(master = (t_master*)malloc(sizeof(t_master))))

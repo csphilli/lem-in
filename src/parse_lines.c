@@ -6,11 +6,16 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/02 13:10:43 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/02 16:33:59 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+int		acceptable(char c)
+{
+	return (c >= 33 && c <= 126);
+}
 
 void		parse_lines(t_master *master, char *line, t_bucket **ht)
 {
@@ -25,12 +30,12 @@ void		parse_lines(t_master *master, char *line, t_bucket **ht)
 		capture_comment(master, line);
 	else if (master->ants_added == true && line[i] != '#')
 	{
-		while (ft_isalnum(line[i++]))
+		while (acceptable(line[i++]))
 		{
 			if (line[i] == ' ')
 			{
 				entry = create_entry();
-				fill_entry_from_line(master, entry, line);
+				entry = fill_entry_from_line(master, entry, line);
 				assign_entry_to_ht(ht, master, entry);
 			}
 			else if (line[i] == '-')

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/02 00:12:30 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/03 08:48:47 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,12 @@ t_ant_instrux	*equalize(t_paths *paths, t_ant_instrux *ins, int max)
 	while (i < max)
 	{
 		calc = desired - (list_length(paths->c[i]) - 2);
+		// if (ins->n_ants - calc < 0)
+		// {
+		// 	calc = ins->n_ants;
+		// 	ins->ant_arr[i] = calc;
+		// 	break ;
+		// }
 		ins->n_ants -= (calc - ins->ant_arr[i]);
 		ins->ant_arr[i] = calc;
 		ins->moves_arr[i] = calc + list_length(paths->c[i]) - 2;
@@ -115,7 +121,12 @@ void			normalize_moves(t_paths *paths, t_ant_instrux *ins)
 		}
 		j++;
 	}
-	sprinkle_remaining(ins);
+	ft_printf("After normalizing:\n");
+	ft_printf("Ant array: ");
+	print_int_arr(ins->ant_arr);
+	ft_printf("Moves array: ");
+	print_int_arr(ins->moves_arr);
+	// sprinkle_remaining(ins);
 }
 
 /*
@@ -146,6 +157,11 @@ void			initial_moves_arr(t_paths *paths, t_ant_instrux *ins)
 		i++;
 	}
 	i = 0;
+	ft_printf("After setting up initial:\n");
+	ft_printf("Ant array: ");
+	print_int_arr(ins->ant_arr);
+	ft_printf("Moves array: ");
+	print_int_arr(ins->moves_arr);
 	normalize_moves(paths, ins);
 }
 
@@ -203,7 +219,7 @@ void			calc_distribution(t_master *master, t_paths *paths)
 	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 	ft_printf("Time spent allocating ants: %f\n", time_spent);
 	begin = clock();
-	ants_marching(paths, ins);
+	// ants_marching(paths, ins);
 	end = clock();
 	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 	ft_printf("Time spent writing output: %f\n", time_spent);

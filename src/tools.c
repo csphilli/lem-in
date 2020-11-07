@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:23:28 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 13:40:57 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/02 23:26:34 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	max_paths(t_paths *paths)
 
 	start_paths = link_array_len(paths->s_room->link_arr);
 	end_paths = link_array_len(paths->e_room->link_arr);
+	ft_printf("start paths: %d | end paths: %d\n", start_paths, end_paths);
 	if (start_paths < end_paths)
 		paths->max_paths = start_paths;
 	else if (start_paths > end_paths)

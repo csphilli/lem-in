@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:58:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/02 00:20:51 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/04 09:13:22 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void		find_paths(t_master *master, t_bucket **ht)
 	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 	ft_printf("Time spent finding paths: %f\n", time_spent);
 	begin = clock();
-	choose_paths(master, paths);
+	// choose_paths(master, paths);
 	end = clock();
 	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 	ft_printf("Time spent sorting and choosing paths: %f\n", time_spent);

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 13:53:50 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/02 23:40:33 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	ants_marching_parse(t_paths *paths, t_ant_instrux *ins)
 	r2r(paths, ins);
 	s2r(paths, ins);
 	ft_printf("\n");
+	// paths->nbr_moves++;
 }
 
 void	ants_marching(t_paths *paths, t_ant_instrux *ins)
@@ -113,4 +114,5 @@ void	ants_marching(t_paths *paths, t_ant_instrux *ins)
 		paths->nbr_moves++;
 		ft_printf("\n");
 	}
+	ft_printf("\nNumber of moves made: %d\n", paths->nbr_moves);
 }

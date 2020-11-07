@@ -6,11 +6,17 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 13:51:53 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/02 13:42:01 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/07 13:10:25 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+void	free_node(t_bucket *node)
+{
+	free_entry(node->entry);
+	free_bucket(node);
+}
 
 void	free_entry(t_entry *entry)
 {

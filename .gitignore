@@ -4,3 +4,5 @@ lem-in
 *.o
 *.txt
 src/movecalc.c
+generator
+*.sh

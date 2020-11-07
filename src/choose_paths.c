@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 11:00:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/02 12:54:33 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/03 09:55:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,5 +161,5 @@ void		choose_paths(t_master *master, t_paths *paths)
 		ft_printf("\nCHOSEN PATHS FOR SOLUTION (END to START):\n");
 		print_paths(paths->c);
 	}
-	calc_distribution(master, paths);
+	// calc_distribution(master, paths);
 }
