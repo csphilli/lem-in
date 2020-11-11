@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 12:55:06 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/07 16:26:52 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/11 19:49:22 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ void	do_bfs(t_master *master, t_bucket **ht)
 	if (!(bfs = (t_bfs*)malloc(sizeof(t_bfs))))
 		exit_malloc();
 	init_bfs(bfs);
-	bfs->goal = get_entry(ht, master, master->start_room);
+	bfs->goal = get_entry(ht, master, start->name);
+	bfs->start = get_entry(ht, master, end->name);
 	append_to_bfsq(bfs, end);
 	crawl_graph(master, ht, bfs);
 	check_path_exists(start, end, bfs);
@@ -105,7 +106,7 @@ void	do_bfs(t_master *master, t_bucket **ht)
 	// visited_count(bfs->bfs);
 	set_blocks(bfs->bfs, bfs->goal);
 	// visited_count(bfs->bfs);
-	// build_paths(ht, master, bfs);
+	build_paths(ht, master, bfs);
 	// while (1)
 	// {
 		

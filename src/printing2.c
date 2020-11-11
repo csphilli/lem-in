@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 11:11:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 19:46:26 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/10 10:32:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,22 @@ void	print_int_arr(int *ants)
 		i++;
 	}
 	ft_printf("\n");
+}
+
+void	print_ll(t_bucket *ll)
+{
+	t_bucket *tmp;
+
+	tmp = ll;
+	if (tmp)
+	{
+		while (tmp)
+		{
+			ft_printf("%s", tmp->entry->name);
+			if (tmp->next)
+				write(1, ",", 1);
+			tmp = tmp->next;
+		}
+		write(1, "\n", 1);
+	}
 }

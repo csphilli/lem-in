@@ -48,4 +48,4 @@ t_entry		*create_entry(void)
 		exit_malloc();
 	init_entry(entry);
 	return (entry);
-}		
+}

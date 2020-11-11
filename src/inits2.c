@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 09:04:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/07 09:51:47 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/11 12:37:44 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	init_bfs(t_bfs *bfs)
 		bfs->bfsq = NULL;
 		bfs->exit = false;
 		bfs->goal = NULL;
-		bfs->paths = NULL;
-		bfs->que = NULL;
+		bfs->start = NULL;
+		// bfs->lolp = NULL;
+		// bfs->lolq = NULL;
 	}
 }

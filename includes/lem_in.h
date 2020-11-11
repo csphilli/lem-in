@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/07 13:10:13 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/11 11:02:43 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,19 @@ typedef struct		s_bucket
 
 typedef struct 		s_lol
 {
-	struct s_bucket	*list;
-	struct s_lol	*next;	
+	t_bucket		*list;
+	struct s_lol	*next;
 }					t_lol;
 
 typedef struct		s_bfs
 {
 	t_bucket		*bfs;
 	t_bucket		*bfsq;
-	t_lol			*que;
-	t_lol			*paths;
+	// t_lol			*lolq;
+	// t_lol			*lolp;
 	bool			exit;
 	t_entry			*goal;
+	t_entry			*start;
 }					t_bfs;
 
 
@@ -278,5 +279,6 @@ int					*ft_intcat(int *src, int to_add);
 int					ft_int_arr_len(int *n);
 void				print_int_arr(int *ants);
 int					most_ants(int *arr);
+void				print_ll(t_bucket *ll);
 
 #endif
