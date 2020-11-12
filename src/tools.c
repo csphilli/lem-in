@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:23:28 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/02 23:26:34 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/11 21:39:06 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	dead_end_scan(t_master *master, t_bucket **ht)
 					if ((link_array_len(tmp->entry->link_arr) == 1) && \
 						(!ft_strequ(tmp->entry->name, master->start_room) && \
 						!ft_strequ(tmp->entry->name, master->end_room)))
-						tmp->entry->visited = true;
+						tmp->entry->no = true;
 				}
 				else if (!tmp->entry->link_arr)
 					tmp->entry->visited = true;

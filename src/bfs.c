@@ -6,20 +6,35 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 12:55:06 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/11 19:49:22 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/12 14:23:14 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	set_visited(t_bucket *head, int toggle)
+// void	set_visited(t_bucket *head, int toggle)
+// {
+// 	t_bucket *tmp;
+
+// 	tmp = head;
+// 	while (tmp)
+// 	{
+// 		tmp->entry->visited = (toggle == 1 ? true : false);
+// 		tmp = tmp->next;
+// 	}
+// }
+
+void	set_visited(t_bucket **ht, t_master *master, t_bucket *head, int toggle)
 {
-	t_bucket *tmp;
+	t_bucket 	*tmp;
+	t_entry		*entry;
 
 	tmp = head;
+	entry = NULL;
 	while (tmp)
 	{
-		tmp->entry->visited = (toggle == 1 ? true : false);
+		entry = get_entry(ht, master, tmp->entry->name);
+		entry->visited = (toggle == 1 ? true : false);
 		tmp = tmp->next;
 	}
 }
@@ -59,7 +74,7 @@ void	set_blocks(t_bucket *head, t_entry *start)
 		tmp = tmp->next;
 		while (tmp->next)
 		{
-			tmp->entry->visited = true;
+			tmp->entry->no = true;
 			tmp = tmp->next;
 		}
 	}
@@ -94,22 +109,21 @@ void	do_bfs(t_master *master, t_bucket **ht)
 
 	start = get_entry(ht, master, master->start_room);
 	end = get_entry(ht, master, master->end_room);
-	if (!(bfs = (t_bfs*)malloc(sizeof(t_bfs))))
+	if (!(bfs = ft_memalloc(sizeof(t_bfs))))
 		exit_malloc();
-	init_bfs(bfs);
-	bfs->goal = get_entry(ht, master, start->name);
-	bfs->start = get_entry(ht, master, end->name);
+	bfs->end = get_entry(ht, master, end->name);
+	bfs->start = get_entry(ht, master, start->name);
 	append_to_bfsq(bfs, end);
 	crawl_graph(master, ht, bfs);
 	check_path_exists(start, end, bfs);
-	set_visited(bfs->bfs, 0);
-	// visited_count(bfs->bfs);
-	set_blocks(bfs->bfs, bfs->goal);
-	// visited_count(bfs->bfs);
+	set_visited(ht, master, bfs->bfs, 0);
+	visited_count(bfs->bfs);
+	set_blocks(bfs->bfs, bfs->end);
+	visited_count(bfs->bfs);
 	build_paths(ht, master, bfs);
-	// while (1)
-	// {
+	while (1)
+	{
 		
-	// }
+	}
 	// print_path(bfs->bfs);
 }

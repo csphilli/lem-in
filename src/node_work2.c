@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 13:34:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/07 13:11:28 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/11 20:40:29 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	pop_bfsq(t_bfs *bfs)
 		bfs->bfsq = NULL;
 	}
 }
+
 
 void	append_to_bfsq(t_bfs *bfs, t_entry *node)
 {

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 09:04:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/11 12:37:44 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/12 14:17:42 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,17 @@ void	ft_init_int_arr(int *src, int len)
 	}
 }
 
-void	init_bfs(t_bfs *bfs)
-{
-	if (bfs)
-	{
-		bfs->bfs = NULL;
-		bfs->bfsq = NULL;
-		bfs->exit = false;
-		bfs->goal = NULL;
-		bfs->start = NULL;
-		// bfs->lolp = NULL;
-		// bfs->lolq = NULL;
-	}
-}
+// void	init_bfs(t_bfs *bfs)
+// {
+// 	if (bfs)
+// 	{
+// 		bfs->bfs = NULL;
+// 		bfs->bfsq = NULL;
+// 		bfs->exit = false;
+// 		bfs->end = NULL;
+// 		bfs->start = NULL;
+// 		bfs->path_count = 0;
+// 		// bfs->lolp = NULL;
+// 		// bfs->lolq = NULL;
+// 	}
+// }
