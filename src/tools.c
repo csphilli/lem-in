@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:23:28 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/11 21:39:06 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/12 15:07:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	dead_end_scan(t_master *master, t_bucket **ht)
 						tmp->entry->no = true;
 				}
 				else if (!tmp->entry->link_arr)
-					tmp->entry->visited = true;
+					tmp->entry->no = true;
 				tmp = tmp->next;
 			}
 		}
@@ -79,7 +79,7 @@ int		bucket_arr_len(t_bucket **arr)
 	return (len);
 }
 
-void	max_paths(t_paths *paths)
+void	max_paths(t_paths *paths) // Might not need.
 {
 	int	start_paths;
 	int	end_paths;
