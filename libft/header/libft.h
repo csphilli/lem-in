@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 16:37:29 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/08 21:09:39 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/13 14:30:46 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,4 +116,6 @@ void				free_strsplit(char ***str);
 int					ft_arrlen(char **arr);
 char				**ft_arrcat(char **arr, char *str);
 void				ft_init_arr(char **arr, int size);
+int					ft_nbrstrcmp(const char *s1, const char *s2);
+int					ft_is_str_num(const char *s1);
 #endif

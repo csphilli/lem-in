@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/02 16:33:59 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/12 20:59:42 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		parse_lines(t_master *master, char *line, t_bucket **ht)
 		{
 			if (line[i] == ' ')
 			{
-				entry = create_entry();
+				entry = ft_memalloc(sizeof(t_entry));
 				entry = fill_entry_from_line(master, entry, line);
 				assign_entry_to_ht(ht, master, entry);
 			}

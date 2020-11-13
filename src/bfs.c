@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 12:55:06 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/12 15:10:12 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/12 21:11:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,17 @@ void	set_blocks(t_bucket *head, t_entry *start)
 	}
 }
 
-void	weed_eating(t_bucket **ht, t_master *master)
-{
-	bool	chk;
+// void	weed_eating(t_bucket **ht, t_master *master)
+// {
+// 	bool	chk;
 
-	chk = false;
-	while (!chk)
-	{
-		chk = true;
+// 	chk = false;
+// 	while (!chk)
+// 	{
+// 		chk = true;
 
-	}
-}
+// 	}
+// }
 
 void	crawl_graph(t_master *master, t_bucket **ht, t_bfs *bfs)
 {
@@ -132,11 +132,11 @@ void	do_bfs(t_master *master, t_bucket **ht)
 	visited_count(bfs->bfs);
 	set_blocks(bfs->bfs, bfs->end);
 	visited_count(bfs->bfs);
-	print_path(bfs->bfs);
+	// print_path(bfs->bfs);
 	ft_printf("Room Count: %d\n", master->room_count);
 	// build_paths(ht, master, bfs);
-	while (1)
-	{
+	// while (1)
+	// {
 		
-	}
+	// }
 }

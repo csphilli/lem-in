@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inits2.c                                           :+:      :+:    :+:   */
+/*   ft_nbrstrcmp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 09:04:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/12 21:05:36 by cphillip         ###   ########.fr       */
+/*   Created: 2020/11/13 14:20:49 by cphillip          #+#    #+#             */
+/*   Updated: 2020/11/13 14:26:55 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "header/libft.h"
 
-void	init_instrux(t_ant_instrux *instrux)
+int		ft_nbrstrcmp(const char *s1, const char *s2)
 {
-	if (instrux)
-	{
-		instrux->ant_arr = NULL;
-		instrux->moves_arr = NULL;
-		instrux->max_index = 0;
-		instrux->n_ants = 0;
-	}
-}
-
-void	ft_init_int_arr(int *src, int len)
-{
-	int	i;
+	int i;
+	int	n_s1;
+	int	n_s2;
 
 	i = 0;
-	if (src)
+	n_s1 = 0;
+	n_s2 = 0;
+	if (!ft_is_str_num(s1) || !ft_is_str_num(s2))
 	{
-		while (i < len)
-		{
-			src[i] = '\0';
+		while (s1[i] == s2[i] && (s1[i] != '\0' && s2[i] != '\0'))
 			i++;
-		}
+		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 	}
+	else if (ft_is_str_num(s1) && ft_is_str_num(s2))
+	{
+		n_s1 = atoi(s1);
+		n_s2 = atoi(s2);
+		return (n_s1 - n_s2);
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/12 14:14:22 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/13 14:45:13 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,18 @@
 **	next is the pointer to the next room in list.
 */
 
+typedef struct		s_bucket
+{
+	struct s_entry	*entry;
+	struct s_bucket	*next;
+}					t_bucket;
 
 typedef struct		s_entry
 {
 	char			*name;
 	char			*comment;
 	struct s_entry	**link_arr;
+	t_bucket		*links;
 	int				x;
 	int				y;
 	int				key;
@@ -57,12 +63,6 @@ typedef struct		s_entry
 	int				ant_id;
 	bool			no;
 }					t_entry;
-
-typedef struct		s_bucket
-{
-	struct s_entry	*entry;
-	struct s_bucket	*next;
-}					t_bucket;
 
 typedef struct 		s_lol
 {
@@ -181,11 +181,11 @@ void				exit_no_path(void);
 void				init_master(t_master *master);
 void				init_link_arr(t_entry **links, int len);
 void				init_paths(int len, t_bucket **p);
-void				init_entry(t_entry *entry);
+// void				init_entry(t_entry *entry);
 void				init_paths_struct(t_paths *paths);
 void				init_instrux(t_ant_instrux *instrux);
 void				ft_init_int_arr(int *src, int len);
-void				init_bfs(t_bfs *bfs);
+// void				init_bfs(t_bfs *bfs);
 
 /*
 **	FREEING
@@ -285,5 +285,20 @@ int					ft_int_arr_len(int *n);
 void				print_int_arr(int *ants);
 int					most_ants(int *arr);
 void				print_ll(t_bucket *ll);
+
+/*
+**	NEWEST BELOW
+*/
+
+/*
+**	LINK and LIST OF LIST WORK
+*/
+
+void			    unshift_ll(t_bucket **ll, t_entry *entry);
+void				insert_to_ll(t_bucket **src, t_entry *entry);
+void				unshift_lol(t_lol **lol, t_bucket *ll);
+void				pop_from_lol(t_lol **list);
+void				pop_from_ll(t_bucket **ll);
+void				append_to_ll(t_bucket **src, t_entry *entry);
 
 #endif

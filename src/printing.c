@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/07 11:26:23 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/13 11:26:46 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,20 @@ void	print_paths(t_bucket **paths)
 	}
 }
 
-void	print_links(t_entry **arr)
+void	print_links(t_bucket *src)
 {
-	int		i;
+	setbuf(stdout, NULL);
+	t_bucket	*tmp;
 
-	i = 0;
-	ft_printf(" | Links:");
-	while (arr[i])
+	tmp = src;
+	write(1, " | Links: ", 10);
+	// ft_printf(" | Links: ");
+	while (tmp)
 	{
-		ft_printf(" %s", arr[i]->name);
-		i++;
+		ft_printf("%s", tmp->entry->name);
+		if (tmp->next)
+			write(1, ",", 1);
+		tmp = tmp->next;
 	}
 }
 
@@ -79,9 +83,9 @@ void	print_extras(t_entry *entry)
 	tmp = entry;
 	if (entry->comment)
 		ft_printf(" | Comment: %s", entry->comment);
-	if (entry->link_arr)
-		print_links(entry->link_arr);
-	ft_printf("}");
+	if (entry->links)
+		print_links(entry->links);
+	write(1, "}", 1);
 }
 
 void	print_ht(t_bucket **ht, size_t size)

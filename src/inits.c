@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/11 21:38:51 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/12 21:01:08 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,22 @@ void	init_paths(int len, t_bucket **paths)
 		paths[len] = NULL;
 }
 
-void	init_entry(t_entry *entry)
-{
-	if (entry)
-	{
-		entry->visited = false;
-		entry->name = NULL;
-		entry->comment = NULL;
-		entry->link_arr = NULL;
-		entry->x = '\0';
-		entry->y = '\0';
-		entry->key = '\0';
-		entry->occ = 0;
-		entry->ant_id = 0;
-		entry->no = false;
-	}
-}
+// void	init_entry(t_entry *entry) // uneeded after changing to ft_memalloc
+// {
+// 	if (entry)
+// 	{
+// 		entry->visited = false;
+// 		entry->name = NULL;
+// 		entry->comment = NULL;
+// 		entry->link_arr = NULL;
+// 		entry->x = '\0';
+// 		entry->y = '\0';
+// 		entry->key = '\0';
+// 		entry->occ = 0;
+// 		entry->ant_id = 0;
+// 		entry->no = false;
+// 	}
+// }
 
 void	init_paths_struct(t_paths *paths)
 {

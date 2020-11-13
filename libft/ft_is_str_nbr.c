@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inits2.c                                           :+:      :+:    :+:   */
+/*   ft_is_str_nbr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 09:04:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/12 21:05:36 by cphillip         ###   ########.fr       */
+/*   Created: 2020/11/13 14:26:01 by cphillip          #+#    #+#             */
+/*   Updated: 2020/11/13 14:26:24 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "header/libft.h"
 
-void	init_instrux(t_ant_instrux *instrux)
+int		ft_is_str_num(const char *s1)
 {
-	if (instrux)
-	{
-		instrux->ant_arr = NULL;
-		instrux->moves_arr = NULL;
-		instrux->max_index = 0;
-		instrux->n_ants = 0;
-	}
-}
+	int		len;
+	int		i;
 
-void	ft_init_int_arr(int *src, int len)
-{
-	int	i;
-
+	len = 0;
 	i = 0;
-	if (src)
+	while (s1[i])
 	{
-		while (i < len)
-		{
-			src[i] = '\0';
-			i++;
-		}
+		if (isdigit(s1[i]))
+			len++;
+		i++;
 	}
+	if (i == len)
+		return (1);
+	return (0);
 }

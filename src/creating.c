@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 12:38:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/05 14:09:24 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/12 21:04:53 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,4 @@ t_bucket	**create_ht(t_master *master)
 	}
 	ht[i] = NULL;
 	return (ht);
-}
-
-t_bucket	*create_bucket(void)
-{
-	t_bucket	*new;
-
-	if (!(new = (t_bucket*)malloc(sizeof(t_bucket))))
-		exit_malloc();
-	new->entry = NULL;
-	new->next = NULL;
-	return (new);
-}
-
-t_entry		*create_entry(void)
-{
-	t_entry	*entry;
-
-	if (!(entry = (t_entry*)malloc(sizeof(t_entry))))
-		exit_malloc();
-	init_entry(entry);
-	return (entry);
 }

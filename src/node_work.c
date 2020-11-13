@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:20:56 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/04 14:45:02 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/13 14:52:10 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	append_or_insert_entry(t_bucket **ht, t_entry *entry, int index)
 	t_bucket *tmp;
 
 	tmp = ht[index];
-	new = create_bucket();
+	new = ft_memalloc(sizeof(t_bucket));
 	new->entry = entry;
 	while (tmp->next != NULL)
 	{
@@ -42,7 +42,7 @@ static void	unshift_entry(t_bucket **head, t_entry *entry, int index)
 	t_bucket	*tmp;
 
 	tmp = head[index];
-	new = create_bucket();
+	new = ft_memalloc(sizeof(t_bucket));
 	new->entry = entry;
 	head[index] = new;
 	new->next = tmp;
@@ -55,7 +55,7 @@ void		insert_node(t_bucket **ht, t_entry *entry, int index)
 	new = NULL;
 	if (ht[index] == NULL)
 	{
-		new = create_bucket();
+		new = ft_memalloc(sizeof(t_bucket));
 		new->entry = entry;
 		ht[index] = new;
 	}
@@ -71,13 +71,14 @@ void		insert_node(t_bucket **ht, t_entry *entry, int index)
 t_bucket	*insert_node_to_path(t_bucket *head, t_entry *node)
 {
 	t_bucket	*bucket;
-	t_entry		*entry;
+	// t_entry		*entry;
 	t_bucket	*tmp;
 
 	tmp = NULL;
-	entry = copy_entry(node);
-	bucket = create_bucket();
-	bucket->entry = entry;
+	// entry = copy_entry(node);
+	bucket = ft_memalloc(sizeof(t_bucket));
+	// bucket->entry = entry;
+	bucket->entry = node;
 	if (head == NULL)
 		head = bucket;
 	else

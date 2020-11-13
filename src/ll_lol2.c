@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inits2.c                                           :+:      :+:    :+:   */
+/*   ll_lol2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 09:04:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/12 21:05:36 by cphillip         ###   ########.fr       */
+/*   Created: 2020/11/13 14:42:58 by cphillip          #+#    #+#             */
+/*   Updated: 2020/11/13 14:44:50 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	init_instrux(t_ant_instrux *instrux)
+void	append_to_ll(t_bucket **src, t_entry *entry)
 {
-	if (instrux)
-	{
-		instrux->ant_arr = NULL;
-		instrux->moves_arr = NULL;
-		instrux->max_index = 0;
-		instrux->n_ants = 0;
-	}
-}
+	t_bucket	*tmp;
 
-void	ft_init_int_arr(int *src, int len)
-{
-	int	i;
-
-	i = 0;
-	if (src)
-	{
-		while (i < len)
-		{
-			src[i] = '\0';
-			i++;
-		}
-	}
+	tmp = *src;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = ft_memalloc(sizeof(t_bucket));
+	tmp->next->entry = entry;	
 }

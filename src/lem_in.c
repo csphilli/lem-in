@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/11 19:03:53 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:20:42 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
 		print_ht(ht, master->new_size);
 	dead_end_scan(master, ht);
 	do_bfs(master, ht);
+	while (1)
+	{
+		
+	}
 	// find_paths(master, ht);
 	return (ht);
 }

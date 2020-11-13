@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/11/11 19:02:59 by cphillip         ###   ########.fr        #
+#    Updated: 2020/11/13 14:45:41 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,9 @@ SRC_FILES = lem_in.c\
 			sort_paths.c\
 			ft_intcat.c\
 			bfs.c\
-			build_paths.c
+			build_paths.c\
+			ll_lol.c\
+			ll_lol2.c\
 
 OBJ_DIR = ./obj/
 OBJ_FILES = $(SRC_FILES:%.c=%.o)

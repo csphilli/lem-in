@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 18:57:54 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/13 15:18:35 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,21 @@ t_entry		**append_link(t_entry **link_arr, t_entry *entry)
 	return (link_arr);
 }
 
-void		insert_link(t_entry *entry, t_entry *link)
-{
-	if (!entry->link_arr)
-	{
-		if (!(entry->link_arr = (t_entry**)malloc(sizeof(t_entry*) * (2))))
-			exit_malloc();
-		init_link_arr(entry->link_arr, 2);
-		entry->link_arr[0] = link;
-	}
-	else if (!link_exists(entry->link_arr, link))
-		entry->link_arr = append_link(entry->link_arr, link);
-}
+// void		insert_link(t_entry *entry, t_entry *link) // wont be needed.
+// {
+// 	if (!entry->link_arr)
+// 	{
+// 		if (!(entry->link_arr = (t_entry**)malloc(sizeof(t_entry*) * (2))))
+// 			exit_malloc();
+// 		init_link_arr(entry->link_arr, 2);
+// 		entry->link_arr[0] = link;
+// 	}
+// 	else if (!link_exists(entry->link_arr, link))
+// 		entry->link_arr = append_link(entry->link_arr, link);
+// }
+
+
+
 
 int			is_room(t_bucket *head, char *room)
 {
@@ -64,6 +67,60 @@ int			is_room(t_bucket *head, char *room)
 	return (0);
 }
 
+// void		eval_links(t_bucket **src, t_entry *entry)
+// {
+// 	t_bucket	*tmp;
+
+// 	tmp = *src;
+// 	while (tmp)
+// 	{
+// 		if (tmp->next && (ft_strcmp(entry->name, tmp->entry->name) > 0 &&\
+// 				ft_strcmp(entry->name, tmp->next->entry->name) < 0))
+// 		{
+// 			ft_printf("Inserting %s between %s and %s\n", entry->name, tmp->entry->name, tmp->next->entry->name);
+// 			insert_to_ll(&tmp->next, entry);
+// 			break ;      
+// 		}
+// 		else if (!tmp->next)
+// 		{
+// 			ft_printf("Inserting %s after %s\n", entry->name, tmp->entry->name);
+// 			tmp->next = ft_memalloc(sizeof(t_bucket));
+// 			tmp->next->entry = entry;
+// 			break ;
+// 		}
+// 		tmp = tmp->next;
+// 	}
+// 	// *src 
+// }
+
+void	eval_links(t_bucket **src, t_entry *entry)
+{
+	t_bucket	*head;
+	t_bucket	*tmp;
+
+	head = *src;
+	tmp = head;
+	if (head == NULL || ft_nbrstrcmp(entry->name, head->entry->name) < 0)
+		insert_to_ll(&head, entry);
+	else
+	{
+		while (tmp)
+		{
+			if (tmp->next && (ft_nbrstrcmp(entry->name, tmp->entry->name) >\
+			 0 && ft_nbrstrcmp(entry->name, tmp->next->entry->name) < 0))
+			{
+				insert_to_ll(&tmp->next, entry);
+				break ;
+			}
+			else if (!tmp->next)
+				append_to_ll(src, entry);
+					break ;
+			tmp = tmp->next;
+		}
+	}
+	*src = head;
+}
+
 void		do_link(t_bucket *head, char *room, t_entry *link)
 {
 	t_bucket	*tmp;
@@ -75,7 +132,7 @@ void		do_link(t_bucket *head, char *room, t_entry *link)
 		{
 			if (ft_strequ(tmp->entry->name, room))
 			{
-				insert_link(tmp->entry, link);
+				eval_links(&tmp->entry->links, link);
 				break ;
 			}
 			else if (!ft_strequ(tmp->entry->name, room) && !tmp->next)
