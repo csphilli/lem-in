@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 11:26:46 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/13 16:41:56 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	print_links(t_bucket *src)
 
 	tmp = src;
 	write(1, " | Links: ", 10);
-	// ft_printf(" | Links: ");
 	while (tmp)
 	{
 		ft_printf("%s", tmp->entry->name);

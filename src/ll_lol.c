@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 09:29:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 15:17:23 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/13 16:48:38 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	pop_from_ll(t_bucket **ll)
 		tmp->entry = NULL;
 		tmp->next = NULL;
 		free(tmp);
-		tmp = NULL;		
+		tmp = NULL;	
 	}
 	*ll = head;
 }

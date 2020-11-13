@@ -6,36 +6,36 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 15:18:35 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/13 16:49:41 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-t_entry		**append_link(t_entry **link_arr, t_entry *entry)
-{
-	t_entry		**tmp;
-	int			len;
-	int			i;
+// t_entry		**append_link(t_entry **link_arr, t_entry *entry)
+// {
+// 	t_entry		**tmp;
+// 	int			len;
+// 	int			i;
 
-	i = 0;
-	len = link_array_len(link_arr);
-	i = 0;
-	len += 2;
-	tmp = link_arr;
-	if (!(link_arr = (t_entry**)malloc(sizeof(t_entry*) * (len))))
-		exit_malloc();
-	init_link_arr(link_arr, len);
-	while (i < len - 2)
-	{
-		link_arr[i] = tmp[i];
-		i++;
-	}
-	link_arr[i] = entry;
-	free(tmp);
-	tmp = NULL;
-	return (link_arr);
-}
+// 	i = 0;
+// 	len = link_array_len(link_arr);
+// 	i = 0;
+// 	len += 2;
+// 	tmp = link_arr;
+// 	if (!(link_arr = (t_entry**)malloc(sizeof(t_entry*) * (len))))
+// 		exit_malloc();
+// 	init_link_arr(link_arr, len);
+// 	while (i < len - 2)
+// 	{
+// 		link_arr[i] = tmp[i];
+// 		i++;
+// 	}
+// 	link_arr[i] = entry;
+// 	free(tmp);
+// 	tmp = NULL;
+// 	return (link_arr);
+// }
 
 // void		insert_link(t_entry *entry, t_entry *link) // wont be needed.
 // {
@@ -95,30 +95,29 @@ int			is_room(t_bucket *head, char *room)
 
 void	eval_links(t_bucket **src, t_entry *entry)
 {
-	t_bucket	*head;
 	t_bucket	*tmp;
 
-	head = *src;
-	tmp = head;
-	if (head == NULL || ft_nbrstrcmp(entry->name, head->entry->name) < 0)
-		insert_to_ll(&head, entry);
+	tmp = *src;
+	if (*src == NULL || ft_nbrstrcmp(entry->name, (*src)->entry->name) < 0)
+		insert_to_ll(src, entry);
 	else
 	{
 		while (tmp)
 		{
 			if (tmp->next && (ft_nbrstrcmp(entry->name, tmp->entry->name) >\
-			 0 && ft_nbrstrcmp(entry->name, tmp->next->entry->name) < 0))
+				0 && ft_nbrstrcmp(entry->name, tmp->next->entry->name) < 0))
 			{
 				insert_to_ll(&tmp->next, entry);
 				break ;
 			}
 			else if (!tmp->next)
+			{
 				append_to_ll(src, entry);
-					break ;
+				break ;
+			}
 			tmp = tmp->next;
 		}
 	}
-	*src = head;
 }
 
 void		do_link(t_bucket *head, char *room, t_entry *link)

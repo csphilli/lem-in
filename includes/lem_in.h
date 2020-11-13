@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 14:45:13 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:16:00 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ void				exit_usage(void);
 void				exit_coord(int line_nbr);
 void				exit_dup(char *room_name, size_t index);
 void				exit_room_not_found(char *str);
-void				check_path_exists(t_entry *start, t_entry *end, t_bfs *bfs);
+void				check_path_exists(t_entry *start, t_entry *end, t_bucket *bfs);
 void				exit_dup_coord(t_master *master);
 void				exit_no_solution(void);
 void				exit_no_path(void);
@@ -222,11 +222,11 @@ t_entry				**append_link(t_entry **link_arr, t_entry *entry);
 t_bucket			*insert_node_to_path(t_bucket *head, t_entry *node);
 // void				shift_list(t_bucket *head, t_entry *entry);
 // t_bucket			*unshift_from_list(t_bucket *head); Incorrectly named
-void				pop_bfsq(t_bfs *bfs);
+// void				pop_bfsq(t_bfs *bfs);
 
 // t_bucket			*append_to_list_no_dupe(t_bucket *head, t_entry *node);
-void				append_to_bfsq(t_bfs *bfs, t_entry *node);
-void				append_to_bfs(t_bfs *bfs, t_entry *node);
+// void				append_to_bfsq(t_bfs *bfs, t_entry *node);
+// void				append_to_bfs(t_bfs *bfs, t_entry *node);
 
 /*
 **	Hash Table Functions
@@ -300,5 +300,6 @@ void				unshift_lol(t_lol **lol, t_bucket *ll);
 void				pop_from_lol(t_lol **list);
 void				pop_from_ll(t_bucket **ll);
 void				append_to_ll(t_bucket **src, t_entry *entry);
+int					dupe(t_bucket **head, t_entry *entry);
 
 #endif
