@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 09:05:39 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/12 16:32:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:56:54 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,12 @@ void	capture_comment(t_master *master, char *str)
 	{
 		if (master->comment != NULL)
 			ft_strdel(&master->comment);
-		master->comment = ft_strdup(&str[2]);
+		// ft_printf("master->comment @ str[2]: %c\n", &str[])
+		if (str[1] == '#')
+			master->comment = ft_strdup(&str[2]);
+		else
+			master->comment = ft_strdup(&str[1]);
 		validate_comment(master);
+			
 	}
 }

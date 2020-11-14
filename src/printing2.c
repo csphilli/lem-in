@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 11:11:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/10 10:32:23 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/13 20:54:04 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ void	print_ll(t_bucket *ll)
 	{
 		while (tmp)
 		{
-			ft_printf("%s", tmp->entry->name);
+			if (tmp->entry->visited)
+				ft_printf(RED);
+			ft_printf("%s"RESET, tmp->entry->name);
 			if (tmp->next)
 				write(1, ",", 1);
 			tmp = tmp->next;

@@ -6,33 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 19:42:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/13 18:04:16 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-// void	print_bools(t_master *master)
-// {
-// 	if (master->colors == true)
-// 	{
-// 		ft_printf(" Adv Errors: \t");
-// 		if (master->adv_errors == true)
-// 			ft_printf(GREEN"[%s]"RESET"\n", "ON");
-// 		else
-// 			ft_printf(RED"[%s]"RESET"\n", "OFF");
-// 		ft_printf(" Debugger: \t");
-// 		if (master->debugger == true)
-// 			ft_printf(GREEN"[%s]"RESET"\n", "ON");
-// 		else
-// 			ft_printf(RED"[%s]"RESET"\n", "OFF");
-// 		ft_printf(" Leak Check: \t");
-// 		if (master->leaks == true)
-// 			ft_printf(GREEN"[%s]"RESET"\n", "ON");
-// 		else
-// 			ft_printf(RED"[%s]"RESET"\n", "OFF");
-// 	}
-// }
 
 void	toggle_bools(t_master *master)
 {

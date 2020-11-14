@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:23:28 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 17:04:13 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/14 11:11:27 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,34 @@
 **	it gets flagged.
 */
 
-void	dead_end_scan(t_master *master, t_bucket **ht)
-{
-	size_t		i;
-	t_bucket	*tmp;
+// void	dead_end_scan(t_master *master, t_bucket **ht)
+// {
+// 	size_t		i;
+// 	t_bucket	*tmp;
 
-	i = 0;
-	tmp = NULL;
-	while (i++ < master->new_size)
-	{
-		if (ht[i])
-		{
-			tmp = ht[i];
-			while (tmp)
-			{
-				if (tmp->entry->link_arr)
-				{
-					if ((link_array_len(tmp->entry->link_arr) == 1) && \
-						(!ft_strequ(tmp->entry->name, master->start_room) && \
-						!ft_strequ(tmp->entry->name, master->end_room)))
-						tmp->entry->no = true;
-				}
-				else if (!tmp->entry->link_arr)
-					tmp->entry->no = true;
-				tmp = tmp->next;
-			}
-		}
-	}
-}
+// 	i = 0;
+// 	tmp = NULL;
+// 	while (i++ < master->new_size)
+// 	{
+// 		if (ht[i])
+// 		{
+// 			tmp = ht[i];
+// 			while (tmp)
+// 			{
+// 				if (tmp->entry->link_arr)
+// 				{
+// 					if ((link_array_len(tmp->entry->link_arr) == 1) && \
+// 						(!ft_strequ(tmp->entry->name, master->start_room) && \
+// 						!ft_strequ(tmp->entry->name, master->end_room)))
+// 						tmp->entry->no = true;
+// 				}
+// 				else if (!tmp->entry->link_arr)
+// 					tmp->entry->no = true;
+// 				tmp = tmp->next;
+// 			}
+// 		}
+// 	}
+// }
 
 /*
 **	Used for the pathing algo, this simply adds the name of the start
@@ -79,21 +79,21 @@ int		bucket_arr_len(t_bucket **arr)
 	return (len);
 }
 
-void	max_paths(t_paths *paths) // Might not need.
-{
-	int	start_paths;
-	int	end_paths;
+// void	max_paths(t_paths *paths) // Might not need.
+// {
+// 	int	start_paths;
+// 	int	end_paths;
 
-	start_paths = link_array_len(paths->s_room->link_arr);
-	end_paths = link_array_len(paths->e_room->link_arr);
-	ft_printf("start paths: %d | end paths: %d\n", start_paths, end_paths);
-	if (start_paths < end_paths)
-		paths->max_paths = start_paths;
-	else if (start_paths > end_paths)
-		paths->max_paths = end_paths;
-	else if (start_paths == end_paths)
-		paths->max_paths = start_paths;
-}
+// 	start_paths = link_array_len(paths->s_room->link_arr);
+// 	end_paths = link_array_len(paths->e_room->link_arr);
+// 	ft_printf("start paths: %d | end paths: %d\n", start_paths, end_paths);
+// 	if (start_paths < end_paths)
+// 		paths->max_paths = start_paths;
+// 	else if (start_paths > end_paths)
+// 		paths->max_paths = end_paths;
+// 	else if (start_paths == end_paths)
+// 		paths->max_paths = start_paths;
+// }
 
 int		list_length(t_bucket *head)
 {
@@ -101,8 +101,8 @@ int		list_length(t_bucket *head)
 	int			len;
 
 	tmp = head;
-	len = 1;
-	while (tmp->next)
+	len = 0;
+	while (tmp)
 	{
 		len++;
 		tmp = tmp->next;

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 12:55:06 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 17:14:04 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/14 12:35:57 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	set_visited(t_bucket **ht, t_master *master, t_bucket *head, int toggle)
 	while (tmp)
 	{
 		entry = get_entry(ht, master, tmp->entry->name);
-		entry->visited = (toggle == 1 ? true : false);
+		entry->visited = (toggle == 1 ? 1 : 0);
 		tmp = tmp->next;
 	}
 }
@@ -80,24 +80,121 @@ void	set_blocks(t_bucket *head, t_entry *start)
 	}
 }
 
-// void	weed_eating(t_bucket **ht, t_master *master)
-// {
-// 	bool	chk;
+int		count_vis(t_bucket **links)
+{
+	t_bucket	*tmp;
+	int			count;
 
-// 	chk = false;
-// 	while (!chk)
-// 	{
-// 		chk = true;
+	tmp = *links;
+	count = 0;
+	while (tmp)
+	{
+		if (tmp->entry->visited)
+			count++;
+		tmp = tmp->next;
+	}
+	return (count);
+}
 
-// 	}
-// }
+void	set_paths(t_bucket **paths, int visited)
+{
+	t_bucket	*tmp;
+
+	tmp = *paths;
+	while (tmp)
+	{
+		tmp->entry->visited = visited;
+		tmp = tmp->next;
+	}
+}
+
+int		same_links(t_bucket **ll1, t_bucket **ll2)
+{
+	t_bucket	*tmp1;
+	t_bucket	*tmp2;
+
+	tmp1 = *ll1;
+	tmp2 = *ll2;
+	while ((tmp1 && tmp2) && \
+			ft_strequ(tmp1->entry->name, tmp2->entry->name))
+	{
+		tmp1 = tmp1->next;
+		tmp2 = tmp2->next;
+	}
+	if (!tmp1 && !tmp2)
+		return (1);
+	return (0);
+}
+
+void	que_visited(t_bucket **que, t_bucket **paths)
+{
+	t_bucket *tmp;
+
+	tmp = *paths;
+	while (tmp)
+	{
+		if (tmp->entry->visited)
+			append_to_ll(que, tmp->entry);
+		tmp = tmp->next;
+	}
+}
+void	weed_eating2(t_bucket **paths)
+{
+	t_bucket	*tmp;
+	t_bucket	*que;
+
+	tmp = NULL;
+	que = NULL;
+	que_visited(&que, paths);
+	while (que)
+	{
+		tmp = que->entry->links;
+		while (tmp)
+		{	
+			// ft_printf("TMP: %s\n", tmp->entry->name);
+			// ft_printf("ll - count: %d\n", list_length(tmp->entry->links) - count_vis(&tmp->entry->links));
+			if (list_length(tmp->entry->links) - \
+				count_vis(&tmp->entry->links) == 1)
+			{
+				append_to_ll(&que, tmp->entry);
+				tmp->entry->visited = 1;
+			}
+			tmp = tmp->next;
+		}
+		pop_from_ll(&que);		
+	}
+	// print_ll(*paths);
+}
+
+void	weed_eating1(t_bucket **paths)
+{
+	t_bucket 	*tmp;
+	t_bucket	*cur;
+	t_bucket	*head;
+
+	head = *paths;
+	cur = head;
+	while (cur)
+	{
+		tmp = cur->next;
+		list_length(cur->entry->links) == 1 ? cur->entry->visited = 1 : 1;
+		while (tmp)
+		{
+			if (same_links(&cur->entry->links, &tmp->entry->links))
+				cur->entry->visited = 1;
+			tmp = tmp->next;
+		}
+		cur = cur->next;
+	}
+	*paths = head;
+}
 
 
 void	crawl_graph(t_bucket **bfsq, t_bucket **paths)
 {
 	t_bucket	*links;
 
-	(*bfsq)->entry->visited = true;
+	(*bfsq)->entry->visited = 1;
 	if (!dupe(paths, (*bfsq)->entry))
 		append_to_ll(paths, (*bfsq)->entry);
 	links = (*bfsq)->entry->links;
@@ -114,10 +211,8 @@ void	crawl_graph(t_bucket **bfsq, t_bucket **paths)
 
 void	do_bfs(t_master *master, t_bucket **ht)
 {
-	t_bfs	*bfs;
-	t_entry *end;
-	t_entry	*start;
-
+	t_entry 	*end;
+	t_entry		*start;
 	t_bucket	*bfsq;
 	t_bucket	*paths;
 
@@ -125,24 +220,13 @@ void	do_bfs(t_master *master, t_bucket **ht)
 	paths = NULL;
 	start = get_entry(ht, master, master->start_room);
 	end = get_entry(ht, master, master->end_room);
-	if (!(bfs = ft_memalloc(sizeof(t_bfs))))
-		exit_malloc();
-	bfs->end = get_entry(ht, master, end->name);
-	bfs->start = get_entry(ht, master, start->name);
-	ft_printf("Start: %s | End: %s\n", start->name, end->name);
 	append_to_ll(&bfsq, start);
 	crawl_graph(&bfsq, &paths);
-	print_ll(bfsq);
+	set_paths(&paths, 0);
+	weed_eating1(&paths);
+	weed_eating2(&paths);
 	print_ll(paths);
-	// append_to_ll(&bfsq, )
-	// append_to_bfsq(bfs, end);
-	// crawl_graph(master, ht, bfs);
 	check_path_exists(start, end, paths);
-	// set_visited(ht, master, bfs->bfs, 0);
-	// visited_count(bfs->bfs);
-	// set_blocks(bfs->bfs, bfs->end);
-	// visited_count(bfs->bfs);
-	// // print_path(bfs->bfs);
 	ft_printf("Room Count: %d\n", master->room_count);
 	// build_paths(ht, master, bfs);
 	// while (1)

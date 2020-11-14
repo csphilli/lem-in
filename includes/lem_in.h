@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 17:16:00 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/14 11:11:15 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ typedef struct		s_entry
 {
 	char			*name;
 	char			*comment;
-	struct s_entry	**link_arr;
+	// struct s_entry	**link_arr;
 	t_bucket		*links;
 	int				x;
 	int				y;
 	int				key;
-	bool			visited;
+	int				visited;
 	int				occ;
 	int				ant_id;
 	bool			no;
@@ -179,7 +179,7 @@ void				exit_no_path(void);
 */
 
 void				init_master(t_master *master);
-void				init_link_arr(t_entry **links, int len);
+// void				init_link_arr(t_entry **links, int len);
 void				init_paths(int len, t_bucket **p);
 // void				init_entry(t_entry *entry);
 void				init_paths_struct(t_paths *paths);
@@ -197,7 +197,7 @@ void				free_paths(t_paths *paths);
 void				free_ant_instrux(t_ant_instrux *ins);
 void				free_bucket(t_bucket *bucket);
 void				delete_old_path(t_bucket **paths);
-void				pop_from_list(t_bucket *head);
+// void				pop_from_list(t_bucket *head);
 void				delete_old_ht(t_bucket **old, size_t size);
 
 /*
@@ -213,13 +213,13 @@ void				validate_rooms(t_bucket **ht, t_master *master);
 void				duplicate_room_check(t_master *master, t_bucket **ht);
 void				add_link_to_room(t_bucket **ht, t_master *master,\
 					char *line);
-t_entry				*copy_entry(t_entry *src);
+// t_entry				*copy_entry(t_entry *src);
 void				parse_lines(t_master *master, char *line, t_bucket **ht);
 t_entry				*get_entry(t_bucket **ht, t_master *master, char *name);
-int					link_exists(t_entry **link_arr, t_entry *link);
-void				insert_link(t_entry *entry, t_entry *link);
-t_entry				**append_link(t_entry **link_arr, t_entry *entry);
-t_bucket			*insert_node_to_path(t_bucket *head, t_entry *node);
+// int					link_exists(t_entry **link_arr, t_entry *link);
+// void				insert_link(t_entry *entry, t_entry *link);
+// t_entry				**append_link(t_entry **link_arr, t_entry *entry);
+// t_bucket			*insert_node_to_path(t_bucket *head, t_entry *node);
 // void				shift_list(t_bucket *head, t_entry *entry);
 // t_bucket			*unshift_from_list(t_bucket *head); Incorrectly named
 // void				pop_bfsq(t_bfs *bfs);
@@ -234,8 +234,8 @@ t_bucket			*insert_node_to_path(t_bucket *head, t_entry *node);
 
 t_bucket			**grow_ht(t_bucket **ht, t_master *master);
 t_bucket			**create_ht(t_master *master);
-t_bucket			*create_bucket(void);
-t_entry				*create_entry(void);
+// t_bucket			*create_bucket(void);
+// t_entry				*create_entry(void);
 t_entry				*fill_entry_from_line(t_master *master, t_entry *dst,\
 					char *line);
 float				load(t_master *master);
@@ -284,7 +284,7 @@ int					*ft_intcat(int *src, int to_add);
 int					ft_int_arr_len(int *n);
 void				print_int_arr(int *ants);
 int					most_ants(int *arr);
-void				print_ll(t_bucket *ll);
+
 
 /*
 **	NEWEST BELOW
@@ -301,5 +301,6 @@ void				pop_from_lol(t_lol **list);
 void				pop_from_ll(t_bucket **ll);
 void				append_to_ll(t_bucket **src, t_entry *entry);
 int					dupe(t_bucket **head, t_entry *entry);
+void				print_ll(t_bucket *ll);
 
 #endif

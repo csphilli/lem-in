@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 16:41:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/13 20:32:46 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@
 **	Prints a single path from the array.
 */
 
-void	print_path(t_bucket *head)
-{
-	t_bucket *tmp;
+// void	print_path(t_bucket *head)
+// {
+// 	t_bucket *tmp;
 
-	tmp = head;
-	while (tmp)
-	{
-		ft_printf("%s", tmp->entry->name);
-		if (tmp->next)
-			ft_printf(",");
-		tmp = tmp->next;
-	}
-	ft_printf("\n");
-}
+// 	tmp = head;
+// 	while (tmp)
+// 	{
+// 		ft_printf("%s", tmp->entry->name);
+// 		if (tmp->next)
+// 			ft_printf(",");
+// 		tmp = tmp->next;
+// 	}
+// 	ft_printf("\n");
+// }
 
 /*
 **	Prints all paths in a path array.
@@ -102,8 +102,8 @@ void	print_ht(t_bucket **ht, size_t size)
 			tmp = ht[i];
 			while (tmp != NULL)
 			{
-				ft_printf("{Name: %s | Key: %d", tmp->entry->name,\
-				tmp->entry->key);
+				ft_printf("{Name: %s | Visited: %d", tmp->entry->name,\
+				tmp->entry->visited);
 				print_extras(tmp->entry);
 				if (tmp->next)
 					ft_printf("-->");

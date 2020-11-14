@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/11/13 14:45:41 by cphillip         ###   ########.fr        #
+#    Updated: 2020/11/13 18:20:27 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,8 +49,6 @@ SRC_FILES = lem_in.c\
 			tools.c\
 			freeing.c\
 			freeing2.c\
-			find_paths.c\
-			choose_paths.c\
 			calc_distribution.c\
 			ants_marching.c\
 			write_moves.c\
@@ -60,6 +58,8 @@ SRC_FILES = lem_in.c\
 			build_paths.c\
 			ll_lol.c\
 			ll_lol2.c\
+			# find_paths.c
+			# choose_paths.c
 
 OBJ_DIR = ./obj/
 OBJ_FILES = $(SRC_FILES:%.c=%.o)
