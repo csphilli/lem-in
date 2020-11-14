@@ -6,37 +6,15 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 10:40:08 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 11:17:00 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/14 13:54:24 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
 
-void	print_lol(t_lol *list)
-{
-	t_lol *tmp;
-	t_bucket *curr;
 
-	tmp = list;
-	curr = NULL;
-	if (tmp && tmp->list)
-	{
-		while (tmp)
-		{
-			curr = tmp->list;
-			while (curr)
-			{
-				ft_printf("%s", curr->entry->name);
-				curr->next ? write(1, ",", 1) : 1;
-				curr = curr->next;
-			}
-			tmp->next ? write(1, "\n", 1) : 1;
-			tmp = tmp->next;
-		}
-		write(1, "\n", 1);
-	}
-}
+
 
 
 

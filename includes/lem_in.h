@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/14 11:11:15 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/14 13:51:47 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,8 +261,8 @@ void				write_s2r(t_paths *paths, t_entry *entry1);
 void				do_bfs(t_master *master, t_bucket **ht);
 void				build_paths(t_bucket **ht, t_master *master, t_bfs *bfs);
 // void				set_visited(t_bucket *head, int toggle);
-void				set_visited(t_bucket **ht, t_master *master, \
-					t_bucket *head, int toggle);
+// void				set_visited(t_bucket **ht, t_master *master, \
+// 					t_bucket *head, int toggle);
 /*
 **	RANDOM TOOLS
 */
@@ -302,5 +302,6 @@ void				pop_from_ll(t_bucket **ll);
 void				append_to_ll(t_bucket **src, t_entry *entry);
 int					dupe(t_bucket **head, t_entry *entry);
 void				print_ll(t_bucket *ll);
+void				print_lol(t_lol *list);
 
 #endif
