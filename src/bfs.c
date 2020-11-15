@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 12:55:06 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/14 13:54:16 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/14 18:21:29 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	set_paths(t_bucket **paths, int visited)
+void	set_visited(t_bucket **paths, int visited)
 {
 	t_bucket	*tmp;
 
@@ -204,21 +204,21 @@ void	do_bfs(t_master *master, t_bucket **ht)
 	t_entry 	*end;
 	t_entry		*start;
 	t_bucket	*bfsq;
-	t_bucket	*paths;
+	t_bucket	*bfs;
 
 	bfsq = NULL;
-	paths = NULL;
+	bfs = NULL;
 	start = get_entry(ht, master, master->start_room);
 	end = get_entry(ht, master, master->end_room);
 	append_to_ll(&bfsq, start);
-	crawl_graph(&bfsq, &paths, end);
-	set_paths(&paths, 0);
-	weed_eating1(&paths);
-	weed_eating2(&paths);
-	print_ll(paths);
-	check_path_exists(start, end, paths);
-	ft_printf("Room Count: %d\n", master->room_count);
-	// build_paths(ht, master, bfs);
+	crawl_graph(&bfsq, &bfs, end);
+	set_visited(&bfs, 0);
+	weed_eating1(&bfs);
+	weed_eating2(&bfs);
+	// print_ll(paths);
+	check_path_exists(start, end, bfs);
+	// ft_printf("Room Count: %d\n", master->room_count);
+	build_paths(&bfs, start, end);
 	// while (1)
 	// {
 		

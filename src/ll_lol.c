@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 09:29:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 16:48:38 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/15 11:36:01 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,29 @@ void    unshift_ll(t_bucket **ll, t_entry *entry) // working, no leaks
 	*ll = head;
 }
 
+// void	pop_from_lol(t_lol **list) // working no leaks
+// {
+// 	t_lol *head;
+// 	t_lol *tmp;
+
+// 	head = *list;
+// 	tmp = head;
+// 	if (!head->next)
+// 	{
+// 		free(head);
+// 		head = NULL;
+// 	}
+// 	else
+// 	{
+// 		head = head->next;
+// 		while (tmp->list)
+// 			pop_from_ll(&tmp->list);
+// 		free(tmp);
+// 		tmp = NULL;
+// 	}
+// 	*list = head;
+// }
+
 void	pop_from_lol(t_lol **list) // working no leaks
 {
 	t_lol *head;
@@ -86,19 +109,12 @@ void	pop_from_lol(t_lol **list) // working no leaks
 
 	head = *list;
 	tmp = head;
-	if (!head->next)
-	{
-		free(head);
-		head = NULL;
-	}
-	else
-	{
+	if (head->next)
 		head = head->next;
-		while (tmp->list)
-			pop_from_ll(&tmp->list);
-		free(tmp);
-		tmp = NULL;
-	}
+	while (tmp->list)
+		pop_from_ll(&tmp->list);
+	free(tmp);
+	tmp = NULL;
 	*list = head;
 }
 

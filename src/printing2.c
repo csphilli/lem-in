@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 11:11:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/14 13:48:20 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/15 11:22:34 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,18 @@ void	print_ll(t_bucket *ll)
 	}
 }
 
-void	print_lol(t_lol *list)
+void	print_lol(t_lol **list)
 {
-	t_lol *tmp;
-	t_bucket *curr;
+	t_lol 		*tmp;
 
-	tmp = list;
-	curr = NULL;
-	if (tmp && tmp->list)
+	tmp = *list;
+	// ft_printf("head: %s\n", tmp->list->entry->name);
+	if (tmp)
 	{
 		while (tmp)
 		{
-			curr = tmp->list;
-			while (curr)
-			{
-				ft_printf("%s", curr->entry->name);
-				curr->next ? write(1, ",", 1) : 1;
-				curr = curr->next;
-			}
-			tmp->next ? write(1, "\n", 1) : 1;
+			print_ll(tmp->list);
 			tmp = tmp->next;
 		}
-		write(1, "\n", 1);
-	}
+	}	
 }

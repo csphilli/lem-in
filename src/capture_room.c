@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 14:56:02 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/15 11:13:52 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,7 @@ t_entry		*fill_entry_from_line(t_master *master, t_entry *dst, char *line)
 // 	dst = ft_memalloc(sizeof(t_entry));
 // 	if (src->comment)
 // 		dst->comment = ft_strdup(src->comment);
-// 	while (src->links)
-// 	{
-		
-// 	}
+// 	dst->links = copy_links(src);
 // 		len = link_array_len(src->link_arr);
 // 		while (i < len)
 // 			insert_link(dst, src->link_arr[i++]);

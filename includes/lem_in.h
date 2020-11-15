@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/14 13:51:47 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/15 11:47:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,19 +257,13 @@ void				write_r2r(t_entry *entry1, t_entry *entry2);
 void				write_r2e(t_paths *paths, t_entry *entry1, t_entry *entry2);
 void				write_s2r(t_paths *paths, t_entry *entry1);
 
-// newest
-void				do_bfs(t_master *master, t_bucket **ht);
-void				build_paths(t_bucket **ht, t_master *master, t_bfs *bfs);
-// void				set_visited(t_bucket *head, int toggle);
-// void				set_visited(t_bucket **ht, t_master *master, \
-// 					t_bucket *head, int toggle);
 /*
 **	RANDOM TOOLS
 */
 
 void				print_paths(t_bucket **paths);
 void				print_path(t_bucket *head);
-void				dead_end_scan(t_master *master, t_bucket **ht);
+// void				dead_end_scan(t_master *master, t_bucket **ht);
 void				start_or_end(char *s, t_master *master, char *name);
 int					bucket_arr_len(t_bucket **arr);
 int					link_array_len(t_entry **arr);
@@ -300,8 +294,13 @@ void				unshift_lol(t_lol **lol, t_bucket *ll);
 void				pop_from_lol(t_lol **list);
 void				pop_from_ll(t_bucket **ll);
 void				append_to_ll(t_bucket **src, t_entry *entry);
+void				append_to_lol(t_lol **lol, t_bucket *ll);
 int					dupe(t_bucket **head, t_entry *entry);
 void				print_ll(t_bucket *ll);
-void				print_lol(t_lol *list);
+void				print_lol(t_lol **list);
+void				copy_ll(t_bucket **dst, t_bucket *src);
+void				do_bfs(t_master *master, t_bucket **ht);
+void				build_paths(t_bucket **bfs, t_entry *start, t_entry *goal);
+void				set_visited(t_bucket **paths, int visited);
 
 #endif
