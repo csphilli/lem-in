@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 13:34:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 17:07:13 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/15 20:41:43 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,82 +26,22 @@ int		dupe(t_bucket **head, t_entry *entry)
 	return (0);
 }
 
-void	pop_bfsq(t_bfs *bfs)
+void	dlt_dead_end(t_bucket **head)
 {
+	ft_printf("Head start: %s\n", (*head)->entry->name);
 	t_bucket *tmp;
-	t_bucket *head;
+	// t_bucket *cur;
 
-	tmp = bfs->bfsq;
+	// cur = *head;
+	tmp = *head;
+	tmp = tmp->next;
 	if (tmp->next)
-	{
-		head = tmp->next;
-		free_node(tmp);
-		bfs->bfsq = head;
-	}
+		(*head)->next = tmp->next;
 	else
-	{	
-		free_node(bfs->bfsq);
-		bfs->bfsq = NULL;
-	}
+		(*head)->next = NULL;
+	ft_printf("deleting %s\n", tmp->entry->name);
+	free_node(tmp);
+	// *head = cur;
+	ft_printf("Head end: %s\n", (*head)->entry->name);
+
 }
-
-
-// void	append_to_bfsq(t_bfs *bfs, t_entry *node)
-// {
-// 	// t_entry		*entry;
-// 	t_bucket	*tmp;
-// 	t_bucket	*head;
-
-// 	head = bfs->bfsq;
-// 	tmp = NULL;
-// 	if (!dupe(&head, node))
-// 	{
-// 		// entry = copy_entry(node);
-// 		if (head == NULL)
-// 		{
-// 			head = ft_memalloc(sizeof(t_bucket));
-// 			// head->entry = entry;
-// 			head->entry = node;
-// 		}
-// 		else
-// 		{
-// 			tmp = head;
-// 			while (tmp->next)
-// 				tmp = tmp->next;
-// 			tmp->next = ft_memalloc(sizeof(t_bucket));
-// 			// tmp->next->entry = entry;
-// 			tmp->next->entry = node;
-// 		}
-// 		bfs->bfsq = head;
-// 	}
-// }
-
-// void	append_to_bfs(t_bfs *bfs, t_entry *node)
-// {
-// 	// t_entry		*entry;
-// 	t_bucket	*tmp;
-// 	t_bucket	*head;
-
-// 	head = bfs->bfs;
-// 	tmp = NULL;
-// 	if (!dupe(head, node))
-// 	{
-// 		// entry = copy_entry(node);		
-// 		if (head == NULL)
-// 		{
-// 			head = ft_memalloc(sizeof(t_bucket));
-// 			// head->entry = entry;
-// 			head->entry = node;
-// 		}
-// 		else
-// 		{
-// 			tmp = head;
-// 			while (tmp->next)
-// 				tmp = tmp->next;
-// 			tmp->next = ft_memalloc(sizeof(t_bucket));
-// 			// tmp->next->entry = entry;
-// 			tmp->next->entry = node;
-// 		}
-// 	}
-// 	bfs->bfs = head;
-// }

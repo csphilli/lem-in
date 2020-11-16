@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/11/13 18:20:27 by cphillip         ###   ########.fr        #
+#    Updated: 2020/11/16 09:42:23 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,12 +54,14 @@ SRC_FILES = lem_in.c\
 			write_moves.c\
 			sort_paths.c\
 			ft_intcat.c\
-			bfs.c\
+			ll_work.c\
+			lol_work.c\
 			build_paths.c\
-			ll_lol.c\
-			ll_lol2.c\
+			ht_functions.c
 			# find_paths.c
 			# choose_paths.c
+			# b_paths.c
+			# bfs.c
 
 OBJ_DIR = ./obj/
 OBJ_FILES = $(SRC_FILES:%.c=%.o)

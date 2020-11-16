@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/14 18:16:42 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/16 11:17:33 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,7 @@ void		check_inputs(t_master *master, int ac)
 	master->valid_input = true;
 }
 
-float		load(t_master *master)
-{
-	float res;
 
-	res = (float)master->nbr_keys / (float)master->new_size;
-	return (res);
-}
 
 t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
 {
@@ -53,14 +47,13 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
 	}
 	line = NULL;
 	validate_rooms(ht, master);
-	if (master->print_hash_table)
-		print_ht(ht, master->new_size);
-	// dead_end_scan(master, ht);
-	do_bfs(master, ht);
+	build_paths(ht, master);
 	// while (1)
 	// {
 		
 	// }
+	// dead_end_scan(master, ht);
+	// do_bfs(master, ht);
 	// find_paths(master, ht);
 	return (ht);
 }
@@ -83,11 +76,14 @@ int			main(int ac, char **av)
 	ht = create_ht(master);
 	if (master->valid_input == true)
 		ht = do_lemin(fd, master, ht);
+	if (master->print_hash_table)
+		print_ht(ht, master->new_size);
 	if (master->leaks == true)
 	{
 		while (1)
 		{
 		}
 	}
+	
 	return (0);
 }

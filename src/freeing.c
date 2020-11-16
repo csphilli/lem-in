@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 13:51:53 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 11:51:35 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/15 20:26:31 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	free_node(t_bucket *node)
 {
 	free_entry(node->entry);
 	free_bucket(node);
+	node = NULL;
 }
 
 void	free_entry(t_entry *entry)
@@ -37,7 +38,7 @@ void	free_entry(t_entry *entry)
 	// 	}
 	// }
 	// if (entry->links)
-	while(entry->links)
+	while (entry->links)
 		pop_from_ll(&entry->links);
 	entry->links = NULL; // Might have to first free entry->links
 	// free(entry->link_arr);

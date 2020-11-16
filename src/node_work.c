@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:20:56 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 14:52:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/15 18:51:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,10 @@ void		insert_node(t_bucket **ht, t_entry *entry, int index)
 t_bucket	*insert_node_to_path(t_bucket *head, t_entry *node)
 {
 	t_bucket	*bucket;
-	// t_entry		*entry;
 	t_bucket	*tmp;
 
 	tmp = NULL;
-	// entry = copy_entry(node);
 	bucket = ft_memalloc(sizeof(t_bucket));
-	// bucket->entry = entry;
 	bucket->entry = node;
 	if (head == NULL)
 		head = bucket;

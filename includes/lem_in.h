@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/15 11:47:17 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/16 19:39:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 typedef struct		s_bucket
 {
 	struct s_entry	*entry;
+	unsigned int	cap;
 	struct s_bucket	*next;
 }					t_bucket;
 
@@ -71,16 +72,22 @@ typedef struct 		s_lol
 	struct s_lol	*next;
 }					t_lol;
 
+typedef struct		s_pmap
+{
+	t_entry			*fnd;
+	t_entry			*via;
+	struct s_pmap	*next;
+}					t_pmap;
+
 typedef struct		s_bfs
 {
-	t_bucket		*bfs;
-	t_bucket		*bfsq;
-	// t_lol			*lolq;
-	// t_lol			*lolp;
-	bool			exit;
-	t_entry			*end;
+	t_bucket		*q;
+	t_pmap			*map;
+	t_lol			*paths;
+	t_bucket		*edge;
+	t_entry			*cur;
 	t_entry			*start;
-	int				path_count;
+	t_entry			*goal;
 }					t_bfs;
 
 
@@ -136,8 +143,8 @@ typedef struct		s_master
 	char			*comment;
 	bool			s_toggle;
 	bool			e_toggle;
-	char			*start_room;
-	char			*end_room;
+	t_entry			*start_room;
+	t_entry			*end_room;
 	bool			print_chosen_paths;
 	bool			print_all_paths;
 	bool			print_hash_table;
@@ -180,7 +187,8 @@ void				exit_no_path(void);
 
 void				init_master(t_master *master);
 // void				init_link_arr(t_entry **links, int len);
-void				init_paths(int len, t_bucket **p);
+// void				init_paths(int len, t_bucket **p);
+void				init_bfs(t_bfs *bfs, t_master *master);
 // void				init_entry(t_entry *entry);
 void				init_paths_struct(t_paths *paths);
 void				init_instrux(t_ant_instrux *instrux);
@@ -233,6 +241,7 @@ t_entry				*get_entry(t_bucket **ht, t_master *master, char *name);
 */
 
 t_bucket			**grow_ht(t_bucket **ht, t_master *master);
+
 t_bucket			**create_ht(t_master *master);
 // t_bucket			*create_bucket(void);
 // t_entry				*create_entry(void);
@@ -243,6 +252,7 @@ void				insert_node(t_bucket **ht, t_entry *entry, int index);
 void				assign_entry_to_ht(t_bucket **ht, t_master *master,\
 					t_entry *entry);
 int					gen_key(char *str);
+t_bucket			 *get_head(t_bucket **ht, t_master *master, char *name);
 
 /*
 **	Routing Algorithm
@@ -264,7 +274,7 @@ void				write_s2r(t_paths *paths, t_entry *entry1);
 void				print_paths(t_bucket **paths);
 void				print_path(t_bucket *head);
 // void				dead_end_scan(t_master *master, t_bucket **ht);
-void				start_or_end(char *s, t_master *master, char *name);
+void				start_or_end(t_master *master, t_entry *entry);
 int					bucket_arr_len(t_bucket **arr);
 int					link_array_len(t_entry **arr);
 void				print_ht(t_bucket **ht, size_t size);
@@ -295,12 +305,14 @@ void				pop_from_lol(t_lol **list);
 void				pop_from_ll(t_bucket **ll);
 void				append_to_ll(t_bucket **src, t_entry *entry);
 void				append_to_lol(t_lol **lol, t_bucket *ll);
+void				dlt_dead_end(t_bucket **head);
 int					dupe(t_bucket **head, t_entry *entry);
 void				print_ll(t_bucket *ll);
 void				print_lol(t_lol **list);
 void				copy_ll(t_bucket **dst, t_bucket *src);
 void				do_bfs(t_master *master, t_bucket **ht);
-void				build_paths(t_bucket **bfs, t_entry *start, t_entry *goal);
-void				set_visited(t_bucket **paths, int visited);
+void				build_paths(t_bucket **ht, t_master *master);
+// void				build_paths(t_bucket **bfs, t_entry *start, t_entry *goal);
+// void				set_visited(t_bucket **paths, int visited);
 
 #endif

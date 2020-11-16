@@ -6,29 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/15 11:13:52 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/16 11:16:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int			gen_key(char *str)
-{
-	int		key;
 
-	key = 0;
-	while (*str)
-	{
-		if (*str >= (0 + '0') && *str <= (9 + '0'))
-			key += (*str - 48);
-		else if (*str >= 'a' && *str <= 'z')
-			key += *str;
-		else if (*str >= 'A' && *str <= 'Z')
-			key += *str;
-		str++;
-	}
-	return (key);
-}
 
 t_entry		*fill_entry_from_line(t_master *master, t_entry *dst, char *line)
 {
@@ -42,8 +26,13 @@ t_entry		*fill_entry_from_line(t_master *master, t_entry *dst, char *line)
 	if (master->comment != NULL)
 	{
 		dst->comment = ft_strdup(master->comment);
-		start_or_end(dst->comment, master, dst->name);
+		// start_or_end(dst->comment, master, dst->name);
+		start_or_end(master, dst);
 		ft_strdel(&master->comment);
+		// while (1)
+		// {
+			
+		// }
 	}
 	free_strsplit(&data);
 	data = NULL;

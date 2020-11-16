@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ll_lol.c                                           :+:      :+:    :+:   */
+/*   ll_work.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 09:29:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/15 11:36:01 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/15 18:30:18 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,6 @@ void	pop_from_ll(t_bucket **ll)
 	*ll = head;
 }
 
-void	unshift_lol(t_lol **lol, t_bucket *ll) // working, no leaks.
-{
-	t_lol 	*head;
-	t_lol	*tmp;
-
-	head = *lol;
-	tmp = head;
-	if (head == NULL)
-	{
-		head = ft_memalloc(sizeof(t_lol));
-		head->list = ll;
-	}
-	else
-	{
-		tmp = ft_memalloc(sizeof(t_lol));
-		tmp->list = ll;
-		tmp->next = head;
-		head = tmp;
-	}
-	*lol = head;
-}
-
 void    unshift_ll(t_bucket **ll, t_entry *entry) // working, no leaks
 {
 	t_bucket	*tmp;
@@ -79,45 +57,6 @@ void    unshift_ll(t_bucket **ll, t_entry *entry) // working, no leaks
 	*ll = head;
 }
 
-// void	pop_from_lol(t_lol **list) // working no leaks
-// {
-// 	t_lol *head;
-// 	t_lol *tmp;
-
-// 	head = *list;
-// 	tmp = head;
-// 	if (!head->next)
-// 	{
-// 		free(head);
-// 		head = NULL;
-// 	}
-// 	else
-// 	{
-// 		head = head->next;
-// 		while (tmp->list)
-// 			pop_from_ll(&tmp->list);
-// 		free(tmp);
-// 		tmp = NULL;
-// 	}
-// 	*list = head;
-// }
-
-void	pop_from_lol(t_lol **list) // working no leaks
-{
-	t_lol *head;
-	t_lol *tmp;
-
-	head = *list;
-	tmp = head;
-	if (head->next)
-		head = head->next;
-	while (tmp->list)
-		pop_from_ll(&tmp->list);
-	free(tmp);
-	tmp = NULL;
-	*list = head;
-}
-
 void	insert_to_ll(t_bucket **src, t_entry *entry)
 {
 	t_bucket	*new;
@@ -133,3 +72,39 @@ void	insert_to_ll(t_bucket **src, t_entry *entry)
 	}
 }
 
+void	append_to_ll(t_bucket **src, t_entry *entry)
+{
+	t_bucket	*tmp;
+	t_bucket	*head;
+
+	head = *src;
+	tmp = head;
+	if (head == NULL)
+	{
+		head = ft_memalloc(sizeof(t_bucket));
+		head->entry = entry;
+	}
+	else
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = ft_memalloc(sizeof(t_bucket));
+		tmp->next->entry = entry;
+	}
+	*src = head;
+}
+
+void	copy_ll(t_bucket **dst, t_bucket *src)
+{
+	t_bucket 	*new;
+	t_bucket	*tmp;
+
+	new = NULL;
+	tmp = src;
+	while (tmp)
+	{
+		append_to_ll(&new, tmp->entry);
+		tmp = tmp->next;
+	}
+	*dst = new;
+}

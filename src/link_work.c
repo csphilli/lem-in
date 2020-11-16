@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 13:27:53 by cphillip          #+#    #+#             */
-/*   Updated: 2020/10/12 08:32:45 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/15 20:25:11 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,4 @@ int		link_array_len(t_entry **arr)
 	return (len);
 }
 
-t_entry	*get_entry(t_bucket **ht, t_master *master, char *name)
-{
-	t_bucket	*tmp;
-	int			index;
 
-	tmp = NULL;
-	index = gen_key(name) % master->new_size;
-	tmp = ht[index];
-	while (tmp)
-	{
-		if (ft_strequ(tmp->entry->name, name))
-			return (tmp->entry);
-		else if (!tmp->next && !ft_strequ(tmp->entry->name, name))
-			exit_room_not_found(name);
-		tmp = tmp->next;
-	}
-	return (0);
-}

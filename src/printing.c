@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 20:32:46 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/16 10:49:56 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,29 @@
 **	Prints all paths in a path array.
 */
 
-void	print_paths(t_bucket **paths)
-{
-	t_bucket	**tmp;
-	t_bucket	*curr;
-	int			i;
+// void	print_paths(t_bucket **paths)
+// {
+// 	t_bucket	**tmp;
+// 	t_bucket	*curr;
+// 	int			i;
 
-	tmp = paths;
-	i = 0;
-	while (i < bucket_arr_len(paths))
-	{
-		curr = tmp[i];
-		ft_printf("[%4d]: ", i);
-		while (curr)
-		{
-			ft_printf("%s", curr->entry->name);
-			if (curr->next)
-				ft_printf(",");
-			curr = curr->next;
-		}
-		ft_printf("\n");
-		i++;
-	}
-}
+// 	tmp = paths;
+// 	i = 0;
+// 	while (i < bucket_arr_len(paths))
+// 	{
+// 		curr = tmp[i];
+// 		ft_printf("[%4d]: ", i);
+// 		while (curr)
+// 		{
+// 			ft_printf("%s", curr->entry->name);
+// 			if (curr->next)
+// 				ft_printf(",");
+// 			curr = curr->next;
+// 		}
+// 		ft_printf("\n");
+// 		i++;
+// 	}
+// }
 
 void	print_links(t_bucket *src)
 {
@@ -68,7 +68,7 @@ void	print_links(t_bucket *src)
 	write(1, " | Links: ", 10);
 	while (tmp)
 	{
-		ft_printf("%s", tmp->entry->name);
+		ft_printf("%s/%d", tmp->entry->name, tmp->cap);
 		if (tmp->next)
 			write(1, ",", 1);
 		tmp = tmp->next;
@@ -102,8 +102,7 @@ void	print_ht(t_bucket **ht, size_t size)
 			tmp = ht[i];
 			while (tmp != NULL)
 			{
-				ft_printf("{Name: %s | Visited: %d", tmp->entry->name,\
-				tmp->entry->visited);
+				ft_printf("{Name: %s", tmp->entry->name);
 				print_extras(tmp->entry);
 				if (tmp->next)
 					ft_printf("-->");

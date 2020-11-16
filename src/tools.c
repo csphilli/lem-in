@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:23:28 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/14 11:11:27 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/16 11:16:16 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,27 @@
 **	and end room to the master struct for later reference.
 */
 
-void	start_or_end(char *s, t_master *master, char *name)
+// void	start_or_end(char *s, t_master *master, char *name)
+// {
+// 	if (ft_strequ(s, "start"))
+// 		master->start_room = ft_strdup(name);
+// 	else if (ft_strequ(s, "end"))
+// 		master->end_room = ft_strdup(name);
+// }
+
+
+void	start_or_end(t_master *master, t_entry *entry)
 {
-	if (ft_strequ(s, "start"))
-		master->start_room = ft_strdup(name);
-	else if (ft_strequ(s, "end"))
-		master->end_room = ft_strdup(name);
+	if (ft_strequ(entry->comment, "start"))
+	{
+		// master->start_room = ft_memalloc(sizeof(t_entry));
+		master->start_room = entry;
+	}
+	else if (ft_strequ(entry->comment, "end"))
+	{
+		// master->end_room = ft_memalloc(sizeof(t_entry));
+		master->end_room = entry;
+	}	
 }
 
 /*
