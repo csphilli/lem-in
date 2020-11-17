@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 13:34:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/15 20:41:43 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 15:43:27 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@ int		dupe(t_bucket **head, t_entry *entry)
 	return (0);
 }
 
-void	dlt_dead_end(t_bucket **head)
-{
-	ft_printf("Head start: %s\n", (*head)->entry->name);
-	t_bucket *tmp;
-	// t_bucket *cur;
+// void	dlt_dead_end(t_bucket **head)
+// {
+// 	ft_printf("Head start: %s\n", (*head)->entry->name);
+// 	t_bucket *tmp;
+// 	// t_bucket *cur;
 
-	// cur = *head;
-	tmp = *head;
-	tmp = tmp->next;
-	if (tmp->next)
-		(*head)->next = tmp->next;
-	else
-		(*head)->next = NULL;
-	ft_printf("deleting %s\n", tmp->entry->name);
-	free_node(tmp);
-	// *head = cur;
-	ft_printf("Head end: %s\n", (*head)->entry->name);
+// 	// cur = *head;
+// 	tmp = *head;
+// 	tmp = tmp->next;
+// 	if (tmp->next)
+// 		(*head)->next = tmp->next;
+// 	else
+// 		(*head)->next = NULL;
+// 	ft_printf("deleting %s\n", tmp->entry->name);
+// 	free_node(tmp);
+// 	// *head = cur;
+// 	ft_printf("Head end: %s\n", (*head)->entry->name);
 
-}
+// }

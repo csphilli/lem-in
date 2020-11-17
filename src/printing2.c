@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 11:11:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/15 11:22:34 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 13:24:39 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,3 +64,18 @@ void	print_lol(t_lol **list)
 		}
 	}	
 }
+
+// WAS ONLY USED FOR DEBUGGING. NOT NEEDED ANYMORE.
+// void		print_map(t_pmap *map)
+// {
+// 	t_pmap *tmp;
+
+// 	tmp = map;
+// 	while (tmp)
+// 	{
+// 		ft_printf("{f: %s | v: %s}", tmp->fnd->name, tmp->via->name);
+// 		tmp->next ? write(1, "->", 2) : 1;
+// 		tmp = tmp->next;
+// 	}
+// 	write(1, "\n", 1);
+// }

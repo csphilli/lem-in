@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 13:51:53 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 12:54:55 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 15:42:31 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,6 @@ void	free_entry(t_entry *entry)
 		ft_strdel(&entry->name);
 	if (entry->comment)
 		ft_strdel(&entry->comment);
-	// if (entry->link_arr)
-	// {
-	// 	while (i < link_array_len(entry->link_arr))
-	// 	{
-	// 		entry->link_arr[i] = NULL;
-	// 		free(entry->link_arr[i]);
-	// 		i++;
-	// 	}
-	// }
-	// if (entry->links)
 	while (entry->links)
 		pop_from_ll(&entry->links);
 	entry->links = NULL; // Might have to first free entry->links

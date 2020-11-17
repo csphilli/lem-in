@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 13:27:53 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/15 20:25:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 15:42:47 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,3 @@ int		link_array_len(t_entry **arr)
 		len++;
 	return (len);
 }
-
-

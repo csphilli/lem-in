@@ -6,23 +6,22 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 12:56:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 15:47:18 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
-# define E_BASIC "Error. For more info, use flag '-e'.\n"
-# define E_MALLOC "Error. Failed to allocate memory.\n"
+// # define E_BASIC "Error. For more info, use flag '-e'.\n"
+// # define E_MALLOC "Error. Failed to allocate memory.\n"
 # define E_NO_ROOMS "Error. No rooms specified.\n"
 # define E_NO_LINKS "Error. No links specified.\n"
-# define E_NOPATH "Error. No solution. No path from start to end exists.\n"
+// # define E_NOPATH "Error. No solution. No path from start to end exists.\n"
 # define E_L "Error. 'L' present at beginning of room name.\n"
 # define E_COORD "Error. Invalid coordinate on line "
 # define E_DUPL "Error. Duplicate room name found: "
 # define E_FLAG "Error. Invalid flag specified.\n"
-# define E_USAGE "Error. Invalid usage. Use '-h' for help.\n"
-# define E_ANTS "Error. Invalid ant size specified.\n"
+// # define E_USAGE "Error. Invalid usage. Use '-h' for help.\n"
 # define E_START "Error. Start already defined.\n"
 # define E_END "Error. End already defined.\n"
 # define E_NOFILE "Error. File not found.\n"
@@ -171,16 +170,16 @@ typedef struct		s_master
 */
 // void	error_master(void);
 // void	error(t_master *master, char *e_code, int line_nbr, char *str);
-void				exit_error(void);
+// void				exit_error(void);
 void				exit_malloc(void);
-void				exit_usage(void);
+// void				exit_usage(void);
 void				exit_coord(int line_nbr);
 void				exit_dup(char *room_name, size_t index);
 void				exit_room_not_found(char *str);
-void				check_path_exists(t_entry *start, t_entry *end, t_bucket *bfs);
+// void				check_path_exists(t_entry *start, t_entry *end, t_bucket *bfs);
 void				exit_dup_coord(t_master *master);
-void				exit_no_solution(void);
-void				exit_no_path(void);
+// void				exit_no_solution(void);
+// void				exit_no_path(void);
 
 /*
 **	INITIALIZATION
@@ -272,13 +271,22 @@ void				write_s2r(t_paths *paths, t_entry *entry1);
 **	RANDOM TOOLS
 */
 
+/*
+**	PRINTING
+*/
+
 void				print_paths(t_bucket **paths);
 void				print_path(t_bucket *head);
+void				print_ht(t_bucket **ht, size_t size);
+void				print_int_arr(int *ants);
+void				print_ll(t_bucket *ll);
+void				print_lol(t_lol **list);
+
+
 // void				dead_end_scan(t_master *master, t_bucket **ht);
 void				start_or_end(t_master *master, t_entry *entry);
 int					bucket_arr_len(t_bucket **arr);
 int					link_array_len(t_entry **arr);
-void				print_ht(t_bucket **ht, size_t size);
 t_bucket			*copy_from_array(t_bucket *head, t_bucket *src);
 void				max_paths(t_paths *paths);
 int					dup_coord(t_bucket **ht, t_master *master, t_entry *entry);
@@ -287,7 +295,6 @@ int					list_length(t_bucket *head);
 void				sort_all_paths(t_paths *paths);
 int					*ft_intcat(int *src, int to_add);
 int					ft_int_arr_len(int *n);
-void				print_int_arr(int *ants);
 int					most_ants(int *arr);
 
 
@@ -306,15 +313,29 @@ void				pop_from_lol(t_lol **list);
 void				pop_from_ll(t_bucket **ll);
 void				append_to_ll(t_bucket **src, t_entry *entry);
 void				append_to_lol(t_lol **lol, t_bucket *ll);
-void				dlt_dead_end(t_bucket **head);
+// void				dlt_dead_end(t_bucket **head);
 int					dupe(t_bucket **head, t_entry *entry);
-void				print_ll(t_bucket *ll);
-void				print_lol(t_lol **list);
 void				copy_ll(t_bucket **dst, t_bucket *src);
-void				do_bfs(t_master *master, t_bucket **ht);
+// void				do_bfs(t_master *master, t_bucket **ht);
 // void				build_paths(t_bucket **ht, t_master *master);
-void				build_paths(t_bucket **ht, t_master *master, t_bfs **bfs);
+
 // void				build_paths(t_bucket **bfs, t_entry *start, t_entry *goal);
 // void				set_visited(t_bucket **paths, int visited);
+
+/*
+**	MAP WORK
+*/
+
+void				unshift_to_map(t_pmap **map, t_entry *found, t_entry *via);
+void				pop_from_map(t_pmap **map);
+
+/*
+** 	BUILDING PATHS AND TOOLS
+*/
+
+void				build_paths(t_bucket **ht, t_master *master, t_bfs **bfs);
+void				adj_cap(t_entry *fnd, t_entry *via, int cap);
+t_bucket		 	*get_edge(t_entry *fnd, t_entry *via);
+void				clear_data(t_bucket **ht, t_master *master, t_bfs *bfs);
 
 #endif

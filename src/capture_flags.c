@@ -6,11 +6,18 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 18:04:16 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 15:31:53 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+int		validated(t_master *master, char c)
+{
+	if (ft_strchr(master->accepted_flags, c))
+		return (1);
+	return (0);
+}
 
 void	toggle_bools(t_master *master)
 {
@@ -45,13 +52,13 @@ void	add_flag(t_master *master, char *c)
 	c++;
 	if (!master->input_flags)
 	{
-		if (!(master->input_flags = (char*)malloc(sizeof(char)\
-		* (ft_strlen(c)))))
-			exit_malloc();
+		if (!(master->input_flags = ft_memalloc(sizeof(char) * ft_strlen(c))))
+			ft_error("Error: Failed to allocate memory.");
 		ft_strcat(master->input_flags, c);
 	}
 	else
 		ft_strcat(master->input_flags, c);
+
 }
 
 void	capture_flags(t_master *master, int ac, char **av)
@@ -61,8 +68,13 @@ void	capture_flags(t_master *master, int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		if (av[i][0] == '-')
+		if ((av[i][0] == '-') && validated(master, av[i][1]))
 			add_flag(master, av[i]);
+		else
+		{
+			ft_printf("Error. Invalid flag '%c'.", av[i][1]);
+			ft_error(" Use -h for a list of accepted flags.");
+		}
 		i++;
 	}
 	if (master->input_flags != NULL)

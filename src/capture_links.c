@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 18:04:50 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 13:44:43 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ void		add_link_to_room(t_bucket **ht, t_master *master, char *line)
 	data = ft_strsplit(line, '-');
 	entry1 = get_entry(ht, master, data[1]);
 	entry2 = get_entry(ht, master, data[0]);
-	if (entry1 == NULL)
+	if (!entry1)
 		exit_room_not_found(data[1]);
-	if (entry2 == NULL)
+	if (!entry2)
 		exit_room_not_found(data[0]);
 	if (entry1 && entry2)
 	{

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 12:03:09 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/01 19:47:28 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 15:42:59 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	load_help(t_master *master)
 	ft_printf("\tAcceptable options: %s\n", master->accepted_flags);
 	ft_printf("\n**** OPTION FUNCTIONS ****\n\n");
 	ft_printf("\tf: Allows to read from file. No '"CYAN"<"RESET"' needed.\n");
-	ft_printf("\td: Prints the ant distribution on paths used for soloving.\n");
+	ft_printf("\td: Prints the ant distribution on paths used for solving.\n");
 	ft_printf("\th: Displays this help list.\n");
 	ft_printf("\tt: Displays the input of ant farm as hash table.\n");
 	ft_printf("\ta: Prints the list of all available paths to choose from.\n");

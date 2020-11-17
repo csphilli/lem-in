@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 10:08:53 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 15:04:20 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		check_inputs(t_master *master, int ac)
 		while (*s++)
 			i++;
 		if (i + 1 != ac && !ft_strchr(master->input_flags, 'f'))
-			exit_usage();
+			ft_error("Error. Invalid usage. Use '-h' for help.");
 	}
 	master->valid_input = true;
 }
@@ -60,10 +60,10 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
 	validate_rooms(ht, master);
 	build_paths(ht, master, &bfs);
 	print_lol(&bfs->paths);
-	// while (1)
-	// {
+	while (1)
+	{
 		
-	// }
+	}
 	// dead_end_scan(master, ht);
 	// do_bfs(master, ht);
 	// find_paths(master, ht);

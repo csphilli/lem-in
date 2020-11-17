@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/16 11:14:18 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 15:32:10 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_master(t_master *master)
 		master->print_all_paths = false;
 		master->print_ant_distribution = false;
 		// master->input_flags = NULL;
-		master->accepted_flags = "cdfhtp";
+		master->accepted_flags = "cdfhtpl";
 		master->line_nbr = 1;
 		// master->has_flags = 0;
 		// master->ants_added = false;
