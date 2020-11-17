@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 15:47:18 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 19:23:01 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,7 +292,7 @@ void				max_paths(t_paths *paths);
 int					dup_coord(t_bucket **ht, t_master *master, t_entry *entry);
 void				get_shortest_path(t_paths *paths);
 int					list_length(t_bucket *head);
-void				sort_all_paths(t_paths *paths);
+// void				sort_all_paths(t_paths *paths);
 int					*ft_intcat(int *src, int to_add);
 int					ft_int_arr_len(int *n);
 int					most_ants(int *arr);
@@ -337,5 +337,6 @@ void				build_paths(t_bucket **ht, t_master *master, t_bfs **bfs);
 void				adj_cap(t_entry *fnd, t_entry *via, int cap);
 t_bucket		 	*get_edge(t_entry *fnd, t_entry *via);
 void				clear_data(t_bucket **ht, t_master *master, t_bfs *bfs);
+void				sort_paths(t_bfs *bfs);
 
 #endif

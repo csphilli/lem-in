@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 09:35:58 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/02 00:09:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 19:23:31 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,56 +36,29 @@ void	get_shortest_path(t_paths *paths)
 	paths->s_index = pos;
 }
 
-void	swap(t_bucket *x, t_bucket *y)
-{
-	t_bucket	tmp;
 
-	tmp = *x;
-	*x = *y;
-	*y = tmp;
-}
 
-int		sorted(t_paths *paths)
-{
-	int	len;
-	int	x;
-	int	y;
-	int	i;
+// int		sorted(t_paths *paths)
+// {
+// 	int	len;
+// 	int	x;
+// 	int	y;
+// 	int	i;
 
-	len = bucket_arr_len(paths->p);
-	i = 0;
-	while (i < len - 1)
-	{
-		x = list_length(paths->p[i]);
-		y = list_length(paths->p[i + 1]);
-		if (x > y)
-			return (0);
-		i++;
-	}
-	return (1);
-}
+// 	len = bucket_arr_len(paths->p);
+// 	i = 0;
+// 	while (i < len - 1)
+// 	{
+// 		x = list_length(paths->p[i]);
+// 		y = list_length(paths->p[i + 1]);
+// 		if (x > y)
+// 			return (0);
+// 		i++;
+// 	}
+// 	return (1);
+// }
 
-void	sort_all_paths(t_paths *paths)
-{
-	int	len;
-	int	x;
-	int	y;
-	int	i;
 
-	i = 0;
-	len = bucket_arr_len(paths->p);
-	while (i < len - 1)
-	{
-		x = list_length(paths->p[i]);
-		y = list_length(paths->p[i + 1]);
-		if (x > y)
-			swap(paths->p[i], paths->p[i + 1]);
-		else
-			i++;
-		if (i == len - 1 && !sorted(paths))
-			i = 0;
-	}
-}
 
 /*
 while (i < len - 1)

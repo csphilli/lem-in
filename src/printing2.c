@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 11:11:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 13:24:39 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 20:41:57 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	print_lol(t_lol **list)
 	t_lol 		*tmp;
 
 	tmp = *list;
-	// ft_printf("head: %s\n", tmp->list->entry->name);
 	if (tmp)
 	{
 		while (tmp)
@@ -62,7 +61,7 @@ void	print_lol(t_lol **list)
 			print_ll(tmp->list);
 			tmp = tmp->next;
 		}
-	}	
+	}
 }
 
 // WAS ONLY USED FOR DEBUGGING. NOT NEEDED ANYMORE.

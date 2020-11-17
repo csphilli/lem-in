@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/11/17 15:39:42 by cphillip         ###   ########.fr        #
+#    Updated: 2020/11/17 16:02:00 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,37 +26,37 @@ INCLUDES = -I$(HEADER_DIR) -I$(LIBFT_HEADER)
 SRC_DIR = ./src/
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
 SRC_FILES = lem_in.c\
-			capture_comment.c\
-			capture_room.c\
-			capture_ants.c\
-			capture_flags.c\
-			capture_links.c\
+			tools.c\
 			inits.c\
 			inits2.c\
-			parse_lines.c\
-			load_help.c\
-			error_mgmt.c\
-			realloc_ht.c\
-			node_work.c\
-			node_work2.c\
-			ht_functions2.c\
-			printing.c\
-			printing2.c\
-			link_work.c\
-			tools.c\
 			freeing.c\
-			freeing2.c\
-			calc_distribution.c\
-			ants_marching.c\
-			write_moves.c\
-			sort_paths.c\
-			ft_intcat.c\
 			ll_work.c\
+			freeing2.c\
 			lol_work.c\
-			build_paths.c\
-			ht_functions.c\
 			map_work.c\
+			printing.c\
+			load_help.c\
+			node_work.c\
+			printing2.c\
+			ft_intcat.c\
+			link_work.c\
+			realloc_ht.c\
+			error_mgmt.c\
+			node_work2.c\
+			sort_paths.c\
+			parse_lines.c\
+			write_moves.c\
+			build_paths.c\
+			capture_room.c\
+			capture_ants.c\
+			ht_functions.c\
+			ht_functions2.c\
+			ants_marching.c\
+			capture_flags.c\
+			capture_links.c\
+			capture_comment.c\
 			build_path_tools.c\
+			calc_distribution.c\
 
 OBJ_DIR = ./obj/
 OBJ_FILES = $(SRC_FILES:%.c=%.o)
