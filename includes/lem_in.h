@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/16 19:39:23 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 10:03:20 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct		s_entry
 	int				y;
 	int				key;
 	int				visited;
+	int				used;
 	int				occ;
 	int				ant_id;
 	bool			no;
@@ -87,7 +88,7 @@ typedef struct		s_bfs
 	t_bucket		*edge;
 	t_entry			*cur;
 	t_entry			*start;
-	t_entry			*goal;
+	t_entry			*end;
 }					t_bfs;
 
 
@@ -311,7 +312,8 @@ void				print_ll(t_bucket *ll);
 void				print_lol(t_lol **list);
 void				copy_ll(t_bucket **dst, t_bucket *src);
 void				do_bfs(t_master *master, t_bucket **ht);
-void				build_paths(t_bucket **ht, t_master *master);
+// void				build_paths(t_bucket **ht, t_master *master);
+void				build_paths(t_bucket **ht, t_master *master, t_bfs **bfs);
 // void				build_paths(t_bucket **bfs, t_entry *start, t_entry *goal);
 // void				set_visited(t_bucket **paths, int visited);
 

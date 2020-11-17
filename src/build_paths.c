@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/16 23:13:44 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 10:04:05 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,10 @@ void	adj_cap(t_entry *fnd, t_entry *via, int cap)
 {
 	t_bucket *edge;
 
+	// ft_printf("adjust %s via %s\n", fnd->name, via->name);
 	edge = get_edge(fnd, via);
 	edge->cap = cap;
+	via->used = 1;
 }
 
 void	map_to_paths(t_bfs *bfs)
@@ -134,9 +136,14 @@ void	map_to_paths(t_bfs *bfs)
 		if (ft_strequ(tmp->fnd->name, cur->via->name))
 		{
 			append_to_ll(&ll, tmp->via);
+			// ft_printf("tmp->fnd: %s | tmp->via: %s\n", tmp->fnd->name, tmp->via->name);
 			adj_cap(tmp->fnd, tmp->via, 0);
+			// if (ft_strequ(tmp->via->name, bfs->start->name))
 			if (ft_strequ(tmp->via->name, bfs->start->name))
+			{
+				// adj_cap(tmp->via, tmp->fnd, 0);
 				break ;
+			}
 			cur->via = tmp->via;
 		}
 		tmp = tmp->next;
@@ -170,6 +177,8 @@ void	clear_data(t_bucket **ht, t_master *master, t_bfs *bfs)
 	while (bfs->map)
 		pop_from_map(&bfs->map);
 	reset_visited(ht, master);
+	while (bfs->q)
+		pop_from_ll(&bfs->q);
 }
 
 void	paths3(t_bucket **ht, t_master *master, t_bfs *bfs)
@@ -181,13 +190,14 @@ void	paths3(t_bucket **ht, t_master *master, t_bfs *bfs)
 	tmp = cur->links;
 	while (tmp)
 	{
-		if (ft_strequ(tmp->entry->name, bfs->goal->name))
+		if (ft_strequ(tmp->entry->name, bfs->end->name))
 		{
 			unshift_to_map(&bfs->map, tmp->entry, cur);
 			map_to_paths(bfs);
+			clear_data(ht, master, bfs);
 			return ;
 		}
-		else if (tmp->cap && !tmp->entry->visited)
+		else if (tmp->cap && !tmp->entry->visited && !tmp->entry->used)
 		{
 			append_to_ll(&bfs->q, tmp->entry);
 			unshift_to_map(&bfs->map, tmp->entry, cur);
@@ -212,33 +222,38 @@ int		paths_exist(t_bfs *bfs)
 }
 
 void	build_paths2(t_bucket **ht, t_master *master, t_bfs *bfs)
-{	
-	while (paths_exist(bfs))
+{
+	int	len;
+	len = list_length(bfs->start->links);
+	while (len--)
 	{
-		append_to_ll(&bfs->q, master->start_room);
+		// append_to_ll(&bfs->q, master->start_room);
+		append_to_ll(&bfs->q, bfs->start);
 		while (bfs->q)
 		{
 			bfs->cur = bfs->q->entry;
 			pop_from_ll(&bfs->q);
 			paths3(ht, master, bfs);
 		}
-		clear_data(ht, master, bfs);
+		// print_lol(&bfs->paths);
+		// ft_printf(RED"NEWLINE\n"RESET);
+		// return ;
+		// print_ht(ht, master->new_size);
+		// clear_data(ht, master, bfs);
 	}
 }
 
-void	build_paths(t_bucket **ht, t_master *master)
+void	build_paths(t_bucket **ht, t_master *master, t_bfs **bfs)
 {
-	t_bfs	*bfs;
+	// t_bfs	*bfs;
 
-	bfs = ft_memalloc(sizeof(t_bfs));
-	bfs->goal = master->end_room;
-	bfs->start = master->start_room;
-	append_to_ll(&bfs->q, bfs->start);
+	// bfs = ft_memalloc(sizeof(t_bfs));
+	// bfs->start = master->start_room;
+	// bfs->end = master->end_room;
+	// ft_printf("bfs start: %s | end: %s\n", bfs->start->name, bfs->end->name);
 	initialize_capacities(ht, master);
-	build_paths2(ht, master, bfs);
-	print_lol(&bfs->paths);
-	while (1)
-	{
-		
-	}
+	build_paths2(ht, master, *bfs);
+	// print_lol(bfs->paths);
+	// return (bfs);
+	// exit(1);
 }

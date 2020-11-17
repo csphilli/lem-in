@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/16 11:17:33 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 10:08:53 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,11 @@ void		check_inputs(t_master *master, int ac)
 	master->valid_input = true;
 }
 
-
-
-t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
+t_bucket	**get_data(t_bucket **ht, t_master *master, int fd)
 {
 	char	*line;
 
+	line = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (load(master) > master->load)
@@ -46,8 +45,21 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
 		parse_lines(master, line, ht);
 	}
 	line = NULL;
+	return (ht);
+}
+
+
+t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
+{
+	t_bfs	*bfs;
+
+	bfs = ft_memalloc(sizeof(t_bfs));
+	ht = get_data(ht, master, fd);
+	bfs->start = master->start_room;
+	bfs->end = master->end_room;
 	validate_rooms(ht, master);
-	build_paths(ht, master);
+	build_paths(ht, master, &bfs);
+	print_lol(&bfs->paths);
 	// while (1)
 	// {
 		
