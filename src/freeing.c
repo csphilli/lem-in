@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 13:51:53 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/15 20:26:31 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 12:54:55 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	delete_old_path(t_bucket **paths)
 	paths = NULL;
 }
 
-void	free_ant_instrux(t_ant_instrux *ins)
+void	free_ant_instrux(t_ants *ins)
 {
 	ft_init_int_arr(ins->ant_arr, ft_int_arr_len(ins->ant_arr));
 	free(ins->ant_arr);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_distribution.c                                :+:      :+:    :+:   */
+/*   calc_distribution copy.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 12:54:44 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 12:54:40 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,9 +199,9 @@ void			calc_distribution(t_master *master, t_paths *paths)
 	int				i;
 
 	begin = clock();
-	ins = ft_memalloc(sizeof(t_ants));
-		// exit_malloc();
-	// init_instrux(ins);
+	if (!(ins = (t_ants*)malloc(sizeof(t_ants))))
+		exit_malloc();
+	init_instrux(ins);
 	len = bucket_arr_len(paths->c);
 	i = 0;
 	ins->n_ants = paths->nbr_ants_s;

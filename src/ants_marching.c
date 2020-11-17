@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/02 23:40:33 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 12:54:38 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	r2r(t_paths *paths, t_ant_instrux *ins)
+void	r2r(t_paths *paths, t_ants *ins)
 {
 	t_bucket	*tmp;
 	int			i;
@@ -36,7 +36,7 @@ void	r2r(t_paths *paths, t_ant_instrux *ins)
 	}
 }
 
-void	r2e(t_paths *paths, t_ant_instrux *ins)
+void	r2e(t_paths *paths, t_ants *ins)
 {
 	t_bucket	*tmp;
 	int			i;
@@ -56,7 +56,7 @@ void	r2e(t_paths *paths, t_ant_instrux *ins)
 	}
 }
 
-void	s2r(t_paths *paths, t_ant_instrux *ins)
+void	s2r(t_paths *paths, t_ants *ins)
 {
 	t_bucket	*tmp;
 	int			i;
@@ -79,7 +79,7 @@ void	s2r(t_paths *paths, t_ant_instrux *ins)
 	}
 }
 
-void	ants_marching_parse(t_paths *paths, t_ant_instrux *ins)
+void	ants_marching_parse(t_paths *paths, t_ants *ins)
 {
 	r2e(paths, ins);
 	r2r(paths, ins);
@@ -88,7 +88,7 @@ void	ants_marching_parse(t_paths *paths, t_ant_instrux *ins)
 	// paths->nbr_moves++;
 }
 
-void	ants_marching(t_paths *paths, t_ant_instrux *ins)
+void	ants_marching(t_paths *paths, t_ants *ins)
 {
 	int rounds;
 	int	i;
