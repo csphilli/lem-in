@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/11/17 16:02:00 by cphillip         ###   ########.fr        #
+#    Updated: 2020/11/17 20:58:50 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,19 +66,18 @@ all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(LIBFT) $(OBJECTS)
 	$(CC) $(INCLUDES) $(OBJECTS) -o $(NAME) $(LIBRARIES)
+	@echo "Done!"
 
 $(OBJ_DIR):
 	@mkdir -p obj
-	@echo "Object directory created"
+	@echo "Compiling library..."
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(HEADERS)
-	@-$(CC) -c $(INCLUDES) $< -o $@
-	@echo "$@ file created"
+	@-$(CC) -c $(INCLUDES) $< -o $@	
 
 $(LIBFT):
 	@$(MAKE) -sC $(LIBFT_DIR)
-	@echo "libft.a created"
-
+	@echo "Compiling $(NAME) files..."
 clean:
 	@$(MAKE) -sC $(LIBFT_DIR) clean
 	@rm -rf $(OBJ_DIR)

@@ -6,27 +6,30 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 11:11:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 20:41:57 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/18 21:23:00 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	print_int_arr(int *ants)
+void	print_int_arr(int *arr)
 {
 	int i;
 
 	i = 0;
-	ft_printf("\nANT DISTRIBUTION ALONG PATHS FOR SOLVING\n");
-	ft_printf("INDEX:\tANTS\n");
-	while (ants[i])
+	if (arr)
 	{
-		ft_printf("[%4d]:\t%d", i, ants[i]);
-		if (ants[i + 1])
-			ft_printf("\n");
-		i++;
+		ft_printf("\nANT DISTRIBUTION ALONG PATHS FOR SOLVING\n");
+		ft_printf("INDEX:\tANTS\n");
+		while (arr[i])
+		{
+			ft_printf("%d", arr[i]);
+			if (arr[i + 1])
+				write(1, ",", 1);
+			i++;
+		}
+		write(1, "\n", 1);
 	}
-	ft_printf("\n");
 }
 
 void	print_ll(t_bucket *ll)
@@ -49,20 +52,28 @@ void	print_ll(t_bucket *ll)
 	}
 }
 
-void	print_lol(t_lol **list)
-{
-	t_lol 		*tmp;
+// void	print_lol(t_lol **list)
+// {
+// 	t_lol 		*tmp;
 
-	tmp = *list;
-	if (tmp)
-	{
-		while (tmp)
-		{
-			print_ll(tmp->list);
-			tmp = tmp->next;
-		}
-	}
-}
+// 	tmp = *list;
+// 	if (tmp)
+// 	{
+// 		while (tmp)
+// 		{
+// 			if (tmp->len)
+// 				ft_printf("Len: %d | ", tmp->len);
+// 			if (tmp->nbr_moves)
+// 				ft_printf("Moves: %d | ", tmp->nbr_moves);
+// 			if (tmp->nbr_ants)
+// 				ft_printf("Nbr ants: %d | ", tmp->nbr_ants);
+// 			print_ll(tmp->list);
+// 			tmp = tmp->next;
+// 		}
+// 	}
+// }
+
+
 
 // WAS ONLY USED FOR DEBUGGING. NOT NEEDED ANYMORE.
 // void		print_map(t_pmap *map)

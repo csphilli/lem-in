@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 15:04:20 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/18 12:25:14 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
 	bfs->end = master->end_room;
 	validate_rooms(ht, master);
 	build_paths(ht, master, &bfs);
-	print_lol(&bfs->paths);
+	// print_lol(&bfs->paths);
 	while (1)
 	{
 		

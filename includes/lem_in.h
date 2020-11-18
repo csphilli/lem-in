@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 19:23:01 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/18 23:36:58 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,13 @@ typedef struct		s_entry
 
 typedef struct 		s_lol
 {
-	t_bucket		*last;
+	
+	int				len;
+	int				nbr_ants;
+	int				unlock;
+	int				done;
+	int				cap;
+	int				index;
 	t_bucket		*list;
 	struct s_lol	*next;
 }					t_lol;
@@ -88,8 +94,18 @@ typedef struct		s_bfs
 	t_entry			*cur;
 	t_entry			*start;
 	t_entry			*end;
+	t_lol			*restart;
+	int				max_index;
+	int				max_moves;
 }					t_bfs;
 
+typedef struct		s_ants
+{
+	int				*ant_arr;
+	int				*moves_arr;
+	int				max_index;
+	int				n_ants;
+}					t_ants;
 
 /*
 **	**p = all PATHS found from initial DFS
@@ -115,13 +131,6 @@ typedef struct		s_paths
 	int				max_id;
 }					t_paths;
 
-typedef struct		s_ants
-{
-	int				*ant_arr;
-	int				*moves_arr;
-	int				max_index;
-	int				n_ants;
-}					t_ants;
 
 /*
 **	For Master:
@@ -219,8 +228,7 @@ void				load_help(t_master *master);
 void				validate_coords(t_master *master, char *n1, char *n2);
 void				validate_rooms(t_bucket **ht, t_master *master);
 void				duplicate_room_check(t_master *master, t_bucket **ht);
-void				add_link_to_room(t_bucket **ht, t_master *master,\
-					char *line);
+void				capture_links(t_bucket **ht, t_master *master, char *line);
 // t_entry				*copy_entry(t_entry *src);
 void				parse_lines(t_master *master, char *line, t_bucket **ht);
 t_entry				*get_entry(t_bucket **ht, t_master *master, char *name);
@@ -245,8 +253,7 @@ t_bucket			**grow_ht(t_bucket **ht, t_master *master);
 t_bucket			**create_ht(t_master *master);
 // t_bucket			*create_bucket(void);
 // t_entry				*create_entry(void);
-t_entry				*fill_entry_from_line(t_master *master, t_entry *dst,\
-					char *line);
+t_entry				*capture_room(t_master *master, t_entry *dst, char *line);
 float				load(t_master *master);
 void				insert_node(t_bucket **ht, t_entry *entry, int index);
 void				assign_entry_to_ht(t_bucket **ht, t_master *master,\
@@ -260,7 +267,7 @@ t_bucket			 *get_head(t_bucket **ht, t_master *master, char *name);
 
 void				find_paths(t_master *master, t_bucket **ht);
 void				choose_paths(t_master *master, t_paths *paths);
-void				calc_distribution(t_master *master, t_paths *paths);
+void				calc_distribution(t_master *master, t_bfs *bfs);
 t_bucket			**grow_path_array(t_paths *paths);
 void				ants_marching(t_paths *paths, t_ants *ins);
 void				write_r2r(t_entry *entry1, t_entry *entry2);

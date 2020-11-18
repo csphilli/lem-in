@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 14:59:28 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/17 20:55:34 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int		dup_coord(t_bucket **ht, t_master *master, t_entry *entry)
 	return (0);
 }
 
-t_entry		*fill_entry_from_line(t_master *master, t_entry *dst, char *line)
+t_entry		*capture_room(t_master *master, t_entry *dst, char *line)
 {
 	char	**data;
 
