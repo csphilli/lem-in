@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/18 23:52:35 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 00:03:16 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,10 +285,10 @@ void	cascade(t_bfs *bfs, t_master *master)
 		{
 			ft_printf("tmp index: %d\n", tmp->index);
 			ft_printf("max index: %d\n", bfs->max_index);
-			chk_unlock(&bfs, &tmp);
 				// break ;
 			tmp->nbr_ants++;
 			master->nbr_ants--;
+			chk_unlock(&bfs, &tmp);
 			// ft_printf("master ants: %d\n", master->nbr_ants);
 			tmp = (tmp->index == bfs->max_index ? bfs->paths : tmp->next);
 		}
