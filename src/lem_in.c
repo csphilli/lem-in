@@ -6,29 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 10:41:23 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 11:09:38 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-// void		check_inputs(t_master *master, int ac)
-// {
-// 	int		i;
-// 	char	*s;
-
-// 	i = 0;
-// 	s = NULL;
-// 	if (master->input_flags)
-// 	{
-// 		s = master->input_flags;
-// 		while (*s++)
-// 			i++;
-// 		if (i + 1 != ac && !ft_strchr(master->input_flags, 'f'))
-// 			ft_error("Error. Invalid usage. Use '-h' for help.");
-// 	}
-// 	master->valid_input = true;
-// }
 
 void		check_inputs(t_master *master, int ac)
 {
@@ -58,54 +40,52 @@ t_bucket	**get_data(t_bucket **ht, t_master *master, int fd)
 	return (ht);
 }
 
-
-t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
+t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 {
-	t_bfs	*bfs;
+	// t_bfs	*bfs;
 
-	bfs = ft_memalloc(sizeof(t_bfs));
+	// bfs = ft_memalloc(sizeof(t_bfs));
 	ht = get_data(ht, master, fd);
-	bfs->start = master->start_room;
-	bfs->end = master->end_room;
+	(*bfs)->start = master->start_room;
+	(*bfs)->end = master->end_room;
 	validate_rooms(ht, master);
-	build_paths(ht, master, &bfs);
-	// print_lol(&bfs->paths);
-	// while (1)
-	// {
-		
-	// }
-	// dead_end_scan(master, ht);
-	// do_bfs(master, ht);
-	// find_paths(master, ht);
+	build_paths(ht, master, bfs);
 	return (ht);
+}
+
+void	do_extras(t_bucket **ht, t_master *master, t_bfs *bfs)
+{
+	ft_printf("doing extras\n");
+	if (master->vis_distro)
+		print_distro(&bfs->paths);
+	if (master->print_hash_table)
+		print_ht(ht, master->new_size);
+	if (master->print_paths)
+		print_lol(&bfs->paths);
 }
 
 int			main(int ac, char **av)
 {
 	t_master	*master;
 	t_bucket	**ht;
+	t_bfs		*bfs;
 	int			fd;
 
 
 	fd = 0;
 	ht = NULL;
-	// if (!(master = (t_master*)malloc(sizeof(t_master))))
-	// 	exit_malloc();
 	master = ft_memalloc(sizeof(t_master));
+	bfs = ft_memalloc(sizeof(t_bfs));
 	init_master(master);
 	capture_flags(master, ac, av);
 	check_inputs(master, ac);
 	ht = create_ht(master);
 	if (master->valid_input == true)
-		ht = do_lemin(fd, master, ht);
-	if (master->print_hash_table)
-		print_ht(ht, master->new_size);
-	if (master->leaks == true)
-	{
-		while (1)
-		{
-		}
-	}
+		ht = do_lemin(fd, master, ht, &bfs);
+	// if (master->print_hash_table)
+	// 	print_ht(ht, master->new_size);
+	if (master->input_flags)
+		do_extras(ht, master, bfs);
 	
 	return (0);
 }

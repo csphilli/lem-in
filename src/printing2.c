@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 11:11:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 00:38:37 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 11:11:27 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,12 @@ void	print_lol(t_lol **list)
 	{
 		while (tmp)
 		{
-			// if (tmp->len)
-			// 	ft_printf("Len: %d | ", tmp->len);
-			// if (tmp->nbr_moves)
-			// 	ft_printf("Moves: %d | ", tmp->nbr_moves);
-			// if (tmp->nbr_ants)
-			// 	ft_printf("Nbr ants: %d | ", tmp->nbr_ants);
 			print_ll(tmp->list);
 			tmp = tmp->next;
 		}
 	}
 }
+
 
 
 

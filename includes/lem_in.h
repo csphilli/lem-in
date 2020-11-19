@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 10:28:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 11:08:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct		s_bfs
 	t_bucket		*q;
 	t_pmap			*map;
 	t_lol			*paths;
+	t_lol			*ant_distro;
 	t_bucket		*edge;
 	t_entry			*cur;
 	t_entry			*start;
@@ -153,13 +154,11 @@ typedef struct		s_master
 	bool			e_toggle;
 	t_entry			*start_room;
 	t_entry			*end_room;
-	bool			print_all_paths;
-	bool			load_placeholder;
+	bool			print_paths;
 	bool			print_hash_table;
 	bool			vis_distro;
 	bool			valid_input;
 	bool			ants_added;
-	bool			leaks;
 	int				nbr_ants;
 	int				has_flags;
 	int				line_nbr;
@@ -180,7 +179,7 @@ typedef struct		s_master
 // void	error_master(void);
 // void	error(t_master *master, char *e_code, int line_nbr, char *str);
 // void				exit_error(void);
-void				exit_malloc(void);
+// void				exit_malloc(void);
 // void				exit_usage(void);
 void				exit_coord(int line_nbr);
 void				exit_dup(char *room_name, size_t index);
@@ -260,7 +259,7 @@ void				insert_node(t_bucket **ht, t_entry *entry, int index);
 void				assign_entry_to_ht(t_bucket **ht, t_master *master,\
 					t_entry *entry);
 int					gen_key(char *str);
-t_bucket			 *get_head(t_bucket **ht, t_master *master, char *name);
+t_bucket			*get_head(t_bucket **ht, t_master *master, char *name);
 
 /*
 **	Routing Algorithm
@@ -288,6 +287,7 @@ int					dupe(t_bucket **head, t_entry *entry);
 // void				print_path(t_bucket *head);
 void				print_ht(t_bucket **ht, size_t size);
 void				print_int_arr(int *ants);
+void				print_distro(t_lol **list);
 
 
 // void				dead_end_scan(t_master *master, t_bucket **ht);

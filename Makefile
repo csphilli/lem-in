@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/11/17 20:58:50 by cphillip         ###   ########.fr        #
+#    Updated: 2020/11/19 11:12:29 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,9 @@ SRC_FILES = lem_in.c\
 			load_help.c\
 			node_work.c\
 			printing2.c\
+			printing3.c\
 			ft_intcat.c\
 			link_work.c\
-			realloc_ht.c\
 			error_mgmt.c\
 			node_work2.c\
 			sort_paths.c\
