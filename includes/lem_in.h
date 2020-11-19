@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 11:08:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 12:40:54 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct		s_entry
 
 typedef struct 		s_lol
 {
-	
+	int				total_moves;
 	int				len;
 	int				nbr_ants;
 	int				unlock;
@@ -90,7 +90,7 @@ typedef struct		s_bfs
 	t_bucket		*q;
 	t_pmap			*map;
 	t_lol			*paths;
-	t_lol			*ant_distro;
+	// t_lol			*ant_distro;
 	t_bucket		*edge;
 	t_entry			*cur;
 	t_entry			*start;
@@ -201,6 +201,7 @@ void				init_bfs(t_bfs *bfs, t_master *master);
 void				init_paths_struct(t_paths *paths);
 void				init_instrux(t_ants *instrux);
 void				ft_init_int_arr(int *src, int len);
+void				init_moves(t_lol *moves);
 // void				init_bfs(t_bfs *bfs);
 
 /*
@@ -304,7 +305,6 @@ int					*ft_intcat(int *src, int to_add);
 int					ft_int_arr_len(int *n);
 int					most_ants(int *arr);
 
-
 /*
 **	NEWEST BELOW
 */
@@ -346,5 +346,6 @@ void				adj_cap(t_entry *fnd, t_entry *via, int cap);
 t_bucket		 	*get_edge(t_entry *fnd, t_entry *via);
 void				clear_data(t_bucket **ht, t_master *master, t_bfs *bfs);
 void				sort_paths(t_bfs *bfs);
+
 
 #endif

@@ -6,29 +6,22 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 11:11:54 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 12:40:35 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void		init_moves(t_lol *moves)
+void		calc_total_moves(t_lol *paths)
 {
 	t_lol *tmp;
-	int		i;
 
-	tmp = moves;
-	i = 0;
-	if (tmp)
+	tmp = paths;
+	while (tmp)
 	{
-		while (tmp)
-		{
-			tmp->index = i;
-			tmp->len = list_length(tmp->list);
-			tmp->cap = tmp->len - 1;
-			tmp = tmp->next;
-			i++;
-		}
+		tmp->total_moves = tmp->nbr_ants +\
+		(list_length(tmp->list) - 2);
+		tmp = tmp->next;
 	}
 }
 
@@ -53,6 +46,12 @@ void	cascade(t_bfs *bfs, t_master *master)
 			tmp->nbr_ants++;
 			master->nbr_ants--;
 			chk_unlock(&bfs, &tmp);
+			if (master->vis_distro)
+			{
+				system("clear");
+				print_distro(&bfs->paths);
+				usleep(250000);
+			}
 			tmp = (tmp->index == bfs->max_index ? bfs->paths : tmp->next);
 		}
 		tmp = bfs->paths;
@@ -85,6 +84,7 @@ void			calc_distribution(t_master *master, t_bfs *bfs)
 	init_moves(moves);
 	unlocks(bfs);
 	cascade(bfs, master);
+	calc_total_moves(bfs->paths);
 	print_int_arr(arr);
 	
 	// while (1)

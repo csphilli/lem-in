@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 11:11:02 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 11:11:47 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 12:40:27 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,17 @@ void	print_line_break(int nbr, int amount)
 
 void	print_cascade_header(void)
 {
-	ft_printf("%-10sIndex position of list of list.\n", "Index:");
-	ft_printf("%-10sLength of the list at index.\n", "Length:");
-	ft_printf("%-10sMin moves to get 1 ant through path.\n", "Moves:");
-	ft_printf("%-10sNumber of ants allocated to specific", "Ants:");
+	ft_printf("%-11sIndex position of list of list.\n", "Index:");
+	ft_printf("%-11sLength of the list at index.\n", "Length:");
+	ft_printf("%-11sMin moves to get 1 ant through path.\n", "Moves:");
+	ft_printf("%-11sNumber of ants allocated to specific", "Ants:");
 	ft_printf(" path.\n");
-	ft_printf("%-10sMin number of ants to unlock allocation", "Unlock:");
+	ft_printf("%-11sMin number of ants to unlock allocation", "Unlock:");
 	ft_printf(" at next index.\n\n");
-	ft_printf("|%-10s%-10s", "Index", "Length");
-	ft_printf("%-10s%-10s%-10s|\n", "Moves", "Ants", "Unlock");
-	print_line_break(5, 10);
+	ft_printf("|%-11s%-11s", "Index", "Length");
+	ft_printf("%-11s%-11s", "Moves", "Ants");
+	ft_printf("%-11s%-11s|\n", "Unlock", "Total Moves");
+	print_line_break(6, 11);
 }
 
 void	print_distro(t_lol **list)
@@ -46,18 +47,24 @@ void	print_distro(t_lol **list)
 		print_cascade_header();
 		while (tmp)
 		{
-			ft_printf("|%-10d", tmp->index);
+			ft_printf("|%-11d", tmp->index);
 			if (tmp->len)
-				ft_printf("%-10d", tmp->len);
+				ft_printf("%-11d", tmp->len);
 			if (tmp->cap)
-				ft_printf("%-10d", tmp->cap);
+				ft_printf("%-11d", tmp->cap);
 			if (!tmp->nbr_ants)
-				ft_printf("%-10d", 0);
+				ft_printf("%-11d", 0);
 			else
-				ft_printf("%-10d", tmp->nbr_ants);
+				ft_printf("%-11d", tmp->nbr_ants);
 			if (tmp->unlock)
-				ft_printf("%-10d|\n", tmp->unlock);
-			print_line_break(5, 10);
+				ft_printf("%-11d", tmp->unlock);
+			if (!tmp->total_moves)
+				ft_printf("%-11d|\n", 0);
+			else
+				ft_printf("%-11d|\n", tmp->total_moves);
+			print_line_break(6, 11);
+			// if (tmp->next && !tmp->next->nbr_ants)
+			// 	break ;
 			tmp = tmp->next;
 		}
 	}

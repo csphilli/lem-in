@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 11:09:38 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 12:41:14 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,12 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 
 void	do_extras(t_bucket **ht, t_master *master, t_bfs *bfs)
 {
-	ft_printf("doing extras\n");
 	if (master->vis_distro)
+	{
+		system("clear");
+		master->vis_distro = false;
 		print_distro(&bfs->paths);
+	}
 	if (master->print_hash_table)
 		print_ht(ht, master->new_size);
 	if (master->print_paths)
