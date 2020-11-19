@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/18 12:51:21 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 10:22:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@ void	init_master(t_master *master)
 		master->valid_input = false;
 		master->s_toggle = false;
 		master->e_toggle = false;
-		master->print_chosen_paths = false;
 		master->print_hash_table = false;
 		master->print_all_paths = false;
-		master->print_ant_distribution = false;
-		master->accepted_flags = "cdfhtpl"; // Check these
+		master->vis_distro = false;
+		master->load_placeholder = false;
+		master->accepted_flags = "dhptl";
 		master->line_nbr = 1;
-		master->leaks = false;
 		master->new_size = 10;
 		master->load = 5.0;
 		master->size_factor = 2;

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 14:42:58 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 15:43:05 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 09:31:25 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,17 @@ void	append_to_lol(t_lol **lol, t_bucket *ll) // working, no leaks.
 	*lol = head;
 }
 
+int			lol_length(t_lol *lol)
+{
+	t_lol 	*tmp;
+	int		i;
 
+	tmp = lol;
+	i = 0;
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}

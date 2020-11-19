@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/18 23:36:58 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 10:28:56 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ typedef struct		s_bfs
 	t_entry			*cur;
 	t_entry			*start;
 	t_entry			*end;
-	t_lol			*restart;
 	int				max_index;
 	int				max_moves;
 }					t_bfs;
@@ -154,10 +153,10 @@ typedef struct		s_master
 	bool			e_toggle;
 	t_entry			*start_room;
 	t_entry			*end_room;
-	bool			print_chosen_paths;
 	bool			print_all_paths;
+	bool			load_placeholder;
 	bool			print_hash_table;
-	bool			print_ant_distribution;
+	bool			vis_distro;
 	bool			valid_input;
 	bool			ants_added;
 	bool			leaks;
@@ -166,6 +165,7 @@ typedef struct		s_master
 	int				line_nbr;
 	char			*input_flags;
 	char			*accepted_flags;
+	int				flag_count;
 	int				room_count;
 	size_t			new_size;
 	size_t			old_size;
@@ -224,7 +224,7 @@ void				delete_old_ht(t_bucket **old, size_t size);
 void				capture_ants(t_master *master, char *line);
 void				capture_flags(t_master *master, int ac, char **av);
 void				capture_comment(t_master *master, char *str);
-void				load_help(t_master *master);
+void				load_help(void);
 void				validate_coords(t_master *master, char *n1, char *n2);
 void				validate_rooms(t_bucket **ht, t_master *master);
 void				duplicate_room_check(t_master *master, t_bucket **ht);
@@ -249,6 +249,7 @@ t_entry				*get_entry(t_bucket **ht, t_master *master, char *name);
 */
 
 t_bucket			**grow_ht(t_bucket **ht, t_master *master);
+
 
 t_bucket			**create_ht(t_master *master);
 // t_bucket			*create_bucket(void);
@@ -278,16 +279,15 @@ void				write_s2r(t_paths *paths, t_entry *entry1);
 **	RANDOM TOOLS
 */
 
+int					dupe(t_bucket **head, t_entry *entry);
 /*
 **	PRINTING
 */
 
-void				print_paths(t_bucket **paths);
-void				print_path(t_bucket *head);
+// void				print_paths(t_bucket **paths);
+// void				print_path(t_bucket *head);
 void				print_ht(t_bucket **ht, size_t size);
 void				print_int_arr(int *ants);
-void				print_ll(t_bucket *ll);
-void				print_lol(t_lol **list);
 
 
 // void				dead_end_scan(t_master *master, t_bucket **ht);
@@ -310,24 +310,25 @@ int					most_ants(int *arr);
 */
 
 /*
-**	LINK and LIST OF LIST WORK
+**	LINK WORK
 */
 
 void			    unshift_ll(t_bucket **ll, t_entry *entry);
 void				insert_to_ll(t_bucket **src, t_entry *entry);
-void				unshift_lol(t_lol **lol, t_bucket *ll);
-void				pop_from_lol(t_lol **list);
 void				pop_from_ll(t_bucket **ll);
 void				append_to_ll(t_bucket **src, t_entry *entry);
-void				append_to_lol(t_lol **lol, t_bucket *ll);
-// void				dlt_dead_end(t_bucket **head);
-int					dupe(t_bucket **head, t_entry *entry);
 void				copy_ll(t_bucket **dst, t_bucket *src);
-// void				do_bfs(t_master *master, t_bucket **ht);
-// void				build_paths(t_bucket **ht, t_master *master);
+void				print_ll(t_bucket *ll);
 
-// void				build_paths(t_bucket **bfs, t_entry *start, t_entry *goal);
-// void				set_visited(t_bucket **paths, int visited);
+/*
+**	LIST OF LIST WORK
+*/
+
+void				unshift_lol(t_lol **lol, t_bucket *ll);
+void				pop_from_lol(t_lol **list);
+void				append_to_lol(t_lol **lol, t_bucket *ll);
+int					lol_length(t_lol *lol);
+void				print_lol(t_lol **list);
 
 /*
 **	MAP WORK

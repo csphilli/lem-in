@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 12:03:09 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 15:42:59 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 09:57:51 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	load_help(t_master *master)
+void	load_help(void)
 {
 	ft_printf("***********************************************************\n");
 	ft_printf(" ___       ________  ____      ___           ___           \n");
@@ -22,20 +22,21 @@ void	load_help(t_master *master)
 	ft_printf("|  |_____ |  |_____ |  | \\  /  |  |         |  | |  | |  |\n");
 	ft_printf("|_______/ |_______/ |__/  \\/   |__/         |__| |__/ |__/\n");
 	ft_printf("***********************************************************\n");
-	ft_printf("\n**** USAGE ****:\n\n");
-	ft_printf("%8s '-f' flag:"CYAN" ./lem-in -opt1 -opt2 < [file-name]\n"\
-	RESET, "WITHOUT");
-	ft_printf("%8s '-f' flag:"CYAN" ./lem-in -opt1 -opt2 [file-name]\n"RESET\
-	, "WITH");
-	ft_printf("\t- Options are entered one at a time. Example: -a -b -c\n");
-	ft_printf("\t- If '-f' is NOT used and no input file is specified\n");
-	ft_printf("\tAcceptable options: %s\n", master->accepted_flags);
-	ft_printf("\n**** OPTION FUNCTIONS ****\n\n");
-	ft_printf("\tf: Allows to read from file. No '"CYAN"<"RESET"' needed.\n");
-	ft_printf("\td: Prints the ant distribution on paths used for solving.\n");
-	ft_printf("\th: Displays this help list.\n");
-	ft_printf("\tt: Displays the input of ant farm as hash table.\n");
-	ft_printf("\ta: Prints the list of all available paths to choose from.\n");
-	ft_printf("\tp: Prints the list of paths the program will use to solve.\n");
+	write(1, "\n", 1);
+	ft_printf("USAGE: ./lem-in -opt1 -opt2 < [input]\n");
+	ft_printf("Flags are entered one at a time. Example: -a -b -c -l5\n");
+	ft_printf("\n**** ALLOWED FLAGS ****\n\n");
+	ft_printf("d: Enables visual illustration of ant distribution");
+	ft_printf(" calculations.\n");
+	ft_printf("h: Displays this help list.\n");
+	ft_printf("p: Prints the list of all available paths found.\n");
+	ft_printf("t: Displays the hash table.\n");
+	ft_printf("l: Change the load factor of hash table. See below\n");
+	ft_printf("\n**** Changing hash table load parameter ****\n\n");
+	ft_printf("-l followed by positive int value.\n");
+	ft_printf("Example: '-l5' changes load to 5. '-l10' changes to 10.\n\n");
+	ft_printf("The load value is the hypothetical amount of links each index\n");
+	ft_printf("can have at a given hash table size. It also affects the\n");
+	ft_printf("space complexity. High value == higher space requirements.\n");
 	exit(-1);
 }

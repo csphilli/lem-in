@@ -6,25 +6,35 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/18 12:25:14 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 10:41:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
+// void		check_inputs(t_master *master, int ac)
+// {
+// 	int		i;
+// 	char	*s;
+
+// 	i = 0;
+// 	s = NULL;
+// 	if (master->input_flags)
+// 	{
+// 		s = master->input_flags;
+// 		while (*s++)
+// 			i++;
+// 		if (i + 1 != ac && !ft_strchr(master->input_flags, 'f'))
+// 			ft_error("Error. Invalid usage. Use '-h' for help.");
+// 	}
+// 	master->valid_input = true;
+// }
+
 void		check_inputs(t_master *master, int ac)
 {
-	int		i;
-	char	*s;
-
-	i = 0;
-	s = NULL;
 	if (master->input_flags)
 	{
-		s = master->input_flags;
-		while (*s++)
-			i++;
-		if (i + 1 != ac && !ft_strchr(master->input_flags, 'f'))
+		if (master->flag_count + 1 != ac)
 			ft_error("Error. Invalid usage. Use '-h' for help.");
 	}
 	master->valid_input = true;
@@ -60,10 +70,10 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht)
 	validate_rooms(ht, master);
 	build_paths(ht, master, &bfs);
 	// print_lol(&bfs->paths);
-	while (1)
-	{
+	// while (1)
+	// {
 		
-	}
+	// }
 	// dead_end_scan(master, ht);
 	// do_bfs(master, ht);
 	// find_paths(master, ht);

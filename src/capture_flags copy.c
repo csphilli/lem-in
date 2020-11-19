@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 10:46:38 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 10:20:27 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,15 @@ void	toggle_bools(t_master *master)
 void	add_flag(t_master *master, char *c)
 {
 	c++;
-	if (!ft_strchr(master->accepted_flags, *c))
-		ft_error("Error: Invalid flag input. Use -h for list.");
 	if (!master->input_flags)
-		master->input_flags = ft_memalloc(sizeof(char) * ft_strlen(c));
-	ft_strcat(master->input_flags, c);
-	master->flag_count++;
+	{
+		if (!(master->input_flags = ft_memalloc(sizeof(char) * ft_strlen(c))))
+			ft_error("Error: Failed to allocate memory.");
+		ft_strcat(master->input_flags, c);
+	}
+	else
+		ft_strcat(master->input_flags, c);
+
 }
 
 void	capture_flags(t_master *master, int ac, char **av)
@@ -56,14 +59,19 @@ void	capture_flags(t_master *master, int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		// if ((av[i][0] == '-') && validated(master, av[i][1]))
-		// {
-		if (av[i][1] == 'h')
-			load_help();
-		else if (av[i][1] == 'l')
-			master->load = ft_atoi(&av[i][2]);
-		add_flag(master, av[i]);
-		// }
+		if ((av[i][0] == '-') && validated(master, av[i][1]))
+		{
+			if (av[i][1] == 'h')
+				load_help();
+			else if (av[i][1] == 'l')
+				master->load = ft_atoi(&av[i][2]);
+			add_flag(master, av[i]);
+		}
+		else
+		{
+			ft_printf("Error. Invalid flag '%c'.", av[i][1]);
+			ft_error(" Use -h for a list of accepted flags.");
+		}
 		i++;
 	}
 	if (master->input_flags != NULL)
