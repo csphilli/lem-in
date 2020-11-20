@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 11:20:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 13:49:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	init_master(t_master *master)
 {
 	if (master)
 	{
-		master->valid_input = false;
 		master->s_toggle = false;
 		master->e_toggle = false;
 		master->print_hash_table = false;

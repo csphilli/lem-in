@@ -6,113 +6,114 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 12:54:38 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/20 10:32:54 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	r2r(t_paths *paths, t_ants *ins)
+// void	chk_space(t_lol *paths, int index)
+// {
+// 	t_lol *tmp;
+// 	t_bucket *list;
+// 	int		i;
+
+// 	i = 0;
+// 	tmp = paths;
+// 	list = NULL;
+// 	while (i != index)
+// 		tmp = tmp->next;
+	
+// }
+
+void	r2r(t_lol *path, t_ants *ins)
 {
 	t_bucket	*tmp;
-	int			i;
 
-	i = 0;
-	tmp = NULL;
-	while (i <= ins->max_index)
+	tmp = path->list;
+	while (tmp)
 	{
-		tmp = paths->c[i];
-		while (tmp)
-		{
-			if (tmp->next && ft_strequ(tmp->next->entry->name, \
-				paths->s_room->name))
-				break ;
-			else if (tmp->next && (!ft_strequ(tmp->entry->name,\
-					paths->e_room->name) && tmp->next->entry->occ))
+		if (!ft_strequ(tmp->entry->name, ins->end->name) && \
+			(tmp->next && tmp->next->entry->occ && \
+			!ft_strequ(tmp->next->entry->name, ins->start->name)))
 				write_r2r(tmp->entry, tmp->next->entry);
-			tmp = tmp->next;
-		}
-		i++;
+		tmp = tmp->next;
 	}
 }
 
-void	r2e(t_paths *paths, t_ants *ins)
+void	r2e(t_lol *path, t_ants *ins)
 {
 	t_bucket	*tmp;
-	int			i;
 
-	i = 0;
-	tmp = NULL;
-	while (i <= ins->max_index)
+	tmp = path->list;
+	if (tmp->next->entry->occ)
 	{
-		tmp = paths->c[i];
-		if (tmp->next->entry->occ)
-		{
-			write_r2e(paths, tmp->entry, tmp->next->entry);
-			if (paths->nbr_ants_e < paths->max_id)
-				write(1, " ", 1);
-		}
-		i++;
+		write_r2e(ins, tmp->entry, tmp->next->entry);
+		path->ants_left--;
 	}
 }
 
-void	s2r(t_paths *paths, t_ants *ins)
+void	s2r(t_lol *path, t_ants *ins)
 {
 	t_bucket	*tmp;
-	int			i;
 
-	tmp = NULL;
-	i = 0;
-	while (i <= ins->max_index)
-	{
-		if (ins->ant_arr[i] > 0)
-		{
-			tmp = paths->c[i];
-			while (!ft_strequ(tmp->next->entry->name, paths->s_room->name))
-				tmp = tmp->next;
-			write_s2r(paths, tmp->entry);
-			ins->ant_arr[i]--;
-			if (i != ins->max_index && ins->ant_arr[i + 1] > 0)
-				write(1, " ", 1);
-		}
-		i++;
-	}
+	tmp = path->list;
+	path->nbr_ants--;
+	while (!ft_strequ(tmp->next->entry->name, ins->start->name))
+		tmp = tmp->next;
+	if (!tmp->entry->occ)
+		write_s2r(ins, tmp->entry);
 }
 
-void	ants_marching_parse(t_paths *paths, t_ants *ins)
+void	ants_marching_parse(t_bfs *bfs, t_ants *ins)
 {
-	r2e(paths, ins);
-	r2r(paths, ins);
-	s2r(paths, ins);
-	ft_printf("\n");
+	t_lol 	*tmp;
+	int		x;
+
+	tmp = bfs->paths;
+	x = 0;
+	while (tmp)
+	{
+		// ft_printf("TMP HEAD: %s\n", tmp->list->entry->name);
+		if (tmp->ants_left > 0)
+		{
+			r2e(tmp, ins);
+			r2r(tmp, ins);
+			if (tmp->nbr_ants > 0)
+				s2r(tmp, ins);
+		}
+		// ft_printf("\n");
+		tmp = tmp->next;
+	}
 	// paths->nbr_moves++;
 }
 
-void	ants_marching(t_paths *paths, t_ants *ins)
+void	init_ant_ins(t_bfs *bfs, t_master *master, t_ants **ins)
 {
-	int rounds;
-	int	i;
+	(*ins)->ants_s = master->nbr_ants;
+	(*ins)->max_ant = (*ins)->ants_s;
+	(*ins)->start = bfs->start;
+	(*ins)->end = bfs->end;
+	(*ins)->ant_id = 1;
+}
 
-	rounds = most_ants(ins->ant_arr);
-	paths->max_id = paths->nbr_ants_s;
-	i = 0;
-	while (i < rounds)
-	{
-		ants_marching_parse(paths, ins);
-		paths->nbr_moves++;
-		i++;
-	}
+void	ants_marching(t_bfs *bfs, t_master *master)
+{
+	// int rounds;
+	// int	i;
+	t_ants *ins;
+
+	ins = ft_memalloc(sizeof(t_ants));
+	init_ant_ins(bfs, master, &ins);
 	while (1)
 	{
-		r2e(paths, ins);
-		if (paths->nbr_ants_e == paths->max_id)
-		{
-			paths->nbr_moves++;
+		// ft_printf("Even in here?\n");
+		// ft_printf("ants_e: %d | max_ant: %d\n", ins->ants_e, ins->max_ant);
+		ants_marching_parse(bfs, ins);
+		ins->n_moves++;
+		if (ins->ants_e == ins->max_ant)
 			break ;
-		}
-		r2r(paths, ins);
-		paths->nbr_moves++;
-		ft_printf("\n");
+		write(1, "\n", 1);
 	}
-	ft_printf("\nNumber of moves made: %d\n", paths->nbr_moves);
+	ft_printf("\nNumber of moves made: %d\n", ins->n_moves);
 }

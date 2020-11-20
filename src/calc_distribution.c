@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 12:40:35 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 14:28:09 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void		calc_total_moves(t_lol *paths)
 	{
 		tmp->total_moves = tmp->nbr_ants +\
 		(list_length(tmp->list) - 2);
+		tmp->ants_left = tmp->nbr_ants;
 		tmp = tmp->next;
 	}
 }
@@ -37,14 +38,16 @@ void		chk_unlock(t_bfs **bfs, t_lol **tmp)
 void	cascade(t_bfs *bfs, t_master *master)
 {
 	t_lol 	*tmp;
+	int		ant_count;
 
 	tmp = bfs->paths;
-	while (tmp && master->nbr_ants > 0)
+	ant_count = master->nbr_ants;
+	while (tmp && ant_count > 0)
 	{
-		while (tmp->index <= bfs->max_index && master->nbr_ants > 0)
+		while (tmp->index <= bfs->max_index && ant_count > 0)
 		{
 			tmp->nbr_ants++;
-			master->nbr_ants--;
+			ant_count--;
 			chk_unlock(&bfs, &tmp);
 			if (master->vis_distro)
 			{

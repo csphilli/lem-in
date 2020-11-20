@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 12:03:09 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 09:57:51 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/19 12:47:38 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	load_help(void)
 	ft_printf("Example: '-l5' changes load to 5. '-l10' changes to 10.\n\n");
 	ft_printf("The load value is the hypothetical amount of links each index\n");
 	ft_printf("can have at a given hash table size. It also affects the\n");
-	ft_printf("space complexity. High value == higher space requirements.\n");
+	ft_printf("space complexity. Lower value == higher space requirements.\n");
 	exit(-1);
 }

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 12:40:54 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/20 10:33:57 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct 		s_lol
 {
 	int				total_moves;
 	int				len;
+	int				ants_left;
 	int				nbr_ants;
 	int				unlock;
 	int				done;
@@ -90,7 +91,7 @@ typedef struct		s_bfs
 	t_bucket		*q;
 	t_pmap			*map;
 	t_lol			*paths;
-	// t_lol			*ant_distro;
+	int				*ant_distro;
 	t_bucket		*edge;
 	t_entry			*cur;
 	t_entry			*start;
@@ -101,10 +102,17 @@ typedef struct		s_bfs
 
 typedef struct		s_ants
 {
-	int				*ant_arr;
-	int				*moves_arr;
-	int				max_index;
-	int				n_ants;
+	// int				*ant_arr;
+	// int				*moves_arr;
+	t_entry			*start;
+	t_entry			*end;
+	int				ants_s;
+	int				ants_e;
+	int				max_ant;
+	// int				n_ants;
+	int				n_moves;
+	int				ant_id;
+	char			*output;
 }					t_ants;
 
 /*
@@ -157,7 +165,6 @@ typedef struct		s_master
 	bool			print_paths;
 	bool			print_hash_table;
 	bool			vis_distro;
-	bool			valid_input;
 	bool			ants_added;
 	int				nbr_ants;
 	int				has_flags;
@@ -270,10 +277,10 @@ void				find_paths(t_master *master, t_bucket **ht);
 void				choose_paths(t_master *master, t_paths *paths);
 void				calc_distribution(t_master *master, t_bfs *bfs);
 t_bucket			**grow_path_array(t_paths *paths);
-void				ants_marching(t_paths *paths, t_ants *ins);
+void				ants_marching(t_bfs *bfs, t_master *master);
 void				write_r2r(t_entry *entry1, t_entry *entry2);
-void				write_r2e(t_paths *paths, t_entry *entry1, t_entry *entry2);
-void				write_s2r(t_paths *paths, t_entry *entry1);
+void				write_r2e(t_ants *ins, t_entry *entry1, t_entry *entry2);
+void				write_s2r(t_ants *ins, t_entry *entry1);
 
 /*
 **	RANDOM TOOLS
