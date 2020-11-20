@@ -6,11 +6,27 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 10:47:43 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 21:59:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/20 10:47:18 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+char	*make_str(int ant_id, char *name)
+{
+	char	*new;
+	int		ilen;
+	int		slen;
+
+	ilen = ft_intlen_max(ant_id);
+	slen = ft_strlen(name);
+
+	new = ft_strnew(sizeof(char) * (ilen + slen + 2));
+	new = ft_strncat(new, "L", 1);
+	new = ft_strncat(new, ft_itoa(ant_id), ilen);
+	new = ft_strncat(new, "-", 1);
+	new = ft_strncat(new, name, slen);
+}
 
 void	write_r2r(t_entry *entry1, t_entry *entry2)
 {

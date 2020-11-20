@@ -6,25 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/20 10:32:54 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/20 10:36:20 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-// void	chk_space(t_lol *paths, int index)
-// {
-// 	t_lol *tmp;
-// 	t_bucket *list;
-// 	int		i;
-
-// 	i = 0;
-// 	tmp = paths;
-// 	list = NULL;
-// 	while (i != index)
-// 		tmp = tmp->next;
-	
-// }
 
 void	r2r(t_lol *path, t_ants *ins)
 {
@@ -74,7 +60,6 @@ void	ants_marching_parse(t_bfs *bfs, t_ants *ins)
 	x = 0;
 	while (tmp)
 	{
-		// ft_printf("TMP HEAD: %s\n", tmp->list->entry->name);
 		if (tmp->ants_left > 0)
 		{
 			r2e(tmp, ins);
@@ -82,10 +67,8 @@ void	ants_marching_parse(t_bfs *bfs, t_ants *ins)
 			if (tmp->nbr_ants > 0)
 				s2r(tmp, ins);
 		}
-		// ft_printf("\n");
 		tmp = tmp->next;
 	}
-	// paths->nbr_moves++;
 }
 
 void	init_ant_ins(t_bfs *bfs, t_master *master, t_ants **ins)
@@ -99,16 +82,12 @@ void	init_ant_ins(t_bfs *bfs, t_master *master, t_ants **ins)
 
 void	ants_marching(t_bfs *bfs, t_master *master)
 {
-	// int rounds;
-	// int	i;
 	t_ants *ins;
 
 	ins = ft_memalloc(sizeof(t_ants));
 	init_ant_ins(bfs, master, &ins);
 	while (1)
 	{
-		// ft_printf("Even in here?\n");
-		// ft_printf("ants_e: %d | max_ant: %d\n", ins->ants_e, ins->max_ant);
 		ants_marching_parse(bfs, ins);
 		ins->n_moves++;
 		if (ins->ants_e == ins->max_ant)
