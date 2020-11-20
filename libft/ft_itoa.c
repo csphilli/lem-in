@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 12:12:48 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/20 11:21:18 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/20 11:33:43 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ char	*ft_itoa(int n)
 	if (!(new = ft_strnew(len)))
 		return (NULL);
 	nbr = n < 0 ? -n : n;
-	new[len] = '\0';
+	new[len--] = '\0';
 	while (nbr >= 10)
 	{
-		new[--len] = (char)(nbr % 10 + 48);
+		new[len--] = (char)(nbr % 10 + 48);
 		nbr /= 10;
 	}
-	new[--len] = (char)(nbr % 10 + 48);
+	new[len--] = (char)(nbr % 10 + 48);
 	if (sign == 1)
-		new[--len] = '-';
+		new[len] = '-';
 	return (new);
 }
