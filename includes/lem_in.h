@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/20 10:33:57 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/20 22:21:34 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct		s_ants
 	int				n_moves;
 	int				ant_id;
 	char			*output;
+	int				i;
 }					t_ants;
 
 /*
@@ -278,9 +279,9 @@ void				choose_paths(t_master *master, t_paths *paths);
 void				calc_distribution(t_master *master, t_bfs *bfs);
 t_bucket			**grow_path_array(t_paths *paths);
 void				ants_marching(t_bfs *bfs, t_master *master);
-void				write_r2r(t_entry *entry1, t_entry *entry2);
-void				write_r2e(t_ants *ins, t_entry *entry1, t_entry *entry2);
-void				write_s2r(t_ants *ins, t_entry *entry1);
+void				write_r2r(t_ants *ins, t_entry *entry1, t_entry *entry2, int i);
+void				write_r2e(t_ants *ins, t_entry *entry1, t_entry *entry2, int i);
+void				write_s2r(t_ants *ins, t_entry *entry1, int i);
 
 /*
 **	RANDOM TOOLS
