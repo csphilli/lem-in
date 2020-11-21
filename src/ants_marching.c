@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/21 11:38:33 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/21 14:39:28 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	r2r(t_lol *path, t_ants *ins, int x)
+void	r2r(t_lol *path, t_ants *ins)
 {
 	t_bucket	*tmp;
 
@@ -22,24 +22,24 @@ void	r2r(t_lol *path, t_ants *ins, int x)
 		if (!ft_strequ(tmp->entry->name, ins->end->name) && \
 			(tmp->next && tmp->next->entry->occ && \
 			!ft_strequ(tmp->next->entry->name, ins->start->name)))
-				write_r2r(ins, tmp->entry, tmp->next->entry, x);
+				write_r2r(ins, tmp->entry, tmp->next->entry);
 		tmp = tmp->next;
 	}
 }
 
-void	r2e(t_lol *path, t_ants *ins, int x)
+void	r2e(t_lol *path, t_ants *ins)
 {
 	t_bucket	*tmp;
 
 	tmp = path->list;
 	if (tmp->next->entry->occ)
 	{
-		write_r2e(ins, tmp->entry, tmp->next->entry, x);
+		write_r2e(ins, tmp->entry, tmp->next->entry);
 		path->ants_left--;
 	}
 }
 
-void	s2r(t_lol *path, t_ants *ins, int x)
+void	s2r(t_lol *path, t_ants *ins)
 {
 	t_bucket	*tmp;
 
@@ -48,7 +48,7 @@ void	s2r(t_lol *path, t_ants *ins, int x)
 	while (!ft_strequ(tmp->next->entry->name, ins->start->name))
 		tmp = tmp->next;
 	if (!tmp->entry->occ)
-		write_s2r(ins, tmp->entry, x);
+		write_s2r(ins, tmp->entry);
 }
 
 void	ants_marching_parse(t_bfs *bfs, t_ants *ins)
@@ -58,16 +58,13 @@ void	ants_marching_parse(t_bfs *bfs, t_ants *ins)
 	tmp = bfs->paths;
 	while (tmp)
 	{
-		// ft_printf("%d\n", x);
 		if (tmp->ants_left > 0)
 		{
-			r2e(tmp, ins, ins->i);
-			r2r(tmp, ins, ins->i);
+			r2e(tmp, ins);
+			r2r(tmp, ins);
 			if (tmp->nbr_ants > 0)
-				s2r(tmp, ins, ins->i);
-		}
-		// ft_printf("catmoves: %s\n", ins->output);
-		
+				s2r(tmp, ins);
+		}		
 		tmp = tmp->next;
 	}
 }
@@ -80,17 +77,6 @@ void	init_ant_ins(t_bfs *bfs, t_master *master, t_ants **ins)
 	(*ins)->end = bfs->end;
 	(*ins)->ant_id = 1;
 }
-
-// void	my_own_delete(char *s)
-// {
-// 	char *tmp;
-// 	tmp = s;
-// 	while (*s++)
-// 	{
-// 		free(tmp);
-// 		tmp = NULL;
-// 	}
-// }
 
 
 void	ants_marching(t_bfs *bfs, t_master *master)

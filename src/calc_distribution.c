@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 14:28:09 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/21 14:37:21 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	unlocks(t_bfs *bfs)
 }
 
 
-void			calc_distribution(t_master *master, t_bfs *bfs)
+void			calc_distro(t_bucket **ht, t_master *master, t_bfs *bfs)
 {
 	t_lol 	*moves;
 	int		*arr;
@@ -85,10 +85,15 @@ void			calc_distribution(t_master *master, t_bfs *bfs)
 	arr = NULL;
 	moves = bfs->paths;
 	init_moves(moves);
-	unlocks(bfs);
-	cascade(bfs, master);
-	calc_total_moves(bfs->paths);
-	print_int_arr(arr);
+	if (!chk_direct_link(ht, master, bfs))
+	{
+		unlocks(bfs);
+		cascade(bfs, master);
+		calc_total_moves(bfs->paths);
+	}
+	else
+		ft_error("Going to do one move soon.");
+	// print_int_arr(arr);
 	
 	// while (1)
 	// {

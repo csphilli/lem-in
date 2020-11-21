@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 21:15:01 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/21 15:08:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@ t_bucket	**get_data(t_bucket **ht, t_master *master, int fd)
 	line = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
+		// ft_printf("after every entry?\n");
+		// 	ft_error("Error: Insufficient Input.");
 		if (load(master) > master->load)
 		{
 			master->room_count = 0;
 			ht = grow_ht(ht, master);
 		}
 		parse_lines(master, line, ht);
+		// print_ht(ht, master->new_size);
 	}
 	line = NULL;
 	return (ht);
@@ -42,9 +45,18 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 	ht = get_data(ht, master, fd);
 	(*bfs)->start = master->start_room;
 	(*bfs)->end = master->end_room;
+	validate_input(master);
+	// ft_printf("1\n");
 	validate_rooms(ht, master);
+	// ft_printf("2\n");
 	build_paths(ht, master, bfs);
+	// ft_printf("3\n");
+	chk_direct_link(ht, master, *bfs);
+	// ft_printf("4\n");
+	calc_distro(ht, master, *bfs);
+	// ft_printf("5\n");
 	ants_marching(*bfs, master);
+	// ft_printf("6\n");
 	return (ht);
 }
 

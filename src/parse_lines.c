@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/18 08:34:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/21 15:03:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,7 @@ void		parse_lines(t_master *master, char *line, t_bucket **ht)
 		while (acceptable(line[i++]))
 		{
 			if (line[i] == ' ')
-			{
-				entry = ft_memalloc(sizeof(t_entry));
-				entry = capture_room(master, entry, line);
-				assign_entry_to_ht(ht, master, entry);
-			}
+				capture_room(ht, master, line);
 			else if (line[i] == '-')
 				capture_links(ht, master, line);
 		}

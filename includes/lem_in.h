@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/20 22:21:34 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/21 15:01:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,24 +121,24 @@ typedef struct		s_ants
 **	**c = CHOSEN paths from the DFS.
 */
 
-typedef struct		s_paths
-{
-	struct s_bucket	**p;
-	struct s_bucket	**c;
-	struct s_entry	*s_room;
-	struct s_entry	*e_room;
-	int				max_paths;
-	int				s_index;	
-	int				index;
-	int				p_len;
-	int				c_len;
-	int				collision;
-	int				nbr_moves;
-	int				nbr_ants_s;
-	int				nbr_ants_e;
-	int				ant_id;
-	int				max_id;
-}					t_paths;
+// typedef struct		s_paths
+// {
+// 	struct s_bucket	**p;
+// 	struct s_bucket	**c;
+// 	struct s_entry	*s_room;
+// 	struct s_entry	*e_room;
+// 	int				max_paths;
+// 	int				s_index;	
+// 	int				index;
+// 	int				p_len;
+// 	int				c_len;
+// 	int				collision;
+// 	int				nbr_moves;
+// 	int				nbr_ants_s;
+// 	int				nbr_ants_e;
+// 	int				ant_id;
+// 	int				max_id;
+// }					t_paths;
 
 
 /*
@@ -179,6 +179,7 @@ typedef struct		s_master
 	size_t			size_factor;
 	float			load;
 	int				nbr_keys;
+	int				link;
 }					t_master;
 
 /*
@@ -206,7 +207,7 @@ void				init_master(t_master *master);
 // void				init_paths(int len, t_bucket **p);
 void				init_bfs(t_bfs *bfs, t_master *master);
 // void				init_entry(t_entry *entry);
-void				init_paths_struct(t_paths *paths);
+// void				init_paths_struct(t_paths *paths);
 void				init_instrux(t_ants *instrux);
 void				ft_init_int_arr(int *src, int len);
 void				init_moves(t_lol *moves);
@@ -218,10 +219,10 @@ void				init_moves(t_lol *moves);
 
 void				free_node(t_bucket *node);
 void				free_entry(t_entry *entry);
-void				free_paths(t_paths *paths);
+// void				free_paths(t_paths *paths);
 void				free_ant_instrux(t_ants *ins);
 void				free_bucket(t_bucket *bucket);
-void				delete_old_path(t_bucket **paths);
+// void				delete_old_path(t_bucket **paths);
 // void				pop_from_list(t_bucket *head);
 void				delete_old_ht(t_bucket **old, size_t size);
 
@@ -262,7 +263,8 @@ t_bucket			**grow_ht(t_bucket **ht, t_master *master);
 t_bucket			**create_ht(t_master *master);
 // t_bucket			*create_bucket(void);
 // t_entry				*create_entry(void);
-t_entry				*capture_room(t_master *master, t_entry *dst, char *line);
+// t_entry				*capture_room(t_master *master, t_entry *dst, char *line);
+void				capture_room(t_bucket **ht, t_master *master, char *line);
 float				load(t_master *master);
 void				insert_node(t_bucket **ht, t_entry *entry, int index);
 void				assign_entry_to_ht(t_bucket **ht, t_master *master,\
@@ -275,19 +277,20 @@ t_bucket			*get_head(t_bucket **ht, t_master *master, char *name);
 */
 
 void				find_paths(t_master *master, t_bucket **ht);
-void				choose_paths(t_master *master, t_paths *paths);
-void				calc_distribution(t_master *master, t_bfs *bfs);
-t_bucket			**grow_path_array(t_paths *paths);
+// void				choose_paths(t_master *master, t_paths *paths);
+void				calc_distro(t_bucket **ht, t_master *master, t_bfs *bfs);
+// t_bucket			**grow_path_array(t_paths *paths);
 void				ants_marching(t_bfs *bfs, t_master *master);
-void				write_r2r(t_ants *ins, t_entry *entry1, t_entry *entry2, int i);
-void				write_r2e(t_ants *ins, t_entry *entry1, t_entry *entry2, int i);
-void				write_s2r(t_ants *ins, t_entry *entry1, int i);
+void				write_r2r(t_ants *ins, t_entry *entry1, t_entry *entry2);
+void				write_r2e(t_ants *ins, t_entry *entry1, t_entry *entry2);
+void				write_s2r(t_ants *ins, t_entry *entry1);
 
 /*
 **	RANDOM TOOLS
 */
 
 int					dupe(t_bucket **head, t_entry *entry);
+int					validate_input(t_master *master);
 /*
 **	PRINTING
 */
@@ -304,9 +307,9 @@ void				start_or_end(t_master *master, t_entry *entry);
 int					bucket_arr_len(t_bucket **arr);
 int					link_array_len(t_entry **arr);
 t_bucket			*copy_from_array(t_bucket *head, t_bucket *src);
-void				max_paths(t_paths *paths);
+// void				max_paths(t_paths *paths);
 int					dup_coord(t_bucket **ht, t_master *master, t_entry *entry);
-void				get_shortest_path(t_paths *paths);
+// void				get_shortest_path(t_paths *paths);
 int					list_length(t_bucket *head);
 // void				sort_all_paths(t_paths *paths);
 int					*ft_intcat(int *src, int to_add);
@@ -354,6 +357,7 @@ void				adj_cap(t_entry *fnd, t_entry *via, int cap);
 t_bucket		 	*get_edge(t_entry *fnd, t_entry *via);
 void				clear_data(t_bucket **ht, t_master *master, t_bfs *bfs);
 void				sort_paths(t_bfs *bfs);
+int					chk_direct_link(t_bucket **ht, t_master *master, t_bfs *bfs);
 
 
 #endif

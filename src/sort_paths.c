@@ -6,35 +6,35 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 09:35:58 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 19:23:31 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/21 13:11:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	get_shortest_path(t_paths *paths)
-{
-	int			pos;
-	int			min;
-	int			i;
-	int			len;
+// void	get_shortest_path(t_paths *paths)
+// {
+// 	int			pos;
+// 	int			min;
+// 	int			i;
+// 	int			len;
 
-	pos = 0;
-	min = 100000;
-	i = 0;
-	len = 1;
-	while (i < bucket_arr_len(paths->c))
-	{
-		len = list_length(paths->c[i]);
-		if (len <= min)
-		{
-			min = len;
-			pos = i;
-		}
-		i++;
-	}
-	paths->s_index = pos;
-}
+// 	pos = 0;
+// 	min = 100000;
+// 	i = 0;
+// 	len = 1;
+// 	while (i < bucket_arr_len(paths->c))
+// 	{
+// 		len = list_length(paths->c[i]);
+// 		if (len <= min)
+// 		{
+// 			min = len;
+// 			pos = i;
+// 		}
+// 		i++;
+// 	}
+// 	paths->s_index = pos;
+// }
 
 
 

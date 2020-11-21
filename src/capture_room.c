@@ -6,48 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 20:55:34 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/21 15:01:46 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-void	scan_index(t_bucket *head, size_t index)
-{
-	t_bucket	*tmp;
-	t_bucket	*test;
-
-	tmp = head;
-	while (tmp)
-	{
-		if (!tmp->next)
-			break ;
-		else
-		{
-			test = tmp->next;
-			while (test->next)
-			{
-				if (ft_strequ(test->entry->name, tmp->entry->name))
-					exit_dup(test->entry->name, index);
-				test = test->next;
-			}
-		}
-		tmp = tmp->next;
-	}
-}
-
-void	validate_rooms(t_bucket **ht, t_master *master)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < master->new_size)
-	{
-		if (ht[i])
-			scan_index(ht[i], i);
-		i++;
-	}
-}
 
 void	validate_coords(t_master *master, char *n1, char *n2)
 {
@@ -93,10 +56,13 @@ int		dup_coord(t_bucket **ht, t_master *master, t_entry *entry)
 	return (0);
 }
 
-t_entry		*capture_room(t_master *master, t_entry *dst, char *line)
+// t_entry		*capture_room(t_master *master, t_entry *dst, char *line)
+void		capture_room(t_bucket **ht, t_master *master, char *line)
 {
 	char	**data;
+	t_entry	*dst;
 
+	dst = ft_memalloc(sizeof(t_entry));
 	data = ft_strsplit(line, ' ');
 	dst->name = ft_strdup(data[0]);
 	dst->x = ft_atoi(data[1]);
@@ -108,8 +74,9 @@ t_entry		*capture_room(t_master *master, t_entry *dst, char *line)
 		start_or_end(master, dst);
 		ft_strdel(&master->comment);
 	}
+	assign_entry_to_ht(ht, master, dst);
 	free_strsplit(&data);
 	data = NULL;
-	return (dst);
+	// return (dst);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/18 08:33:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/21 14:22:10 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ void		capture_links(t_bucket **ht, t_master *master, char *line)
 		do_link(ht[index], data[1], entry2);
 	}
 	free_strsplit(&data);
+	master->link = 1;
 	data = NULL;
 }

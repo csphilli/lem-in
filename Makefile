@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/11/19 12:25:44 by cphillip         ###   ########.fr        #
+#    Updated: 2020/11/21 14:31:35 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,9 +53,12 @@ SRC_FILES = lem_in.c\
 			ht_functions2.c\
 			ants_marching.c\
 			capture_flags.c\
+			validate_input.c\
+			validate_rooms.c\
 			capture_links.c\
 			capture_comment.c\
 			build_path_tools.c\
+			chk_direct_link.c\
 			calc_distribution.c\
 
 OBJ_DIR = ./obj/
