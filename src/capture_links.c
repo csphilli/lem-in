@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/21 14:22:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/22 00:28:29 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,24 @@ void		do_link(t_bucket *head, char *room, t_entry *link)
 		exit_room_not_found(room);
 }
 
+int			link_format(char *line)
+{
+	int	i;
+	int	x;
+
+	i = 0;
+	x = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i] == '-')
+			x++;
+		i++;
+	}
+	if (x > 1)
+		return (0);
+	return (1);
+}
+
 void		capture_links(t_bucket **ht, t_master *master, char *line)
 {
 	char	**data;
@@ -85,6 +103,7 @@ void		capture_links(t_bucket **ht, t_master *master, char *line)
 
 	entry1 = NULL;
 	entry2 = NULL;
+	!link_format(line) ? ft_error("ERROR. Invalid link format.") : 1;
 	data = ft_strsplit(line, '-');
 	entry1 = get_entry(ht, master, data[1]);
 	entry2 = get_entry(ht, master, data[0]);

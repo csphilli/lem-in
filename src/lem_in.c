@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/21 15:08:32 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/21 21:15:38 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_bucket	**get_data(t_bucket **ht, t_master *master, int fd)
 	while (get_next_line(fd, &line) > 0)
 	{
 		// ft_printf("after every entry?\n");
-		// 	ft_error("Error: Insufficient Input.");
+		// 	ft_error("ERROR: Insufficient Input.");
 		if (load(master) > master->load)
 		{
 			master->room_count = 0;

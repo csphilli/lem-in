@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 10:12:54 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 14:27:12 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/21 21:15:34 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		valid_int_test(char *s)
 	intmax_t nbr;
 
 	if (validate_ants(s) == 0)
-		ft_error("Error: Invalid ant size specified.");
+		ft_error("ERROR: Invalid ant size specified.");
 	nbr = ft_atoi(s);
 	if (nbr >= 1 && nbr <= 2147483648)
 		return (nbr);

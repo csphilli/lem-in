@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/21 14:40:32 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/21 21:15:34 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	build_paths(t_bucket **ht, t_master *master, t_bfs **bfs)
 		}
 	}
 	if (!(*bfs)->paths)
-		ft_error("Error: No solution. No link between start and end.");
+		ft_error("ERROR: No solution. No link between start and end.");
 	sort_paths(*bfs);
 	// calc_distribution(master, *bfs);
 }

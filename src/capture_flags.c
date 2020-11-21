@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 10:55:20 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/21 21:15:36 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	add_flag(t_master *master, char *c)
 {
 	c++;
 	if (!ft_strchr(master->accepted_flags, *c))
-		ft_error("Error: Invalid flag input. Use -h for list.");
+		ft_error("ERROR: Invalid flag input. Use -h for list.");
 	if (!master->input_flags)
 		master->input_flags = ft_memalloc(sizeof(char) * ft_strlen(c));
 	ft_strcat(master->input_flags, c);

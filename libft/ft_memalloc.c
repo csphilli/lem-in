@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 13:47:26 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/14 23:02:57 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/21 21:15:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memalloc(size_t size)
 
 	if (!(mem = malloc(size)))
 	{
-		ft_printf("Error: Failed to allocate memory.\n");
+		ft_printf("ERROR: Failed to allocate memory.\n");
 		return (NULL);
 	}
 	ft_bzero(mem, size);
