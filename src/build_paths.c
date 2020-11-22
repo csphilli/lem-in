@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/21 21:15:34 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/22 14:21:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	map_to_paths(t_bfs *bfs)
 		{
 			append_to_ll(&ll, tmp->via);
 			adj_cap(tmp->fnd, tmp->via, 0);
+			adj_cap(tmp->via, tmp->fnd, 0); // added this
 			if (ft_strequ(tmp->via->name, bfs->start->name))
 				break ;
 			cur->via = tmp->via;
@@ -84,9 +85,10 @@ void	build_paths2(t_bucket **ht, t_master *master, t_bfs *bfs)
 	
 	cur = get_entry(ht, master, bfs->cur->name);
 	tmp = cur->links;
+	cur->visited = 1; // added this
 	while (tmp)
 	{
-		if (ft_strequ(tmp->entry->name, bfs->end->name))
+		if (tmp->cap && (ft_strequ(tmp->entry->name, bfs->end->name)))
 		{
 			unshift_to_map(&bfs->map, tmp->entry, cur);
 			map_to_paths(bfs);
@@ -97,7 +99,7 @@ void	build_paths2(t_bucket **ht, t_master *master, t_bfs *bfs)
 		{
 			append_to_ll(&bfs->q, tmp->entry);
 			unshift_to_map(&bfs->map, tmp->entry, cur);
-			tmp->entry->visited = 1;
+			// tmp->entry->visited = 1; // commented out
 		}
 		tmp = tmp->next;
 	}

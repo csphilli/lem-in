@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/22 00:28:29 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/22 14:24:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,16 @@ void	eval_links(t_bucket **src, t_entry *entry)
 	t_bucket	*tmp;
 
 	tmp = *src;
-	if (*src == NULL || ft_nbrstrcmp(entry->name, (*src)->entry->name) < 0)
+	// if (*src == NULL || ft_nbrstrcmp(entry->name, (*src)->entry->name) < 0) // removed this
+	if (*src == NULL || entry->x < (*src)->entry->x)
 		insert_to_ll(src, entry);
 	else
 	{
 		while (tmp)
 		{
-			if (tmp->next && (ft_nbrstrcmp(entry->name, tmp->entry->name) >\
-				0 && ft_nbrstrcmp(entry->name, tmp->next->entry->name) < 0))
+			// if (tmp->next && (ft_nbrstrcmp(entry->name, tmp->entry->name) >\
+			// 	0 && ft_nbrstrcmp(entry->name, tmp->next->entry->name) < 0)) // removed this
+			if (tmp->next && (entry->x > tmp->entry->x && entry->x <= tmp->next->entry->x))
 			{
 				insert_to_ll(&tmp->next, entry);
 				break ;

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/22 11:22:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/22 14:17:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	print_input(t_bucket **input)
 		ft_printf("%s\n", tmp->input);
 		tmp = tmp->next;
 	}
+	write(1, "\n", 1);
 }
 
 int		check_inputs(t_master *master, int ac)
@@ -72,6 +73,7 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 	calc_distro(ht, master, *bfs);
 	// ft_printf("5\n");
 	print_input(&master->input);
+	
 	ants_marching(*bfs, master);
 	// ft_printf("6\n");
 	return (ht);
