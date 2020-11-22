@@ -6,11 +6,23 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/21 21:15:38 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/22 11:22:56 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+void	print_input(t_bucket **input)
+{
+	t_bucket	*tmp;
+
+	tmp = *input;
+	while (tmp)
+	{
+		ft_printf("%s\n", tmp->input);
+		tmp = tmp->next;
+	}
+}
 
 int		check_inputs(t_master *master, int ac)
 {
@@ -42,9 +54,13 @@ t_bucket	**get_data(t_bucket **ht, t_master *master, int fd)
 
 t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 {
+
+	// store_input(master, fd);
+
 	ht = get_data(ht, master, fd);
 	(*bfs)->start = master->start_room;
 	(*bfs)->end = master->end_room;
+
 	validate_input(master);
 	// ft_printf("1\n");
 	validate_rooms(ht, master);
@@ -55,6 +71,7 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 	// ft_printf("4\n");
 	calc_distro(ht, master, *bfs);
 	// ft_printf("5\n");
+	print_input(&master->input);
 	ants_marching(*bfs, master);
 	// ft_printf("6\n");
 	return (ht);

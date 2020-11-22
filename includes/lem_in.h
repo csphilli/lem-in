@@ -6,12 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/21 21:13:08 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/22 11:08:59 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
+# define LEMBUF 5000000
 // # define E_BASIC "Error. For more info, use flag '-e'.\n"
 // # define E_MALLOC "Error. Failed to allocate memory.\n"
 # define E_NO_ROOMS "Error. No rooms specified.\n"
@@ -44,6 +45,7 @@
 
 typedef struct		s_bucket
 {
+	char			*input;
 	struct s_entry	*entry;
 	unsigned int	cap;
 	struct s_bucket	*next;
@@ -180,6 +182,7 @@ typedef struct		s_master
 	float			load;
 	int				nbr_keys;
 	int				link;
+	t_bucket		*input;
 }					t_master;
 
 /*
