@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 09:04:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 12:55:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/22 14:43:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 // 	}
 // }
 
-void	ft_init_int_arr(int *src, int len)
+void	free_intarray(int *src, int len)
 {
 	int	i;
 

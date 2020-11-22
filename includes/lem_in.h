@@ -6,13 +6,12 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/22 11:08:59 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/22 14:44:33 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
-# define LEMBUF 5000000
 // # define E_BASIC "Error. For more info, use flag '-e'.\n"
 // # define E_MALLOC "Error. Failed to allocate memory.\n"
 # define E_NO_ROOMS "Error. No rooms specified.\n"
@@ -223,8 +222,9 @@ void				init_moves(t_lol *moves);
 void				free_node(t_bucket *node);
 void				free_entry(t_entry *entry);
 // void				free_paths(t_paths *paths);
-void				free_ant_instrux(t_ants *ins);
+// void				free_ant_instrux(t_ants *ins);
 void				free_bucket(t_bucket *bucket);
+void				free_intarray(int *src, int len);
 // void				delete_old_path(t_bucket **paths);
 // void				pop_from_list(t_bucket *head);
 void				delete_old_ht(t_bucket **old, size_t size);

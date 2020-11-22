@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/22 19:24:44 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/22 14:47:43 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ void	map_to_paths(t_bfs *bfs)
 			append_to_ll(&ll, tmp->via);
 			adj_cap(tmp->fnd, tmp->via, 0);
 			adj_cap(tmp->via, tmp->fnd, 0); // added this
-			// if (ft_strequ(tmp->via->name, bfs->start->name))
-			if (ft_strequ(tmp->via->name, bfs->end->name))
+			if (ft_strequ(tmp->via->name, bfs->start->name))
 				break ;
 			cur->via = tmp->via;
 		}
@@ -89,8 +88,7 @@ void	build_paths2(t_bucket **ht, t_master *master, t_bfs *bfs)
 	cur->visited = 1; // added this
 	while (tmp)
 	{
-		// if (tmp->cap && (ft_strequ(tmp->entry->name, bfs->end->name)))
-		if (tmp->cap && (ft_strequ(tmp->entry->name, bfs->start->name)))
+		if (tmp->cap && (ft_strequ(tmp->entry->name, bfs->end->name)))
 		{
 			unshift_to_map(&bfs->map, tmp->entry, cur);
 			map_to_paths(bfs);
@@ -107,81 +105,17 @@ void	build_paths2(t_bucket **ht, t_master *master, t_bfs *bfs)
 	}
 }
 
-void	reverse_ll(t_bucket **new, t_bucket *list)
-{
-	t_bucket	*tmp;
-	
-	tmp = list;
-	while (tmp)
-	{
-		if (*new == NULL)
-			
-		unshift_ll(new, tmp->entry);
-		tmp = tmp->next;
-	}
-	*new = tmp;
-	ft_printf("Printing ll inside reverse\n");
-	print_ll(*new);
-}
-
-void	free_lol(t_lol *lol)
-{
-	t_lol *tmp;
-
-	tmp = lol;
-	while (tmp)
-	{
-		while (tmp->list)
-			pop_from_ll(&tmp->list);
-		tmp = tmp->next;
-	}
-}
-
-void	free_ll(t_bucket **ll)
-{
-	t_bucket *tmp;
-
-	tmp = *ll;
-	while (tmp)
-		pop_from_ll(&tmp);
-	tmp = NULL;
-}
-
-void	reverse_paths(t_lol **lol)
-{
-	t_lol 		*tmp;
-	t_bucket	*newll;
-	t_lol		*newlol;
-
-	tmp = *lol;
-	newll = NULL;
-	newlol = NULL;
-	while (tmp->list)
-	{
-		while (tmp->list)
-		{
-			unshift_ll(&newll, tmp->list->entry);
-			pop_from_ll(&tmp->list);
-		}
-		append_to_lol(&newlol, newll);
-		newll = NULL;
-		pop_from_lol(&tmp);
-	}
-	*lol = newlol;
-}
 
 
 void	build_paths(t_bucket **ht, t_master *master, t_bfs **bfs)
 {
 	int len;
 
-	// len = list_length((*bfs)->start->links);
-	len = list_length((*bfs)->end->links);
+	len = list_length((*bfs)->start->links);
 	init_caps(ht, master);
 	while (len--)
 	{
-		// append_to_ll(&(*bfs)->q, (*bfs)->start);
-		append_to_ll(&(*bfs)->q, (*bfs)->end);
+		append_to_ll(&(*bfs)->q, (*bfs)->start);
 		while ((*bfs)->q)
 		{
 			(*bfs)->cur = (*bfs)->q->entry;
@@ -191,13 +125,6 @@ void	build_paths(t_bucket **ht, t_master *master, t_bfs **bfs)
 	}
 	if (!(*bfs)->paths)
 		ft_error("ERROR: No solution. No link between start and end.");
-	// print_lol(&(*bfs)->paths);
-	reverse_paths(&(*bfs)->paths);
 	sort_paths(*bfs);
-	print_lol(&(*bfs)->paths);
-	// while (1)
-	// {
-		
-	// }
 	// calc_distribution(master, *bfs);
 }

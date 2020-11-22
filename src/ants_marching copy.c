@@ -6,113 +6,109 @@
 // /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 // /*                                                +#+#+#+#+#+   +#+           */
 // /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-// /*   Updated: 2020/11/17 12:54:38 by cphillip         ###   ########.fr       */
+// /*   Updated: 2020/11/21 14:39:28 by cphillip         ###   ########.fr       */
 // /*                                                                            */
 // /* ************************************************************************** */
 
 // #include "../includes/lem_in.h"
 
-// void	r2r(t_paths *paths, t_ants *ins)
+// void	r2r(t_lol *path, t_ants *ins)
 // {
 // 	t_bucket	*tmp;
-// 	int			i;
 
-// 	i = 0;
-// 	tmp = NULL;
-// 	while (i <= ins->max_index)
+// 	tmp = path->list;
+// 	while (tmp)
 // 	{
-// 		tmp = paths->c[i];
-// 		while (tmp)
-// 		{
-// 			if (tmp->next && ft_strequ(tmp->next->entry->name, \
-// 				paths->s_room->name))
-// 				break ;
-// 			else if (tmp->next && (!ft_strequ(tmp->entry->name,\
-// 					paths->e_room->name) && tmp->next->entry->occ))
-// 				write_r2r(tmp->entry, tmp->next->entry);
-// 			tmp = tmp->next;
-// 		}
-// 		i++;
+// 		if (!ft_strequ(tmp->entry->name, ins->end->name) && \
+// 			(tmp->next && tmp->next->entry->occ && \
+// 			!ft_strequ(tmp->next->entry->name, ins->start->name)))
+// 				write_r2r(ins, tmp->entry, tmp->next->entry);
+// 		tmp = tmp->next;
 // 	}
 // }
 
-// void	r2e(t_paths *paths, t_ants *ins)
+// void	r2e(t_lol *path, t_ants *ins)
 // {
 // 	t_bucket	*tmp;
-// 	int			i;
 
-// 	i = 0;
-// 	tmp = NULL;
-// 	while (i <= ins->max_index)
+// 	tmp = path->list;
+// 	if (tmp->next->entry->occ)
 // 	{
-// 		tmp = paths->c[i];
-// 		if (tmp->next->entry->occ)
-// 		{
-// 			write_r2e(paths, tmp->entry, tmp->next->entry);
-// 			if (paths->nbr_ants_e < paths->max_id)
-// 				write(1, " ", 1);
-// 		}
-// 		i++;
+// 		write_r2e(ins, tmp->entry, tmp->next->entry);
+// 		path->ants_left--;
 // 	}
 // }
 
-// void	s2r(t_paths *paths, t_ants *ins)
+// void	s2r(t_lol *path, t_ants *ins)
 // {
 // 	t_bucket	*tmp;
-// 	int			i;
 
-// 	tmp = NULL;
-// 	i = 0;
-// 	while (i <= ins->max_index)
+// 	tmp = path->list;
+// 	path->nbr_ants--;
+// 	while (!ft_strequ(tmp->next->entry->name, ins->start->name))
+// 		tmp = tmp->next;
+// 	if (!tmp->entry->occ)
+// 		write_s2r(ins, tmp->entry);
+// }
+
+// void	ants_marching_parse(t_bfs *bfs, t_ants *ins)
+// {
+// 	t_lol 	*tmp;
+
+// 	tmp = bfs->paths;
+// 	while (tmp)
 // 	{
-// 		if (ins->ant_arr[i] > 0)
+// 		if (tmp->ants_left > 0)
 // 		{
-// 			tmp = paths->c[i];
-// 			while (!ft_strequ(tmp->next->entry->name, paths->s_room->name))
-// 				tmp = tmp->next;
-// 			write_s2r(paths, tmp->entry);
-// 			ins->ant_arr[i]--;
-// 			if (i != ins->max_index && ins->ant_arr[i + 1] > 0)
-// 				write(1, " ", 1);
-// 		}
-// 		i++;
+// 			r2e(tmp, ins);
+// 			r2r(tmp, ins);
+// 			if (tmp->nbr_ants > 0)
+// 				s2r(tmp, ins);
+// 		}		
+// 		tmp = tmp->next;
 // 	}
 // }
 
-// void	ants_marching_parse(t_paths *paths, t_ants *ins)
+// void	init_ant_ins(t_bfs *bfs, t_master *master, t_ants **ins)
 // {
-// 	r2e(paths, ins);
-// 	r2r(paths, ins);
-// 	s2r(paths, ins);
-// 	ft_printf("\n");
-// 	// paths->nbr_moves++;
+// 	(*ins)->ants_s = master->nbr_ants;
+// 	(*ins)->max_ant = (*ins)->ants_s;
+// 	(*ins)->start = bfs->start;
+// 	(*ins)->end = bfs->end;
+// 	(*ins)->ant_id = 1;
 // }
 
-// void	ants_marching(t_paths *paths, t_ants *ins)
-// {
-// 	int rounds;
-// 	int	i;
 
-// 	rounds = most_ants(ins->ant_arr);
-// 	paths->max_id = paths->nbr_ants_s;
-// 	i = 0;
-// 	while (i < rounds)
-// 	{
-// 		ants_marching_parse(paths, ins);
-// 		paths->nbr_moves++;
-// 		i++;
-// 	}
+// void	ants_marching(t_bfs *bfs, t_master *master)
+// {
+// 	t_ants *ins;
+// 	char	*tmp;
+
+// 	ins = ft_memalloc(sizeof(t_ants));
+// 	ins->i = 0;
+// 	tmp = NULL;
+// 	init_ant_ins(bfs, master, &ins);
 // 	while (1)
 // 	{
-// 		r2e(paths, ins);
-// 		if (paths->nbr_ants_e == paths->max_id)
-// 		{
-// 			paths->nbr_moves++;
+// 		ants_marching_parse(bfs, ins);
+// 		tmp = ft_strnew(ft_strlen(ins->output) - 1);
+// 		ft_strncat(tmp, ins->output, ft_strlen(ins->output) - 1);
+// 		ft_strdel(&ins->output);
+// 		ins->output = NULL;
+// 		ft_printf("%s\n", tmp);
+// 		ft_strdel(&tmp);
+
+// 		// free(tmp);
+// 		tmp = NULL;
+// 		// ft_strdel(&ins->output);
+// 		ins->n_moves++;
+// 		if (ins->ants_e == ins->max_ant)
 // 			break ;
-// 		}
-// 		r2r(paths, ins);
-// 		paths->nbr_moves++;
-// 		ft_printf("\n");
+// 		ins->i++;
 // 	}
-// 	ft_printf("\nNumber of moves made: %d\n", paths->nbr_moves);
+// 	// while (1)
+// 	// {
+		
+// 	// }
+// 	ft_printf("Number of moves made: %d\n", ins->n_moves);
 // }

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/21 14:39:28 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/22 19:26:28 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	r2r(t_lol *path, t_ants *ins)
 	t_bucket	*tmp;
 
 	tmp = path->list;
+	tmp = tmp->next;
 	while (tmp)
 	{
-		if (!ft_strequ(tmp->entry->name, ins->end->name) && \
-			(tmp->next && tmp->next->entry->occ && \
-			!ft_strequ(tmp->next->entry->name, ins->start->name)))
+		if (tmp->next && tmp->next->entry->occ && \
+			!ft_strequ(tmp->next->entry->name, ins->start->name))
 				write_r2r(ins, tmp->entry, tmp->next->entry);
 		tmp = tmp->next;
 	}
@@ -78,7 +78,6 @@ void	init_ant_ins(t_bfs *bfs, t_master *master, t_ants **ins)
 	(*ins)->ant_id = 1;
 }
 
-
 void	ants_marching(t_bfs *bfs, t_master *master)
 {
 	t_ants *ins;
@@ -102,6 +101,13 @@ void	ants_marching(t_bfs *bfs, t_master *master)
 		tmp = NULL;
 		// ft_strdel(&ins->output);
 		ins->n_moves++;
+		// if (ins->i == 100)
+		// {
+		// 	while (1)
+		// 	{
+				
+		// 	}
+		// }
 		if (ins->ants_e == ins->max_ant)
 			break ;
 		ins->i++;

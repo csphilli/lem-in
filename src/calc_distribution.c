@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/21 14:37:21 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/22 15:03:31 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,25 @@ void	unlocks(t_bfs *bfs)
 	}
 }
 
+void	create_path_array(t_lol *paths)
+{
+	t_lol 		*tmp;
+	int			*arr;
 
+	arr = NULL;
+	tmp = paths;
+	while (tmp)
+	{
+		if (tmp->nbr_ants > 0)
+			arr = ft_intcat(arr, tmp->nbr_ants);
+		tmp = tmp->next;
+	}
+	// print_int_arr(arr);
+	// while (1)
+	// {
+		
+	// }
+}
 void			calc_distro(t_bucket **ht, t_master *master, t_bfs *bfs)
 {
 	t_lol 	*moves;
@@ -89,10 +107,12 @@ void			calc_distro(t_bucket **ht, t_master *master, t_bfs *bfs)
 	{
 		unlocks(bfs);
 		cascade(bfs, master);
+		// create_path_array(bfs->paths);
 		calc_total_moves(bfs->paths);
 	}
 	else
 		ft_error("Going to do one move soon.");
+	
 	// print_int_arr(arr);
 	
 	// while (1)
