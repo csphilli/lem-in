@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 14:42:58 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 09:31:25 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 12:01:15 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,30 @@ int			lol_length(t_lol *lol)
 		tmp = tmp->next;
 	}
 	return (i);
+}
+
+void	insert_to_lol(t_lol **lol, t_bucket *ll)
+{
+	t_lol 	*head;
+	t_lol	*tmp;
+	t_lol	*new;
+	int		l;
+
+	head = *lol;
+	tmp = head;
+	new = NULL;
+	l = list_length(ll);
+	if (head == NULL || list_length(ll) < list_length(head->list))
+		unshift_lol(&head, ll);
+	else
+	{
+		new = ft_memalloc(sizeof(t_lol));
+		new->list = ll;
+		while (tmp->next && (l > list_length(tmp->list) \
+			&& l >= list_length(tmp->next->list)))
+			tmp = tmp->next;
+		new->next = tmp->next;
+		tmp->next = new;
+	}
+	*lol = head;
 }

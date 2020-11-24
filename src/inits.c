@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/22 10:32:23 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/23 09:06:16 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	init_master(t_master *master)
 
 
 
-void	init_paths(int len, t_bucket **paths)
-{
-	while (--len >= 0)
-		paths[len] = NULL;
-}
+// void	init_paths(int len, t_bucket **paths)
+// {
+// 	while (--len >= 0)
+// 		paths[len] = NULL;
+// }
 
 // void	init_entry(t_entry *entry) // uneeded after changing to ft_memalloc
 // {

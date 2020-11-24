@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 11:11:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 11:11:27 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/23 17:22:02 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	print_int_arr(int *arr)
 	i = 0;
 	if (arr)
 	{
-		ft_printf("\nANT DISTRIBUTION ALONG PATHS FOR SOLVING\n");
-		ft_printf("INDEX:\tANTS\n");
 		while (arr[i])
 		{
 			ft_printf("%d", arr[i]);

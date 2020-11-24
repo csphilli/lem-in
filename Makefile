@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/11/21 14:31:35 by cphillip         ###   ########.fr        #
+#    Updated: 2020/11/23 16:17:43 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,27 +39,27 @@ SRC_FILES = lem_in.c\
 			node_work.c\
 			printing2.c\
 			printing3.c\
-			ft_intcat.c\
 			link_work.c\
 			error_mgmt.c\
 			node_work2.c\
 			sort_paths.c\
 			parse_lines.c\
-			write_moves.c\
 			build_paths.c\
 			capture_room.c\
 			capture_ants.c\
 			ht_functions.c\
 			ht_functions2.c\
 			ants_marching.c\
+			capture_links.c\
 			capture_flags.c\
 			validate_input.c\
 			validate_rooms.c\
-			capture_links.c\
+			chk_direct_link.c\
 			capture_comment.c\
 			build_path_tools.c\
-			chk_direct_link.c\
+			optimal_solution.c\
 			calc_distribution.c\
+			build_distro_array.c\
 
 OBJ_DIR = ./obj/
 OBJ_FILES = $(SRC_FILES:%.c=%.o)

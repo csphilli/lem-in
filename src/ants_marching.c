@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/22 19:26:28 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 12:58:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	r2r(t_lol *path, t_ants *ins)
+void	r2r(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 {
 	t_bucket	*tmp;
 
@@ -20,52 +20,49 @@ void	r2r(t_lol *path, t_ants *ins)
 	tmp = tmp->next;
 	while (tmp)
 	{
-		if (tmp->next && tmp->next->entry->occ && \
-			!ft_strequ(tmp->next->entry->name, ins->start->name))
-				write_r2r(ins, tmp->entry, tmp->next->entry);
+		if (tmp->next && tmp->next->entry->occ && !tmp->entry->occ &&\
+		!ft_strequ(tmp->next->entry->name, ins->start->name))
+		{
+			ft_printf("L%d-%s ", tmp->next->entry->ant_id, tmp->entry->name);
+			tmp->next->entry->occ = 0;
+			tmp->entry->occ = 1;
+			tmp->entry->ant_id = tmp->next->entry->ant_id;
+			tmp->next->entry->ant_id = 0;
+		}
 		tmp = tmp->next;
 	}
 }
 
-void	r2e(t_lol *path, t_ants *ins)
+void	r2e(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 {
 	t_bucket	*tmp;
 
 	tmp = path->list;
 	if (tmp->next->entry->occ)
 	{
-		write_r2e(ins, tmp->entry, tmp->next->entry);
-		path->ants_left--;
+		ft_printf("L%d-%s ", tmp->next->entry->ant_id, tmp->entry->name);
+		tmp->next->entry->ant_id = 0;
+		tmp->next->entry->occ = 0;
+		ins->ants_e++;
+		// ft_printf("|   %d   |", ins->ants_e);
+		// bfs->moves[i]--; // added the [i]
 	}
 }
 
-void	s2r(t_lol *path, t_ants *ins)
-{
+void	s2r(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
+{	
 	t_bucket	*tmp;
 
 	tmp = path->list;
-	path->nbr_ants--;
 	while (!ft_strequ(tmp->next->entry->name, ins->start->name))
 		tmp = tmp->next;
 	if (!tmp->entry->occ)
-		write_s2r(ins, tmp->entry);
-}
-
-void	ants_marching_parse(t_bfs *bfs, t_ants *ins)
-{
-	t_lol 	*tmp;
-
-	tmp = bfs->paths;
-	while (tmp)
 	{
-		if (tmp->ants_left > 0)
-		{
-			r2e(tmp, ins);
-			r2r(tmp, ins);
-			if (tmp->nbr_ants > 0)
-				s2r(tmp, ins);
-		}		
-		tmp = tmp->next;
+		bfs->s_distro[i]--;
+		ft_printf("L%d-%s ", ins->ant_id, tmp->entry->name);
+		tmp->entry->ant_id = ins->ant_id;
+		tmp->entry->occ = 1;
+		ins->ant_id++;
 	}
 }
 
@@ -80,41 +77,47 @@ void	init_ant_ins(t_bfs *bfs, t_master *master, t_ants **ins)
 
 void	ants_marching(t_bfs *bfs, t_master *master)
 {
-	t_ants *ins;
-	char	*tmp;
+	t_ants 	*ins;
+	t_lol	*tmp;
+	int		i;
+	int		len;
+	int		trigger;
 
 	ins = ft_memalloc(sizeof(t_ants));
-	ins->i = 0;
-	tmp = NULL;
+	i = 0;
+	trigger = 0;
+	tmp = bfs->paths;
 	init_ant_ins(bfs, master, &ins);
-	while (1)
+	len = ft_int_arr_len(bfs->moves);
+	while (ins->ants_e != ins->max_ant)
 	{
-		ants_marching_parse(bfs, ins);
-		tmp = ft_strnew(ft_strlen(ins->output) - 1);
-		ft_strncat(tmp, ins->output, ft_strlen(ins->output) - 1);
-		ft_strdel(&ins->output);
-		ins->output = NULL;
-		ft_printf("%s\n", tmp);
-		ft_strdel(&tmp);
+		while (i < len)
+		{
+			if (bfs->moves[i] > 0)
+			{
+				// ft_printf("BEFORE: ");
+				// print_int_arr(bfs->moves);
+				// ft_printf("  [%d]:   ", i);
+				r2e(bfs, tmp, ins, i);
 
-		// free(tmp);
-		tmp = NULL;
-		// ft_strdel(&ins->output);
-		ins->n_moves++;
-		// if (ins->i == 100)
-		// {
-		// 	while (1)
-		// 	{
-				
-		// 	}
-		// }
-		if (ins->ants_e == ins->max_ant)
-			break ;
-		ins->i++;
-	}
-	// while (1)
-	// {
+				r2r(bfs, tmp, ins, i);
+				// ft_printf("AND LEFT: ");
+				// print_int_arr(bfs->s_distro);
+				if (bfs->s_distro[i] > 0)
+					s2r(bfs, tmp, ins, i);
+				bfs->moves[i]--;
+				// write(1, "\n", 1);
+			}
+			i++;
+			tmp = tmp->next;
+		}
 		
-	// }
-	ft_printf("Number of moves made: %d\n", ins->n_moves);
+		// ft_printf("ins->ants: %d\n", ins->ants_e);
+		ins->n_moves++;
+		write(1, "\n", 1);
+		i = 0;
+		tmp = bfs->paths;
+	}
+	ft_printf("Ants end: %d | Ants start: %d\n", ins->ants_e, ins->max_ant);
+	ft_printf("Nbr of moves made: %d\n", ins->n_moves);
 }

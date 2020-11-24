@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/22 15:03:31 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 12:16:58 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void		calc_total_moves(t_lol *paths)
 	tmp = paths;
 	while (tmp)
 	{
-		tmp->total_moves = tmp->nbr_ants +\
-		(list_length(tmp->list) - 2);
+		// tmp->total_moves = tmp->nbr_ants +\
+		// (list_length(tmp->list) - 2);
+		tmp->total_moves = tmp->nbr_ants + tmp->cap - 1;
 		tmp->ants_left = tmp->nbr_ants;
 		tmp = tmp->next;
 	}
@@ -35,12 +36,12 @@ void		chk_unlock(t_bfs **bfs, t_lol **tmp)
 	}
 }
 
-void	cascade(t_bfs *bfs, t_master *master)
+void	cascade(t_bfs *bfs, t_master *master, t_lol *paths)
 {
 	t_lol 	*tmp;
 	int		ant_count;
 
-	tmp = bfs->paths;
+	tmp = paths;
 	ant_count = master->nbr_ants;
 	while (tmp && ant_count > 0)
 	{
@@ -52,20 +53,22 @@ void	cascade(t_bfs *bfs, t_master *master)
 			if (master->vis_distro)
 			{
 				system("clear");
-				print_distro(&bfs->paths);
+				print_distro(&paths);
+				calc_total_moves(paths);
 				usleep(250000);
 			}
-			tmp = (tmp->index == bfs->max_index ? bfs->paths : tmp->next);
+			tmp = (tmp->index == bfs->max_index ? paths : tmp->next);
 		}
-		tmp = bfs->paths;
+		tmp = paths;
 	}
 }
 
-void	unlocks(t_bfs *bfs)
+void	unlocks(t_bfs *bfs, t_lol *paths)
 {
 	t_lol	*tmp;
 
-	tmp = bfs->paths;
+	tmp = paths;
+	bfs->max_index = 0;
 	while (tmp)
 	{
 		if (tmp->next)
@@ -89,34 +92,24 @@ void	create_path_array(t_lol *paths)
 			arr = ft_intcat(arr, tmp->nbr_ants);
 		tmp = tmp->next;
 	}
-	// print_int_arr(arr);
-	// while (1)
-	// {
-		
-	// }
 }
+
 void			calc_distro(t_bucket **ht, t_master *master, t_bfs *bfs)
 {
 	t_lol 	*moves;
 	int		*arr;
+	int		i;
 
 	arr = NULL;
-	moves = bfs->paths;
-	init_moves(moves);
-	if (!chk_direct_link(ht, master, bfs))
+	i = 0;
+	moves = NULL;
+	while (i < 2)
 	{
-		unlocks(bfs);
-		cascade(bfs, master);
-		// create_path_array(bfs->paths);
-		calc_total_moves(bfs->paths);
+		moves = (i == 1 ? bfs->s2e_paths : bfs->e2s_paths);
+		init_moves(moves);
+		unlocks(bfs, moves);
+		cascade(bfs, master, moves);
+		calc_total_moves(moves);
+		i++;
 	}
-	else
-		ft_error("Going to do one move soon.");
-	
-	// print_int_arr(arr);
-	
-	// while (1)
-	// {
-		
-	// }
 }

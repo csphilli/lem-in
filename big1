@@ -1,9 +1,9 @@
 206
 #Here is the number of lines required: 48
 ##start
-Cwk2 3 3
+STARTSTART 3 3
 ##end
-Y_s8 8 8
+ENDEND 8 8
 Oq_0 10 10
 Wwk1 12 12
 Msw0 14 14
@@ -3466,7 +3466,7 @@ Wob6-W_p4
 R_x7-Dpb8
 Kdg9-R_x7
 Brj1-I_l7
-Y_s8-Brj1
+ENDEND-Brj1
 Clz4-Nqw0
 Upu2-Zst5
 Sov8-Upu2
@@ -3485,7 +3485,7 @@ Rnp9-Gvw2
 Bn_5-Ouf6
 Vtn5-Bn_5
 B_a8-Nse6
-Cwk2-B_a8
+STARTSTART-B_a8
 Uqu0-Izw9
 Qtq5-Uqu0
 Xds1-Qtq5
@@ -3497,7 +3497,7 @@ Dbj6-Yil3
 Pjw4-Wgr7
 Jeg0-Pjw4
 Oow5-Xkp6
-Y_s8-Pme5
+ENDEND-Pme5
 Nv_1-H_n0
 Xbo7-Nv_1
 Gql8-Xbo7
@@ -3515,7 +3515,7 @@ Uay5-Fzw0
 Ama0-Ssq9
 Gm_7-Ama0
 Ooo4-Gm_7
-Cwk2-Ooo4
+STARTSTART-Ooo4
 Sps3-Am_8
 Qto3-Sps3
 Uvs3-Xxb0
@@ -3568,7 +3568,7 @@ Pz_8-Zxf5
 N_r9-Pz_8
 Rfe5-Xpn8
 Bpf7-Aky7
-Y_s8-Bpf7
+ENDEND-Bpf7
 Nsq1-Gwx7
 Xxn5-Qio8
 Ptz0-Pdd0
@@ -3580,7 +3580,7 @@ Xhk5-Yul4
 Snm6-Epe8
 Hqr9-Snm6
 Ysm8-Hqr9
-Cwk2-Ysm8
+STARTSTART-Ysm8
 H_a0-Ojb6
 Bci9-Woa2
 Ucb8-Bci9
@@ -3606,8 +3606,8 @@ Xnm6-Ydt2
 Hlh2-Yuq5
 Ezz3-Hlh2
 Btd8-Vgx7
-Dws9-Y_s8
-Yqr9-Y_s8
+Dws9-ENDEND
+Yqr9-ENDEND
 Kzp1-Yqr9
 F_m0-B_b5
 Zmn8-Bov3
@@ -3702,7 +3702,7 @@ Ely1-T_v5
 Ryy9-Ely1
 Uil0-K_y8
 Ewu0-Uil0
-Cwk2-Vfd0
+STARTSTART-Vfd0
 Oxh0-Bok5
 Bbg9-Oxh0
 Jko9-Bbg9
@@ -3794,7 +3794,7 @@ Cyu6-Bkr8
 Bqq4-Cyu6
 Ghq0-Bqq4
 Khb0-Ghq0
-Cwk2-Zav8
+STARTSTART-Zav8
 Vso5-Fcp3
 Mrv3-Yje5
 Mrv3-Nvs1
@@ -3937,7 +3937,7 @@ Cgg8-Eeu7
 Jbx2-Zsv4
 Ive2-Jbx2
 Yvi1-Ive2
-Yd_9-Y_s8
+Yd_9-ENDEND
 Xbr6-Yd_9
 Fc_3-Xbr6
 Wct3-Tzz0
@@ -4020,11 +4020,11 @@ Jxy0-Rlj6
 C_a8-Tp_4
 Mrn9-C_a8
 Dnt3-Mrn9
-Cwk2-Wvj8
+STARTSTART-Wvj8
 Hgj1-Wvj8
 Bec1-Hgj1
-Cwk2-Bec1
-Sqy4-Y_s8
+STARTSTART-Bec1
+Sqy4-ENDEND
 Uwr7-Sqy4
 Tjz2-Uwr7
 Fff3-Tjz2
@@ -4091,11 +4091,11 @@ Umo6-Ng_6
 Pje9-Uds6
 Y_s9-Uds6
 Pje9-Pkc2
-Cwk2-Pje9
+STARTSTART-Pje9
 O_p3-Pje9
 Gzg3-Be_1
-Bkn1-Y_s8
-Cii4-Y_s8
+Bkn1-ENDEND
+Cii4-ENDEND
 Klo0-Cii4
 Svo9-Fnz5
 Cky3-Nkt3
@@ -4169,8 +4169,8 @@ Kn_4-Ui_5
 Sl_2-C_p3
 Mjw4-Xwn8
 Smz5-Mjw4
-Hb_4-Y_s8
-Jrb5-Y_s8
+Hb_4-ENDEND
+Jrb5-ENDEND
 Hb_4-Aec9
 Ykt0-Hb_4
 Pcu8-Nrq3
@@ -4255,8 +4255,8 @@ Xnj1-Bbi1
 Mpm1-Qpn4
 Dre7-Fpj1
 Qla6-Qsa6
-Cwk2-Qla6
-Cwk2-Eap3
+STARTSTART-Qla6
+STARTSTART-Eap3
 Fz_7-Uri2
 Kdi8-Hft1
 Zd_6-Kdi8
@@ -4358,10 +4358,10 @@ Ptk1-O_j9
 Snu0-Qky5
 Dgg0-Pox8
 Sal0-Pox8
-Cwk2-Dgg0
+STARTSTART-Dgg0
 Udd6-Dgg0
 W_t9-Szz8
-Ktj0-Y_s8
+Ktj0-ENDEND
 Q_a7-J_x6
 Ktj0-Q_a7
 M_j9-Ktj0
@@ -4419,11 +4419,11 @@ Uh_3-Puz8
 Viq1-Hgk7
 Nts8-B_l0
 Btq3-Pjx1
-Cwk2-Btq3
+STARTSTART-Btq3
 O__7-E_k5
 Rwe5-O__7
-Cwk2-Bhn3
-Xdz1-Y_s8
+STARTSTART-Bhn3
+Xdz1-ENDEND
 Grh0-Xdz1
 Tha1-Grh0
 Kiq9-Imq2
@@ -4541,7 +4541,7 @@ Ndf4-Ggp2
 Huw3-Ndf4
 Chw7-Huw3
 Trv8-Chw7
-Nfd2-Y_s8
+Nfd2-ENDEND
 Byr3-Nfd2
 Ex_9-Wql0
 Kz_7-Ex_9
@@ -4612,12 +4612,12 @@ Rxj9-Pjp4
 Qqa2-Rxj9
 Xw_8-Rxj9
 Nd_6-Ktm2
-Cwk2-Uky3
+STARTSTART-Uky3
 Uky3-Vq_5
 Vq_5-Pyw1
 Pyw1-Brq1
 Brq1-Qqa2
-Cwk2-Qqa2
+STARTSTART-Qqa2
 Qqa2-Ipu6
 Ipu6-Cal6
 Cal6-Nd_6
@@ -4677,11 +4677,11 @@ Zvl5-Fzi0
 Fzi0-Mf_5
 Mf_5-Kmk3
 Wql0-Byr3
-K_l1-Y_s8
-Cwk2-Cot9
+K_l1-ENDEND
+STARTSTART-Cot9
 Cot9-Zfv7
 Zfv7-Trv8
-Cwk2-Chw7
+STARTSTART-Chw7
 Chw7-Ggp2
 Nna8-Qi_9
 Opl1-Jtz2
@@ -4778,7 +4778,7 @@ Mks2-Rx_4
 Rx_4-Vgs8
 G_j2-Cuo1
 Imq2-Tha1
-Cuo1-Y_s8
+Cuo1-ENDEND
 Bhn3-D_y6
 D_y6-Rwe5
 E_k5-Btq3
@@ -4840,8 +4840,8 @@ Sva9-Phb9
 Phb9-Gbj9
 Gbj9-M_j9
 Kpt6-Ktj0
-J_x6-Y_s8
-Cwk2-Ycu4
+J_x6-ENDEND
+STARTSTART-Ycu4
 Ycu4-W_t9
 Szz8-Udd6
 Dgg0-Aej9
@@ -4942,8 +4942,8 @@ K_a4-Zd_6
 Hft1-Uri2
 Uri2-Sim0
 Sim0-Huy3
-Huy3-Y_s8
-Uri2-Y_s8
+Huy3-ENDEND
+Uri2-ENDEND
 Eap3-Ytb7
 Ytb7-N_h9
 N_h9-Uhs6
@@ -5038,11 +5038,11 @@ Xrn3-Xpy1
 Nrq3-Ykt0
 Xpy1-Hb_4
 Aec9-Jrb5
-Cwk2-Smz5
+STARTSTART-Smz5
 Xwn8-T_e4
 T_e4-Wrm3
 Wrm3-Sl_2
-Cwk2-Sl_2
+STARTSTART-Sl_2
 C_p3-Kn_4
 Ui_5-Kcu1
 Sl_2-Kcu1
@@ -5123,7 +5123,7 @@ Bkp1-Bkn1
 Hpz8-Bkn1
 Bkn1-Xjs6
 Xjs6-Klo0
-Cwk2-Qxn4
+STARTSTART-Qxn4
 Qxn4-Gzg3
 Be_1-O_p3
 Pkc2-Vyy4
@@ -5195,7 +5195,7 @@ Ygn6-Gmj5
 Vdq1-Jcs9
 Ygn6-Jcs9
 B_t4-Uif0
-Fff3-Y_s8
+Fff3-ENDEND
 Wvj8-Kfp3
 Kfp3-Dnt3
 Wvj8-Mrn9
@@ -5280,9 +5280,9 @@ Tbn0-Zg_6
 Zg_6-Nqk7
 Afh2-Odj7
 Tzz0-Fc_3
-Tzz0-Y_s8
-Cwk2-Yvi1
-Cwk2-Jbx2
+Tzz0-ENDEND
+STARTSTART-Yvi1
+STARTSTART-Jbx2
 Zsv4-Dkp3
 Dkp3-Vei0
 Vei0-Rxz7
@@ -5414,10 +5414,10 @@ Yje5-Vso5
 Fcp3-Hyd2
 Hyd2-Bwd3
 Bwd3-Vvs8
-Vvs8-Y_s8
-Yje5-Y_s8
+Vvs8-ENDEND
+Yje5-ENDEND
 Zav8-Khb0
-Cwk2-Cyu6
+STARTSTART-Cyu6
 U_t5-Gsn8
 Gsn8-Hfe6
 C_n0-Ybt6
@@ -5496,11 +5496,11 @@ Akq5-Woy1
 Uea3-Qyg7
 Eah0-Ykc2
 Ykc2-Mwj9
-Bok5-Y_s8
-Ykc2-Y_s8
+Bok5-ENDEND
+Ykc2-ENDEND
 Vfd0-Rrd2
 Rrd2-Ewu0
-Cwk2-Ewu0
+STARTSTART-Ewu0
 K_y8-Ryy9
 T_v5-Zmy8
 Ewu0-Zmy8
@@ -5606,7 +5606,7 @@ M_a6-Fd_4
 Fd_4-Dws9
 B_b5-Dws9
 Dws9-Kzp1
-Cwk2-Z_d1
+STARTSTART-Z_d1
 Z_d1-Hrp2
 Hrp2-Btd8
 Vgx7-Ezz3
@@ -5618,7 +5618,7 @@ Hh_3-Rap0
 Rap0-Eiy8
 U_d2-Snc3
 Fie8-Dqv3
-Y_s8-Wec8
+ENDEND-Wec8
 Wec8-Ocq4
 Mbj9-Xyl7
 Xyl7-Iax6
@@ -5660,7 +5660,7 @@ Gmu6-Ggs5
 Qfx4-Osu1
 Osu1-Zin0
 Zin0-Vls2
-Cwk2-Scj0
+STARTSTART-Scj0
 Scj0-Aax6
 Aax6-Uqk4
 Uqk4-Sbe9
@@ -5681,7 +5681,7 @@ Bbx8-Bn_2
 Bn_2-Xhp1
 Skv3-Zxe0
 Zxe0-Tn_1
-Y_s8-Dxq4
+ENDEND-Dxq4
 Dxq4-Pwe3
 Pwe3-Zhi2
 A_a9-Bet4

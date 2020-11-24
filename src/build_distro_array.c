@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intcat.c                                        :+:      :+:    :+:   */
+/*   build_distro_array.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 08:34:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/22 14:50:22 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/23 17:16:05 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,20 @@ int		*ft_intcat(int *src, int to_add)
 	free_intarray(tmp, len);
 	free(tmp);
 	return (src);
+}
+
+void	build_distro_array(t_bfs *bfs)
+{
+	t_lol *tmp;
+
+	tmp = bfs->paths;
+	while (tmp)
+	{
+		if (tmp->nbr_ants > 0)
+		{
+			bfs->s_distro = ft_intcat(bfs->s_distro, tmp->nbr_ants);
+			bfs->moves = ft_intcat(bfs->moves, tmp->total_moves);
+		}
+		tmp = tmp->next;
+	}
 }
