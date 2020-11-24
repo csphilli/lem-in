@@ -6,15 +6,27 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 15:03:08 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 19:10:42 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
+void	print_input(t_bucket **input)
+{
+	t_bucket	*tmp;
+
+	tmp = *input;
+	while (tmp)
+	{
+		ft_printf("%s\n", tmp->input);
+		tmp = tmp->next;
+	}
+	write(1, "\n", 1);
+}
+
 void	print_links(t_bucket *src)
 {
-	setbuf(stdout, NULL);
 	t_bucket	*tmp;
 
 	tmp = src;

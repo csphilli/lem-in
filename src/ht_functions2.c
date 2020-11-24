@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 12:38:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 10:49:22 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 18:45:50 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_bucket	**create_ht(t_master *master)
 	ht[i] = NULL;
 	return (ht);
 }
-
 
 void		delete_old_ht(t_bucket **old, size_t size)
 {

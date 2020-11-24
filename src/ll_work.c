@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 09:29:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/15 18:30:18 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 19:53:56 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,30 @@ void	pop_from_ll(t_bucket **ll)
 		tmp->entry = NULL;
 		tmp->next = NULL;
 		free(tmp);
-		tmp = NULL;	
+		tmp = NULL;
 	}
 	*ll = head;
 }
 
-void    unshift_ll(t_bucket **ll, t_entry *entry) // working, no leaks
+void	unshift_ll(t_bucket **ll, t_entry *entry)
 {
 	t_bucket	*tmp;
 	t_bucket	*head;
 
 	head = *ll;
 	tmp = head;
-    if (!head)
+	if (!head)
 	{
 		head = ft_memalloc(sizeof(t_bucket));
 		head->entry = entry;
 	}
-    else
-    {
+	else
+	{
 		tmp = ft_memalloc(sizeof(t_bucket));
 		tmp->entry = entry;
 		tmp->next = head;
 		head = tmp;
-    }
+	}
 	*ll = head;
 }
 
@@ -96,7 +96,7 @@ void	append_to_ll(t_bucket **src, t_entry *entry)
 
 void	copy_ll(t_bucket **dst, t_bucket *src)
 {
-	t_bucket 	*new;
+	t_bucket	*new;
 	t_bucket	*tmp;
 
 	new = NULL;

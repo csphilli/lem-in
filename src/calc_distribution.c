@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 15:11:51 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 19:34:39 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	calc_total_moves(t_lol *paths)
 	tmp = paths;
 	while (tmp)
 	{
-		// tmp->total_moves = tmp->nbr_ants +\
-		// (list_length(tmp->list) - 2);
 		tmp->total_moves = tmp->nbr_ants + tmp->cap - 1;
 		tmp->ants_left = tmp->nbr_ants;
 		tmp = tmp->next;
@@ -38,7 +36,7 @@ void	chk_unlock(t_bfs **bfs, t_lol **tmp)
 
 void	cascade(t_bfs *bfs, t_master *master, t_lol *paths)
 {
-	t_lol 	*tmp;
+	t_lol	*tmp;
 	int		ant_count;
 
 	tmp = paths;
@@ -55,7 +53,7 @@ void	cascade(t_bfs *bfs, t_master *master, t_lol *paths)
 				system("clear");
 				print_distro(&paths);
 				calc_total_moves(paths);
-				usleep(250000);
+				usleep(150000);
 			}
 			tmp = (tmp->index == bfs->max_index ? paths : tmp->next);
 		}
@@ -81,7 +79,7 @@ void	unlocks(t_bfs *bfs, t_lol *paths)
 
 void	calc_distro(t_bucket **ht, t_master *master, t_bfs *bfs)
 {
-	t_lol 	*moves;
+	t_lol	*moves;
 	int		*arr;
 	int		i;
 

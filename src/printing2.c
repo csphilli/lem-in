@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 11:11:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 14:54:43 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 19:22:03 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	print_ll(t_bucket *ll)
 
 void	print_lol(t_lol **list)
 {
-	t_lol 		*tmp;
+	t_lol	*tmp;
 
 	tmp = *list;
 	if (tmp)

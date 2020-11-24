@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/22 11:14:02 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 19:46:47 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	store_input(t_master *master, char *line)
 	}
 }
 
-void		parse_lines(t_master *master, char *line, t_bucket **ht)
+void	parse_lines(t_master *master, char *line, t_bucket **ht)
 {
 	int			i;
 	t_entry		*entry;

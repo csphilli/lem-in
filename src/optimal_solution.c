@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 09:59:55 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 14:34:38 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 19:22:44 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		get_min_moves(t_lol *lol)
 {
-	t_lol 	*tmp;
+	t_lol	*tmp;
 	int		min;
 
 	tmp = lol;
@@ -32,11 +32,9 @@ t_lol	*optimal_solution(t_bfs *bfs)
 {
 	int		min_moves1;
 	int		min_moves2;
-	
+
 	min_moves1 = get_min_moves(bfs->s2e);
 	min_moves2 = get_min_moves(bfs->e2s);
-	// ft_printf("starting for s2e: %s\n", bfs->s2e->list->entry->name);
-	// ft_printf("starting for e2s: %s\n", bfs->e2s->list->entry->name);
 	if (min_moves1 <= min_moves2)
 	{
 		bfs->max_moves = min_moves1;

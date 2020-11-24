@@ -6,15 +6,15 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 14:42:58 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 12:01:15 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 19:45:01 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	unshift_lol(t_lol **lol, t_bucket *ll) // working, no leaks.
+void	unshift_lol(t_lol **lol, t_bucket *ll)
 {
-	t_lol 	*head;
+	t_lol	*head;
 	t_lol	*tmp;
 
 	head = *lol;
@@ -33,7 +33,8 @@ void	unshift_lol(t_lol **lol, t_bucket *ll) // working, no leaks.
 	}
 	*lol = head;
 }
-void	pop_from_lol(t_lol **list) // working no leaks
+
+void	pop_from_lol(t_lol **list)
 {
 	t_lol *head;
 	t_lol *tmp;
@@ -49,9 +50,9 @@ void	pop_from_lol(t_lol **list) // working no leaks
 	*list = head;
 }
 
-void	append_to_lol(t_lol **lol, t_bucket *ll) // working, no leaks.
+void	append_to_lol(t_lol **lol, t_bucket *ll)
 {
-	t_lol 	*head;
+	t_lol	*head;
 	t_lol	*tmp;
 
 	head = *lol;
@@ -71,9 +72,9 @@ void	append_to_lol(t_lol **lol, t_bucket *ll) // working, no leaks.
 	*lol = head;
 }
 
-int			lol_length(t_lol *lol)
+int		lol_length(t_lol *lol)
 {
-	t_lol 	*tmp;
+	t_lol	*tmp;
 	int		i;
 
 	tmp = lol;
@@ -88,7 +89,7 @@ int			lol_length(t_lol *lol)
 
 void	insert_to_lol(t_lol **lol, t_bucket *ll)
 {
-	t_lol 	*head;
+	t_lol	*head;
 	t_lol	*tmp;
 	t_lol	*new;
 	int		l;

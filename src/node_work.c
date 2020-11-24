@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:20:56 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 15:02:42 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 19:11:16 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static void	append_or_insert_entry(t_bucket **ht, t_entry *entry, int index)
+void		append_or_insert_entry(t_bucket **ht, t_entry *entry, int index)
 {
 	t_bucket *new;
 	t_bucket *tmp;
@@ -36,7 +36,7 @@ static void	append_or_insert_entry(t_bucket **ht, t_entry *entry, int index)
 	}
 }
 
-static void	unshift_entry(t_bucket **head, t_entry *entry, int index)
+void		unshift_entry(t_bucket **head, t_entry *entry, int index)
 {
 	t_bucket	*new;
 	t_bucket	*tmp;
@@ -88,7 +88,7 @@ t_bucket	*insert_node_to_path(t_bucket *head, t_entry *node)
 	return (head);
 }
 
-int		dupe(t_bucket **head, t_entry *entry)
+int			dupe(t_bucket **head, t_entry *entry)
 {
 	t_bucket *tmp;
 

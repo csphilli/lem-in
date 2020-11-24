@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:21:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 13:23:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 20:02:28 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,3 @@ void	pop_from_map(t_pmap **map)
 	}
 	*map = head;
 }
-
-

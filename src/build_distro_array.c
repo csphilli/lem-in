@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 08:34:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 15:11:31 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 20:04:44 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		*ft_intcat(int *src, int to_add)
 
 void	create_path_array(t_lol *paths)
 {
-	t_lol 		*tmp;
+	t_lol		*tmp;
 	int			*arr;
 
 	arr = NULL;

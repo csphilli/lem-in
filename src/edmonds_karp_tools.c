@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:29:55 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 15:13:54 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 18:43:56 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		adj_cap(t_entry *fnd, t_entry *via, int cap)
 
 t_bucket	*get_edge(t_entry *fnd, t_entry *via)
 {
-	t_bucket 	*links;
+	t_bucket	*links;
 
 	links = NULL;
 	links = via->links;
@@ -72,7 +72,7 @@ void		clear_data(t_bucket **ht, t_master *master, t_bfs *bfs, int i)
 
 void		reverse_paths(t_lol **lol)
 {
-	t_lol 		*tmp;
+	t_lol		*tmp;
 	t_bucket	*newll;
 	t_lol		*newlol;
 

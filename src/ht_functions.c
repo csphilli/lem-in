@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:24:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/17 13:45:52 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 18:44:59 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			gen_key(char *str)
 	return (key);
 }
 
-t_entry	*get_entry(t_bucket **ht, t_master *master, char *name)
+t_entry		*get_entry(t_bucket **ht, t_master *master, char *name)
 {
 	t_bucket	*tmp;
 	int			index;
@@ -49,7 +49,7 @@ t_entry	*get_entry(t_bucket **ht, t_master *master, char *name)
 	return (0);
 }
 
-t_bucket *get_head(t_bucket **ht, t_master *master, char *name)
+t_bucket	*get_head(t_bucket **ht, t_master *master, char *name)
 {
 	t_bucket	*tmp;
 	int			index;

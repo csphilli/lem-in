@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 14:43:35 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 18:46:51 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	init_master(t_master *master)
 	}
 }
 
-void		init_moves(t_lol *moves)
+void	init_moves(t_lol *moves)
 {
-	t_lol *tmp;
+	t_lol	*tmp;
 	int		i;
 
 	tmp = moves;
@@ -52,7 +52,7 @@ void		init_moves(t_lol *moves)
 
 void	init_caps2(t_bucket *head)
 {
-	t_bucket 	*tmp;
+	t_bucket	*tmp;
 	t_bucket	*links;
 
 	tmp = head;
@@ -70,7 +70,7 @@ void	init_caps2(t_bucket *head)
 
 void	init_caps(t_bucket **ht, t_master *master)
 {
-	t_bucket 	*tmp;
+	t_bucket	*tmp;
 	t_bucket	*links;
 	size_t		i;
 

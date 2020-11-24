@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 11:11:02 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 12:40:27 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 19:46:31 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	print_cascade_header(void)
 
 void	print_distro(t_lol **list)
 {
-	t_lol 		*tmp;
+	t_lol	*tmp;
 
 	tmp = *list;
 	if (tmp)
@@ -52,19 +52,13 @@ void	print_distro(t_lol **list)
 				ft_printf("%-11d", tmp->len);
 			if (tmp->cap)
 				ft_printf("%-11d", tmp->cap);
-			if (!tmp->nbr_ants)
-				ft_printf("%-11d", 0);
-			else
-				ft_printf("%-11d", tmp->nbr_ants);
+			!tmp->nbr_ants ? ft_printf("%-11d", 0) :\
+			ft_printf("%-11d", tmp->nbr_ants);
 			if (tmp->unlock)
 				ft_printf("%-11d", tmp->unlock);
-			if (!tmp->total_moves)
-				ft_printf("%-11d|\n", 0);
-			else
-				ft_printf("%-11d|\n", tmp->total_moves);
+			!tmp->total_moves ? ft_printf("%-11d|\n", 0) :\
+			ft_printf("%-11d|\n", tmp->total_moves);
 			print_line_break(6, 11);
-			// if (tmp->next && !tmp->next->nbr_ants)
-			// 	break ;
 			tmp = tmp->next;
 		}
 	}

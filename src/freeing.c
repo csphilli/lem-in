@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 13:51:53 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 14:55:15 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 19:29:51 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,4 @@ void	free_bucket(t_bucket *bucket)
 	bucket->next = NULL;
 	free(bucket);
 	bucket = NULL;
-}
-
-void	delete_old_path(t_bucket **paths)
-{
-	t_bucket	**tmp;
-	t_bucket	*curr;
-	t_bucket	*hold;
-	int			i;
-
-	tmp = paths;
-	i = 0;
-	hold = NULL;
-	while (i < bucket_arr_len(paths))
-	{
-		if (tmp[i])
-		{
-			curr = tmp[i];
-			while (curr)
-			{
-				hold = curr;
-				curr = curr->next;
-				free_entry(hold->entry);
-				free_bucket(hold);
-			}
-		}
-		i++;
-	}
-	free(paths);
-	paths = NULL;
 }

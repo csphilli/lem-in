@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 14:43:30 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 18:57:57 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,6 +234,7 @@ int					validate_input(t_master *master);
 void				print_ht(t_bucket **ht, size_t size);
 void				print_int_arr(int *ants);
 void				print_distro(t_lol **list);
+void				print_input(t_bucket **input);
 
 
 void				start_or_end(t_master *master, t_entry *entry);
