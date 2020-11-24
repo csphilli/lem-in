@@ -6,58 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/23 08:41:26 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 15:03:08 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-/*
-**	Prints a single path from the array.
-*/
-
-// void	print_path(t_bucket *head)
-// {
-// 	t_bucket *tmp;
-
-// 	tmp = head;
-// 	while (tmp)
-// 	{
-// 		ft_printf("%s", tmp->entry->name);
-// 		if (tmp->next)
-// 			ft_printf(",");
-// 		tmp = tmp->next;
-// 	}
-// 	ft_printf("\n");
-// }
-
-/*
-**	Prints all paths in a path array.
-*/
-
-// void	print_paths(t_bucket **paths)
-// {
-// 	t_bucket	**tmp;
-// 	t_bucket	*curr;
-// 	int			i;
-
-// 	tmp = paths;
-// 	i = 0;
-// 	while (i < bucket_arr_len(paths))
-// 	{
-// 		curr = tmp[i];
-// 		ft_printf("[%4d]: ", i);
-// 		while (curr)
-// 		{
-// 			ft_printf("%s", curr->entry->name);
-// 			if (curr->next)
-// 				ft_printf(",");
-// 			curr = curr->next;
-// 		}
-// 		ft_printf("\n");
-// 		i++;
-// 	}
-// }
 
 void	print_links(t_bucket *src)
 {
@@ -66,7 +19,6 @@ void	print_links(t_bucket *src)
 
 	tmp = src;
 	ft_printf(" | Links/Cap/Vis: ");
-	// write(1, " | Links/Cap/Vis: ", 10);
 	while (tmp)
 	{
 		ft_printf("%s/%d/%d", tmp->entry->name, tmp->cap, tmp->entry->visited);

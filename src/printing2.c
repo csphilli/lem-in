@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 11:11:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/23 17:22:02 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 14:54:43 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ void	print_ll(t_bucket *ll)
 	{
 		while (tmp)
 		{
-			if (tmp->entry->visited)
-				ft_printf(RED);
-			ft_printf("%s"RESET, tmp->entry->name);
+			ft_printf("%s", tmp->entry->name);
 			if (tmp->next)
 				write(1, ",", 1);
 			tmp = tmp->next;
@@ -64,21 +62,3 @@ void	print_lol(t_lol **list)
 		}
 	}
 }
-
-
-
-
-// WAS ONLY USED FOR DEBUGGING. NOT NEEDED ANYMORE.
-// void		print_map(t_pmap *map)
-// {
-// 	t_pmap *tmp;
-
-// 	tmp = map;
-// 	while (tmp)
-// 	{
-// 		ft_printf("{f: %s | v: %s}", tmp->fnd->name, tmp->via->name);
-// 		tmp->next ? write(1, "->", 2) : 1;
-// 		tmp = tmp->next;
-// 	}
-// 	write(1, "\n", 1);
-// }

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 13:51:53 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/19 13:49:32 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 14:55:15 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ void	free_entry(t_entry *entry)
 		ft_strdel(&entry->comment);
 	while (entry->links)
 		pop_from_ll(&entry->links);
-	entry->links = NULL; // Might have to first free entry->links
-	// free(entry->link_arr);
+	entry->links = NULL;
 	free(entry);
 	entry = NULL;
 }
@@ -72,17 +71,3 @@ void	delete_old_path(t_bucket **paths)
 	free(paths);
 	paths = NULL;
 }
-
-// void	free_ant_instrux(t_ants *ins)
-// {
-// 	ft_init_int_arr(ins->ant_arr, ft_int_arr_len(ins->ant_arr));
-// 	free(ins->ant_arr);
-// 	ins->ant_arr = NULL;
-// 	ft_init_int_arr(ins->moves_arr, ft_int_arr_len(ins->moves_arr));
-// 	free(ins->moves_arr);
-// 	ins->moves_arr = NULL;
-// 	ins->max_index = 0;
-// 	ins->n_ants = 0;
-// 	free(ins);
-// 	ins = NULL;
-// }

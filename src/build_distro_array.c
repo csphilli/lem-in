@@ -6,15 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 08:34:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/23 17:16:05 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 15:11:31 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-/*
-**	To be added to LIBFT once Lem-in completed
-*/
 
 int		ft_int_arr_len(int *n)
 {
@@ -46,6 +42,21 @@ int		*ft_intcat(int *src, int to_add)
 	free_intarray(tmp, len);
 	free(tmp);
 	return (src);
+}
+
+void	create_path_array(t_lol *paths)
+{
+	t_lol 		*tmp;
+	int			*arr;
+
+	arr = NULL;
+	tmp = paths;
+	while (tmp)
+	{
+		if (tmp->nbr_ants > 0)
+			arr = ft_intcat(arr, tmp->nbr_ants);
+		tmp = tmp->next;
+	}
 }
 
 void	build_distro_array(t_bfs *bfs)

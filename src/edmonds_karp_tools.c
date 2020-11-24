@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_path_tools.c                                 :+:      :+:    :+:   */
+/*   edmonds_karp_tools.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:29:55 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 12:00:50 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 15:13:54 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	reset_data(t_bucket **ht, t_master *master, int x)
+void		reset_data(t_bucket **ht, t_master *master, int x)
 {
 	t_bucket	*tmp;
 	size_t		i;
@@ -22,7 +22,7 @@ void	reset_data(t_bucket **ht, t_master *master, int x)
 	while (i < master->new_size)
 	{
 		if (ht[i])
-		tmp = ht[i];
+			tmp = ht[i];
 		while (tmp)
 		{
 			tmp->entry->visited = 0;
@@ -34,16 +34,19 @@ void	reset_data(t_bucket **ht, t_master *master, int x)
 	}
 }
 
-void	adj_cap(t_entry *fnd, t_entry *via, int cap)
+void		adj_cap(t_entry *fnd, t_entry *via, int cap)
 {
 	t_bucket *edge;
 
 	edge = get_edge(fnd, via);
 	edge->cap = cap;
 	via->used = 1;
+	edge = get_edge(via, fnd);
+	edge->cap = cap;
+	fnd->used = 1;
 }
 
-t_bucket 	*get_edge(t_entry *fnd, t_entry *via)
+t_bucket	*get_edge(t_entry *fnd, t_entry *via)
 {
 	t_bucket 	*links;
 
@@ -58,7 +61,7 @@ t_bucket 	*get_edge(t_entry *fnd, t_entry *via)
 	return (NULL);
 }
 
-void	clear_data(t_bucket **ht, t_master *master, t_bfs *bfs, int i)
+void		clear_data(t_bucket **ht, t_master *master, t_bfs *bfs, int i)
 {
 	while (bfs->map)
 		pop_from_map(&bfs->map);
@@ -67,52 +70,25 @@ void	clear_data(t_bucket **ht, t_master *master, t_bfs *bfs, int i)
 		pop_from_ll(&bfs->q);
 }
 
-// void	swap(t_lol *x, t_lol *y)
-// {
-// 	t_lol	tmp;
+void		reverse_paths(t_lol **lol)
+{
+	t_lol 		*tmp;
+	t_bucket	*newll;
+	t_lol		*newlol;
 
-// 	tmp = *x;
-// 	*x = *y;
-// 	*y = tmp;
-// }
-
-// void	sort_paths(t_lol *paths)
-// {
-// 	t_lol 	*tmp;
-// 	int		t;
-
-// 	tmp = paths;
-// 	// t = 0;
-// 	while (tmp)
-// 	{
-		
-// 	}
-// }
-
-// void	sort_paths(t_lol *paths)
-// {
-// 	int		len_list;
-// 	int		len_next;
-// 	t_lol 	*lol;
-
-// 	lol = paths;
-// 	len_list = 0;
-// 	len_next = 0;
-// 	while (lol)
-// 	{
-// 		if (lol->next)
-// 		{
-// 			len_list = list_length(lol->list);
-// 			len_next = list_length(lol->next->list);
-// 			if (len_next < len_list)
-// 			{
-// 				swap(lol->next, lol);
-// 				lol = paths;
-// 			}
-// 			else
-// 				lol = lol->next;
-// 		}
-// 		else
-// 			break ;
-// 	}
-// }
+	tmp = *lol;
+	newll = NULL;
+	newlol = NULL;
+	while (tmp->list)
+	{
+		while (tmp->list)
+		{
+			unshift_ll(&newll, tmp->list->entry);
+			pop_from_ll(&tmp->list);
+		}
+		append_to_lol(&newlol, newll);
+		newll = NULL;
+		pop_from_lol(&tmp);
+	}
+	*lol = newlol;
+}

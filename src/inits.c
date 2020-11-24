@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/23 09:06:16 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 14:43:35 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,53 +30,6 @@ void	init_master(t_master *master)
 	}
 }
 
-
-
-// void	init_paths(int len, t_bucket **paths)
-// {
-// 	while (--len >= 0)
-// 		paths[len] = NULL;
-// }
-
-// void	init_entry(t_entry *entry) // uneeded after changing to ft_memalloc
-// {
-// 	if (entry)
-// 	{
-// 		entry->visited = false;
-// 		entry->name = NULL;
-// 		entry->comment = NULL;
-// 		entry->link_arr = NULL;
-// 		entry->x = '\0';
-// 		entry->y = '\0';
-// 		entry->key = '\0';
-// 		entry->occ = 0;
-// 		entry->ant_id = 0;
-// 		entry->no = false;
-// 	}
-// }
-
-// void	init_paths_struct(t_paths *paths)
-// {
-// 	if (paths)
-// 	{
-// 		paths->p = NULL;
-// 		paths->c = NULL;
-// 		paths->s_room = NULL;
-// 		paths->e_room = NULL;
-// 		paths->index = 0;
-// 		paths->max_paths = 0;
-// 		paths->p_len = 2000000;
-// 		paths->c_len = 2;
-// 		paths->s_index = '\0';
-// 		paths->collision = 0;
-// 		paths->nbr_moves = 0;
-// 		paths->nbr_ants_s = 0;
-// 		paths->nbr_ants_e = 0;
-// 		paths->max_id = 0;
-// 		paths->ant_id = 1;
-// 	}
-// }
-
 void		init_moves(t_lol *moves)
 {
 	t_lol *tmp;
@@ -97,3 +50,49 @@ void		init_moves(t_lol *moves)
 	}
 }
 
+void	init_caps2(t_bucket *head)
+{
+	t_bucket 	*tmp;
+	t_bucket	*links;
+
+	tmp = head;
+	while (tmp)
+	{
+		links = tmp->entry->links;
+		while (links)
+		{
+			links->cap = 1;
+			links = links->next;
+		}
+		tmp = tmp->next;
+	}
+}
+
+void	init_caps(t_bucket **ht, t_master *master)
+{
+	t_bucket 	*tmp;
+	t_bucket	*links;
+	size_t		i;
+
+	i = 0;
+	tmp = NULL;
+	links = NULL;
+	while (i < master->new_size)
+	{
+		if (ht[i])
+		{
+			tmp = ht[i];
+			init_caps2(tmp);
+		}
+		i++;
+	}
+}
+
+void	init_ant_ins(t_bfs *bfs, t_master *master, t_ants **ins)
+{
+	(*ins)->ants_s = master->nbr_ants;
+	(*ins)->max_ant = (*ins)->ants_s;
+	(*ins)->start = bfs->start;
+	(*ins)->end = bfs->end;
+	(*ins)->ant_id = 1;
+}

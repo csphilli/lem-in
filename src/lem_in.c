@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 12:57:46 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 14:34:38 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 	validate_input(master);
 	// ft_printf("1\n");
 	validate_rooms(ht, master);
-	build_paths_parse(ht, master, bfs);
+	edmonds_karp(ht, master, bfs);
 	// while (1)
 	// {
 		
@@ -123,10 +123,10 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 	// ft_printf("3\n");
 	calc_distro(ht, master, *bfs);
 	// ft_printf("S2E Distro:\n");
-	// print_distro(&(*bfs)->s2e_paths);
+	// print_distro(&(*bfs)->s2e);
 
 	// ft_printf("E2S Distro\n");
-	// print_distro(&(*bfs)->e2s_paths);
+	// print_distro(&(*bfs)->e2s);
 
 	(*bfs)->paths = optimal_solution(*bfs);
 	// ft_printf(GREEN"OPTIMAL\n"RESET);

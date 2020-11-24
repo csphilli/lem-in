@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 12:16:58 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 15:11:51 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void		calc_total_moves(t_lol *paths)
+void	calc_total_moves(t_lol *paths)
 {
 	t_lol *tmp;
 
@@ -27,7 +27,7 @@ void		calc_total_moves(t_lol *paths)
 	}
 }
 
-void		chk_unlock(t_bfs **bfs, t_lol **tmp)
+void	chk_unlock(t_bfs **bfs, t_lol **tmp)
 {
 	if ((*tmp)->nbr_ants == (*tmp)->unlock && !(*tmp)->done)
 	{
@@ -79,22 +79,7 @@ void	unlocks(t_bfs *bfs, t_lol *paths)
 	}
 }
 
-void	create_path_array(t_lol *paths)
-{
-	t_lol 		*tmp;
-	int			*arr;
-
-	arr = NULL;
-	tmp = paths;
-	while (tmp)
-	{
-		if (tmp->nbr_ants > 0)
-			arr = ft_intcat(arr, tmp->nbr_ants);
-		tmp = tmp->next;
-	}
-}
-
-void			calc_distro(t_bucket **ht, t_master *master, t_bfs *bfs)
+void	calc_distro(t_bucket **ht, t_master *master, t_bfs *bfs)
 {
 	t_lol 	*moves;
 	int		*arr;
@@ -105,7 +90,7 @@ void			calc_distro(t_bucket **ht, t_master *master, t_bfs *bfs)
 	moves = NULL;
 	while (i < 2)
 	{
-		moves = (i == 1 ? bfs->s2e_paths : bfs->e2s_paths);
+		moves = (i == 1 ? bfs->s2e : bfs->e2s);
 		init_moves(moves);
 		unlocks(bfs, moves);
 		cascade(bfs, master, moves);

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 12:00:05 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/24 14:43:30 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ typedef struct		s_bfs
 	t_bucket		*q;
 	t_pmap			*map;
 	t_lol			*paths;
-	t_lol			*s2e_paths;
-	t_lol			*e2s_paths;
+	t_lol			*s2e;
+	t_lol			*e2s;
 	int				*s_distro;
 	int				*moves;
 	t_bucket		*edge;
@@ -168,6 +168,8 @@ void				init_bfs(t_bfs *bfs, t_master *master);
 void				init_instrux(t_ants *instrux);
 void				ft_init_int_arr(int *src, int len);
 void				init_moves(t_lol *moves);
+void				init_caps(t_bucket **ht, t_master *master);
+void				init_ant_ins(t_bfs *bfs, t_master *master, t_ants **ins);
 
 /*
 **	FREEING
@@ -257,7 +259,8 @@ void				insert_to_ll(t_bucket **src, t_entry *entry);
 void				pop_from_ll(t_bucket **ll);
 void				append_to_ll(t_bucket **src, t_entry *entry);
 void				copy_ll(t_bucket **dst, t_bucket *src);
-void				print_ll(t_bucket *ll);
+void				print_ll(t_bucket *ll); // needed?
+void				reverse_ll(t_bucket **new, t_bucket *list);
 
 /*
 **	LIST OF LIST WORK
@@ -278,13 +281,14 @@ void				unshift_to_map(t_pmap **map, t_entry *found, t_entry *via);
 void				pop_from_map(t_pmap **map);
 
 /*
-** 	BUILDING PATHS AND TOOLS
+** 	EDMONDS KARP AND TOOLS
 */
 
+void				reverse_paths(t_lol **lol);
 t_lol				*optimal_solution(t_bfs *bfs);
 void				build_distro_array(t_bfs *bfs);
 void				reset_data(t_bucket **ht, t_master *master, int x);
-void				build_paths_parse(t_bucket **ht, t_master *master, t_bfs **bfs);
+void				edmonds_karp(t_bucket **ht, t_master *master, t_bfs **bfs);
 // void				build_paths(t_bucket **ht, t_master *master, t_bfs **bfs, int i);
 // void				build_paths(t_bucket **ht, t_master *master, t_bfs **bfs, t_entry *start, t_entry *end);
 void				adj_cap(t_entry *fnd, t_entry *via, int cap);
