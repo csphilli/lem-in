@@ -6,28 +6,25 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 18:57:57 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/25 10:57:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
-// # define E_BASIC "Error. For more info, use flag '-e'.\n"
-// # define E_MALLOC "Error. Failed to allocate memory.\n"
 # define E_NO_ROOMS "Error. No rooms specified.\n"
 # define E_NO_LINKS "Error. No links specified.\n"
-// # define E_NOPATH "Error. No solution. No path from start to end exists.\n"
 # define E_L "Error. 'L' present at beginning of room name.\n"
 # define E_COORD "Error. Invalid coordinate on line "
 # define E_DUPL "Error. Duplicate room name found: "
 # define E_FLAG "Error. Invalid flag specified.\n"
-// # define E_USAGE "Error. Invalid usage. Use '-h' for help.\n"
 # define E_START "Error. Start already defined.\n"
 # define E_END "Error. End already defined.\n"
 # define E_NOFILE "Error. File not found.\n"
 # define E_FAILED_SEARCH "Error inserting link. Room not found: "
 # define E_NOSOLUTION "Error. No Solution. Start and/or End room undefined."
-# include "../libft/header/libft.h"
+// # include "../libft/header/libft.h"
+# include "../libft/libft/includes/libft.h"
 # include <time.h>
 
 /*

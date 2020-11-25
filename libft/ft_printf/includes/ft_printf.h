@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 09:44:30 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/13 11:24:35 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/25 10:08:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# include "../../header/libft.h"
+# include "../../libft/includes/libft.h"
 # include <ctype.h>
 # include <stdarg.h>
 # include <unistd.h>
