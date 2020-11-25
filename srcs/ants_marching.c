@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/25 11:26:44 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/25 15:58:36 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	r2r(t_bfs *bfs, t_lol *path, t_ants *ins)
+void	r2r(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 {
 	t_bucket	*tmp;
 
@@ -28,22 +28,31 @@ void	r2r(t_bfs *bfs, t_lol *path, t_ants *ins)
 			tmp->entry->occ = 1;
 			tmp->entry->ant_id = tmp->next->entry->ant_id;
 			tmp->next->entry->ant_id = 0;
+			if (bfs->moves[i + 1] != '\0' && (bfs->moves[i] > 0 && bfs->moves[i + 1] > 0))
+				write(1, " ", 1);
+			
+
+			// if (bfs->moves[i] > 0 && (bfs->moves[i + 1] != '\0' || bfs->moves[0] > 0))
+			// 	write(1, " ", 1);
+
 		}
 		tmp = tmp->next;
 	}
 }
 
-void	r2e(t_bfs *bfs, t_lol *path, t_ants *ins)
+void	r2e(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 {
 	t_bucket	*tmp;
 
 	tmp = path->list;
 	if (tmp->next->entry->occ)
 	{
-		ft_printf("L%d-%s ", tmp->next->entry->ant_id, tmp->entry->name);
+		ft_printf("L%d-%s", tmp->next->entry->ant_id, tmp->entry->name);
 		tmp->next->entry->ant_id = 0;
 		tmp->next->entry->occ = 0;
 		ins->ants_e++;
+		if (bfs->moves[i] > 0 && (bfs->moves[i + 1] != '\0' || bfs->moves[0] > 0))
+			write(1, " ", 1);
 	}
 }
 
@@ -57,10 +66,12 @@ void	s2r(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 	if (!tmp->entry->occ)
 	{
 		bfs->s_distro[i]--;
-		ft_printf("L%d-%s ", ins->ant_id, tmp->entry->name);
+		ft_printf("L%d-%s", ins->ant_id, tmp->entry->name);
 		tmp->entry->ant_id = ins->ant_id;
 		tmp->entry->occ = 1;
 		ins->ant_id++;
+		if (bfs->moves[i + 1] && bfs->moves[i + 1] > 0)
+			write(1, " ", 1);
 	}
 }
 
@@ -75,8 +86,8 @@ void	moves_parsing(t_bfs *bfs, t_lol *lol, t_ants *ins, int len)
 	{
 		if (bfs->moves[i] > 0)
 		{
-			r2e(bfs, tmp, ins);
-			r2r(bfs, tmp, ins);
+			r2e(bfs, tmp, ins, i);
+			r2r(bfs, tmp, ins, i);
 			if (bfs->s_distro[i] > 0)
 				s2r(bfs, tmp, ins, i);
 			bfs->moves[i]--;

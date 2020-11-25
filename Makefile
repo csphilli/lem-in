@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/11/25 12:21:49 by cphillip         ###   ########.fr        #
+#    Updated: 2020/11/25 14:56:08 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ library:
 	@make -C $(LIB_FOLDER)
 
 $(NAME): all $(C_FILES)
-	@mkdir $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)
 	@echo "Compiling $(NAME) files..."
 	gcc $(FLAGS) $(INCLUDES) -c $(C_FILES)
 	gcc $(FLAGS) -o $(NAME) $(INCLUDES) $(OBJ_FILES) $(LIB)

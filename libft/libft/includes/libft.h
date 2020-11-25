@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 16:37:29 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/25 12:09:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/25 15:09:53 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 # define BUFF_SIZE 1000
 # define BUFF_SIZE_GNL 1000
 # define FD_SIZE 1000
-# define RED "\033[1;31m"
-# define GREEN "\033[1;32m"
-# define CYAN "\033[1;36m"
-# define YELLOW "\033[01;33m"
-# define RESET "\033[0m"
 
 # include <string.h>
 # include <stdlib.h>
