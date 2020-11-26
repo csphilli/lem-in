@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/11/25 14:56:08 by cphillip         ###   ########.fr        #
+#    Updated: 2020/11/26 09:52:03 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ OBJ_DIR = ./obj
 
 SRCS = ./srcs/
 LEM_FUNCTIONS = *.c
+LEM_HEADER = ./includes/lem_in.h
 FUNC = $(LEM_FUNCTIONS)
 C_FILES = $(addprefix $(SRCS), $(LEM_FUNCTIONS))
 
@@ -33,7 +34,7 @@ library:
 	@echo "Compiling Library..."
 	@make -C $(LIB_FOLDER)
 
-$(NAME): all $(C_FILES)
+$(NAME): all $(C_FILES) $(LEM_HEADER)
 	@mkdir -p $(OBJ_DIR)
 	@echo "Compiling $(NAME) files..."
 	gcc $(FLAGS) $(INCLUDES) -c $(C_FILES)

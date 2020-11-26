@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/26 09:29:47 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/26 09:52:28 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct		s_ants
 	int				ant_id;
 	char			*output;
 	int				i;
+	int				test;
 }					t_ants;
 
 /*
