@@ -6,11 +6,19 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/25 23:34:47 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/26 09:35:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+/*
+**	What does ins->i do? It is used to assist with printing whitespaces.
+**	Basically, if p is 1, a whitespace will be printed BEFORE the solution.
+**	Why before? If the logic triggers a move to be printed, there is
+**	gauranteed to be a whitespace preceeding it. The exception to the rule
+**	is the very first move in a new instruction set.
+*/
 
 void	r2r(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 {
@@ -23,18 +31,13 @@ void	r2r(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 		if (tmp->next && tmp->next->entry->occ && !tmp->entry->occ &&\
 		!ft_strequ(tmp->next->entry->name, ins->start->name))
 		{
+			ins->i == 1 ? write(1, " ", 1) : 1;
 			ft_printf("L%d-%s", tmp->next->entry->ant_id, tmp->entry->name);
 			tmp->next->entry->occ = 0;
 			tmp->entry->occ = 1;
 			tmp->entry->ant_id = tmp->next->entry->ant_id;
 			tmp->next->entry->ant_id = 0;
-			if (bfs->moves[i + 1] != '\0' && (bfs->moves[i] > 0 && bfs->moves[i + 1] > 0))
-				write(1, " ", 1);
-			
-
-			// if (bfs->moves[i] > 0 && (bfs->moves[i + 1] != '\0' || bfs->moves[0] > 0))
-			// 	write(1, " ", 1);
-
+			ins->i = 1;
 		}
 		tmp = tmp->next;
 	}
@@ -47,12 +50,12 @@ void	r2e(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 	tmp = path->list;
 	if (tmp->next->entry->occ)
 	{
+		ins->i == 1 ? write(1, " ", 1) : 1;
 		ft_printf("L%d-%s", tmp->next->entry->ant_id, tmp->entry->name);
 		tmp->next->entry->ant_id = 0;
 		tmp->next->entry->occ = 0;
 		ins->ants_e++;
-		if (bfs->moves[i] > 0 && (bfs->moves[i + 1] != '\0' || bfs->moves[0] > 0))
-			write(1, " ", 1);
+		ins->i = 1;
 	}
 }
 
@@ -65,13 +68,13 @@ void	s2r(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 		tmp = tmp->next;
 	if (!tmp->entry->occ)
 	{
+		ins->i == 1 ? write(1, " ", 1) : 1;
 		bfs->s_distro[i]--;
 		ft_printf("L%d-%s", ins->ant_id, tmp->entry->name);
 		tmp->entry->ant_id = ins->ant_id;
 		tmp->entry->occ = 1;
 		ins->ant_id++;
-		if (bfs->moves[i + 1] && bfs->moves[i + 1] > 0)
-			write(1, " ", 1);
+		ins->i = 1;
 	}
 }
 
@@ -89,7 +92,10 @@ void	moves_parsing(t_bfs *bfs, t_lol *lol, t_ants *ins, int len)
 			r2e(bfs, tmp, ins, i);
 			r2r(bfs, tmp, ins, i);
 			if (bfs->s_distro[i] > 0)
+			{
 				s2r(bfs, tmp, ins, i);
+				ins->i = 1;
+			}
 			bfs->moves[i]--;
 		}
 		i++;
@@ -113,6 +119,7 @@ void	ants_marching(t_bfs *bfs, t_master *master)
 		ins->n_moves++;
 		write(1, "\n", 1);
 		tmp = bfs->paths;
+		ins->i = 0;
 	}
 	ft_printf("Nbr of moves made: %d\n", ins->n_moves);
 }

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/25 10:57:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/26 09:29:47 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct		s_entry
 	int				used;
 	int				occ;
 	int				ant_id;
-	bool			no;
+	// bool			no;
 }					t_entry;
 
 typedef struct 		s_lol
