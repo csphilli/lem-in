@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/26 09:52:44 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/26 13:54:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,4 @@ void	ants_marching(t_bfs *bfs, t_master *master)
 		tmp = bfs->paths;
 		ins->i = 0;
 	}
-	ft_printf("Nbr of moves made: %d\n", ins->n_moves);
 }

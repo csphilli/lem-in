@@ -6,3 +6,4 @@ lem-in
 src/movecalc.c
 generator
 *.sh
+/tester
