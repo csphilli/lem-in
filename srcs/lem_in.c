@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/26 10:51:03 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/27 10:18:55 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_bucket	**get_data(t_bucket **ht, t_master *master, int fd)
 		}
 		parse_lines(master, line, ht);
 	}
+	append_to_output(master, &master->output);
 	line = NULL;
 	return (ht);
 }
@@ -48,7 +49,7 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 	calc_distro(ht, master, *bfs);
 	(*bfs)->paths = optimal_solution(*bfs);
 	build_distro_array(*bfs);
-	print_input(&master->input);
+	print_output(master->output);
 	ants_marching(*bfs, master);
 	return (ht);
 }

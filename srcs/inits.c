@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 18:46:51 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/27 08:49:22 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	init_master(t_master *master)
 		master->load = 5.0;
 		master->size_factor = 2;
 		master->old_size = 10;
+		master->input = ft_strnew(LINEBUF);
 	}
 }
 

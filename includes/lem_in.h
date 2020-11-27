@@ -6,12 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/26 09:52:28 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/27 10:12:10 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
+# define LINEBUF 1250
 # define E_NO_ROOMS "Error. No rooms specified.\n"
 # define E_NO_LINKS "Error. No links specified.\n"
 # define E_L "Error. 'L' present at beginning of room name.\n"
@@ -38,6 +39,15 @@
 **	c1/c2_loc = represents the address of the connecting rooms
 **	next is the pointer to the next room in list.
 */
+
+typedef struct 		s_output
+{
+  char          	*line;
+  int				len;
+  struct s_output  	*next;
+  
+}             		t_output;
+
 
 typedef struct		s_bucket
 {
@@ -98,7 +108,6 @@ typedef struct		s_bfs
 	t_entry			*end;
 	int				max_index;
 	int				max_moves;
-	// int				max_moves;
 }					t_bfs;
 
 typedef struct		s_ants
@@ -110,9 +119,9 @@ typedef struct		s_ants
 	int				max_ant;
 	int				n_moves;
 	int				ant_id;
-	char			*output;
+	// char			*output;
 	int				i;
-	int				test;
+	// int				test;
 }					t_ants;
 
 /*
@@ -145,7 +154,10 @@ typedef struct		s_master
 	float			load;
 	int				nbr_keys;
 	int				link;
-	t_bucket		*input;
+	char			*input;
+	int				l;
+	t_output		*output;
+	
 }					t_master;
 
 /*
@@ -193,6 +205,7 @@ void				duplicate_room_check(t_master *master, t_bucket **ht);
 void				capture_links(t_bucket **ht, t_master *master, char *line);
 void				parse_lines(t_master *master, char *line, t_bucket **ht);
 t_entry				*get_entry(t_bucket **ht, t_master *master, char *name);
+void				append_to_output(t_master *master, t_output **output);
 
 /*
 **	Hash Table Functions
@@ -232,7 +245,7 @@ int					validate_input(t_master *master);
 void				print_ht(t_bucket **ht, size_t size);
 void				print_int_arr(int *ants);
 void				print_distro(t_lol **list);
-void				print_input(t_bucket **input);
+void				print_output(t_output *output);
 
 
 void				start_or_end(t_master *master, t_entry *entry);

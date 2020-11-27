@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/26 13:54:32 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/27 10:22:24 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@
 **	is the very first move in a new instruction set.
 */
 
+void	write_move(int id, char *name)
+{
+	write(1, "L", 1);
+	ft_putnbr(id);
+	write(1, "-", 1);
+	write(1, name, ft_strlen(name));
+}
+
 void	r2r(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 {
 	t_bucket	*tmp;
@@ -32,7 +40,8 @@ void	r2r(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 		!ft_strequ(tmp->next->entry->name, ins->start->name))
 		{
 			ins->i == 1 ? write(1, " ", 1) : 1;
-			ft_printf("L%d-%s", tmp->next->entry->ant_id, tmp->entry->name);
+			write_move(tmp->next->entry->ant_id, tmp->entry->name);
+			// ft_printf("L%d-%s", tmp->next->entry->ant_id, tmp->entry->name);
 			tmp->next->entry->occ = 0;
 			tmp->entry->occ = 1;
 			tmp->entry->ant_id = tmp->next->entry->ant_id;
@@ -51,7 +60,8 @@ void	r2e(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 	if (tmp->next->entry->occ)
 	{
 		ins->i == 1 ? write(1, " ", 1) : 1;
-		ft_printf("L%d-%s", tmp->next->entry->ant_id, tmp->entry->name);
+		write_move(tmp->next->entry->ant_id, tmp->entry->name);
+		// ft_printf("L%d-%s", tmp->next->entry->ant_id, tmp->entry->name);
 		tmp->next->entry->ant_id = 0;
 		tmp->next->entry->occ = 0;
 		ins->ants_e++;
@@ -70,7 +80,8 @@ void	s2r(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 	{
 		ins->i == 1 ? write(1, " ", 1) : 1;
 		bfs->s_distro[i]--;
-		ft_printf("L%d-%s", ins->ant_id, tmp->entry->name);
+		write_move(ins->ant_id, tmp->entry->name);
+		// ft_printf("L%d-%s", ins->ant_id, tmp->entry->name);
 		tmp->entry->ant_id = ins->ant_id;
 		tmp->entry->occ = 1;
 		ins->ant_id++;
