@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/27 10:12:36 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/27 23:35:09 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int		acceptable(char c)
 {
 	return (c >= 33 && c <= 126);
 }
-
-
 
 void	append_to_output(t_master *master, t_output **output)
 {
@@ -43,8 +41,7 @@ void	append_to_output(t_master *master, t_output **output)
 	*output = head;
 }
 
-
-char	*cat_input(t_master *master, char *dest, const char *src)
+char	*cat_input(t_master *master, char *dest, const char *src, int p)
 {
 	int		i;
 	size_t	dest_l;
@@ -58,31 +55,22 @@ char	*cat_input(t_master *master, char *dest, const char *src)
 		dest[dest_l + i] = src[i];
 		i++;
 	}
-	dest[dest_l + i] = '\n';
-	master->l += src_l + 1;
+	if (p)
+		dest[dest_l + i] = '\n';
+	master->l += (p == 1 ? src_l + 1 : src_l);
 	return ((char *)dest);
 }
 
-void	store_input(t_master *master, char *line)
+void	store_input(t_master *master, char *line, int p)
 {
-	master->input = cat_input(master, master->input, line);
-	// ft_printf("master->input: %s", master->input);
+	master->input = cat_input(master, master->input, line, p);
 	if (master->l > LINEBUF - 25)
 	{
 		append_to_output(master, &master->output);
 		ft_strdel(&master->input);
 		master->input = ft_strnew(LINEBUF);
-		// ft_printf("address: %p\n", master->input);
-		// free(master->input);
 		master->l = 0;
 	}
-	// ft_printf("master->l: %d\n", master->l);
-	// if (master->l)
-	// ft_printf("master->input: %s", master->input);
-	// while (1)
-	// {
-		
-	// }
 }
 
 void	parse_lines(t_master *master, char *line, t_bucket **ht)
@@ -108,11 +96,7 @@ void	parse_lines(t_master *master, char *line, t_bucket **ht)
 				capture_links(ht, master, line);
 		}
 	}
-	store_input(master, line);
+	store_input(master, line, 1);
 	ft_strdel(&line);
-	// while (1)
-	// {
-		
-	// }
 	master->line_nbr++;
 }

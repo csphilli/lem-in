@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/27 10:12:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/27 23:43:46 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
-# define LINEBUF 1250
+# define LINEBUF 2000
 # define E_NO_ROOMS "Error. No rooms specified.\n"
 # define E_NO_LINKS "Error. No links specified.\n"
 # define E_L "Error. 'L' present at beginning of room name.\n"
@@ -24,7 +24,6 @@
 # define E_NOFILE "Error. File not found.\n"
 # define E_FAILED_SEARCH "Error inserting link. Room not found: "
 # define E_NOSOLUTION "Error. No Solution. Start and/or End room undefined."
-// # include "../libft/header/libft.h"
 # include "../libft/libft/includes/libft.h"
 # include <time.h>
 
@@ -40,14 +39,12 @@
 **	next is the pointer to the next room in list.
 */
 
-typedef struct 		s_output
+typedef struct		s_output
 {
-  char          	*line;
-  int				len;
-  struct s_output  	*next;
-  
-}             		t_output;
-
+	char			*line;
+	int				len;
+	struct s_output	*next;
+}					t_output;
 
 typedef struct		s_bucket
 {
@@ -69,10 +66,9 @@ typedef struct		s_entry
 	int				used;
 	int				occ;
 	int				ant_id;
-	// bool			no;
 }					t_entry;
 
-typedef struct 		s_lol
+typedef struct		s_lol
 {
 	int				total_moves;
 	int				len;
@@ -119,16 +115,16 @@ typedef struct		s_ants
 	int				max_ant;
 	int				n_moves;
 	int				ant_id;
-	// char			*output;
 	int				i;
-	// int				test;
+	char			*input;
+	t_output		*output;
+	int				l;
 }					t_ants;
 
 /*
 **	**p = all PATHS found from initial DFS
 **	**c = CHOSEN paths from the DFS.
 */
-
 
 typedef struct		s_master
 {
@@ -157,7 +153,7 @@ typedef struct		s_master
 	char			*input;
 	int				l;
 	t_output		*output;
-	
+
 }					t_master;
 
 /*
@@ -206,6 +202,9 @@ void				capture_links(t_bucket **ht, t_master *master, char *line);
 void				parse_lines(t_master *master, char *line, t_bucket **ht);
 t_entry				*get_entry(t_bucket **ht, t_master *master, char *name);
 void				append_to_output(t_master *master, t_output **output);
+void				store_input(t_master *master, char *line, int p);
+void				cat_move(t_ants *ins, int ant_id, char *name);
+void				append_move(t_ants *ins, t_output **output);
 
 /*
 **	Hash Table Functions
@@ -226,7 +225,7 @@ t_bucket			*get_head(t_bucket **ht, t_master *master, char *name);
 */
 
 void				find_paths(t_master *master, t_bucket **ht);
-void				calc_distro(t_bucket **ht, t_master *master, t_bfs *bfs);
+void				calc_distro(t_master *master, t_bfs *bfs);
 void				ants_marching(t_bfs *bfs, t_master *master);
 void				write_r2r(t_ants *ins, t_entry *entry1, t_entry *entry2);
 void				write_r2e(t_ants *ins, t_entry *entry1, t_entry *entry2);
@@ -238,6 +237,17 @@ void				write_s2r(t_ants *ins, t_entry *entry1);
 
 int					dupe(t_bucket **head, t_entry *entry);
 int					validate_input(t_master *master);
+void				start_or_end(t_master *master, t_entry *entry);
+int					bucket_arr_len(t_bucket **arr);
+int					link_array_len(t_entry **arr);
+t_bucket			*copy_from_array(t_bucket *head, t_bucket *src);
+int					dup_coord(t_bucket **ht, t_master *master,\
+					t_entry *entry);
+int					list_length(t_bucket *head);
+int					*ft_intcat(int *src, int to_add);
+int					ft_int_arr_len(int *n);
+int					most_ants(int *arr);
+
 /*
 **	PRINTING
 */
@@ -246,32 +256,17 @@ void				print_ht(t_bucket **ht, size_t size);
 void				print_int_arr(int *ants);
 void				print_distro(t_lol **list);
 void				print_output(t_output *output);
-
-
-void				start_or_end(t_master *master, t_entry *entry);
-int					bucket_arr_len(t_bucket **arr);
-int					link_array_len(t_entry **arr);
-t_bucket			*copy_from_array(t_bucket *head, t_bucket *src);
-int					dup_coord(t_bucket **ht, t_master *master, t_entry *entry);
-int					list_length(t_bucket *head);
-int					*ft_intcat(int *src, int to_add);
-int					ft_int_arr_len(int *n);
-int					most_ants(int *arr);
-
-/*
-**	NEWEST BELOW
-*/
+void				print_moves(t_output *output);
 
 /*
 **	LINK WORK
 */
 
-void			    unshift_ll(t_bucket **ll, t_entry *entry);
+void				unshift_ll(t_bucket **ll, t_entry *entry);
 void				insert_to_ll(t_bucket **src, t_entry *entry);
 void				pop_from_ll(t_bucket **ll);
 void				append_to_ll(t_bucket **src, t_entry *entry);
 void				copy_ll(t_bucket **dst, t_bucket *src);
-void				print_ll(t_bucket *ll); // needed?
 void				reverse_ll(t_bucket **new, t_bucket *list);
 
 /*
@@ -301,14 +296,12 @@ t_lol				*optimal_solution(t_bfs *bfs);
 void				build_distro_array(t_bfs *bfs);
 void				reset_data(t_bucket **ht, t_master *master, int x);
 void				edmonds_karp(t_bucket **ht, t_master *master, t_bfs **bfs);
-// void				build_paths(t_bucket **ht, t_master *master, t_bfs **bfs, int i);
-// void				build_paths(t_bucket **ht, t_master *master, t_bfs **bfs, t_entry *start, t_entry *end);
 void				adj_cap(t_entry *fnd, t_entry *via, int cap);
-t_bucket		 	*get_edge(t_entry *fnd, t_entry *via);
-void				clear_data(t_bucket **ht, t_master *master, t_bfs *bfs, int i);
-// void				sort_paths(t_bfs *bfs);
+t_bucket			*get_edge(t_entry *fnd, t_entry *via);
+void				clear_data(t_bucket **ht, t_master *master, \
+					t_bfs *bfs, int i);
 void				sort_paths(t_lol *paths);
-int					chk_direct_link(t_bucket **ht, t_master *master, t_bfs *bfs, int i);
-
+int					chk_direct_link(t_bucket **ht, t_master *master, \
+					t_bfs *bfs, int i);
 
 #endif

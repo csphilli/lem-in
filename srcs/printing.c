@@ -6,39 +6,34 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/27 09:56:08 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/27 23:36:27 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-// void	print_input(t_bucket **input)
-// {
-// 	t_bucket	*tmp;
-// 	char		*buf;
-
-// 	tmp = *input;
-// 	while (tmp)
-// 	{
-// 		ft_printf("%s\n", tmp->input);
-// 		tmp = tmp->next;
-// 	}
-// 	write(1, "\n", 1);
-// }
-
-void    print_output(t_output *output)
+void	print_moves(t_output *output)
 {
-    t_output *tmp;
-	// int		i;
+	t_output *tmp;
 
-    tmp = output;
-	// i = 0;
-    while (tmp)
-    {	
+	tmp = output;
+	while (tmp)
+	{
 		write(1, tmp->line, tmp->len);
-        tmp = tmp->next;
-		// i++;
-    }
+		tmp = tmp->next;
+	}
+}
+
+void	print_output(t_output *output)
+{
+	t_output *tmp;
+
+	tmp = output;
+	while (tmp)
+	{
+		write(1, tmp->line, tmp->len);
+		tmp = tmp->next;
+	}
 	write(1, "\n", 1);
 }
 

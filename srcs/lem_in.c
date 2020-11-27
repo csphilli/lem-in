@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/27 10:18:55 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/27 23:32:08 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 	validate_input(master);
 	validate_rooms(ht, master);
 	edmonds_karp(ht, master, bfs);
-	calc_distro(ht, master, *bfs);
+	calc_distro(master, *bfs);
 	(*bfs)->paths = optimal_solution(*bfs);
 	build_distro_array(*bfs);
 	print_output(master->output);

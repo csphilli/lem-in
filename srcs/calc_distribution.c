@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 19:34:39 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/27 23:31:47 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	unlocks(t_bfs *bfs, t_lol *paths)
 	}
 }
 
-void	calc_distro(t_bucket **ht, t_master *master, t_bfs *bfs)
+void	calc_distro(t_master *master, t_bfs *bfs)
 {
 	t_lol	*moves;
 	int		*arr;
