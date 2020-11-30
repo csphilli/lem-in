@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/27 23:31:47 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/30 20:04:55 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	unlocks(t_bfs *bfs, t_lol *paths)
 		if (tmp->next)
 			tmp->unlock = tmp->next->len - tmp->len + 1;
 		else
-			tmp->unlock = 1000000;
+			tmp->unlock = 2147483647;
 		tmp = tmp->next;
 	}
 }

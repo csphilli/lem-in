@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 18:43:14 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/30 14:20:31 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,18 @@ int		dup_coord(t_bucket **ht, t_master *master, t_entry *entry)
 	return (0);
 }
 
+int		split_len(char **src)
+{
+	int		i;
+	char	**tmp;
+
+	i = 0;
+	tmp = src;
+	while (*tmp++)
+		i++;
+	return (i);
+}
+
 void	capture_room(t_bucket **ht, t_master *master, char *line)
 {
 	char	**data;
@@ -63,17 +75,22 @@ void	capture_room(t_bucket **ht, t_master *master, char *line)
 
 	dst = ft_memalloc(sizeof(t_entry));
 	data = ft_strsplit(line, ' ');
-	dst->name = ft_strdup(data[0]);
-	dst->x = ft_atoi(data[1]);
-	dst->y = ft_atoi(data[2]);
-	dst->key = gen_key(dst->name);
-	if (master->comment != NULL)
+	if (split_len(data) == 3)
 	{
-		dst->comment = ft_strdup(master->comment);
-		start_or_end(master, dst);
-		ft_strdel(&master->comment);
+		dst->name = ft_strdup(data[0]);
+		dst->x = ft_atoi(data[1]);
+		dst->y = ft_atoi(data[2]);
+		dst->key = gen_key(dst->name);
+		if (master->comment != NULL)
+		{
+			dst->comment = ft_strdup(master->comment);
+			start_or_end(master, dst);
+			ft_strdel(&master->comment);
+		}
+		assign_entry_to_ht(ht, master, dst);
+		free_strsplit(&data);
+		data = NULL;
 	}
-	assign_entry_to_ht(ht, master, dst);
-	free_strsplit(&data);
-	data = NULL;
+	else
+		ft_error("ERROR. Rooms need a name and x and y coord.");
 }

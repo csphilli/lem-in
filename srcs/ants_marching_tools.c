@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 23:27:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/27 23:37:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/28 09:29:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ char	*create_move(t_ants *ins, int id, char *name)
 	while (name[j])
 		new[i++] = name[j++];
 	ft_strdel(&ant_id);
+	ant_id = NULL;
 	return (new);
 }
 

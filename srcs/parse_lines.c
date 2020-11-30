@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/27 23:35:09 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/30 15:05:21 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ void	parse_lines(t_master *master, char *line, t_bucket **ht)
 		capture_ants(master, line);
 	else if (line[i] == '#')
 		capture_comment(master, line);
-	else if (line[i] == '\0')
-		ft_error("ERROR. Invalid line.");
+	else if (line[i] == ' ')
+		ft_error("ERROR. Space preceeding instruction.");
 	else if (master->ants_added == true && line[i] != '#')
 	{
 		while (acceptable(line[i++]))

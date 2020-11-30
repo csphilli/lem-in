@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/27 23:43:46 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/11/30 20:14:57 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
-# define LINEBUF 2000
+# define LINEBUF 1000
 # define E_NO_ROOMS "Error. No rooms specified.\n"
 # define E_NO_LINKS "Error. No links specified.\n"
 # define E_L "Error. 'L' present at beginning of room name.\n"
@@ -21,7 +21,6 @@
 # define E_FLAG "Error. Invalid flag specified.\n"
 # define E_START "Error. Start already defined.\n"
 # define E_END "Error. End already defined.\n"
-# define E_NOFILE "Error. File not found.\n"
 # define E_FAILED_SEARCH "Error inserting link. Room not found: "
 # define E_NOSOLUTION "Error. No Solution. Start and/or End room undefined."
 # include "../libft/libft/includes/libft.h"
