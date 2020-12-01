@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 21:05:06 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 15:12:33 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/01 21:23:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,16 @@ void	exit_dup(char *s, size_t index)
 	exit(-1);
 }
 
-void	exit_room_not_found(char *str)
+void	exit_room_not_found(t_master *master, char *str)
 {
-	ft_printf(E_FAILED_SEARCH"'%s'\n", str);
-	exit(-1);
+	// ft_printf("room not found\n");
+	// ft_printf("exit room not found. String: %s\n", str);
+	if (master->errors)
+	{
+		ft_printf(E_FAILED_SEARCH"'%s'\n", str);
+		exit(-1);		
+	}
+	ft_error("ERROR");
 }
 
 void	exit_dup_coord(t_master *master)

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/27 23:37:42 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/01 21:18:53 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 **	What does ins->i do? It is used to assist with printing whitespaces.
-**	Basically, if p is 1, a whitespace will be printed BEFORE the solution.
+**	Basically, if i == 1, a whitespace will be printed BEFORE the solution.
 **	Why before? If the logic triggers a move to be printed, there is
 **	gauranteed to be a whitespace preceeding it. The exception to the rule
 **	is the very first move in a new instruction set.

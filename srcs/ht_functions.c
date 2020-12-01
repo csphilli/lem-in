@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:24:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 18:44:59 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/01 21:13:10 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_entry		*get_entry(t_bucket **ht, t_master *master, char *name)
 		if (ft_strequ(tmp->entry->name, name))
 			return (tmp->entry);
 		else if (!tmp->next && !ft_strequ(tmp->entry->name, name))
-			exit_room_not_found(name);
+			exit_room_not_found(master, name);
 		tmp = tmp->next;
 	}
 	return (0);

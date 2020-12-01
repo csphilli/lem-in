@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/01 20:56:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/01 21:22:35 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,18 @@ void	verify_flags(t_master *master, int nbr_size)
 
 	tmp = master->input_flags;
 	j = 0;
-	while (*tmp)
+	if (tmp)
 	{
-		if (*tmp == 'l')
-			tmp = tmp + nbr_size + 1;
-		else if (!ft_strchr(master->accepted_flags, *tmp))
-			master->errors ? \
-			ft_error("ERROR: Invalid flag. See -h for options.") :\
-			ft_error("ERROR");
-		tmp++;
+		while (*tmp)
+		{
+			if (*tmp == 'l')
+				tmp = tmp + nbr_size + 1;
+			else if (!ft_strchr(master->accepted_flags, *tmp))
+				master->errors ? \
+				ft_error("ERROR: Invalid flag. See -h for options.") :\
+				ft_error("ERROR");
+			tmp++;
+		}
 	}
 }
 

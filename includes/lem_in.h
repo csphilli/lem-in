@@ -6,21 +6,21 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/01 14:01:46 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/01 21:25:53 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 # define LINEBUF 1000
-# define E_NO_ROOMS "Error. No rooms specified.\n"
-# define E_NO_LINKS "Error. No links specified.\n"
-# define E_L "Error. 'L' present at beginning of room name.\n"
-# define E_COORD "Error. Invalid coordinate on line "
-# define E_DUPL "Error. Duplicate room name found: "
-# define E_FLAG "Error. Invalid flag specified.\n"
-# define E_FAILED_SEARCH "Error inserting link. Room not found: "
-# define E_NOSOLUTION "Error. No Solution. Start and/or End room undefined."
+# define E_NO_ROOMS "ERROR: No rooms specified.\n"
+# define E_NO_LINKS "ERROR: No links specified.\n"
+# define E_L "ERROR: 'L' present at beginning of room name.\n"
+# define E_COORD "ERROR: Invalid coordinate on line "
+# define E_DUPL "ERROR: Duplicate room name found: "
+# define E_FLAG "ERROR: Invalid flag specified.\n"
+# define E_FAILED_SEARCH "ERROR: Couldn't insert link. Room not found: "
+# define E_NOSOLUTION "ERROR: No Solution. Start and/or End room undefined."
 # include "../libft/libft/includes/libft.h"
 # include <time.h>
 
@@ -160,7 +160,7 @@ typedef struct		s_master
 
 void				exit_coord(int line_nbr);
 void				exit_dup(char *room_name, size_t index);
-void				exit_room_not_found(char *str);
+void				exit_room_not_found(t_master *master, char *str);
 void				exit_dup_coord(t_master *master);
 
 /*

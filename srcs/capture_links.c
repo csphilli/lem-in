@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 18:37:35 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/01 21:23:04 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	eval_links(t_bucket **src, t_entry *entry)
 	}
 }
 
-void	do_link(t_bucket *head, char *room, t_entry *link)
+void	do_link(t_master *master, t_bucket *head, char *room, t_entry *link)
 {
 	t_bucket	*tmp;
 
@@ -68,15 +68,15 @@ void	do_link(t_bucket *head, char *room, t_entry *link)
 				break ;
 			}
 			else if (!ft_strequ(tmp->entry->name, room) && !tmp->next)
-				exit_room_not_found(room);
+				exit_room_not_found(master, room);
 			tmp = tmp->next;
 		}
 	}
 	else
-		exit_room_not_found(room);
+		exit_room_not_found(master, room);
 }
 
-int		link_format(char *line)
+void		chk_link_format(t_master *master, char *line)
 {
 	int	i;
 	int	x;
@@ -90,8 +90,8 @@ int		link_format(char *line)
 		i++;
 	}
 	if (x > 1)
-		return (0);
-	return (1);
+		master->errors ? ft_error("ERROR: Invalid link format.") :\
+		ft_error("ERROR");
 }
 
 void	capture_links(t_bucket **ht, t_master *master, char *line)
@@ -103,20 +103,20 @@ void	capture_links(t_bucket **ht, t_master *master, char *line)
 
 	entry1 = NULL;
 	entry2 = NULL;
-	!link_format(line) ? ft_error("ERROR. Invalid link format.") : 1;
+	chk_link_format(master, line);
 	data = ft_strsplit(line, '-');
 	entry1 = get_entry(ht, master, data[1]);
 	entry2 = get_entry(ht, master, data[0]);
 	if (!entry1)
-		exit_room_not_found(data[1]);
+		exit_room_not_found(master, data[1]);
 	if (!entry2)
-		exit_room_not_found(data[0]);
+		exit_room_not_found(master, data[0]);
 	if (entry1 && entry2)
 	{
 		index = gen_key(data[0]) % master->new_size;
-		do_link(ht[index], data[0], entry1);
+		do_link(master, ht[index], data[0], entry1);
 		index = gen_key(data[1]) % master->new_size;
-		do_link(ht[index], data[1], entry2);
+		do_link(master, ht[index], data[1], entry2);
 	}
 	free_strsplit(&data);
 	master->link = 1;
