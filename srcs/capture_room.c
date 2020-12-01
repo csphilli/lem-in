@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/30 14:20:31 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/01 09:30:57 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	capture_room(t_bucket **ht, t_master *master, char *line)
 
 	dst = ft_memalloc(sizeof(t_entry));
 	data = ft_strsplit(line, ' ');
+	if (data[0][0] == 'L')
+		ft_error("ERROR: Room names cannot begin with 'L'");
 	if (split_len(data) == 3)
 	{
 		dst->name = ft_strdup(data[0]);

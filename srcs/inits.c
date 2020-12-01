@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/27 08:49:22 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/01 14:07:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_master(t_master *master)
 		master->print_hash_table = false;
 		master->print_paths = false;
 		master->vis_distro = false;
-		master->accepted_flags = "dhptl";
+		master->accepted_flags = "dhptel";
 		master->line_nbr = 1;
 		master->new_size = 10;
 		master->load = 5.0;

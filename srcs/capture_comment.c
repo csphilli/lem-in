@@ -6,17 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 09:05:39 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 15:10:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/01 14:03:44 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-void	exit_comment_end(void)
-{
-	ft_printf(E_END);
-	exit(-1);
-}
 
 void	validate_comment(t_master *master)
 {
@@ -25,13 +19,17 @@ void	validate_comment(t_master *master)
 		if (ft_strequ(master->comment, "start"))
 		{
 			if (master->s_toggle == true)
-				ft_error("Error. Start node already defined.\n");
+				master->errors ? \
+				ft_error("ERROR: Start node already defined.") :\
+				ft_error("ERROR");
 			master->s_toggle = true;
 		}
 		else if (ft_strequ(master->comment, "end"))
 		{
 			if (master->e_toggle == true)
-				exit_comment_end();
+				master->errors ? \
+				ft_error("ERROR: End node already defined.") :\
+				ft_error("ERROR");
 			master->e_toggle = true;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/30 20:14:57 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/01 14:01:46 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # define E_COORD "Error. Invalid coordinate on line "
 # define E_DUPL "Error. Duplicate room name found: "
 # define E_FLAG "Error. Invalid flag specified.\n"
-# define E_START "Error. Start already defined.\n"
-# define E_END "Error. End already defined.\n"
 # define E_FAILED_SEARCH "Error inserting link. Room not found: "
 # define E_NOSOLUTION "Error. No Solution. Start and/or End room undefined."
 # include "../libft/libft/includes/libft.h"
@@ -136,6 +134,7 @@ typedef struct		s_master
 	bool			print_hash_table;
 	bool			vis_distro;
 	bool			ants_added;
+	bool			errors;
 	int				nbr_ants;
 	int				has_flags;
 	int				line_nbr;

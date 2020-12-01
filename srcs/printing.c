@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/27 23:36:27 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/01 20:58:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	print_links(t_bucket *src)
 	t_bucket	*tmp;
 
 	tmp = src;
-	ft_printf(" | Links/Cap/Vis: ");
+	ft_printf(" | Links: ");
 	while (tmp)
 	{
-		ft_printf("%s/%d/%d", tmp->entry->name, tmp->cap, tmp->entry->visited);
+		ft_printf("%s", tmp->entry->name);
 		if (tmp->next)
 			write(1, ",", 1);
 		tmp = tmp->next;
