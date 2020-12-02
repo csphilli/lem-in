@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 14:18:02 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 19:21:44 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 22:55:28 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int		validate_input(t_master *master)
 		master->link)
 		return (1);
 	else
-		ft_error("ERROR: Insufficient information provided.");
+		master->errors ? \
+		ft_error("ERROR: Insufficient information provided.") :\
+		ft_error("ERROR");
 	return (0);
 }

@@ -6,35 +6,15 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/02 22:04:31 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 22:17:19 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 # define LINEBUF 1000
-// # define E_NO_ROOMS "ERROR: No rooms specified.\n"
-// # define E_NO_LINKS "ERROR: No links specified.\n"
-// # define E_L "ERROR: 'L' present at beginning of room name.\n"
-// # define E_COORD "ERROR: Coordinate must be digiton line "
-// # define E_DUPL "ERROR: Duplicate room name found: "
-// # define E_FLAG "ERROR: Invalid flag specified.\n"
-// # define E_FAILED_SEARCH "ERROR: Couldn't insert link. Room not found: "
-// # define E_NOSOLUTION "ERROR: No Solution. Start and/or End room undefined."
 # include "../libft/libft/includes/libft.h"
 # include <time.h>
-
-/*
-**	For Room:
-**	name = room name
-**	start_or_end captures the indicaiton of start or end room
-**	captures any comment about the room
-**	x and y are the room coordinates
-**	L_toggle = 1 if there is an ant in the room, 0 if not.
-**	c1/c2 = represents the name of the room connections
-**	c1/c2_loc = represents the address of the connecting rooms
-**	next is the pointer to the next room in list.
-*/
 
 typedef struct		s_output
 {

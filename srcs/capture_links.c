@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/01 21:23:04 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 22:58:25 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	do_link(t_master *master, t_bucket *head, char *room, t_entry *link)
 		exit_room_not_found(master, room);
 }
 
-void		chk_link_format(t_master *master, char *line)
+void	chk_link_format(t_master *master, char *line)
 {
 	int	i;
 	int	x;

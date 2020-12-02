@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 10:12:54 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/01 13:59:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 22:57:11 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		validate_ants(char *line)
 
 void	capture_ants(t_master *master, char *line)
 {
-	intmax_t 	max_ants;
+	intmax_t	max_ants;
 	int			ants;
 
 	ants = 0;

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:20:56 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/02 22:04:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 23:00:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,35 +36,6 @@ void		append_or_insert_entry(t_bucket **ht, t_entry *entry, int index)
 	}
 }
 
-// void	insertion(t_master *master, t_bucket **ll, t_entry *entry)
-// {
-// 	t_bucket	*tmp;
-// 	t_bucket	*head;
-// 	t_bucket	*new;
-
-// 	head = *ll;
-// 	tmp = head;
-// 	new = ft_memalloc(sizeof(t_bucket));
-// 	new->entry = entry;
-// 	while (tmp->next && entry->key > tmp->entry->key && entry->key > \
-// 		tmp->next->entry->key)
-// 	{
-// 		ft_printf("tmp->name: %s | entry->name: %s\n", tmp->entry->name, entry->name);
-// 		if (ft_strequ(tmp->entry->name, entry->name))
-// 			master->errors ? ft_error("ERROR: Duplicate room name.") : \
-// 			ft_error("ERROR");
-// 		tmp = tmp->next;
-// 	}
-// 	if (!tmp->next)
-// 		tmp->next = new;
-// 	else
-// 	{
-// 		new->next = tmp->next;
-// 		tmp->next  = new;
-// 	}
-// 	*ll = head;
-// }
-
 void		unshift_entry(t_bucket **head, t_entry *entry, int index)
 {
 	t_bucket	*new;
@@ -76,30 +47,6 @@ void		unshift_entry(t_bucket **head, t_entry *entry, int index)
 	head[index] = new;
 	new->next = tmp;
 }
-
-// void		insert_node(t_master *master, t_bucket **ht, t_entry *entry, int index)
-// {
-// 	ft_printf("Into insert Node\n");
-// 	t_bucket	*new;
-// 	t_bucket	*tmp;
-
-// 	new = NULL;
-// 	tmp = ht[index];
-// 	new = ft_memalloc(sizeof(t_bucket));
-// 	new->entry = entry;
-// 	if (ht[index] == NULL)
-// 		ht[index] = new;
-// 	else
-// 	{
-// 		ft_printf("Head not null. tmp->entry->name: %s | entry->name: %s\n", tmp->entry->name, entry->name);
-// 		if (ft_strequ(tmp->entry->name, entry->name))
-// 			master->errors ? ft_error("ERROR: Duplicate room name.") : ft_error("ERROR");
-// 		else if (!tmp->next && entry->key < tmp->entry->key)
-// 			new->next = tmp;
-// 		else
-// 			insertion(master, &tmp, entry);
-// 	}
-// }
 
 t_bucket	*insert_node_to_path(t_bucket *head, t_entry *node)
 {
@@ -135,8 +82,8 @@ int			dupe(t_bucket *head, t_entry *entry)
 	return (0);
 }
 
-
-void		insert_node(t_master *master, t_bucket **ht, t_entry *entry, int index)
+void		insert_node(t_master *master, t_bucket **ht,\
+			t_entry *entry, int index)
 {
 	t_bucket	*new;
 
@@ -161,4 +108,3 @@ void		insert_node(t_master *master, t_bucket **ht, t_entry *entry, int index)
 			ft_error("ERROR");
 	}
 }
-

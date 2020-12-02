@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/01 21:22:35 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 22:58:04 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	toggle_bools(t_master *master)
 
 void	verify_flags(t_master *master, int nbr_size)
 {
-	char 	*tmp;
+	char	*tmp;
 	int		j;
 
 	tmp = master->input_flags;
