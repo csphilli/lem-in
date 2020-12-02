@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 14:30:32 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/02 15:22:40 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 20:52:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	scan_index(t_master *master, t_bucket *head, size_t index)
 			test = tmp->next;
 			while (test->next)
 			{
+				ft_printf("curr: %s | next: %s\n", test->entry->name, tmp->entry->name);
 				if (ft_strequ(test->entry->name, tmp->entry->name))
 					exit_dup(master, test->entry->name);
 				test = test->next;
@@ -38,6 +39,7 @@ void	scan_index(t_master *master, t_bucket *head, size_t index)
 
 void	validate_rooms(t_bucket **ht, t_master *master)
 {
+	ft_printf("Into validate rooms\n");
 	size_t	i;
 
 	i = 0;

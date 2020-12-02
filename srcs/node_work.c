@@ -6,34 +6,62 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:20:56 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 19:11:16 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 21:37:22 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void		append_or_insert_entry(t_bucket **ht, t_entry *entry, int index)
-{
-	t_bucket *new;
-	t_bucket *tmp;
+// void		append_or_insert_entry(t_bucket **ht, t_entry *entry, int index)
+// {
+// 	t_bucket *new;
+// 	t_bucket *tmp;
 
-	tmp = ht[index];
+// 	tmp = ht[index];
+// 	new = ft_memalloc(sizeof(t_bucket));
+// 	new->entry = entry;
+// 	while (tmp->next != NULL)
+// 	{
+// 		if (tmp && entry->key >= tmp->next->entry->key)
+// 			tmp = tmp->next;
+// 		else
+// 			break ;
+// 	}
+// 	if (tmp->next == NULL)
+// 		tmp->next = new;
+// 	else
+// 	{
+// 		new->next = tmp->next;
+// 		tmp->next = new;
+// 	}
+// }
+
+void	insertion(t_master *master, t_bucket **ll, t_entry *entry)
+{
+	t_bucket	*tmp;
+	t_bucket	*head;
+	t_bucket	*new;
+
+	head = *ll;
+	tmp = head;
 	new = ft_memalloc(sizeof(t_bucket));
 	new->entry = entry;
-	while (tmp->next != NULL)
+	while (tmp->next && entry->key > tmp->entry->key && entry->key > \
+		tmp->next->entry->key)
 	{
-		if (tmp && entry->key >= tmp->next->entry->key)
-			tmp = tmp->next;
-		else
-			break ;
+		if (ft_strequ(tmp->entry->name, entry->name))
+			master->errors ? ft_error("ERROR: Duplicate room name.") : \
+			ft_error("ERROR");
+		tmp = tmp->next;
 	}
-	if (tmp->next == NULL)
+	if (!tmp->next)
 		tmp->next = new;
 	else
 	{
 		new->next = tmp->next;
-		tmp->next = new;
+		tmp->next  = new;
 	}
+	*ll = head;
 }
 
 void		unshift_entry(t_bucket **head, t_entry *entry, int index)
@@ -48,23 +76,24 @@ void		unshift_entry(t_bucket **head, t_entry *entry, int index)
 	new->next = tmp;
 }
 
-void		insert_node(t_bucket **ht, t_entry *entry, int index)
+void		insert_node(t_master *master, t_bucket **ht, t_entry *entry, int index)
 {
 	t_bucket	*new;
+	t_bucket	*tmp;
 
 	new = NULL;
+	tmp = ht[index];
+	new = ft_memalloc(sizeof(t_bucket));
+	new->entry = entry;
 	if (ht[index] == NULL)
-	{
-		new = ft_memalloc(sizeof(t_bucket));
-		new->entry = entry;
 		ht[index] = new;
-	}
 	else
 	{
-		if (entry->key < ht[index]->entry->key)
-			unshift_entry(ht, entry, index);
+		if (!tmp->next && !ft_strequ(tmp->entry->name, entry->name) && entry->key < \
+			tmp->entry->key)
+			new->next = tmp;
 		else
-			append_or_insert_entry(ht, entry, index);
+			insertion(master, &tmp, entry);
 	}
 }
 
@@ -101,3 +130,25 @@ int			dupe(t_bucket **head, t_entry *entry)
 	}
 	return (0);
 }
+
+
+// void		insert_node(t_bucket **ht, t_entry *entry, int index)
+// {
+// 	t_bucket	*new;
+
+// 	new = NULL;
+// 	if (ht[index] == NULL)
+// 	{
+// 		new = ft_memalloc(sizeof(t_bucket));
+// 		new->entry = entry;
+// 		ht[index] = new;
+// 	}
+// 	else
+// 	{
+// 		if (entry->key < ht[index]->entry->key)
+// 			unshift_entry(ht, entry, index);
+// 		else
+// 			append_or_insert_entry(ht, entry, index);
+// 	}
+// }
+

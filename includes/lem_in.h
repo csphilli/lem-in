@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/02 15:21:17 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 21:34:52 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 // # define E_NO_LINKS "ERROR: No links specified.\n"
 // # define E_L "ERROR: 'L' present at beginning of room name.\n"
 // # define E_COORD "ERROR: Coordinate must be digiton line "
-# define E_DUPL "ERROR: Duplicate room name found: "
-# define E_FLAG "ERROR: Invalid flag specified.\n"
-# define E_FAILED_SEARCH "ERROR: Couldn't insert link. Room not found: "
+// # define E_DUPL "ERROR: Duplicate room name found: "
+// # define E_FLAG "ERROR: Invalid flag specified.\n"
+// # define E_FAILED_SEARCH "ERROR: Couldn't insert link. Room not found: "
 // # define E_NOSOLUTION "ERROR: No Solution. Start and/or End room undefined."
 # include "../libft/libft/includes/libft.h"
 # include <time.h>
@@ -212,7 +212,7 @@ t_bucket			**grow_ht(t_bucket **ht, t_master *master);
 t_bucket			**create_ht(t_master *master);
 void				capture_room(t_bucket **ht, t_master *master, char *line);
 float				load(t_master *master);
-void				insert_node(t_bucket **ht, t_entry *entry, int index);
+void				insert_node(t_master *master, t_bucket **ht, t_entry *entry, int index);
 void				assign_entry_to_ht(t_bucket **ht, t_master *master,\
 					t_entry *entry);
 int					gen_key(char *str);

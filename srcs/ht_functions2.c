@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 12:38:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/02 15:25:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 21:35:33 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void		reassign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *ptr)
 	int		index;
 
 	index = ptr->key % master->new_size;
-	insert_node(ht, ptr, index);
+	// insert_node(ht, ptr, index);
+	insert_node(master, ht, ptr, index);
 	master->nbr_keys++;
 	master->room_count++;
 }

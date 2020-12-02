@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:24:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/01 21:13:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 21:04:03 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void		assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry)
 	if (!dup_coord(ht, master, entry))
 	{
 		index = entry->key % master->new_size;
-		insert_node(ht, entry, index);
+		insert_node(master, ht, entry, index);
 		master->room_count++;
 		master->nbr_keys++;
 	}
