@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 14:30:32 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/21 14:30:49 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:22:40 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	scan_index(t_bucket *head, size_t index)
+void	scan_index(t_master *master, t_bucket *head, size_t index)
 {
 	t_bucket	*tmp;
 	t_bucket	*test;
@@ -28,7 +28,7 @@ void	scan_index(t_bucket *head, size_t index)
 			while (test->next)
 			{
 				if (ft_strequ(test->entry->name, tmp->entry->name))
-					exit_dup(test->entry->name, index);
+					exit_dup(master, test->entry->name);
 				test = test->next;
 			}
 		}
@@ -44,7 +44,7 @@ void	validate_rooms(t_bucket **ht, t_master *master)
 	while (i < master->new_size)
 	{
 		if (ht[i])
-			scan_index(ht[i], i);
+			scan_index(master, ht[i], i);
 		i++;
 	}
 }

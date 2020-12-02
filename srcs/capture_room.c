@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/01 09:30:57 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:28:55 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	validate_coords(t_master *master, char *n1, char *n2)
 	while (n1[i])
 	{
 		if (!ft_isdigit(n1[i]))
-			exit_coord(master->line_nbr);
+			exit_coord(master);
 		i++;
 	}
 	i = 0;
 	while (n2[i])
 	{
 		if (!ft_isdigit(n2[i]))
-			exit_coord(master->line_nbr);
+			exit_coord(master);
 		i++;
 	}
 }
@@ -68,6 +68,20 @@ int		split_len(char **src)
 	return (i);
 }
 
+void	chk_valid_entry(t_master *master, char **data)
+{
+
+	if (data[0][0] == 'L')
+		master->errors ? \
+		ft_error("ERROR: Room names cannot begin with 'L'") :\
+		ft_error("ERROR");
+	if (split_len(data) != 3)
+		master->errors ? \
+		ft_error("ERROR: Invalid room definition.") : \
+		ft_error("ERROR");
+	// validate_coords(master, data[1], data[2]);
+}
+
 void	capture_room(t_bucket **ht, t_master *master, char *line)
 {
 	char	**data;
@@ -75,24 +89,18 @@ void	capture_room(t_bucket **ht, t_master *master, char *line)
 
 	dst = ft_memalloc(sizeof(t_entry));
 	data = ft_strsplit(line, ' ');
-	if (data[0][0] == 'L')
-		ft_error("ERROR: Room names cannot begin with 'L'");
-	if (split_len(data) == 3)
+	chk_valid_entry(master, data);
+	dst->name = ft_strdup(data[0]);
+	dst->x = ft_atoi(data[1]);
+	dst->y = ft_atoi(data[2]);
+	dst->key = gen_key(dst->name);
+	if (master->comment != NULL)
 	{
-		dst->name = ft_strdup(data[0]);
-		dst->x = ft_atoi(data[1]);
-		dst->y = ft_atoi(data[2]);
-		dst->key = gen_key(dst->name);
-		if (master->comment != NULL)
-		{
-			dst->comment = ft_strdup(master->comment);
-			start_or_end(master, dst);
-			ft_strdel(&master->comment);
-		}
-		assign_entry_to_ht(ht, master, dst);
-		free_strsplit(&data);
-		data = NULL;
+		dst->comment = ft_strdup(master->comment);
+		start_or_end(master, dst);
+		ft_strdel(&master->comment);
 	}
-	else
-		ft_error("ERROR. Rooms need a name and x and y coord.");
+	assign_entry_to_ht(ht, master, dst);
+	free_strsplit(&data);
+	data = NULL;
 }

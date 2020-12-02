@@ -6,21 +6,21 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/01 21:25:53 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 15:21:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 # define LINEBUF 1000
-# define E_NO_ROOMS "ERROR: No rooms specified.\n"
-# define E_NO_LINKS "ERROR: No links specified.\n"
-# define E_L "ERROR: 'L' present at beginning of room name.\n"
-# define E_COORD "ERROR: Invalid coordinate on line "
+// # define E_NO_ROOMS "ERROR: No rooms specified.\n"
+// # define E_NO_LINKS "ERROR: No links specified.\n"
+// # define E_L "ERROR: 'L' present at beginning of room name.\n"
+// # define E_COORD "ERROR: Coordinate must be digiton line "
 # define E_DUPL "ERROR: Duplicate room name found: "
 # define E_FLAG "ERROR: Invalid flag specified.\n"
 # define E_FAILED_SEARCH "ERROR: Couldn't insert link. Room not found: "
-# define E_NOSOLUTION "ERROR: No Solution. Start and/or End room undefined."
+// # define E_NOSOLUTION "ERROR: No Solution. Start and/or End room undefined."
 # include "../libft/libft/includes/libft.h"
 # include <time.h>
 
@@ -158,8 +158,8 @@ typedef struct		s_master
 **	ERROR HANDLING
 */
 
-void				exit_coord(int line_nbr);
-void				exit_dup(char *room_name, size_t index);
+void				exit_coord(t_master *master);
+void				exit_dup(t_master *master, char *room_name);
 void				exit_room_not_found(t_master *master, char *str);
 void				exit_dup_coord(t_master *master);
 
