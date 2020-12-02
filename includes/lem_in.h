@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/02 21:34:52 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 22:04:31 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,7 +233,7 @@ void				write_s2r(t_ants *ins, t_entry *entry1);
 **	RANDOM TOOLS
 */
 
-int					dupe(t_bucket **head, t_entry *entry);
+// int					dupe(t_bucket **head, t_entry *entry);
 int					validate_input(t_master *master);
 void				start_or_end(t_master *master, t_entry *entry);
 int					bucket_arr_len(t_bucket **arr);

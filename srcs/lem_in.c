@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/02 15:09:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/02 22:09:41 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int			check_inputs(t_master *master, int ac)
 {
 	if (master->input_flags && master->flag_count + 1 != ac)
-		ft_error("Error. Invalid usage. Use '-h' for help.");
+		master->errors ? ft_error("ERROR: Invalid use. '-h' for help.") : \
+		ft_error("ERROR");
 	return (1);
 }
 
@@ -44,7 +45,6 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 	(*bfs)->start = master->start_room;
 	(*bfs)->end = master->end_room;
 	validate_input(master);
-	validate_rooms(ht, master);
 	edmonds_karp(ht, master, bfs);
 	calc_distro(master, *bfs);
 	(*bfs)->paths = optimal_solution(*bfs);
