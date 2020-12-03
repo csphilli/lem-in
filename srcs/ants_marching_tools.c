@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 23:27:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/28 09:29:45 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/03 20:10:02 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,45 @@ void	cat_move(t_ants *ins, int ant_id, char *name)
 		ins->input = ft_strnew(LINEBUF);
 		ins->l = 0;
 	}
+}
+
+void	dlt_output(t_ants *ins)
+{
+	t_output	*cur;
+	t_output	*tmp;
+
+	cur = NULL;
+	tmp = ins->output;
+	while (tmp)
+	{
+		cur = tmp;
+		tmp = tmp->next;
+		ft_strdel(&cur->line);
+		cur->line = NULL;
+		cur->next = NULL;
+		cur->len = '\0';
+		free(cur);
+		cur = NULL;
+	}
+}
+
+void	do_one_move(t_master *master, t_ants *ins)
+{
+	int			ants_e;
+	int			id;
+
+	ants_e = 1;
+	id = 2;
+	while (ants_e < master->nbr_ants)
+	{
+		cat_move(ins, id, master->end_room->name);
+		ants_e++;
+		id++;
+	}
+	if (ins->l < LINEBUF)
+	{
+		ft_strcat(ins->input, "\0");
+		append_move(ins, &ins->output);
+	}
+	ins->n_moves++;
 }

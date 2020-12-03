@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/02 22:17:19 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/03 20:10:53 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
-# define LINEBUF 1000
+# define LINEBUF 1025
 # include "../libft/libft/includes/libft.h"
 # include <time.h>
 
@@ -98,11 +98,6 @@ typedef struct		s_ants
 	int				l;
 }					t_ants;
 
-/*
-**	**p = all PATHS found from initial DFS
-**	**c = CHOSEN paths from the DFS.
-*/
-
 typedef struct		s_master
 {
 	char			*comment;
@@ -164,6 +159,8 @@ void				free_entry(t_entry *entry);
 void				free_bucket(t_bucket *bucket);
 void				free_intarray(int *src, int len);
 void				delete_old_ht(t_bucket **old, size_t size);
+void				dlt_output(t_ants *ins);
+void				free_ins(t_ants *ins);
 
 /*
 **	DATA CAPTURING
@@ -192,7 +189,8 @@ t_bucket			**grow_ht(t_bucket **ht, t_master *master);
 t_bucket			**create_ht(t_master *master);
 void				capture_room(t_bucket **ht, t_master *master, char *line);
 float				load(t_master *master);
-void				insert_node(t_master *master, t_bucket **ht, t_entry *entry, int index);
+void				insert_node(t_master *master, t_bucket **ht,\
+					t_entry *entry, int index);
 void				assign_entry_to_ht(t_bucket **ht, t_master *master,\
 					t_entry *entry);
 int					gen_key(char *str);
@@ -213,7 +211,6 @@ void				write_s2r(t_ants *ins, t_entry *entry1);
 **	RANDOM TOOLS
 */
 
-// int					dupe(t_bucket **head, t_entry *entry);
 int					validate_input(t_master *master);
 void				start_or_end(t_master *master, t_entry *entry);
 int					bucket_arr_len(t_bucket **arr);
@@ -225,6 +222,7 @@ int					list_length(t_bucket *head);
 int					*ft_intcat(int *src, int to_add);
 int					ft_int_arr_len(int *n);
 int					most_ants(int *arr);
+int					dupe(t_bucket *head, t_entry *entry);
 
 /*
 **	PRINTING
@@ -235,6 +233,7 @@ void				print_int_arr(int *ants);
 void				print_distro(t_lol **list);
 void				print_output(t_output *output);
 void				print_moves(t_output *output);
+void				do_one_move(t_master *master, t_ants *ins);
 
 /*
 **	LINK WORK
@@ -280,6 +279,6 @@ void				clear_data(t_bucket **ht, t_master *master, \
 					t_bfs *bfs, int i);
 void				sort_paths(t_lol *paths);
 int					chk_direct_link(t_bucket **ht, t_master *master, \
-					t_bfs *bfs, int i);
+					t_bfs *bfs);
 
 #endif
