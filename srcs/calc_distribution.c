@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/30 20:04:55 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/04 11:00:51 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	cascade(t_bfs *bfs, t_master *master, t_lol *paths)
 				system("clear");
 				print_distro(&paths);
 				calc_total_moves(paths);
-				usleep(150000);
+				usleep(100000);
 			}
 			tmp = (tmp->index == bfs->max_index ? paths : tmp->next);
 		}
