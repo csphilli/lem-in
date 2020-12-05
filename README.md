@@ -13,5 +13,7 @@ At the time of this writing, the world is in the grips of a pandemic. Because of
 Please read it [HERE](https://github.com/csphilli/lem-in/blob/master/CSPHILLI%E2%80%99S%20LEM-IN.pdf)
 
 ## Ant Distro
-Here is what the ant distribution function looks like in action
+
+Here is what the ant distribution function looks like in action  
+
 ![](AntDistro.gif)
