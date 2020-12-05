@@ -16,4 +16,4 @@ Please read it [HERE](https://github.com/csphilli/lem-in/blob/master/CSPHILLI%E2
 
 Here is what the ant distribution function looks like in action  
 
-![](AntDistro.gif)
+![](distro.gif)
