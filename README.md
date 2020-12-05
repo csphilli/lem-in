@@ -14,6 +14,6 @@ Please read it [HERE](https://github.com/csphilli/lem-in/blob/master/CSPHILLI%E2
 
 ## Ant Distro
 
-Here is what the ant distribution function looks like in action  
+Here is what the ant distribution function looks like in action. More info on that can be found in the document linked above. 
 
 ![](distro.gif)
