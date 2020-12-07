@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:55:58 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/03 20:09:19 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/07 14:06:31 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		chk_direct_link(t_bucket **ht, t_master *master, t_bfs *bfs)
 			ins = ft_memalloc(sizeof(t_ants));
 			ins->i = 1;
 			do_one_move(master, ins);
-			print_output(master->output);
+			// print_output(master->output);
 			ft_printf("L%d-%s", 1, master->end_room->name);
 			print_moves(ins->output);
 			write(1, "\n", 1);
