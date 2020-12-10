@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/03 20:10:53 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/10 10:08:00 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_bucket
 	char			*input;
 	struct s_entry	*entry;
 	unsigned int	cap;
+	unsigned int	res_cap;
 	struct s_bucket	*next;
 }					t_bucket;
 
