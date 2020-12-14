@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/10 10:08:00 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/14 14:03:04 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,5 +281,9 @@ void				clear_data(t_bucket **ht, t_master *master, \
 void				sort_paths(t_lol *paths);
 int					chk_direct_link(t_bucket **ht, t_master *master, \
 					t_bfs *bfs);
+
+
+
+void	analyze_ht(t_bucket **ht, t_master *master); // to be deleated
 
 #endif

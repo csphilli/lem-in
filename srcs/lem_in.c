@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/05 10:19:39 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/14 14:02:35 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_bucket	**get_data(t_bucket **ht, t_master *master, int fd)
 t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 {
 	ht = get_data(ht, master, fd);
+	analyze_ht(ht, master);
 	(*bfs)->start = master->start_room;
 	(*bfs)->end = master->end_room;
 	validate_input(master);
