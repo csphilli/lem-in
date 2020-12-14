@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 13:40:24 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/14 14:27:40 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/14 20:31:09 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 void	analyze_ht(t_bucket **ht, t_master *master)
 {
-	float	conflict;
+	int	conflict;
+	double		res;
+	int	unused;
+	double res_unused;
 	// int sum;
 	size_t index;
 	t_bucket *tmp;
 
-	conflict = 0.0;
+	conflict = 0;
 	index = 0;
+	unused = 0;
 	tmp = NULL;
 	while (index < master->new_size)
 	{
@@ -39,10 +43,15 @@ void	analyze_ht(t_bucket **ht, t_master *master)
 				}
 			}
 		}
+		else if (!ht[index])
+			unused++;
 		index++;
 	}
+	res_unused = ((double)unused / (double)master->new_size) * 100;
+	res = (double)conflict / ((double)master->new_size - (double)unused);
 	print_ht(ht, master->new_size);
-	ft_printf("Count: %d\n", conflict);
-	ft_printf("Conflict Density: %d\n", conflict / (float)master->new_size);
+	ft_printf("%% unused: %f2%%\n", res_unused);
+	ft_printf("Unused indecies: %d\n", unused);
+	ft_printf("Average Index Density: %f\n", res);
 	ft_error("Exiting after analyze");
 }

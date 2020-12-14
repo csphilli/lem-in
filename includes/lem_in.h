@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/14 14:03:04 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/14 20:58:29 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ void				insert_node(t_master *master, t_bucket **ht,\
 					t_entry *entry, int index);
 void				assign_entry_to_ht(t_bucket **ht, t_master *master,\
 					t_entry *entry);
-int					gen_key(char *str);
+int					hash(char *str);
 t_bucket			*get_head(t_bucket **ht, t_master *master, char *name);
 
 /*

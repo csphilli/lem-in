@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/01 14:07:23 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/14 20:59:50 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	init_master(t_master *master)
 		master->vis_distro = false;
 		master->accepted_flags = "dhptel";
 		master->line_nbr = 1;
-		master->new_size = 10;
+		master->new_size = 13;
 		master->load = 5.0;
 		master->size_factor = 2;
-		master->old_size = 10;
+		master->old_size = 13;
 		master->input = ft_strnew(LINEBUF);
 	}
 }

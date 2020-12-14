@@ -6,16 +6,29 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:24:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/02 22:03:25 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/14 21:09:18 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int			gen_key(char *str)
+int			hash(char *str)
 {
-	int		key;
 
+	
+	int		key;
+	int		i;
+	key = 0;
+	i = 0;
+	while (*str)
+	{
+		key += *str << i++;
+		str++;
+		// i++;
+		// i = (i == 3 ? 1 : i);
+	}
+
+	/*
 	key = 0;
 	while (*str)
 	{
@@ -27,6 +40,7 @@ int			gen_key(char *str)
 			key += *str;
 		str++;
 	}
+	*/
 	return (key);
 }
 
@@ -36,7 +50,7 @@ t_entry		*get_entry(t_bucket **ht, t_master *master, char *name)
 	int			index;
 
 	tmp = NULL;
-	index = gen_key(name) % master->new_size;
+	index = hash(name) % master->new_size;
 	tmp = ht[index];
 	while (tmp)
 	{
@@ -55,7 +69,7 @@ t_bucket	*get_head(t_bucket **ht, t_master *master, char *name)
 	int			index;
 
 	tmp = NULL;
-	index = gen_key(name) % master->new_size;
+	index = hash(name) % master->new_size;
 	tmp = ht[index];
 	return (tmp);
 }
