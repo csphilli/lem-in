@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/07 14:06:26 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/20 21:04:10 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	build_paths2(t_bucket **ht, t_master *master, t_bfs *bfs, int i)
 		{
 			unshift_to_map(&bfs->map, tmp->entry, cur);
 			map_to_paths(bfs, i);
-			clear_data(ht, master, bfs, 0);
+			clear_data(ht, bfs, 0);
 			return ;
 		}
 		else if (tmp->cap && !tmp->entry->visited && !tmp->entry->used)
@@ -76,8 +76,8 @@ void	edmonds_karp2(t_bucket **ht, t_master *master, t_bfs **bfs, int i)
 
 	entry = (i == 1 ? (*bfs)->start : (*bfs)->end);
 	len = list_length(entry->links);
-	init_caps(ht, master);
-	reset_data(ht, master, 1);
+	init_caps(ht);
+	reset_data(ht, 1);
 	while (len--)
 	{
 		append_to_ll(&(*bfs)->q, entry);

@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 13:40:24 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/14 21:41:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/20 21:10:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	analyze_ht(t_bucket **ht, t_master *master)
+void	analyze_ht(t_bucket **ht)
 {
 	int	conflict;
 	double		res;
@@ -26,7 +26,7 @@ void	analyze_ht(t_bucket **ht, t_master *master)
 	index = 0;
 	unused = 0;
 	tmp = NULL;
-	while (index < master->new_size)
+	while (index < TABLE_SIZE)
 	{
 		if (ht[index])
 		{
@@ -47,9 +47,10 @@ void	analyze_ht(t_bucket **ht, t_master *master)
 			unused++;
 		index++;
 	}
-	res_unused = ((double)unused / (double)master->new_size) * 100;
-	res = (double)conflict / ((double)master->new_size - (double)unused);
-	print_ht(ht, master->new_size);
+	res_unused = ((double)unused / (double)TABLE_SIZE) * 100;
+	res = (double)conflict / ((double)TABLE_SIZE - (double)unused);
+	print_ht(ht);
+	ft_printf("Conflicts: %d\n", conflict);
 	ft_printf("%% unused: %f2%%\n", res_unused);
 	ft_printf("Unused indecies: %d\n", unused);
 	ft_printf("Average Index Density: %f\n", res);

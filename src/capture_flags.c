@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/02 22:58:04 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/20 21:05:19 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,17 @@ void	verify_flags(t_master *master, int nbr_size)
 	}
 }
 
-int		check_load_size(t_master *master, char *s)
-{
-	int	i;
+// int		check_load_size(t_master *master, char *s)
+// {
+// 	int	i;
 
-	i = ft_atoimax(s);
-	if (i < 0 || i > 2147483647)
-		master->errors ? ft_error("ERROR: Load factor must be of size int.")\
-		: ft_error("ERROR");
-	master->load = i;
-	return (ft_nbr_size(i));
-}
+// 	i = ft_atoimax(s);
+// 	if (i < 0 || i > 2147483647)
+// 		master->errors ? ft_error("ERROR: Load factor must be of size int.")\
+// 		: ft_error("ERROR");
+// 	master->load = i;
+// 	return (ft_nbr_size(i));
+// }
 
 void	capture_flags(t_master *master, int ac, char **av)
 {
@@ -78,8 +78,8 @@ void	capture_flags(t_master *master, int ac, char **av)
 	{
 		if (av[i][1] == 'h')
 			load_help();
-		else if (av[i][1] == 'l')
-			nbr_size = check_load_size(master, &av[i][2]);
+		// else if (av[i][1] == 'l')
+		// 	nbr_size = check_load_size(master, &av[i][2]);
 		if (!master->input_flags)
 			master->input_flags = ft_strnew(1);
 		ft_strcat(master->input_flags, &av[i][1]);

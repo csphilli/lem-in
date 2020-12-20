@@ -6,20 +6,21 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:29:55 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 18:43:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/20 21:03:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void		reset_data(t_bucket **ht, t_master *master, int x)
+// void		reset_data(t_bucket **ht, t_master *master, int x)
+void		reset_data(t_bucket **ht, int x)
 {
 	t_bucket	*tmp;
 	size_t		i;
 
 	i = 0;
 	tmp = NULL;
-	while (i < master->new_size)
+	while (i < TABLE_SIZE)
 	{
 		if (ht[i])
 			tmp = ht[i];
@@ -61,11 +62,12 @@ t_bucket	*get_edge(t_entry *fnd, t_entry *via)
 	return (NULL);
 }
 
-void		clear_data(t_bucket **ht, t_master *master, t_bfs *bfs, int i)
+// void		clear_data(t_bucket **ht, t_master *master, t_bfs *bfs, int i)
+void		clear_data(t_bucket **ht, t_bfs *bfs, int i)
 {
 	while (bfs->map)
 		pop_from_map(&bfs->map);
-	reset_data(ht, master, i);
+	reset_data(ht, i);
 	while (bfs->q)
 		pop_from_ll(&bfs->q);
 }

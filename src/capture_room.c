@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/14 21:37:33 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/20 21:05:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,15 @@ void	validate_coords(t_master *master, char *n1, char *n2)
 	}
 }
 
-int		dup_coord(t_bucket **ht, t_master *master, t_entry *entry)
+// int		dup_coord(t_bucket **ht, t_master *master, t_entry *entry)
+int		dup_coord(t_bucket **ht, t_entry *entry)
 {
 	size_t		i;
 	t_bucket	*tmp;
 
 	i = 0;
 	tmp = NULL;
-	while (i < master->new_size)
+	while (i < TABLE_SIZE)
 	{
 		if (ht[i])
 		{

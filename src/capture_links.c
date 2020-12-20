@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/14 21:39:29 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/20 20:48:44 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ void	capture_links(t_bucket **ht, t_master *master, char *line)
 		exit_room_not_found(master, data[0]);
 	if (entry1 && entry2)
 	{
-		index = hash(data[0]) % master->new_size;
+		index = hash(data[0]);// % master->new_size;
 		do_link(master, ht[index], data[0], entry1);
-		index = hash(data[1]) % master->new_size;
+		index = hash(data[1]);// % master->new_size;
 		do_link(master, ht[index], data[1], entry2);
 	}
 	free_strsplit(&data);

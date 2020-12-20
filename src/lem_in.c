@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/14 14:02:35 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/20 21:11:34 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ t_bucket	**get_data(t_bucket **ht, t_master *master, int fd)
 	line = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (load(master) > master->load)
-		{
-			master->room_count = 0;
-			ht = grow_ht(ht, master);
-		}
+		// if (load(master) > master->load)
+		// {
+		// 	master->room_count = 0;
+		// 	ht = grow_ht(ht, master);
+		// }
 		parse_lines(master, line, ht);
 	}
 	append_to_output(master, &master->output);
@@ -43,7 +43,7 @@ t_bucket	**get_data(t_bucket **ht, t_master *master, int fd)
 t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 {
 	ht = get_data(ht, master, fd);
-	analyze_ht(ht, master);
+	analyze_ht(ht);
 	(*bfs)->start = master->start_room;
 	(*bfs)->end = master->end_room;
 	validate_input(master);
@@ -61,7 +61,7 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 void		do_extras(t_bucket **ht, t_master *master, t_bfs *bfs)
 {
 	if (master->print_hash_table)
-		print_ht(ht, master->new_size);
+		print_ht(ht);
 	if (master->print_paths)
 		print_lol(&bfs->paths);
 }
@@ -79,10 +79,11 @@ int			main(int ac, char **av)
 	bfs = ft_memalloc(sizeof(t_bfs));
 	init_master(master);
 	capture_flags(master, ac, av);
-	ht = create_ht(master);
+	ht = ft_memalloc(sizeof(t_bucket*) * TABLE_SIZE);
 	if (check_inputs(master, ac))
 		ht = do_lemin(fd, master, ht, &bfs);
 	if (master->input_flags)
 		do_extras(ht, master, bfs);
+	// system ("leaks lem-in");
 	return (0);
 }

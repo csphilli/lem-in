@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/14 21:15:03 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/20 21:15:29 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	init_master(t_master *master)
 		master->print_hash_table = false;
 		master->print_paths = false;
 		master->vis_distro = false;
-		master->accepted_flags = "dhptel";
+		master->accepted_flags = "dhpte";
 		master->line_nbr = 1;
-		master->new_size = 21;
-		master->load = 5.0;
-		master->size_factor = 2;
-		master->old_size = 21;
+		master->table_size = TABLE_SIZE;
+		// master->load = 5.0;
+		// master->size_factor = 2;
+		// master->old_size = 21;
 		master->input = ft_strnew(LINEBUF);
 	}
 }
@@ -69,7 +69,8 @@ void	init_caps2(t_bucket *head)
 	}
 }
 
-void	init_caps(t_bucket **ht, t_master *master)
+// void	init_caps(t_bucket **ht, t_master *master)
+void	init_caps(t_bucket **ht)
 {
 	t_bucket	*tmp;
 	t_bucket	*links;
@@ -78,7 +79,7 @@ void	init_caps(t_bucket **ht, t_master *master)
 	i = 0;
 	tmp = NULL;
 	links = NULL;
-	while (i < master->new_size)
+	while (i < TABLE_SIZE)
 	{
 		if (ht[i])
 		{

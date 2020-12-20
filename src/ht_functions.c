@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:24:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/14 21:44:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/20 21:07:22 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 int			hash(char *str)
 {	
-	int		key;
+	int		hash_value;
 	int		i;
-	key = 0;
+	hash_value = 1;
 	i = 0;
 	while (*str)
 	{
-		key += *str << i++;
-		// hash_value = (hash_value * *c) % (TABLE_SIZE);
-		// key = ((key * *str) << i++) % master->new_size;
+		hash_value += *str;
+		hash_value = (hash_value * *str) % (TABLE_SIZE);
 		str++;
 	}
 	// key = key % master->new_size;
-	return (key);
+	return (hash_value);
 }
 
 t_entry		*get_entry(t_bucket **ht, t_master *master, char *name)
@@ -35,7 +34,7 @@ t_entry		*get_entry(t_bucket **ht, t_master *master, char *name)
 	int			index;
 
 	tmp = NULL;
-	index = hash(name) % master->new_size;
+	index = hash(name);// % master->new_size;
 	tmp = ht[index];
 	while (tmp)
 	{
@@ -48,32 +47,35 @@ t_entry		*get_entry(t_bucket **ht, t_master *master, char *name)
 	return (0);
 }
 
-t_bucket	*get_head(t_bucket **ht, t_master *master, char *name)
+// t_bucket	*get_head(t_bucket **ht, t_master *master, char *name)
+t_bucket	*get_head(t_bucket **ht, char *name)
+
 {
 	t_bucket	*tmp;
 	int			index;
 
 	tmp = NULL;
-	index = hash(name) % master->new_size;
+	index = hash(name);// % master->new_size;
 	tmp = ht[index];
 	return (tmp);
 }
 
-float		load(t_master *master)
-{
-	float res;
+// float		load(t_master *master)
+// {
+// 	float res;
 
-	res = (float)master->nbr_keys / (float)master->new_size;
-	return (res);
-}
+// 	res = (float)master->nbr_keys / (float)master->new_size;
+// 	return (res);
+// }
 
 void		assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry)
 {
 	size_t	index;
 
-	if (!dup_coord(ht, master, entry))
+	if (!dup_coord(ht, entry))
 	{
-		index = entry->key % master->new_size;
+		// index = entry->key % master->new_size;
+		index = hash(entry->name);
 		insert_node(master, ht, entry, index);
 		master->room_count++;
 		master->nbr_keys++;

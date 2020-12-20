@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 12:03:09 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 19:17:25 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/20 21:16:11 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,5 @@ void	load_help(void)
 	ft_printf("h: Displays this help list.\n");
 	ft_printf("p: Prints the list of all available paths found.\n");
 	ft_printf("t: Displays the hash table.\n");
-	ft_printf("l: Change the load factor of hash table. See below\n");
-	ft_printf("\n**** Changing hash table load parameter ****\n\n");
-	ft_printf("-l followed by positive int value.\n");
-	ft_printf("Example: '-l5' changes load to 5. '-l10' changes to 10.\n\n");
-	ft_printf("The load value is the amount of links each index\n");
-	ft_printf("can have at a given hash table size. It also affects the\n");
-	ft_printf("space complexity. Lower value == higher space requirements.\n");
 	exit(-1);
 }

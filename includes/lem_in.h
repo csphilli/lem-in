@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/20 20:38:43 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/20 21:07:55 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,10 @@ typedef struct		s_master
 	char			*accepted_flags;
 	int				flag_count;
 	int				room_count;
-	size_t			new_size;
-	size_t			old_size;
-	size_t			size_factor;
-	float			load;
+	int				table_size;
+	// size_t			old_size;
+	// size_t			size_factor;
+	// float			load;
 	int				nbr_keys;
 	int				link;
 	char			*input;
@@ -149,7 +149,8 @@ void				init_bfs(t_bfs *bfs, t_master *master);
 void				init_instrux(t_ants *instrux);
 void				ft_init_int_arr(int *src, int len);
 void				init_moves(t_lol *moves);
-void				init_caps(t_bucket **ht, t_master *master);
+// void				init_caps(t_bucket **ht, t_master *master);
+void				init_caps(t_bucket **ht);
 void				init_ant_ins(t_bfs *bfs, t_master *master, t_ants **ins);
 
 /*
@@ -187,16 +188,17 @@ void				append_move(t_ants *ins, t_output **output);
 **	Hash Table Functions
 */
 
-t_bucket			**grow_ht(t_bucket **ht, t_master *master);
-t_bucket			**create_ht(t_master *master);
+// t_bucket			**grow_ht(t_bucket **ht, t_master *master);
+// t_bucket			**create_ht();
 void				capture_room(t_bucket **ht, t_master *master, char *line);
-float				load(t_master *master);
+// float				load(t_master *master);
 void				insert_node(t_master *master, t_bucket **ht,\
 					t_entry *entry, int index);
 void				assign_entry_to_ht(t_bucket **ht, t_master *master,\
 					t_entry *entry);
 int					hash(char *str);
-t_bucket			*get_head(t_bucket **ht, t_master *master, char *name);
+// t_bucket			*get_head(t_bucket **ht, t_master *master, char *name);
+t_bucket			*get_head(t_bucket **ht, char *name);
 
 /*
 **	Routing Algorithm
@@ -215,8 +217,9 @@ void				start_or_end(t_master *master, t_entry *entry);
 int					bucket_arr_len(t_bucket **arr);
 int					link_array_len(t_entry **arr);
 t_bucket			*copy_from_array(t_bucket *head, t_bucket *src);
-int					dup_coord(t_bucket **ht, t_master *master,\
-					t_entry *entry);
+// int					dup_coord(t_bucket **ht, t_master *master,\
+// 					t_entry *entry);
+int					dup_coord(t_bucket **ht, t_entry *entry);
 int					list_length(t_bucket *head);
 int					*ft_intcat(int *src, int to_add);
 int					ft_int_arr_len(int *n);
@@ -227,7 +230,8 @@ int					dupe(t_bucket *head, t_entry *entry);
 **	PRINTING
 */
 
-void				print_ht(t_bucket **ht, size_t size);
+// void				print_ht(t_bucket **ht, size_t size);
+void				print_ht(t_bucket **ht);
 void				print_int_arr(int *ants);
 void				print_distro(t_lol **list);
 void				print_output(t_output *output);
@@ -270,18 +274,20 @@ void				pop_from_map(t_pmap **map);
 void				reverse_paths(t_lol **lol);
 t_lol				*optimal_solution(t_bfs *bfs);
 void				build_distro_array(t_bfs *bfs);
-void				reset_data(t_bucket **ht, t_master *master, int x);
+// void				reset_data(t_bucket **ht, t_master *master, int x);
+void				reset_data(t_bucket **ht, int x);
 void				edmonds_karp(t_bucket **ht, t_master *master, t_bfs **bfs);
 void				adj_cap(t_entry *fnd, t_entry *via, int cap);
 t_bucket			*get_edge(t_entry *fnd, t_entry *via);
-void				clear_data(t_bucket **ht, t_master *master, \
-					t_bfs *bfs, int i);
+// void				clear_data(t_bucket **ht, t_master *master, \
+// 					t_bfs *bfs, int i);
+void				clear_data(t_bucket **ht, t_bfs *bfs, int i);
 void				sort_paths(t_lol *paths);
 int					chk_direct_link(t_bucket **ht, t_master *master, \
 					t_bfs *bfs);
 
 
 
-void	analyze_ht(t_bucket **ht, t_master *master); // to be deleated
+void	analyze_ht(t_bucket **ht); // to be deleated
 
 #endif
