@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/20 21:11:34 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/20 21:26:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_bucket	**get_data(t_bucket **ht, t_master *master, int fd)
 t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 {
 	ht = get_data(ht, master, fd);
-	analyze_ht(ht);
+	// analyze_ht(ht);
 	(*bfs)->start = master->start_room;
 	(*bfs)->end = master->end_room;
 	validate_input(master);
@@ -72,7 +72,11 @@ int			main(int ac, char **av)
 	t_bucket	**ht;
 	t_bfs		*bfs;
 	int			fd;
+	double		time;
+	clock_t		begin;
+	clock_t		end;
 
+	begin = clock();
 	fd = 0;
 	ht = NULL;
 	master = ft_memalloc(sizeof(t_master));
@@ -84,6 +88,9 @@ int			main(int ac, char **av)
 		ht = do_lemin(fd, master, ht, &bfs);
 	if (master->input_flags)
 		do_extras(ht, master, bfs);
+	end = clock();
+	time = (double)(end - begin) / CLOCKS_PER_SEC;
+	printf("%lf\n", time);
 	// system ("leaks lem-in");
 	return (0);
 }

@@ -5,5 +5,5 @@ lem-in
 *.txt
 src/movecalc.c
 generator
-*.sh
+run.sh
 /tester
