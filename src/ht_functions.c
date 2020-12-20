@@ -6,16 +6,14 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:24:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/14 21:09:18 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/14 21:44:56 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
 int			hash(char *str)
-{
-
-	
+{	
 	int		key;
 	int		i;
 	key = 0;
@@ -23,24 +21,11 @@ int			hash(char *str)
 	while (*str)
 	{
 		key += *str << i++;
-		str++;
-		// i++;
-		// i = (i == 3 ? 1 : i);
-	}
-
-	/*
-	key = 0;
-	while (*str)
-	{
-		if (*str >= (0 + '0') && *str <= (9 + '0'))
-			key += (*str - 48);
-		else if (*str >= 'a' && *str <= 'z')
-			key += *str;
-		else if (*str >= 'A' && *str <= 'Z')
-			key += *str;
+		// hash_value = (hash_value * *c) % (TABLE_SIZE);
+		// key = ((key * *str) << i++) % master->new_size;
 		str++;
 	}
-	*/
+	// key = key % master->new_size;
 	return (key);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 13:40:24 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/14 20:31:09 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/14 21:41:11 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ void	analyze_ht(t_bucket **ht, t_master *master)
 	ft_printf("%% unused: %f2%%\n", res_unused);
 	ft_printf("Unused indecies: %d\n", unused);
 	ft_printf("Average Index Density: %f\n", res);
-	ft_error("Exiting after analyze");
+	// ft_error("Exiting after analyze");
 }

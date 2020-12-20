@@ -6,13 +6,14 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/14 20:58:29 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/20 20:38:43 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 # define LINEBUF 1025
+# define TABLE_SIZE 20023
 # include "../libft/libft/includes/libft.h"
 # include <time.h>
 
@@ -204,9 +205,6 @@ t_bucket			*get_head(t_bucket **ht, t_master *master, char *name);
 void				find_paths(t_master *master, t_bucket **ht);
 void				calc_distro(t_master *master, t_bfs *bfs);
 void				ants_marching(t_bfs *bfs, t_master *master);
-void				write_r2r(t_ants *ins, t_entry *entry1, t_entry *entry2);
-void				write_r2e(t_ants *ins, t_entry *entry1, t_entry *entry2);
-void				write_s2r(t_ants *ins, t_entry *entry1);
 
 /*
 **	RANDOM TOOLS

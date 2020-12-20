@@ -6,52 +6,49 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/11/30 20:36:47 by cphillip         ###   ########.fr        #
+#    Updated: 2020/12/20 20:37:05 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+
 NAME = lem-in
-FLAGS = -Wall -Wextra
 
-LIB = ./libft/libft.a
-LIB_FOLDER = ./libft/
-OBJ_DIR = ./obj
+FLAGS = -Wall -Wextra -Werror
 
-SRCS = ./srcs/
-LEM_FUNCTIONS = *.c
-LEM_HEADER = ./includes/lem_in.h
-FUNC = $(LEM_FUNCTIONS)
-C_FILES = $(addprefix $(SRCS), $(LEM_FUNCTIONS))
+LIBFT = ./libft/
 
-FT_PRINTF_INC = -I ./libft/ft_printf/includes/
-LIBFT_INC = -I ./libft/libft/includes/
-INCLUDES = $(FT_PRINTF_INC) $(LIBFT_INC) -I ./includes/
-OBJ_FILES = *.o
+SRC_DIR = ./src/
 
-all: library $(NAME)
+SRC = 	*.c
 
-library:
-	@echo "Compiling Library..."
-	@make -C $(LIB_FOLDER)
+SRC_FILES = $(addprefix $(SRC_DIR), $(SRC))
 
-$(NAME): all $(C_FILES) $(LEM_HEADER)
-	@mkdir -p $(OBJ_DIR)
-	@echo "Compiling $(NAME) files..."
-	gcc $(FLAGS) $(INCLUDES) -c $(C_FILES)
-	gcc $(FLAGS) -o $(NAME) $(INCLUDES) $(OBJ_FILES) $(LIB)
-	@mv $(OBJ_FILES) $(OBJ_DIR)
+OBJ_FILES = $(SRC:.c=.o)
+
+INC = ./includes
+
+all: $(NAME)
+
+$(NAME): $(SRC_FILES) $(INC)/lem_in.h
+	@if git submodule status | egrep -q '^[-]' ; then \
+		echo "INFO: Initializing git submodules"; \
+		git submodule update --init; \
+	fi
+	@echo "Compiling $(NAME)..."
+	@make -C $(LIBFT)
+	@gcc $(FLAGS) -o $(NAME) $(SRC_FILES) -I$(INC) \
+	-L $(LIBFT) -lft -I ./libft/$(INC)
+	
 
 clean:
-	@echo "Deleting object files"
-	@rm -rf $(OBJ_DIR)
-	@make clean -C $(LIB_FOLDER)
+	@rm -rf $(OBJ_FILES)
+	@rm -rf $(LIBFT)/obj
 
 fclean: clean
-	@echo "Deleting $(NAME)"
 	@rm -rf $(NAME)
-	@echo "Deleting libft.a"
-	@make fclean -C $(LIB_FOLDER)
+	@rm -rf $(LIBFT)/libft.a
+	@rm -rf test
 
-re:	fclean all
+re: fclean all
 
-.PHONY: library all fclean re
+.PHONY: all clean fclean re
