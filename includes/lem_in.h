@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 15:09:59 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 15:14:33 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ typedef struct		s_output
 	int				len;
 	struct s_output	*next;
 }					t_output;
+
+typedef struct		s_io
+{
+	char			*line;
+	int				len;
+	struct s_output	*next;
+}					t_io;
 
 typedef struct		s_bucket
 {
@@ -123,9 +130,9 @@ typedef struct		s_master
 	int				nbr_ants;
 	int				has_flags;
 	int				line_nbr;
-	int				room_count;
-	int				table_size;
-	int				nbr_keys;
+	// int				room_count;
+	// int				table_size;
+	// int				nbr_keys;
 	int				link;
 	char			*input;
 	int				l;

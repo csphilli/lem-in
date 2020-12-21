@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 14:14:15 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 15:15:12 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_master(t_master *master)
 		master->flags.vis_distro = false;
 		master->flags.accepted_flags = "dhpte";
 		master->line_nbr = 1;
-		master->table_size = TABLE_SIZE;
+		// master->table_size = TABLE_SIZE;
 		// master->load = 5.0;
 		// master->size_factor = 2;
 		// master->old_size = 21;
