@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:24:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/20 21:07:22 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 13:36:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int			hash(char *str)
 		hash_value = (hash_value * *str) % (TABLE_SIZE);
 		str++;
 	}
-	// key = key % master->new_size;
 	return (hash_value);
 }
 
@@ -49,13 +48,12 @@ t_entry		*get_entry(t_bucket **ht, t_master *master, char *name)
 
 // t_bucket	*get_head(t_bucket **ht, t_master *master, char *name)
 t_bucket	*get_head(t_bucket **ht, char *name)
-
 {
 	t_bucket	*tmp;
 	int			index;
 
 	tmp = NULL;
-	index = hash(name);// % master->new_size;
+	index = hash(name);
 	tmp = ht[index];
 	return (tmp);
 }
@@ -74,7 +72,6 @@ void		assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry)
 
 	if (!dup_coord(ht, entry))
 	{
-		// index = entry->key % master->new_size;
 		index = hash(entry->name);
 		insert_node(master, ht, entry, index);
 		master->room_count++;
