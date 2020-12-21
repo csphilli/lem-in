@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 20:09:05 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 23:57:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define IO_BUF 1025
 # define LINEBUF 1025
 # define TABLE_SIZE 20023
+# define HAS_ANTS 0
 # include "../libft/libft/includes/libft.h"
 # include <time.h>
 
@@ -32,12 +33,12 @@ typedef struct		s_flags
 	int				flag_count;
 }					t_flags;
 
-typedef struct		s_output
-{
-	char			*line;
-	int				len;
-	struct s_output	*next;
-}					t_output;
+// typedef struct		s_output
+// {
+// 	char			*line;
+// 	int				len;
+// 	struct s_output	*next;
+// }					t_output;
 
 typedef struct		s_io
 {
@@ -119,9 +120,6 @@ typedef struct		s_ants
 	int				n_moves;
 	int				ant_id;
 	int				i;
-	// char			*input;
-	// t_output		*output;
-	// int				l;
 }					t_ants;
 
 typedef struct		s_master
@@ -158,7 +156,6 @@ void				init_bfs(t_bfs *bfs, t_master *master);
 void				init_instrux(t_ants *instrux);
 void				ft_init_int_arr(int *src, int len);
 void				init_moves(t_lol *moves);
-// void				init_caps(t_bucket **ht, t_master *master);
 void				init_caps(t_bucket **ht);
 void				init_ant_ins(t_bfs *bfs, t_master *master, t_ants **ins);
 
@@ -170,9 +167,6 @@ void				free_node(t_bucket *node);
 void				free_entry(t_entry *entry);
 void				free_bucket(t_bucket *bucket);
 void				free_intarray(int *src, int len);
-// void				delete_old_ht(t_bucket **old, size_t size);
-// void				dlt_output(t_ants *ins);
-// void				free_ins(t_ants *ins);
 
 /*
 **	DATA CAPTURING
@@ -188,26 +182,20 @@ void				duplicate_room_check(t_master *master, t_bucket **ht);
 void				capture_links(t_bucket **ht, t_master *master, char *line);
 void				parse_lines(t_master *master, char *line, t_bucket **ht);
 t_entry				*get_entry(t_bucket **ht, t_master *master, char *name);
-void				append_to_output(t_master *master, t_output **output);
 void				store_input(t_master *master, char *line, int p);
-// void				cat_move(t_ants *ins, int ant_id, char *name);
 void				cat_move(t_master *master, t_ants *ins, int ant_id, char *name);
-void				append_move(t_ants *ins, t_output **output);
 
 /*
 **	Hash Table Functions
 */
 
-// t_bucket			**grow_ht(t_bucket **ht, t_master *master);
-// t_bucket			**create_ht();
+
 void				capture_room(t_bucket **ht, t_master *master, char *line);
-// float				load(t_master *master);
 void				insert_node(t_master *master, t_bucket **ht,\
 					t_entry *entry, int index);
 void				assign_entry_to_ht(t_bucket **ht, t_master *master,\
 					t_entry *entry);
 int					hash(char *str);
-// t_bucket			*get_head(t_bucket **ht, t_master *master, char *name);
 t_bucket			*get_head(t_bucket **ht, char *name);
 
 /*
@@ -240,13 +228,10 @@ int					dupe(t_bucket *head, t_entry *entry);
 **	PRINTING
 */
 
-// void				print_ht(t_bucket **ht, size_t size);
 void				print_io(t_io *tgt, int i);
 void				print_ht(t_bucket **ht);
 void				print_int_arr(int *ants);
 void				print_distro(t_lol **list);
-void				print_output(t_output *output);
-void				print_moves(t_output *output);
 void				do_one_move(t_master *master, t_ants *ins);
 
 /*
