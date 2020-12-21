@@ -20,7 +20,6 @@ do
 	I=$(( $I+1 ))
 	if (( I % 20 == 0))
 	then
-		echo "Average run time of $I iterations: " 
 		AVG=$(bc <<<"scale=4;$TOTAL/20")
 		echo "$FLAG : " $AVG >> time.txt
 		TOTAL=0
