@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/20 20:57:37 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 11:55:11 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ void	print_ht(t_bucket **ht)
 	tmp = NULL;
 	while (i < TABLE_SIZE)
 	{
-		ft_printf("HT[%d]: ", i);
 		if (ht[i] != NULL)
 		{
+			ft_printf("HT[%d]: ", i);
 			tmp = ht[i];
 			while (tmp != NULL)
 			{
@@ -85,8 +85,8 @@ void	print_ht(t_bucket **ht)
 					ft_printf("-->");
 				tmp = tmp->next;
 			}
+			ft_printf("\n");
 		}
-		ft_printf("\n");
 		i++;
 	}
 }
