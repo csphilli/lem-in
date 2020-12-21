@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 20:10:21 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 00:08:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,11 @@ int			main(int ac, char **av)
 	t_master	*master;
 	t_bucket	**ht;
 	t_bfs		*bfs;
-	// int			fd;
 	double		time;
 	clock_t		begin;
 	clock_t		end;
 
 	begin = clock();
-	// fd = 0;
 	ht = NULL;
 	master = ft_memalloc(sizeof(t_master));
 	bfs = ft_memalloc(sizeof(t_bfs));
