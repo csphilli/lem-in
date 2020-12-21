@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/20 21:05:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 14:15:24 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ int		split_len(char **src)
 void	chk_valid_entry(t_master *master, char **data)
 {
 	if (data[0][0] == 'L')
-		master->errors ? \
+		master->flags.errors ? \
 		ft_error("ERROR: Room names cannot begin with 'L'") :\
 		ft_error("ERROR");
 	if (split_len(data) != 3)
-		master->errors ? \
+		master->flags.errors ? \
 		ft_error("ERROR: Invalid room definition.") : \
 		ft_error("ERROR");
 }

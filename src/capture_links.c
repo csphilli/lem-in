@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 13:33:50 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 14:15:43 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	chk_link_format(t_master *master, char *line)
 		i++;
 	}
 	if (x > 1)
-		master->errors ? ft_error("ERROR: Invalid link format.") :\
+		master->flags.errors ? ft_error("ERROR: Invalid link format.") :\
 		ft_error("ERROR");
 }
 

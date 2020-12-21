@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/04 11:00:51 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 14:18:12 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	cascade(t_bfs *bfs, t_master *master, t_lol *paths)
 			tmp->nbr_ants++;
 			ant_count--;
 			chk_unlock(&bfs, &tmp);
-			if (master->vis_distro)
+			if (master->flags.vis_distro)
 			{
 				system("clear");
 				print_distro(&paths);

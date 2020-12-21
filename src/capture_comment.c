@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 09:05:39 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/01 14:03:44 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 14:17:33 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ void	validate_comment(t_master *master)
 	{
 		if (ft_strequ(master->comment, "start"))
 		{
-			if (master->s_toggle == true)
-				master->errors ? \
+			if (master->flags.s_toggle == true)
+				master->flags.errors ? \
 				ft_error("ERROR: Start node already defined.") :\
 				ft_error("ERROR");
-			master->s_toggle = true;
+			master->flags.s_toggle = true;
 		}
 		else if (ft_strequ(master->comment, "end"))
 		{
-			if (master->e_toggle == true)
-				master->errors ? \
+			if (master->flags.e_toggle == true)
+				master->flags.errors ? \
 				ft_error("ERROR: End node already defined.") :\
 				ft_error("ERROR");
-			master->e_toggle = true;
+			master->flags.e_toggle = true;
 		}
 	}
 }

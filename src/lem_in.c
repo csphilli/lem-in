@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 12:45:02 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 14:13:37 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int			check_inputs(t_master *master, int ac)
 {
-	if (master->input_flags && master->flag_count + 1 != ac)
-		master->errors ? ft_error("ERROR: Invalid use. '-h' for help.") : \
+	if (master->flags.input_flags && master->flags.flag_count + 1 != ac)
+		master->flags.errors ? ft_error("ERROR: Invalid use. '-h' for help.") : \
 		ft_error("ERROR");
 	return (1);
 }
@@ -62,9 +62,9 @@ t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
 
 void		do_extras(t_bucket **ht, t_master *master, t_bfs *bfs)
 {
-	if (master->print_hash_table)
+	if (master->flags.print_hash_table)
 		print_ht(ht);
-	if (master->print_paths)
+	if (master->flags.print_paths)
 		print_lol(&bfs->paths);
 }
 
@@ -88,7 +88,7 @@ int			main(int ac, char **av)
 	ht = ft_memalloc(sizeof(t_bucket*) * TABLE_SIZE);
 	if (check_inputs(master, ac))
 		ht = do_lemin(fd, master, ht, &bfs);
-	if (master->input_flags)
+	if (master->flags.input_flags)
 		do_extras(ht, master, bfs);
 	end = clock();
 	time = (double)(end - begin) / CLOCKS_PER_SEC;

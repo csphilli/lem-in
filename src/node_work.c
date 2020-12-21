@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:20:56 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 11:51:05 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 14:12:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void		insert_node(t_master *master, t_bucket **ht,\
 				append_or_insert_entry(ht, entry, index);
 		}
 		else
-			master->errors ? ft_error("ERROR: Duplicate room name.") : \
+			master->flags.errors ? ft_error("ERROR: Duplicate room name.") : \
 			ft_error("ERROR");
 	}
 }

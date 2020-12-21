@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 10:12:54 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/02 22:57:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 14:17:57 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	capture_ants(t_master *master, char *line)
 
 	ants = 0;
 	if (*line == '\0' || *line == ' ' || !validate_ants(line))
-		master->errors ? ft_error("ERROR: Invalid ant definition format") :\
+		master->flags.errors ? ft_error("ERROR: Invalid ant definition format") :\
 		ft_error("ERROR");
 	max_ants = ft_atoimax(line);
 	if (max_ants < 1 || max_ants > 2147483647)
-		master->errors ? ft_error("ERROR: Invalid ant size.") :\
+		master->flags.errors ? ft_error("ERROR: Invalid ant size.") :\
 		ft_error("ERROR");
 	ants = ft_atoi(line);
 	master->nbr_ants = ants;
-	master->ants_added = true;
+	master->flags.ants_added = true;
 }

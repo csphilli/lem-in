@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 11:50:51 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 14:11:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,20 @@
 # define TABLE_SIZE 20023
 # include "../libft/libft/includes/libft.h"
 # include <time.h>
+
+typedef struct		s_flags
+{
+	bool			s_toggle;
+	bool			e_toggle;
+	bool			print_paths;
+	bool			print_hash_table;
+	bool			vis_distro;
+	bool			ants_added;
+	bool			errors;
+	char			*input_flags;
+	char			*accepted_flags;
+	int				flag_count;
+}					t_flags;
 
 typedef struct		s_output
 {
@@ -102,22 +116,23 @@ typedef struct		s_ants
 
 typedef struct		s_master
 {
+	t_flags			flags;
 	char			*comment;
-	bool			s_toggle;
-	bool			e_toggle;
+	// bool			s_toggle;
+	// bool			e_toggle;
 	t_entry			*start_room;
 	t_entry			*end_room;
-	bool			print_paths;
-	bool			print_hash_table;
-	bool			vis_distro;
-	bool			ants_added;
-	bool			errors;
+	// bool			print_paths;
+	// bool			print_hash_table;
+	// bool			vis_distro;
+	// bool			ants_added;
+	// bool			errors;
 	int				nbr_ants;
 	int				has_flags;
 	int				line_nbr;
-	char			*input_flags;
-	char			*accepted_flags;
-	int				flag_count;
+	// char			*input_flags;
+	// char			*accepted_flags;
+	// int				flag_count;
 	int				room_count;
 	int				table_size;
 	// size_t			old_size;
@@ -219,7 +234,7 @@ int					link_array_len(t_entry **arr);
 t_bucket			*copy_from_array(t_bucket *head, t_bucket *src);
 // int					dup_coord(t_bucket **ht, t_master *master,\
 // 					t_entry *entry);
-int					dup_coord(t_bucket **ht, t_entry *entry);
+int					dup_coord(t_bucket **ht,t_entry *entry);
 int					list_length(t_bucket *head);
 int					*ft_intcat(int *src, int to_add);
 int					ft_int_arr_len(int *n);

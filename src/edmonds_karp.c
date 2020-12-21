@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/20 21:04:10 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 14:15:08 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	edmonds_karp2(t_bucket **ht, t_master *master, t_bfs **bfs, int i)
 		}
 	}
 	if (!(*bfs)->s2e && !(*bfs)->e2s)
-		master->errors ? \
+		master->flags.errors ? \
 		ft_error("ERROR: No solution. No link between start and end.") : \
 		ft_error("ERROR");
 }
