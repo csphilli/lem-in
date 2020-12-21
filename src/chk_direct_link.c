@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:55:58 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 19:39:54 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 20:10:02 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		chk_direct_link(t_bucket **ht, t_master *master, t_bfs *bfs)
 			ft_printf("L%d-%s", 1, master->end_room->name);
 			print_io(master->moves, 0);
 			write(1, "\n", 1);
-			free_ins(ins);
+			free(ins);
 			return (1);
 		}
 		end_links = end_links->next;

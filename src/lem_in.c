@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 20:02:33 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 20:10:21 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,6 @@ int			main(int ac, char **av)
 	end = clock();
 	time = (double)(end - begin) / CLOCKS_PER_SEC;
 	printf("%lf\n", time);
-	system ("leaks lem-in");
+	// system ("leaks lem-in");
 	return (0);
 }

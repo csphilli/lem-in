@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 13:51:53 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/03 19:27:24 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 20:08:50 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,4 @@ void	free_bucket(t_bucket *bucket)
 	bucket->next = NULL;
 	free(bucket);
 	bucket = NULL;
-}
-
-void	free_ins(t_ants *ins)
-{
-	ft_strdel(&ins->input);
-	dlt_output(ins);
-	ins->output = NULL;
-	ins->n_moves = '\0';
-	ins->l = '\0';
-	ins->ants_s = '\0';
-	ins->ants_e = '\0';
-	ins->max_ant = '\0';
-	ins->ant_id = '\0';
-	free(ins);
 }

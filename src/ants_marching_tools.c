@@ -6,35 +6,35 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 23:27:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 19:53:51 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 20:06:24 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	append_move(t_ants *ins, t_output **output)
-{
-	t_output *head;
-	t_output *tmp;
+// void	append_move(t_ants *ins, t_output **output)
+// {
+// 	t_output *head;
+// 	t_output *tmp;
 
-	head = *output;
-	tmp = head;
-	if (!head)
-	{
-		head = ft_memalloc(sizeof(t_output));
-		head->line = ft_strdup(ins->input);
-		head->len = ins->l;
-	}
-	else
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = ft_memalloc(sizeof(t_output));
-		tmp->next->line = ft_strdup(ins->input);
-		tmp->next->len = ins->l;
-	}
-	*output = head;
-}
+// 	head = *output;
+// 	tmp = head;
+// 	if (!head)
+// 	{
+// 		head = ft_memalloc(sizeof(t_output));
+// 		head->line = ft_strdup(ins->input);
+// 		head->len = ins->l;
+// 	}
+// 	else
+// 	{
+// 		while (tmp->next)
+// 			tmp = tmp->next;
+// 		tmp->next = ft_memalloc(sizeof(t_output));
+// 		tmp->next->line = ft_strdup(ins->input);
+// 		tmp->next->len = ins->l;
+// 	}
+// 	*output = head;
+// }
 
 char	*create_move(t_ants *ins, int id, char *name)
 {
@@ -85,25 +85,25 @@ void	cat_move(t_master *master, t_ants *ins, int ant_id, char *name)
 	}
 }
 
-void	dlt_output(t_ants *ins)
-{
-	t_output	*cur;
-	t_output	*tmp;
+// void	dlt_output(t_ants *ins)
+// {
+// 	t_output	*cur;
+// 	t_output	*tmp;
 
-	cur = NULL;
-	tmp = ins->output;
-	while (tmp)
-	{
-		cur = tmp;
-		tmp = tmp->next;
-		ft_strdel(&cur->line);
-		cur->line = NULL;
-		cur->next = NULL;
-		cur->len = '\0';
-		free(cur);
-		cur = NULL;
-	}
-}
+// 	cur = NULL;
+// 	tmp = ins->output;
+// 	while (tmp)
+// 	{
+// 		cur = tmp;
+// 		tmp = tmp->next;
+// 		ft_strdel(&cur->line);
+// 		cur->line = NULL;
+// 		cur->next = NULL;
+// 		cur->len = '\0';
+// 		free(cur);
+// 		cur = NULL;
+// 	}
+// }
 
 void	do_one_move(t_master *master, t_ants *ins)
 {

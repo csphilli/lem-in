@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 20:02:23 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 20:09:05 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,9 @@ typedef struct		s_ants
 	int				n_moves;
 	int				ant_id;
 	int				i;
-	char			*input;
-	t_output		*output;
-	int				l;
+	// char			*input;
+	// t_output		*output;
+	// int				l;
 }					t_ants;
 
 typedef struct		s_master
@@ -170,9 +170,9 @@ void				free_node(t_bucket *node);
 void				free_entry(t_entry *entry);
 void				free_bucket(t_bucket *bucket);
 void				free_intarray(int *src, int len);
-void				delete_old_ht(t_bucket **old, size_t size);
-void				dlt_output(t_ants *ins);
-void				free_ins(t_ants *ins);
+// void				delete_old_ht(t_bucket **old, size_t size);
+// void				dlt_output(t_ants *ins);
+// void				free_ins(t_ants *ins);
 
 /*
 **	DATA CAPTURING
