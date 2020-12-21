@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 15:09:21 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 17:43:52 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	ants_marching(t_bfs *bfs, t_master *master)
 		append_move(ins, &ins->output);
 	}
 	// print_output(master->output);
+	print_io(master->map, 1);
 	print_moves(ins->output);
 	free_ins(ins);
 }

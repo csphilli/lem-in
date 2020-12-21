@@ -6,12 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 15:14:33 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 16:04:59 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
+# define IO_BUF 1025
 # define LINEBUF 1025
 # define TABLE_SIZE 20023
 # include "../libft/libft/includes/libft.h"
@@ -40,9 +41,11 @@ typedef struct		s_output
 
 typedef struct		s_io
 {
-	char			*line;
-	int				len;
-	struct s_output	*next;
+	char			*buf;
+	int				b_len;
+	char			*output;
+	int				o_len;
+	struct s_io		*next;
 }					t_io;
 
 typedef struct		s_bucket
@@ -130,13 +133,11 @@ typedef struct		s_master
 	int				nbr_ants;
 	int				has_flags;
 	int				line_nbr;
-	// int				room_count;
-	// int				table_size;
-	// int				nbr_keys;
 	int				link;
 	char			*input;
 	int				l;
 	t_output		*output;
+	t_io			*map;
 
 }					t_master;
 
@@ -240,6 +241,7 @@ int					dupe(t_bucket *head, t_entry *entry);
 */
 
 // void				print_ht(t_bucket **ht, size_t size);
+void				print_io(t_io *tgt, int i);
 void				print_ht(t_bucket **ht);
 void				print_int_arr(int *ants);
 void				print_distro(t_lol **list);
@@ -295,6 +297,8 @@ void				sort_paths(t_lol *paths);
 int					chk_direct_link(t_bucket **ht, t_master *master, \
 					t_bfs *bfs);
 
+t_io				*create_io(void);
+void				buf_to_output(t_io **main);
 
 
 void	analyze_ht(t_bucket **ht); // to be deleated
