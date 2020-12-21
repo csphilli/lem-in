@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 14:11:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 15:09:59 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,26 +118,13 @@ typedef struct		s_master
 {
 	t_flags			flags;
 	char			*comment;
-	// bool			s_toggle;
-	// bool			e_toggle;
 	t_entry			*start_room;
 	t_entry			*end_room;
-	// bool			print_paths;
-	// bool			print_hash_table;
-	// bool			vis_distro;
-	// bool			ants_added;
-	// bool			errors;
 	int				nbr_ants;
 	int				has_flags;
 	int				line_nbr;
-	// char			*input_flags;
-	// char			*accepted_flags;
-	// int				flag_count;
 	int				room_count;
 	int				table_size;
-	// size_t			old_size;
-	// size_t			size_factor;
-	// float			load;
 	int				nbr_keys;
 	int				link;
 	char			*input;
