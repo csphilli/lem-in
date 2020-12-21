@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 16:04:59 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 20:02:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,8 @@ typedef struct		s_master
 	int				line_nbr;
 	int				link;
 	char			*input;
-	int				l;
-	t_output		*output;
 	t_io			*map;
+	t_io			*moves;
 
 }					t_master;
 
@@ -191,7 +190,8 @@ void				parse_lines(t_master *master, char *line, t_bucket **ht);
 t_entry				*get_entry(t_bucket **ht, t_master *master, char *name);
 void				append_to_output(t_master *master, t_output **output);
 void				store_input(t_master *master, char *line, int p);
-void				cat_move(t_ants *ins, int ant_id, char *name);
+// void				cat_move(t_ants *ins, int ant_id, char *name);
+void				cat_move(t_master *master, t_ants *ins, int ant_id, char *name);
 void				append_move(t_ants *ins, t_output **output);
 
 /*

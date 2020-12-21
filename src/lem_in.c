@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 17:44:46 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 20:02:33 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int			check_inputs(t_master *master, int ac)
 	return (1);
 }
 
-t_bucket	**get_data(t_bucket **ht, t_master *master, int fd)
+t_bucket	**get_data(t_bucket **ht, t_master *master)
 {
 	char	*line;
 
 	line = NULL;
-	while (get_next_line(fd, &line) > 0)
+	while (get_next_line(0, &line) > 0)
 	{
 		// if (load(master) > master->load)
 		// {
@@ -41,9 +41,10 @@ t_bucket	**get_data(t_bucket **ht, t_master *master, int fd)
 	return (ht);
 }
 
-t_bucket	**do_lemin(int fd, t_master *master, t_bucket **ht, t_bfs **bfs)
+t_bucket	**do_lemin(t_master *master, t_bucket **ht, t_bfs **bfs)
 {
-	ht = get_data(ht, master, fd);
+	// ht = get_data(ht, master, fd);
+	ht = get_data(ht, master);
 	// print_ht(ht);
 	// ft_error("exiting after parsing\n");
 	// analyze_ht(ht);
@@ -74,13 +75,13 @@ int			main(int ac, char **av)
 	t_master	*master;
 	t_bucket	**ht;
 	t_bfs		*bfs;
-	int			fd;
+	// int			fd;
 	double		time;
 	clock_t		begin;
 	clock_t		end;
 
 	begin = clock();
-	fd = 0;
+	// fd = 0;
 	ht = NULL;
 	master = ft_memalloc(sizeof(t_master));
 	bfs = ft_memalloc(sizeof(t_bfs));
@@ -88,12 +89,13 @@ int			main(int ac, char **av)
 	capture_flags(master, ac, av);
 	ht = ft_memalloc(sizeof(t_bucket*) * TABLE_SIZE);
 	if (check_inputs(master, ac))
-		ht = do_lemin(fd, master, ht, &bfs);
+		// ht = do_lemin(fd, master, ht, &bfs);
+		ht = do_lemin(master, ht, &bfs);
 	if (master->flags.input_flags)
 		do_extras(ht, master, bfs);
 	end = clock();
 	time = (double)(end - begin) / CLOCKS_PER_SEC;
 	printf("%lf\n", time);
-	// system ("leaks lem-in");
+	system ("leaks lem-in");
 	return (0);
 }

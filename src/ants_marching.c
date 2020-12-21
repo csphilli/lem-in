@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 17:43:52 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 20:03:33 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 **	is the very first move in a new instruction set.
 */
 
-void	r2r(t_lol *path, t_ants *ins)
+void	r2r(t_master *master, t_lol *path, t_ants *ins)
 {
 	t_bucket	*tmp;
 
@@ -31,7 +31,7 @@ void	r2r(t_lol *path, t_ants *ins)
 		if (tmp->next && tmp->next->entry->occ && !tmp->entry->occ &&\
 		!ft_strequ(tmp->next->entry->name, ins->start->name))
 		{
-			cat_move(ins, tmp->next->entry->ant_id, tmp->entry->name);
+			cat_move(master, ins, tmp->next->entry->ant_id, tmp->entry->name);
 			tmp->next->entry->occ = 0;
 			tmp->entry->occ = 1;
 			tmp->entry->ant_id = tmp->next->entry->ant_id;
@@ -42,14 +42,14 @@ void	r2r(t_lol *path, t_ants *ins)
 	}
 }
 
-void	r2e(t_lol *path, t_ants *ins)
+void	r2e(t_master *master, t_lol *path, t_ants *ins)
 {
 	t_bucket	*tmp;
 
 	tmp = path->list;
 	if (tmp->next->entry->occ)
 	{
-		cat_move(ins, tmp->next->entry->ant_id, tmp->entry->name);
+		cat_move(master, ins, tmp->next->entry->ant_id, tmp->entry->name);
 		tmp->next->entry->ant_id = 0;
 		tmp->next->entry->occ = 0;
 		ins->ants_e++;
@@ -57,7 +57,7 @@ void	r2e(t_lol *path, t_ants *ins)
 	}
 }
 
-void	s2r(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
+void	s2r(t_master *master, t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 {
 	t_bucket	*tmp;
 
@@ -67,7 +67,7 @@ void	s2r(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 	if (!tmp->entry->occ)
 	{
 		bfs->s_distro[i]--;
-		cat_move(ins, ins->ant_id, tmp->entry->name);
+		cat_move(master, ins, ins->ant_id, tmp->entry->name);
 		tmp->entry->ant_id = ins->ant_id;
 		tmp->entry->occ = 1;
 		ins->ant_id++;
@@ -75,7 +75,7 @@ void	s2r(t_bfs *bfs, t_lol *path, t_ants *ins, int i)
 	}
 }
 
-void	moves_parsing(t_bfs *bfs, t_lol *lol, t_ants *ins, int len)
+void	moves_parsing(t_master *master, t_bfs *bfs, t_lol *lol, t_ants *ins, int len)
 {
 	t_lol	*tmp;
 	int		i;
@@ -86,11 +86,11 @@ void	moves_parsing(t_bfs *bfs, t_lol *lol, t_ants *ins, int len)
 	{
 		if (bfs->moves[i] > 0)
 		{
-			r2e(tmp, ins);
-			r2r(tmp, ins);
+			r2e(master, tmp, ins);
+			r2r(master, tmp, ins);
 			if (bfs->s_distro[i] > 0)
 			{
-				s2r(bfs, tmp, ins, i);
+				s2r(master, bfs, tmp, ins, i);
 				ins->i = 1;
 			}
 			bfs->moves[i]--;
@@ -112,20 +112,19 @@ void	ants_marching(t_bfs *bfs, t_master *master)
 	len = ft_int_arr_len(bfs->moves);
 	while (ins->ants_e != ins->max_ant)
 	{
-		moves_parsing(bfs, tmp, ins, len);
+		moves_parsing(master, bfs, tmp, ins, len);
 		ins->n_moves++;
-		ft_strcat(ins->input, "\n");
-		ins->l += 1;
+		ft_strcat(master->moves->buf, "\n");
+		master->moves->b_len += 1;
 		tmp = bfs->paths;
 		ins->i = 0;
 	}
-	if (ins->l < LINEBUF)
+	if (master->moves->b_len < IO_BUF)
 	{
-		ft_strcat(ins->input, "\0");
-		append_move(ins, &ins->output);
+		ft_strcat(master->moves->buf, "\0");
+		buf_to_output(&master->moves);
 	}
-	// print_output(master->output);
 	print_io(master->map, 1);
-	print_moves(ins->output);
+	print_io(master->moves, 0);
 	free_ins(ins);
 }

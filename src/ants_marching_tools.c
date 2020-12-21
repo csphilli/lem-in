@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 23:27:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/03 20:10:02 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/21 19:53:51 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,24 +64,24 @@ char	*create_move(t_ants *ins, int id, char *name)
 	return (new);
 }
 
-void	cat_move(t_ants *ins, int ant_id, char *name)
+void	cat_move(t_master *master, t_ants *ins, int ant_id, char *name)
 {
 	char	*str;
 
+	if (!(master->moves))
+		master->moves = create_io();
 	str = create_move(ins, ant_id, name);
-	if (ins->input == NULL)
-		ins->input = ft_strnew(LINEBUF);
-	ins->input = ft_strcat(ins->input, str);
-	ins->l += ft_strlen(str);
+	master->moves->buf = ft_strcat(master->moves->buf, str);
+	master->moves->b_len += ft_strlen(str);
 	ft_strdel(&str);
 	str = NULL;
-	if (ins->l > LINEBUF - 50)
+	if (master->moves->b_len > IO_BUF - 50)
 	{
-		ft_strcat(ins->input, "\0");
-		append_move(ins, &ins->output);
-		ft_strdel(&ins->input);
-		ins->input = ft_strnew(LINEBUF);
-		ins->l = 0;
+		ft_strcat(master->moves->buf, "\0");
+		buf_to_output(&master->moves);
+		ft_strdel(&master->moves->buf);
+		master->moves->buf = ft_strnew(IO_BUF);
+		master->moves->b_len = 0;
 	}
 }
 
@@ -114,14 +114,14 @@ void	do_one_move(t_master *master, t_ants *ins)
 	id = 2;
 	while (ants_e < master->nbr_ants)
 	{
-		cat_move(ins, id, master->end_room->name);
+		cat_move(master, ins, id, master->end_room->name);
 		ants_e++;
 		id++;
 	}
-	if (ins->l < LINEBUF)
+	if (master->moves->b_len < IO_BUF)
 	{
-		ft_strcat(ins->input, "\0");
-		append_move(ins, &ins->output);
+		ft_strcat(master->moves->buf, "\0");
+		buf_to_output(&master->moves);
 	}
 	ins->n_moves++;
 }
