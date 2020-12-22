@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 10:39:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 11:49:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,7 @@ typedef struct		s_master
 	char			*comment;
 	t_entry			*start_room;
 	t_entry			*end_room;
-	int				nbr_ants;
-	
+	int				nbr_ants;	
 	int				line_nbr;
 	int				link;
 	char			*input;
@@ -180,7 +179,6 @@ void				capture_links(t_bucket **ht, t_master *master, char *line);
 void				parse_lines(t_master *master, char *line, t_bucket **ht);
 t_entry				*get_entry(t_bucket **ht, t_master *master, char *name);
 void				store_input(t_master *master, char *line, int p);
-// void				cat_move(t_master *master, t_ants *ins, int ant_id, char *name);
 void				cat_move(t_master *master, int ant_id, char *name);
 
 /*
@@ -201,9 +199,7 @@ t_bucket			*get_head(t_bucket **ht, char *name);
 */
 
 void				find_paths(t_master *master, t_bucket **ht);
-// void				calc_distro(t_master *master, t_bfs *bfs);
 void				calc_distro(t_master *master);
-// void				ants_marching(t_bfs *bfs, t_master *master);
 void				ants_marching(t_master *master);
 
 /*
@@ -215,8 +211,6 @@ void				start_or_end(t_master *master, t_entry *entry);
 int					bucket_arr_len(t_bucket **arr);
 int					link_array_len(t_entry **arr);
 t_bucket			*copy_from_array(t_bucket *head, t_bucket *src);
-// int					dup_coord(t_bucket **ht, t_master *master,\
-// 					t_entry *entry);
 int					dup_coord(t_bucket **ht,t_entry *entry);
 int					list_length(t_bucket *head);
 int					*ft_intcat(int *src, int to_add);
@@ -233,7 +227,6 @@ void				print_ll(t_bucket *ll);
 void				print_ht(t_bucket **ht);
 void				print_int_arr(int *ants);
 void				print_distro(t_lol **list);
-// void				do_one_move(t_master *master, t_ants *ins);
 void				do_one_move(t_master *master);
 
 /*
@@ -270,29 +263,17 @@ void				pop_from_map(t_pmap **map);
 */
 
 void				reverse_paths(t_lol **lol);
-// t_lol				*optimal_solution(t_bfs *bfs);
 t_lol				*optimal_solution(t_master *master);
-// void				build_distro_array(t_bfs *bfs);
 void				build_distro_array(t_master *master);
-// void				reset_data(t_bucket **ht, t_master *master, int x);
 void				reset_data(t_bucket **ht, int x);
-// void				edmonds_karp(t_bucket **ht, t_master *master, t_bfs **bfs);
 void				edmonds_karp(t_bucket **ht, t_master *master);
 void				adj_cap(t_entry *fnd, t_entry *via, int cap);
 t_bucket			*get_edge(t_entry *fnd, t_entry *via);
-// void				clear_data(t_bucket **ht, t_master *master, \
-// 					t_bfs *bfs, int i);
-// void				clear_data(t_bucket **ht, t_bfs *bfs, int i);
 void				clear_data(t_bucket **ht, t_master *master, int i);
 void				sort_paths(t_lol *paths);
-// int					chk_direct_link(t_bucket **ht, t_master *master, \
-					// t_bfs *bfs);
 int					chk_direct_link(t_bucket **ht, t_master *master);
 
 t_io				*create_io(void);
 void				buf_to_output(t_io **main);
-
-
-void	analyze_ht(t_bucket **ht); // to be deleated
 
 #endif
