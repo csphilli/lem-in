@@ -6,17 +6,17 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 11:49:17 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 12:37:38 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 # define IO_BUF 1025
-# define LINEBUF 1025
 # define TABLE_SIZE 20023
 // # include "../libft/libft/includes/libft.h"
 # include "libft.h"
+# include "ft_printf.h"
 # include <time.h>
 
 typedef struct		s_flags
@@ -141,6 +141,7 @@ void				exit_coord(t_master *master);
 void				exit_dup(t_master *master, char *room_name);
 void				exit_room_not_found(t_master *master, char *str);
 void				exit_dup_coord(t_master *master);
+void				ft_error(char *error_msg);
 
 /*
 **	INITIALIZATION
