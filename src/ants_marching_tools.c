@@ -6,37 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 23:27:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 20:06:24 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 11:20:01 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
-// void	append_move(t_ants *ins, t_output **output)
-// {
-// 	t_output *head;
-// 	t_output *tmp;
-
-// 	head = *output;
-// 	tmp = head;
-// 	if (!head)
-// 	{
-// 		head = ft_memalloc(sizeof(t_output));
-// 		head->line = ft_strdup(ins->input);
-// 		head->len = ins->l;
-// 	}
-// 	else
-// 	{
-// 		while (tmp->next)
-// 			tmp = tmp->next;
-// 		tmp->next = ft_memalloc(sizeof(t_output));
-// 		tmp->next->line = ft_strdup(ins->input);
-// 		tmp->next->len = ins->l;
-// 	}
-// 	*output = head;
-// }
-
-char	*create_move(t_ants *ins, int id, char *name)
+char	*create_move(t_master *master, int id, char *name)
 {
 	char	*new;
 	char	*ant_id;
@@ -48,9 +24,9 @@ char	*create_move(t_ants *ins, int id, char *name)
 	j = 0;
 	ant_id = ft_itoa(id);
 	len = ft_strlen(name) + ft_strlen(ant_id) + 2;
-	len += (ins->i == 1 ? 1 : 0);
+	len += (master->ants->i == 1 ? 1 : 0);
 	new = ft_strnew(len);
-	if (ins->i == 1)
+	if (master->ants->i == 1)
 		new[i++] = ' ';
 	new[i++] = 'L';
 	while (ant_id[j])
@@ -64,13 +40,13 @@ char	*create_move(t_ants *ins, int id, char *name)
 	return (new);
 }
 
-void	cat_move(t_master *master, t_ants *ins, int ant_id, char *name)
+void	cat_move(t_master *master, int ant_id, char *name)
 {
 	char	*str;
 
 	if (!(master->moves))
 		master->moves = create_io();
-	str = create_move(ins, ant_id, name);
+	str = create_move(master, ant_id, name);
 	master->moves->buf = ft_strcat(master->moves->buf, str);
 	master->moves->b_len += ft_strlen(str);
 	ft_strdel(&str);
@@ -85,27 +61,7 @@ void	cat_move(t_master *master, t_ants *ins, int ant_id, char *name)
 	}
 }
 
-// void	dlt_output(t_ants *ins)
-// {
-// 	t_output	*cur;
-// 	t_output	*tmp;
-
-// 	cur = NULL;
-// 	tmp = ins->output;
-// 	while (tmp)
-// 	{
-// 		cur = tmp;
-// 		tmp = tmp->next;
-// 		ft_strdel(&cur->line);
-// 		cur->line = NULL;
-// 		cur->next = NULL;
-// 		cur->len = '\0';
-// 		free(cur);
-// 		cur = NULL;
-// 	}
-// }
-
-void	do_one_move(t_master *master, t_ants *ins)
+void	do_one_move(t_master *master)
 {
 	int			ants_e;
 	int			id;
@@ -114,7 +70,7 @@ void	do_one_move(t_master *master, t_ants *ins)
 	id = 2;
 	while (ants_e < master->nbr_ants)
 	{
-		cat_move(master, ins, id, master->end_room->name);
+		cat_move(master, id, master->end_room->name);
 		ants_e++;
 		id++;
 	}
@@ -123,5 +79,5 @@ void	do_one_move(t_master *master, t_ants *ins)
 		ft_strcat(master->moves->buf, "\0");
 		buf_to_output(&master->moves);
 	}
-	ins->n_moves++;
+	master->ants->n_moves++;
 }

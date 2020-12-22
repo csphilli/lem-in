@@ -6,11 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 09:59:55 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 19:22:44 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 11:31:58 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 int		get_min_moves(t_lol *lol)
 {
@@ -28,21 +28,21 @@ int		get_min_moves(t_lol *lol)
 	return (min);
 }
 
-t_lol	*optimal_solution(t_bfs *bfs)
+t_lol	*optimal_solution(t_master *master)
 {
 	int		min_moves1;
 	int		min_moves2;
 
-	min_moves1 = get_min_moves(bfs->s2e);
-	min_moves2 = get_min_moves(bfs->e2s);
+	min_moves1 = get_min_moves(master->bfs->s2e);
+	min_moves2 = get_min_moves(master->bfs->e2s);
 	if (min_moves1 <= min_moves2)
 	{
-		bfs->max_moves = min_moves1;
-		return (bfs->s2e);
+		master->bfs->max_moves = min_moves1;
+		return (master->bfs->s2e);
 	}
 	else
 	{
-		bfs->max_moves = min_moves2;
-		return (bfs->e2s);
+		master->bfs->max_moves = min_moves2;
+		return (master->bfs->e2s);
 	}
 }

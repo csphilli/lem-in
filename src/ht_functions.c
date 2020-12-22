@@ -6,11 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:24:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 15:14:55 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 11:27:59 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 int			hash(char *str)
 {	
@@ -33,7 +33,7 @@ t_entry		*get_entry(t_bucket **ht, t_master *master, char *name)
 	int			index;
 
 	tmp = NULL;
-	index = hash(name);// % master->new_size;
+	index = hash(name);
 	tmp = ht[index];
 	while (tmp)
 	{
@@ -46,7 +46,6 @@ t_entry		*get_entry(t_bucket **ht, t_master *master, char *name)
 	return (0);
 }
 
-// t_bucket	*get_head(t_bucket **ht, t_master *master, char *name)
 t_bucket	*get_head(t_bucket **ht, char *name)
 {
 	t_bucket	*tmp;
@@ -58,14 +57,6 @@ t_bucket	*get_head(t_bucket **ht, char *name)
 	return (tmp);
 }
 
-// float		load(t_master *master)
-// {
-// 	float res;
-
-// 	res = (float)master->nbr_keys / (float)master->new_size;
-// 	return (res);
-// }
-
 void		assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry)
 {
 	size_t	index;
@@ -74,8 +65,6 @@ void		assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry)
 	{
 		index = hash(entry->name);
 		insert_node(master, ht, entry, index);
-		// master->room_count++;
-		// master->nbr_keys++;
 	}
 	else
 		exit_dup_coord(master);

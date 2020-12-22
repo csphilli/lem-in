@@ -6,11 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 14:16:55 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 01:46:34 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 void	toggle_bools(t_master *master)
 {

@@ -6,11 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:23:28 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/22 01:07:00 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 11:34:58 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 void	start_or_end(t_master *master, t_entry *entry)
 {

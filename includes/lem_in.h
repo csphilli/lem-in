@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 23:57:17 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 10:39:56 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # define IO_BUF 1025
 # define LINEBUF 1025
 # define TABLE_SIZE 20023
-# define HAS_ANTS 0
-# include "../libft/libft/includes/libft.h"
+// # include "../libft/libft/includes/libft.h"
+# include "libft.h"
 # include <time.h>
 
 typedef struct		s_flags
@@ -31,14 +31,8 @@ typedef struct		s_flags
 	char			*input_flags;
 	char			*accepted_flags;
 	int				flag_count;
+	int				has_flags;
 }					t_flags;
-
-// typedef struct		s_output
-// {
-// 	char			*line;
-// 	int				len;
-// 	struct s_output	*next;
-// }					t_output;
 
 typedef struct		s_io
 {
@@ -125,11 +119,13 @@ typedef struct		s_ants
 typedef struct		s_master
 {
 	t_flags			flags;
+	t_ants			*ants;
+	t_bfs			*bfs;
 	char			*comment;
 	t_entry			*start_room;
 	t_entry			*end_room;
 	int				nbr_ants;
-	int				has_flags;
+	
 	int				line_nbr;
 	int				link;
 	char			*input;
@@ -158,6 +154,7 @@ void				ft_init_int_arr(int *src, int len);
 void				init_moves(t_lol *moves);
 void				init_caps(t_bucket **ht);
 void				init_ant_ins(t_bfs *bfs, t_master *master, t_ants **ins);
+t_master			*create_structs(void);
 
 /*
 **	FREEING
@@ -183,7 +180,8 @@ void				capture_links(t_bucket **ht, t_master *master, char *line);
 void				parse_lines(t_master *master, char *line, t_bucket **ht);
 t_entry				*get_entry(t_bucket **ht, t_master *master, char *name);
 void				store_input(t_master *master, char *line, int p);
-void				cat_move(t_master *master, t_ants *ins, int ant_id, char *name);
+// void				cat_move(t_master *master, t_ants *ins, int ant_id, char *name);
+void				cat_move(t_master *master, int ant_id, char *name);
 
 /*
 **	Hash Table Functions
@@ -203,8 +201,10 @@ t_bucket			*get_head(t_bucket **ht, char *name);
 */
 
 void				find_paths(t_master *master, t_bucket **ht);
-void				calc_distro(t_master *master, t_bfs *bfs);
-void				ants_marching(t_bfs *bfs, t_master *master);
+// void				calc_distro(t_master *master, t_bfs *bfs);
+void				calc_distro(t_master *master);
+// void				ants_marching(t_bfs *bfs, t_master *master);
+void				ants_marching(t_master *master);
 
 /*
 **	RANDOM TOOLS
@@ -229,10 +229,12 @@ int					dupe(t_bucket *head, t_entry *entry);
 */
 
 void				print_io(t_io *tgt, int i);
+void				print_ll(t_bucket *ll);
 void				print_ht(t_bucket **ht);
 void				print_int_arr(int *ants);
 void				print_distro(t_lol **list);
-void				do_one_move(t_master *master, t_ants *ins);
+// void				do_one_move(t_master *master, t_ants *ins);
+void				do_one_move(t_master *master);
 
 /*
 **	LINK WORK
@@ -268,19 +270,24 @@ void				pop_from_map(t_pmap **map);
 */
 
 void				reverse_paths(t_lol **lol);
-t_lol				*optimal_solution(t_bfs *bfs);
-void				build_distro_array(t_bfs *bfs);
+// t_lol				*optimal_solution(t_bfs *bfs);
+t_lol				*optimal_solution(t_master *master);
+// void				build_distro_array(t_bfs *bfs);
+void				build_distro_array(t_master *master);
 // void				reset_data(t_bucket **ht, t_master *master, int x);
 void				reset_data(t_bucket **ht, int x);
-void				edmonds_karp(t_bucket **ht, t_master *master, t_bfs **bfs);
+// void				edmonds_karp(t_bucket **ht, t_master *master, t_bfs **bfs);
+void				edmonds_karp(t_bucket **ht, t_master *master);
 void				adj_cap(t_entry *fnd, t_entry *via, int cap);
 t_bucket			*get_edge(t_entry *fnd, t_entry *via);
 // void				clear_data(t_bucket **ht, t_master *master, \
 // 					t_bfs *bfs, int i);
-void				clear_data(t_bucket **ht, t_bfs *bfs, int i);
+// void				clear_data(t_bucket **ht, t_bfs *bfs, int i);
+void				clear_data(t_bucket **ht, t_master *master, int i);
 void				sort_paths(t_lol *paths);
-int					chk_direct_link(t_bucket **ht, t_master *master, \
-					t_bfs *bfs);
+// int					chk_direct_link(t_bucket **ht, t_master *master, \
+					// t_bfs *bfs);
+int					chk_direct_link(t_bucket **ht, t_master *master);
 
 t_io				*create_io(void);
 void				buf_to_output(t_io **main);

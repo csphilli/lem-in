@@ -6,11 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 12:03:09 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/20 21:16:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 01:48:05 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 void	load_help(void)
 {

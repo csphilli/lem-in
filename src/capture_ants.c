@@ -6,11 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 10:12:54 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 23:59:06 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 01:46:15 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 int		validate_ants(char *line)
 {

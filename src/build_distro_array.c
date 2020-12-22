@@ -6,11 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 08:34:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/02 22:19:54 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 11:23:36 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 int		ft_int_arr_len(int *n)
 {
@@ -58,17 +58,17 @@ void	create_path_array(t_lol *paths)
 	}
 }
 
-void	build_distro_array(t_bfs *bfs)
+void	build_distro_array(t_master *master)
 {
 	t_lol *tmp;
 
-	tmp = bfs->paths;
+	tmp = master->bfs->paths;
 	while (tmp)
 	{
 		if (tmp->nbr_ants > 0)
 		{
-			bfs->s_distro = ft_intcat(bfs->s_distro, tmp->nbr_ants);
-			bfs->moves = ft_intcat(bfs->moves, tmp->total_moves);
+			master->bfs->s_distro = ft_intcat(master->bfs->s_distro, tmp->nbr_ants);
+			master->bfs->moves = ft_intcat(master->bfs->moves, tmp->total_moves);
 		}
 		tmp = tmp->next;
 	}

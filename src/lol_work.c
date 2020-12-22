@@ -6,11 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 14:42:58 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 19:45:01 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 01:48:05 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 void	unshift_lol(t_lol **lol, t_bucket *ll)
 {

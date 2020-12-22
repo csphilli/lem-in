@@ -6,11 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 11:11:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/11/24 19:22:03 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 01:48:05 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 void	print_int_arr(int *arr)
 {

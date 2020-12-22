@@ -6,11 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 21:05:06 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 14:14:54 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 01:48:05 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 void	exit_coord(t_master *master)
 {

@@ -6,10 +6,9 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/12/20 20:37:05 by cphillip         ###   ########.fr        #
+#    Updated: 2020/12/22 01:41:33 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 NAME = lem-in
 
@@ -37,7 +36,7 @@ $(NAME): $(SRC_FILES) $(INC)/lem_in.h
 	@echo "Compiling $(NAME)..."
 	@make -C $(LIBFT)
 	@gcc $(FLAGS) -o $(NAME) $(SRC_FILES) -I$(INC) \
-	-L $(LIBFT) -lft -I ./libft/$(INC)
+	-L $(LIBFT) -lft -I ./libft/libft/includes
 	
 
 clean:

@@ -6,13 +6,12 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:29:55 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/20 21:03:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 11:27:26 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
-// void		reset_data(t_bucket **ht, t_master *master, int x)
 void		reset_data(t_bucket **ht, int x)
 {
 	t_bucket	*tmp;
@@ -62,14 +61,13 @@ t_bucket	*get_edge(t_entry *fnd, t_entry *via)
 	return (NULL);
 }
 
-// void		clear_data(t_bucket **ht, t_master *master, t_bfs *bfs, int i)
-void		clear_data(t_bucket **ht, t_bfs *bfs, int i)
+void		clear_data(t_bucket **ht, t_master *master, int i)
 {
-	while (bfs->map)
-		pop_from_map(&bfs->map);
+	while (master->bfs->map)
+		pop_from_map(&master->bfs->map);
 	reset_data(ht, i);
-	while (bfs->q)
-		pop_from_ll(&bfs->q);
+	while (master->bfs->q)
+		pop_from_ll(&master->bfs->q);
 }
 
 void		reverse_paths(t_lol **lol)

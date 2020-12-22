@@ -6,11 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 14:18:12 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 11:24:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 void	calc_total_moves(t_lol *paths)
 {
@@ -25,16 +25,16 @@ void	calc_total_moves(t_lol *paths)
 	}
 }
 
-void	chk_unlock(t_bfs **bfs, t_lol **tmp)
+void	chk_unlock(t_master **master, t_lol **tmp)
 {
 	if ((*tmp)->nbr_ants == (*tmp)->unlock && !(*tmp)->done)
 	{
-		(*bfs)->max_index++;
+		(*master)->bfs->max_index++;
 		(*tmp)->done = 1;
 	}
 }
 
-void	cascade(t_bfs *bfs, t_master *master, t_lol *paths)
+void	cascade(t_master *master, t_lol *paths)
 {
 	t_lol	*tmp;
 	int		ant_count;
@@ -43,11 +43,11 @@ void	cascade(t_bfs *bfs, t_master *master, t_lol *paths)
 	ant_count = master->nbr_ants;
 	while (tmp && ant_count > 0)
 	{
-		while (tmp->index <= bfs->max_index && ant_count > 0)
+		while (tmp->index <= master->bfs->max_index && ant_count > 0)
 		{
 			tmp->nbr_ants++;
 			ant_count--;
-			chk_unlock(&bfs, &tmp);
+			chk_unlock(&master, &tmp);
 			if (master->flags.vis_distro)
 			{
 				system("clear");
@@ -55,18 +55,18 @@ void	cascade(t_bfs *bfs, t_master *master, t_lol *paths)
 				calc_total_moves(paths);
 				usleep(100000);
 			}
-			tmp = (tmp->index == bfs->max_index ? paths : tmp->next);
+			tmp = (tmp->index == master->bfs->max_index ? paths : tmp->next);
 		}
 		tmp = paths;
 	}
 }
 
-void	unlocks(t_bfs *bfs, t_lol *paths)
+void	unlocks(t_master *master, t_lol *paths)
 {
 	t_lol	*tmp;
 
 	tmp = paths;
-	bfs->max_index = 0;
+	master->bfs->max_index = 0;
 	while (tmp)
 	{
 		if (tmp->next)
@@ -77,7 +77,7 @@ void	unlocks(t_bfs *bfs, t_lol *paths)
 	}
 }
 
-void	calc_distro(t_master *master, t_bfs *bfs)
+void	calc_distro(t_master *master)
 {
 	t_lol	*moves;
 	int		*arr;
@@ -88,10 +88,10 @@ void	calc_distro(t_master *master, t_bfs *bfs)
 	moves = NULL;
 	while (i < 2)
 	{
-		moves = (i == 1 ? bfs->s2e : bfs->e2s);
+		moves = (i == 1 ? master->bfs->s2e : master->bfs->e2s);
 		init_moves(moves);
-		unlocks(bfs, moves);
-		cascade(bfs, master, moves);
+		unlocks(master, moves);
+		cascade(master, moves);
 		calc_total_moves(moves);
 		i++;
 	}

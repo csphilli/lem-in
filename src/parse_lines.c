@@ -6,16 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 18:33:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 11:34:14 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
-
-int		acceptable(char c)
-{
-	return (c >= 33 && c <= 126);
-}
+#include "lem_in.h"
 
 int		room_or_link(char *line)
 {
@@ -82,15 +77,6 @@ void	parse_lines(t_master *master, char *line, t_bucket **ht)
 		ft_error("ERROR");
 	else if (master->flags.ants_added == true && line[i] != '#')
 	{
-		// while (acceptable(line[i++]))
-		// while (line[i] != '-' || line[i] != ' ')
-		// {
-		// 	if (line[i] == ' ')
-		// 		capture_room(ht, master, line);
-		// 	else if (line[i] == '-')
-		// 		capture_links(ht, master, line);
-		// 	// i++;
-		// }
 		if (room_or_link(line))
 			capture_room(ht, master, line);
 		else

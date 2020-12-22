@@ -6,11 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/21 14:15:24 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/22 11:24:43 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 void	validate_coords(t_master *master, char *n1, char *n2)
 {
@@ -32,7 +32,6 @@ void	validate_coords(t_master *master, char *n1, char *n2)
 	}
 }
 
-// int		dup_coord(t_bucket **ht, t_master *master, t_entry *entry)
 int		dup_coord(t_bucket **ht, t_entry *entry)
 {
 	size_t		i;
