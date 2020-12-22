@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/12/22 11:54:39 by cphillip         ###   ########.fr        #
+#    Updated: 2020/12/22 12:04:31 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ $(NAME): $(SRC_FILES) $(INC)/lem_in.h
 	@echo "Compiling $(NAME)..."
 	@make -C $(LIBFT)
 	@gcc $(FLAGS) -o $(NAME) $(SRC_FILES) -I$(INC) \
-	-L $(LIBFT) -lft -I ./libft/libft/includes
+	-L $(LIBFT) -lft -I ./libft/includes/
 	
 
 clean:
