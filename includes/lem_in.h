@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 21:39:08 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 23:26:50 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LEM_IN_H
 # define IO_BUF 1025
 # define TABLE_SIZE 20023
+# define MAX_SETS 100
 // # include "../libft/libft/includes/libft.h"
 # include "libft.h"
 # include "ft_printf.h"
@@ -67,7 +68,11 @@ typedef struct		s_entry
 	int				ant_id;
 }					t_entry;
 
-
+typedef struct		s_paths
+{
+	struct s_paths	*set;
+	struct s_paths	*next;
+}					t_paths;
 
 
 typedef struct		s_distro
@@ -95,9 +100,9 @@ typedef struct		s_bfs
 {
 	t_bucket		*q;
 	t_pmap			*map;
-	t_distro			*paths;
-	t_distro			*s2e;
-	t_distro			*e2s;
+	t_distro		*paths;
+	t_distro		*s2e;
+	t_distro		*e2s;
 	int				*s_distro;
 	int				*moves;
 	t_bucket		*edge;
@@ -125,6 +130,7 @@ typedef struct		s_master
 	t_flags			flags;
 	t_ants			*ants;
 	t_bfs			*bfs;
+	t_paths			*paths;
 	char			*comment;
 	t_entry			*start_room;
 	t_entry			*end_room;
@@ -270,12 +276,14 @@ void				pop_from_map(t_pmap **map);
 void				reverse_paths(t_distro **lol);
 t_distro				*optimal_solution(t_master *master);
 void				build_distro_array(t_master *master);
-void				reset_data(t_bucket **ht, int x);
+// void				reset_data(t_bucket **ht, int x);
+void				reset_data(t_bucket **ht);
 void				edmonds_karp(t_bucket **ht, t_master *master);
 // void				adj_cap(t_entry *fnd, t_entry *via, int cap);
 void				adj_flows(t_entry *fnd, t_entry *via);
 t_bucket			*get_edge(t_entry *fnd, t_entry *via);
-void				clear_data(t_bucket **ht, t_master *master, int i);
+// void				clear_data(t_bucket **ht, t_master *master, int i);
+void				clear_data(t_bucket **ht, t_master *master);
 void				sort_paths(t_distro *paths);
 int					chk_direct_link(t_bucket **ht, t_master *master);
 

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 22:37:55 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 23:27:55 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,26 @@
 // 	i == 1 ? insert_to_lol(&master->bfs->s2e, ll) : insert_to_lol(&master->bfs->e2s, ll);
 // }
 
-void	augment_flow(t_master *master)
+// int		flow_chk(t_entry *start)
+// {
+// 	t_bucket *tmp;
+
+// 	tmp = start->links;
+// 	while (tmp)
+// 	{
+// 		if (tmp->flow == 1)
+// 			return (1)
+// 	}
+
+// }
+
+
+// void	create_path_set(t_bucket **ht, t_master *master, int set_id)
+// {
+	
+// }
+
+void	augment_flow(t_bucket **ht, t_master *master, int set_id)
 {
 	t_bucket	*ll;
 	t_pmap		*tmp;
@@ -65,20 +84,21 @@ void	augment_flow(t_master *master)
 		}
 		tmp = tmp->next;
 	}
-	ft_printf("current path\n");
+	// create_path_set(ht, master, set_id);
+	print_ht(ht);
+
+	ft_printf("current path. Set id: %d\n", set_id);
 	print_ll(ll);
 	while (ll)
 		pop_from_ll(&ll);
 }
 
 
-void	find_augment(t_bucket **ht, t_master *master)
+void	find_augment(t_bucket **ht, t_master *master, int set_id)
 {
 	t_entry		*cur;
 	t_bucket	*tmp;
-	// t_entry		*entry;
-
-	// entry = (i == 1 ? master->end_room : master->start_room);
+	
 	cur = get_entry(ht, master, master->bfs->cur->name);
 	tmp = cur->links;
 	cur->visited = 1;
@@ -89,8 +109,8 @@ void	find_augment(t_bucket **ht, t_master *master)
 			if (ft_strequ(tmp->entry->name, master->end_room->name))
 			{
 				unshift_to_map(&master->bfs->map, tmp->entry, cur);
-				augment_flow(master);
-				clear_data(ht, master, 0);
+				augment_flow(ht, master, set_id);
+				clear_data(ht, master);
 				return ;
 			}
 			else if (!tmp->entry->visited)
@@ -134,7 +154,7 @@ void	find_augment(t_bucket **ht, t_master *master)
 // }
 
 
-int		flow_chk(t_entry *start)
+int		cap_chk(t_entry *start)
 {
 	t_bucket *tmp;
 
@@ -152,14 +172,16 @@ void	edmonds_karp(t_bucket **ht, t_master *master)
 {
 	// int		len;
 	// t_entry	*entry;
+	int	set_id;
 
 	// entry = (i == 1 ? master->start_room : master->end_room);
 	// len = list_length(entry->links);
+	set_id = 0;
 	init_caps(ht);
 	// reset_data(ht, 1);
 	ft_printf("starting capacities:\n");
 	print_ht(ht);
-	while (flow_chk(master->start_room))
+	while (cap_chk(master->start_room))
 	{
 		append_to_ll(&master->bfs->q, master->start_room);
 		while (master->bfs->q)
@@ -169,7 +191,7 @@ void	edmonds_karp(t_bucket **ht, t_master *master)
 			master->bfs->cur = master->bfs->q->entry;
 			pop_from_ll(&master->bfs->q);
 			// build_paths2(ht, master);
-			find_augment(ht, master);
+			find_augment(ht, master, set_id);
 		}
 	}
 		print_ht(ht);

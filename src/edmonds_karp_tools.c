@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:29:55 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 21:37:34 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 23:25:31 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		reset_data(t_bucket **ht, int x)
+void		reset_data(t_bucket **ht)
 {
 	t_bucket	*tmp;
 	size_t		i;
@@ -26,8 +26,8 @@ void		reset_data(t_bucket **ht, int x)
 		while (tmp)
 		{
 			tmp->entry->visited = 0;
-			if (x == 1)
-				tmp->entry->used = 0;
+			// if (x == 1)
+			tmp->entry->used = 0;
 			tmp = tmp->next;
 		}
 		i++;
@@ -74,11 +74,11 @@ t_bucket	*get_edge(t_entry *fnd, t_entry *via)
 	return (NULL);
 }
 
-void		clear_data(t_bucket **ht, t_master *master, int i)
+void		clear_data(t_bucket **ht, t_master *master)
 {
 	while (master->bfs->map)
 		pop_from_map(&master->bfs->map);
-	reset_data(ht, i);
+	reset_data(ht);
 	while (master->bfs->q)
 		pop_from_ll(&master->bfs->q);
 }
