@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 12:19:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 20:45:53 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct		s_entry
 
 
 
-typedef struct		s_lol
+typedef struct		s_distro
 {
 	int				total_moves;
 	int				len;
@@ -81,8 +81,8 @@ typedef struct		s_lol
 	int				cap;
 	int				index;
 	t_bucket		*list;
-	struct s_lol	*next;
-}					t_lol;
+	struct s_distro	*next;
+}					t_distro;
 
 typedef struct		s_pmap
 {
@@ -95,9 +95,9 @@ typedef struct		s_bfs
 {
 	t_bucket		*q;
 	t_pmap			*map;
-	t_lol			*paths;
-	t_lol			*s2e;
-	t_lol			*e2s;
+	t_distro			*paths;
+	t_distro			*s2e;
+	t_distro			*e2s;
 	int				*s_distro;
 	int				*moves;
 	t_bucket		*edge;
@@ -155,7 +155,7 @@ void				init_master(t_master *master);
 void				init_bfs(t_bfs *bfs, t_master *master);
 void				init_instrux(t_ants *instrux);
 void				ft_init_int_arr(int *src, int len);
-void				init_moves(t_lol *moves);
+void				init_moves(t_distro *moves);
 void				init_caps(t_bucket **ht);
 void				init_ant_ins(t_bfs *bfs, t_master *master, t_ants **ins);
 t_master			*create_structs(void);
@@ -231,7 +231,7 @@ void				print_io(t_io *tgt, int i);
 void				print_ll(t_bucket *ll);
 void				print_ht(t_bucket **ht);
 void				print_int_arr(int *ants);
-void				print_distro(t_lol **list);
+void				print_distro(t_distro **list);
 void				do_one_move(t_master *master);
 
 /*
@@ -249,12 +249,12 @@ void				reverse_ll(t_bucket **new, t_bucket *list);
 **	LIST OF LIST WORK
 */
 
-void				unshift_lol(t_lol **lol, t_bucket *ll);
-void				insert_to_lol(t_lol **lol, t_bucket *ll);
-void				pop_from_lol(t_lol **list);
-void				append_to_lol(t_lol **lol, t_bucket *ll);
-int					lol_length(t_lol *lol);
-void				print_lol(t_lol **list);
+void				unshift_distro(t_distro **lol, t_bucket *ll);
+void				insert_to_lol(t_distro **lol, t_bucket *ll);
+void				pop_from_lol(t_distro **list);
+void				append_to_lol(t_distro **lol, t_bucket *ll);
+int					lol_length(t_distro *lol);
+void				print_distro(t_distro **list);
 
 /*
 **	MAP WORK
@@ -267,15 +267,15 @@ void				pop_from_map(t_pmap **map);
 ** 	EDMONDS KARP AND TOOLS
 */
 
-void				reverse_paths(t_lol **lol);
-t_lol				*optimal_solution(t_master *master);
+void				reverse_paths(t_distro **lol);
+t_distro				*optimal_solution(t_master *master);
 void				build_distro_array(t_master *master);
 void				reset_data(t_bucket **ht, int x);
 void				edmonds_karp(t_bucket **ht, t_master *master);
 void				adj_cap(t_entry *fnd, t_entry *via, int cap);
 t_bucket			*get_edge(t_entry *fnd, t_entry *via);
 void				clear_data(t_bucket **ht, t_master *master, int i);
-void				sort_paths(t_lol *paths);
+void				sort_paths(t_distro *paths);
 int					chk_direct_link(t_bucket **ht, t_master *master);
 
 t_io				*create_io(void);

@@ -6,15 +6,15 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 09:59:55 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 11:31:58 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 20:42:19 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		get_min_moves(t_lol *lol)
+int		get_min_moves(t_distro *lol)
 {
-	t_lol	*tmp;
+	t_distro	*tmp;
 	int		min;
 
 	tmp = lol;
@@ -28,7 +28,7 @@ int		get_min_moves(t_lol *lol)
 	return (min);
 }
 
-t_lol	*optimal_solution(t_master *master)
+t_distro	*optimal_solution(t_master *master)
 {
 	int		min_moves1;
 	int		min_moves2;

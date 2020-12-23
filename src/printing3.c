@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 11:11:02 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 01:48:05 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 20:45:00 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	print_cascade_header(void)
 	print_line_break(6, 11);
 }
 
-void	print_distro(t_lol **list)
+void	print_distro(t_distro **list)
 {
-	t_lol	*tmp;
+	t_distro	*tmp;
 
 	tmp = *list;
 	if (tmp)

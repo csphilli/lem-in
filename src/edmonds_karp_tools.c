@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:29:55 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 11:27:26 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 20:42:19 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ void		clear_data(t_bucket **ht, t_master *master, int i)
 		pop_from_ll(&master->bfs->q);
 }
 
-void		reverse_paths(t_lol **lol)
+void		reverse_paths(t_distro **lol)
 {
-	t_lol		*tmp;
+	t_distro		*tmp;
 	t_bucket	*newll;
-	t_lol		*newlol;
+	t_distro		*newlol;
 
 	tmp = *lol;
 	newll = NULL;

@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 20:39:59 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 20:47:51 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	r2r(t_master *master, t_lol *path)
+void	r2r(t_master *master, t_distro *path)
 {
 	t_bucket	*tmp;
 
@@ -34,7 +34,7 @@ void	r2r(t_master *master, t_lol *path)
 	}
 }
 
-void	r2e(t_master *master, t_lol *path)
+void	r2e(t_master *master, t_distro *path)
 {
 	t_bucket	*tmp;
 
@@ -49,7 +49,7 @@ void	r2e(t_master *master, t_lol *path)
 	}
 }
 
-void	s2r(t_master *master, t_lol *path, int i)
+void	s2r(t_master *master, t_distro *path, int i)
 {
 	t_bucket	*tmp;
 
@@ -67,9 +67,9 @@ void	s2r(t_master *master, t_lol *path, int i)
 	}
 }
 
-void	moves_parsing(t_master *master, t_lol *lol, int len)
+void	moves_parsing(t_master *master, t_distro *lol, int len)
 {
-	t_lol	*tmp;
+	t_distro	*tmp;
 	int		i;
 
 	tmp = lol;
@@ -94,7 +94,7 @@ void	moves_parsing(t_master *master, t_lol *lol, int len)
 
 void	ants_marching(t_master *master)
 {
-	t_lol	*tmp;
+	t_distro	*tmp;
 	int		len;
 
 	tmp = master->bfs->paths;
@@ -113,7 +113,7 @@ void	ants_marching(t_master *master)
 		ft_strcat(master->moves->buf, "\0");
 		buf_to_output(&master->moves);
 	}
-	print_io(master->map, 1);
+	// print_io(master->map, 1);
 	print_io(master->moves, 0);
 	free(master->ants);
 }

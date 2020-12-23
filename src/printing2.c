@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 11:11:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 01:48:05 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 20:46:52 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,17 @@ void	print_ll(t_bucket *ll)
 	}
 }
 
-void	print_lol(t_lol **list)
-{
-	t_lol	*tmp;
+// void	print_distro(t_distro **list)
+// {
+// 	t_distro	*tmp;
 
-	tmp = *list;
-	if (tmp)
-	{
-		while (tmp)
-		{
-			print_ll(tmp->list);
-			tmp = tmp->next;
-		}
-	}
-}
+// 	tmp = *list;
+// 	if (tmp)
+// 	{
+// 		while (tmp)
+// 		{
+// 			print_ll(tmp->list);
+// 			tmp = tmp->next;
+// 		}
+// 	}
+// }

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 08:34:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 11:23:36 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 20:42:19 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int		*ft_intcat(int *src, int to_add)
 	return (src);
 }
 
-void	create_path_array(t_lol *paths)
+void	create_path_array(t_distro *paths)
 {
-	t_lol		*tmp;
+	t_distro		*tmp;
 	int			*arr;
 
 	arr = NULL;
@@ -60,7 +60,7 @@ void	create_path_array(t_lol *paths)
 
 void	build_distro_array(t_master *master)
 {
-	t_lol *tmp;
+	t_distro *tmp;
 
 	tmp = master->bfs->paths;
 	while (tmp)

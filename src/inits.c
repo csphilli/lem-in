@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 20:35:29 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 20:42:19 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 
 
-void	init_moves(t_lol *moves)
+void	init_moves(t_distro *moves)
 {
-	t_lol	*tmp;
+	t_distro	*tmp;
 	int		i;
 
 	tmp = moves;

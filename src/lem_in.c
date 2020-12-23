@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 15:35:52 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 20:42:19 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void		do_extras(t_bucket **ht, t_master *master)
 	if (master->flags.print_hash_table)
 		print_ht(ht);
 	if (master->flags.print_paths)
-		print_lol(&master->bfs->paths);
+		print_distro(&master->bfs->paths);
 }
 
 int			main(int ac, char **av)

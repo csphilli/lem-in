@@ -6,15 +6,15 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 11:24:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 20:42:19 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	calc_total_moves(t_lol *paths)
+void	calc_total_moves(t_distro *paths)
 {
-	t_lol *tmp;
+	t_distro *tmp;
 
 	tmp = paths;
 	while (tmp)
@@ -25,7 +25,7 @@ void	calc_total_moves(t_lol *paths)
 	}
 }
 
-void	chk_unlock(t_master **master, t_lol **tmp)
+void	chk_unlock(t_master **master, t_distro **tmp)
 {
 	if ((*tmp)->nbr_ants == (*tmp)->unlock && !(*tmp)->done)
 	{
@@ -34,9 +34,9 @@ void	chk_unlock(t_master **master, t_lol **tmp)
 	}
 }
 
-void	cascade(t_master *master, t_lol *paths)
+void	cascade(t_master *master, t_distro *paths)
 {
-	t_lol	*tmp;
+	t_distro	*tmp;
 	int		ant_count;
 
 	tmp = paths;
@@ -61,9 +61,9 @@ void	cascade(t_master *master, t_lol *paths)
 	}
 }
 
-void	unlocks(t_master *master, t_lol *paths)
+void	unlocks(t_master *master, t_distro *paths)
 {
-	t_lol	*tmp;
+	t_distro	*tmp;
 
 	tmp = paths;
 	master->bfs->max_index = 0;
@@ -79,7 +79,7 @@ void	unlocks(t_master *master, t_lol *paths)
 
 void	calc_distro(t_master *master)
 {
-	t_lol	*moves;
+	t_distro	*moves;
 	int		*arr;
 	int		i;
 
