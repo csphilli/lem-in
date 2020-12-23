@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/12/22 13:30:13 by cphillip         ###   ########.fr        #
+#    Updated: 2020/12/22 15:34:14 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ LINK_LIBFT = -L $(LIBFT) -lft -I$(LIBFT)/includes
 
 FT_PRINTF = ./ft_printf/
 LINK_FT_PRINTF = -L $(FT_PRINTF) -lft_printf -I$(FT_PRINTF)/includes
-SUBMODULE_UPDATE = 
 
 SRC_DIR = ./src/
 

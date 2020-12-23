@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 12:37:38 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 12:19:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ typedef struct		s_bucket
 	char			*input;
 	struct s_entry	*entry;
 	unsigned int	cap;
-	unsigned int	res_cap;
+	unsigned int	flow;
+	// struct s_bucket	*res;
 	struct s_bucket	*next;
 }					t_bucket;
 
@@ -65,6 +66,9 @@ typedef struct		s_entry
 	int				occ;
 	int				ant_id;
 }					t_entry;
+
+
+
 
 typedef struct		s_lol
 {

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 11:31:24 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 20:35:29 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,46 @@ void	init_moves(t_lol *moves)
 	}
 }
 
-void	init_caps2(t_bucket *head)
-{
-	t_bucket	*tmp;
-	t_bucket	*links;
+// void	init_caps2(t_bucket *head)
+// {
+// 	t_bucket	*tmp;
+// 	t_bucket	*links;
 
-	tmp = head;
-	while (tmp)
-	{
-		links = tmp->entry->links;
-		while (links)
-		{
-			links->cap = 1;
-			links = links->next;
-		}
-		tmp = tmp->next;
-	}
-}
+// 	tmp = head;
+// 	while (tmp)
+// 	{
+// 		links = tmp->entry->links;
+// 		while (links)
+// 		{
+// 			links->cap = 1;
+// 			links->res->cap = 1;
+// 			links = links->next;
+// 		}
+// 		tmp = tmp->next;
+// 	}
+// }
+
+// void	init_caps(t_bucket **ht)
+// {
+// 	t_bucket	*tmp;
+// 	t_bucket	*links;
+// 	size_t		i;
+
+// 	i = 0;
+// 	tmp = NULL;
+// 	links = NULL;
+// 	while (i < TABLE_SIZE)
+// 	{
+// 		if (ht[i])
+// 		{
+// 			tmp = ht[i];
+// 			init_caps2(tmp);
+// 		}
+// 		i++;
+// 	}
+// }
+
+
 
 void	init_caps(t_bucket **ht)
 {
@@ -66,7 +89,19 @@ void	init_caps(t_bucket **ht)
 		if (ht[i])
 		{
 			tmp = ht[i];
-			init_caps2(tmp);
+			while (tmp)
+			{
+				links = tmp->entry->links;
+				while (links)
+				{
+					links->cap = 1;
+					// links->res->cap = 1;
+					links->flow = 1;
+					// links->res->flow = 1;
+					links = links->next;
+				}
+				tmp = tmp->next;
+			}
 		}
 		i++;
 	}

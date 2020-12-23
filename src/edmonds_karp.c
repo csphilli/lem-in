@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 11:26:50 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 10:56:54 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,31 @@ void	build_paths2(t_bucket **ht, t_master *master, int i)
 	}
 }
 
+// void	edmonds_karp2(t_bucket **ht, t_master *master, int i)
+// {
+// 	int		len;
+// 	t_entry	*entry;
+
+// 	entry = (i == 1 ? master->start_room : master->end_room);
+// 	len = list_length(entry->links);
+// 	init_caps(ht);
+// 	reset_data(ht, 1);
+// 	while (len--)
+// 	{
+// 		append_to_ll(&master->bfs->q, entry);
+// 		while (master->bfs->q)
+// 		{
+// 			master->bfs->cur = master->bfs->q->entry;
+// 			pop_from_ll(&master->bfs->q);
+// 			build_paths2(ht, master, i);
+// 		}
+// 	}
+// 	if (!master->bfs->s2e && !master->bfs->e2s)
+// 		master->flags.errors ? \
+// 		ft_error("ERROR: No solution. No link between start and end.") : \
+// 		ft_error("ERROR");
+// }
+
 void	edmonds_karp2(t_bucket **ht, t_master *master, int i)
 {
 	int		len;
@@ -93,6 +118,7 @@ void	edmonds_karp2(t_bucket **ht, t_master *master, int i)
 		ft_error("ERROR: No solution. No link between start and end.") : \
 		ft_error("ERROR");
 }
+
 
 void	edmonds_karp(t_bucket **ht, t_master *master)
 {
