@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 20:42:19 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 21:52:14 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,6 @@ void	init_caps(t_bucket **ht)
 				while (links)
 				{
 					links->cap = 1;
-					// links->res->cap = 1;
-					links->flow = 1;
-					// links->res->flow = 1;
 					links = links->next;
 				}
 				tmp = tmp->next;

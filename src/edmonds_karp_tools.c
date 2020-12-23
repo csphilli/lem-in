@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:29:55 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 20:42:19 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 21:37:34 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,30 @@ void		reset_data(t_bucket **ht, int x)
 	}
 }
 
-void		adj_cap(t_entry *fnd, t_entry *via, int cap)
+// void		adj_flows(t_entry *fnd, t_entry *via)
+// {
+// 	t_bucket *edge;
+
+// 	edge = get_edge(fnd, via);
+// 	edge->cap = cap;
+// 	via->used = 1;
+// 	edge = get_edge(via, fnd);
+// 	edge->cap = cap;
+// 	fnd->used = 1;
+// }
+
+void		adj_flows(t_entry *fnd, t_entry *via)
 {
 	t_bucket *edge;
 
 	edge = get_edge(fnd, via);
-	edge->cap = cap;
-	via->used = 1;
+	edge->flow += 1;
+	// via->used = 1;
 	edge = get_edge(via, fnd);
-	edge->cap = cap;
-	fnd->used = 1;
+	edge->flow -= 1;
+	// fnd->used = 1;
 }
+
 
 t_bucket	*get_edge(t_entry *fnd, t_entry *via)
 {

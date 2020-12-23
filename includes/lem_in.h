@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 20:45:53 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/23 21:39:08 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,7 +272,8 @@ t_distro				*optimal_solution(t_master *master);
 void				build_distro_array(t_master *master);
 void				reset_data(t_bucket **ht, int x);
 void				edmonds_karp(t_bucket **ht, t_master *master);
-void				adj_cap(t_entry *fnd, t_entry *via, int cap);
+// void				adj_cap(t_entry *fnd, t_entry *via, int cap);
+void				adj_flows(t_entry *fnd, t_entry *via);
 t_bucket			*get_edge(t_entry *fnd, t_entry *via);
 void				clear_data(t_bucket **ht, t_master *master, int i);
 void				sort_paths(t_distro *paths);
