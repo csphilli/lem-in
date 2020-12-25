@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 23:26:50 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/25 22:14:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct		s_entry
 	int				used;
 	int				occ;
 	int				ant_id;
+	int				node_flow; // new
+	struct s_entry	*flow_to; // new
 }					t_entry;
 
 typedef struct		s_paths
@@ -280,7 +282,8 @@ void				build_distro_array(t_master *master);
 void				reset_data(t_bucket **ht);
 void				edmonds_karp(t_bucket **ht, t_master *master);
 // void				adj_cap(t_entry *fnd, t_entry *via, int cap);
-void				adj_flows(t_entry *fnd, t_entry *via);
+// void				adj_flows(t_entry *fnd, t_entry *via);
+void				adj_flows(t_bucket **ht, t_entry *fnd, t_entry *via);
 t_bucket			*get_edge(t_entry *fnd, t_entry *via);
 // void				clear_data(t_bucket **ht, t_master *master, int i);
 void				clear_data(t_bucket **ht, t_master *master);

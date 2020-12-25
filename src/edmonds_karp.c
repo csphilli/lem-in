@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 23:27:55 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/25 22:25:27 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,15 @@ void	augment_flow(t_bucket **ht, t_master *master, int set_id)
 	tmp = master->bfs->map->next;
 	append_to_ll(&ll, cur->fnd);
 	append_to_ll(&ll, cur->via);
-	adj_flows(cur->fnd, cur->via);
+	// adj_flows(cur->fnd, cur->via);
+	adj_flows(ht, cur->fnd, cur->via);
 	while (tmp)
 	{
 		if (ft_strequ(tmp->fnd->name, cur->via->name))
 		{
 			append_to_ll(&ll, tmp->via);
-			adj_flows(tmp->fnd, tmp->via);
+			// adj_flows(tmp->fnd, tmp->via);
+			adj_flows(ht, tmp->fnd, tmp->via);
 			if (ft_strequ(tmp->via->name, master->start_room->name))
 				break ;
 			cur->via = tmp->via;
@@ -85,13 +87,31 @@ void	augment_flow(t_bucket **ht, t_master *master, int set_id)
 		tmp = tmp->next;
 	}
 	// create_path_set(ht, master, set_id);
-	print_ht(ht);
 
 	ft_printf("current path. Set id: %d\n", set_id);
 	print_ll(ll);
+	print_ht(ht);
 	while (ll)
 		pop_from_ll(&ll);
 }
+
+// void	node_flow_chk(t_master *master, t_entry *node, t_entry *cur)
+// {
+// 	t_bucket	*links;
+// 	// cur is 4:
+// 	// links is : 1, 2
+// 	links = cur->links;
+// 	if (node->node_flow)
+// 	{
+// 		while (links)
+// 		{
+// 			if (!links->next)
+// 			{
+// 				append_to_ll(&master->bfs->q, )
+// 			}
+// 		}
+// 	}
+// }
 
 
 void	find_augment(t_bucket **ht, t_master *master, int set_id)
@@ -115,6 +135,7 @@ void	find_augment(t_bucket **ht, t_master *master, int set_id)
 			}
 			else if (!tmp->entry->visited)
 			{
+				// node_flow_chk(master, tmp->entry, cur);
 				append_to_ll(&master->bfs->q, tmp->entry);
 				unshift_to_map(&master->bfs->map, tmp->entry, cur);
 				tmp->entry->visited = 1;
@@ -194,8 +215,9 @@ void	edmonds_karp(t_bucket **ht, t_master *master)
 			find_augment(ht, master, set_id);
 		}
 	}
-		print_ht(ht);
+		// print_ht(ht);
 		
+		system("leaks lem-in");
 		ft_error("exiting after 1 pass\n");
 	// if (!master->bfs->s2e && !master->bfs->e2s)
 	// 	master->flags.errors ? \
