@@ -6,48 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/26 15:33:32 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/27 00:56:08 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		flow_chk(t_master *master)
-{
-	t_bucket	*tmp;
 
-	tmp = master->start_room->links;
-	while (tmp)
-	{
-		if (!tmp->entry->used)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
-
-// void	explore_flows(t_master *master, t_entry *cur, t_bucket *ll)
-// {
-	
-// }
-
-// void	create_path_set(t_master *master, int set_id)
-// {
-// 	t_bucket *ll;
-
-// 	ll = NULL;
-// 	append_to_ll(&master->bfs->q, master->start_room);
-// 	while (flow_chk(master))
-// 	{
-// 		append_to_ll(&ll, master->start_room);
-// 		ft_printf("path: ");
-// 		print_ll(ll);
-// 		ft_printf("set id: %d\n", set_id);
-// 		explore_flows(ht, master, ll);
-// 		ft_error("Exiting after 1 round\n");
-// 	}
-// }
 
 void	augment_flow(t_bucket **ht, t_master *master)
 {
@@ -60,14 +25,12 @@ void	augment_flow(t_bucket **ht, t_master *master)
 	tmp = master->bfs->map->next;
 	append_to_ll(&ll, cur->fnd);
 	append_to_ll(&ll, cur->via);
-	// adj_flows(cur->fnd, cur->via);
 	adj_flows(ht, cur->fnd, cur->via);
 	while (tmp)
 	{
 		if (ft_strequ(tmp->fnd->name, cur->via->name))
 		{
 			append_to_ll(&ll, tmp->via);
-			// adj_flows(tmp->fnd, tmp->via);
 			adj_flows(ht, tmp->fnd, tmp->via);
 			if (ft_strequ(tmp->via->name, master->start_room->name))
 				break ;
@@ -75,15 +38,11 @@ void	augment_flow(t_bucket **ht, t_master *master)
 		}
 		tmp = tmp->next;
 	}
-	// create_path_set(ht, master, set_id);
-
 	print_ll(ll);
 	print_ht(ht);
 	while (ll)
 		pop_from_ll(&ll);
 }
-
-
 
 void	find_augment(t_bucket **ht, t_master *master)
 {
@@ -115,35 +74,6 @@ void	find_augment(t_bucket **ht, t_master *master)
 	}
 }
 
-// void	build_paths2(t_bucket **ht, t_master *master, int i)
-// {
-// 	t_entry		*cur;
-// 	t_bucket	*tmp;
-// 	t_entry		*entry;
-
-// 	entry = (i == 1 ? master->end_room : master->start_room);
-// 	cur = get_entry(ht, master, master->bfs->cur->name);
-// 	tmp = cur->links;
-// 	cur->visited = 1;
-// 	while (tmp)
-// 	{
-// 		if (tmp->cap && (ft_strequ(tmp->entry->name, entry->name)))
-// 		{
-// 			unshift_to_map(&master->bfs->map, tmp->entry, cur);
-// 			map_to_paths(master, i);
-// 			clear_data(ht, master, 0);
-// 			return ;
-// 		}
-// 		else if (tmp->cap && !tmp->entry->visited && !tmp->entry->used)
-// 		{
-// 			append_to_ll(&master->bfs->q, tmp->entry);
-// 			unshift_to_map(&master->bfs->map, tmp->entry, cur);
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// }
-
-
 int		cap_chk(t_entry *start)
 {
 	t_bucket *tmp;
@@ -160,12 +90,8 @@ int		cap_chk(t_entry *start)
 
 void	edmonds_karp(t_bucket **ht, t_master *master)
 {
-	// int		len;
-	// t_entry	*entry;
 	int	set_id;
 
-	// entry = (i == 1 ? master->start_room : master->end_room);
-	// len = list_length(entry->links);
 	set_id = 0;
 	init_caps(ht);
 	// reset_data(ht, 1);
@@ -183,6 +109,7 @@ void	edmonds_karp(t_bucket **ht, t_master *master)
 			// build_paths2(ht, master);
 			find_augment(ht, master);
 		}
+		build_paths(ht, master, set_id);
 			// create_path_set(master, set_id);
 	}
 		// print_ht(ht);
@@ -195,43 +122,3 @@ void	edmonds_karp(t_bucket **ht, t_master *master)
 	// 	ft_error("ERROR");
 }
 
-// void	edmonds_karp2(t_bucket **ht, t_master *master, int i)
-// {
-// 	int		len;
-// 	t_entry	*entry;
-
-// 	entry = (i == 1 ? master->start_room : master->end_room);
-// 	// len = list_length(entry->links);
-// 	init_caps(ht);
-// 	reset_data(ht, 1);
-// 	while (len--)
-// 	{
-// 		append_to_ll(&master->bfs->q, entry);
-// 		while (master->bfs->q)
-// 		{
-// 			master->bfs->cur = master->bfs->q->entry;
-// 			pop_from_ll(&master->bfs->q);
-// 			build_paths2(ht, master, i);
-// 		}
-// 	}
-// 	if (!master->bfs->s2e && !master->bfs->e2s)
-// 		master->flags.errors ? \
-// 		ft_error("ERROR: No solution. No link between start and end.") : \
-// 		ft_error("ERROR");
-// }
-
-
-// void	edmonds_karp(t_bucket **ht, t_master *master)
-// {
-// 	edmonds_karp2(ht, master, 0);
-// 	reverse_paths(&master->bfs->e2s);
-// 	edmonds_karp2(ht, master, 1);
-// }
-
-// void	edmonds_karp(t_bucket **ht, t_master *master)
-// {
-// 	edmonds_karp2(ht, master);
-	
-// 	// reverse_paths(&master->bfs->e2s);
-// 	// edmonds_karp2(ht, master, 1);
-// }

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lol_work.c                                         :+:      :+:    :+:   */
+/*   distro_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 14:42:58 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 20:42:19 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/26 23:58:08 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	unshift_distro(t_distro **lol, t_bucket *ll)
+void	unshift_distro(t_distro **distro, t_bucket *ll)
 {
 	t_distro	*head;
 	t_distro	*tmp;
 
-	head = *lol;
+	head = *distro;
 	tmp = head;
 	if (head == NULL)
 	{
@@ -31,10 +31,10 @@ void	unshift_distro(t_distro **lol, t_bucket *ll)
 		tmp->next = head;
 		head = tmp;
 	}
-	*lol = head;
+	*distro = head;
 }
 
-void	pop_from_lol(t_distro **list)
+void	pop_from_distro(t_distro **list)
 {
 	t_distro *head;
 	t_distro *tmp;
@@ -50,12 +50,12 @@ void	pop_from_lol(t_distro **list)
 	*list = head;
 }
 
-void	append_to_lol(t_distro **lol, t_bucket *ll)
+void	append_to_distro(t_distro **distro, t_bucket *ll)
 {
 	t_distro	*head;
 	t_distro	*tmp;
 
-	head = *lol;
+	head = *distro;
 	tmp = head;
 	if (head == NULL)
 	{
@@ -69,15 +69,15 @@ void	append_to_lol(t_distro **lol, t_bucket *ll)
 		tmp->next = ft_memalloc(sizeof(t_distro));
 		tmp->next->list = ll;
 	}
-	*lol = head;
+	*distro = head;
 }
 
-int		lol_length(t_distro *lol)
+int		distro_length(t_distro *distro)
 {
 	t_distro	*tmp;
 	int		i;
 
-	tmp = lol;
+	tmp = distro;
 	i = 0;
 	while (tmp)
 	{
@@ -87,14 +87,14 @@ int		lol_length(t_distro *lol)
 	return (i);
 }
 
-void	insert_to_lol(t_distro **lol, t_bucket *ll)
+void	insert_to_distro(t_distro **distro, t_bucket *ll)
 {
 	t_distro	*head;
 	t_distro	*tmp;
 	t_distro	*new;
 	int		l;
 
-	head = *lol;
+	head = *distro;
 	tmp = head;
 	new = NULL;
 	l = list_length(ll);
@@ -110,5 +110,5 @@ void	insert_to_lol(t_distro **lol, t_bucket *ll)
 		new->next = tmp->next;
 		tmp->next = new;
 	}
-	*lol = head;
+	*distro = head;
 }

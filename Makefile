@@ -6,13 +6,13 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/12/22 15:34:14 by cphillip         ###   ########.fr        #
+#    Updated: 2020/12/27 00:51:28 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra
 
 LIBFT = ./libft/
 LINK_LIBFT = -L $(LIBFT) -lft -I$(LIBFT)/includes

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/26 14:43:52 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/27 00:55:57 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LEM_IN_H
 # define IO_BUF 1025
 # define TABLE_SIZE 20023
-# define MAX_SETS 25
+# define MAX_SETS 20
 // # include "../libft/libft/includes/libft.h"
 # include "libft.h"
 # include "ft_printf.h"
@@ -70,11 +70,12 @@ typedef struct		s_entry
 	struct s_entry	*flow_to; // new
 }					t_entry;
 
-typedef struct		s_paths
-{
-	struct s_paths	*set;
-	struct s_paths	*next;
-}					t_paths;
+// typedef struct		s_paths
+// {
+// 	int				id;
+// 	struct s_paths	*path;
+// 	struct s_paths	*next_path;
+// }					t_paths;
 
 
 typedef struct		s_distro
@@ -132,7 +133,7 @@ typedef struct		s_master
 	t_flags			flags;
 	t_ants			*ants;
 	t_bfs			*bfs;
-	t_paths			*paths;
+	t_distro		**paths;
 	char			*comment;
 	t_entry			*start_room;
 	t_entry			*end_room;
@@ -257,11 +258,17 @@ void				reverse_ll(t_bucket **new, t_bucket *list);
 **	LIST OF LIST WORK
 */
 
-void				unshift_distro(t_distro **lol, t_bucket *ll);
-void				insert_to_lol(t_distro **lol, t_bucket *ll);
-void				pop_from_lol(t_distro **list);
-void				append_to_lol(t_distro **lol, t_bucket *ll);
-int					lol_length(t_distro *lol);
+// void				unshift_distro(t_distro **lol, t_bucket *ll);
+// void				insert_to_lol(t_distro **lol, t_bucket *ll);
+// void				pop_from_lol(t_distro **list);
+// void				append_to_lol(t_distro **lol, t_bucket *ll);
+// int					lol_length(t_distro *lol);
+// void				print_distro(t_distro **list);
+void				unshift_distro(t_distro **distro, t_bucket *ll);
+void				insert_to_distro(t_distro **distro, t_bucket *ll);
+void				pop_from_distro(t_distro **list);
+void				append_to_distro(t_distro **distro, t_bucket *ll);
+int					distro_length(t_distro *distro);
 void				print_distro(t_distro **list);
 
 /*
@@ -289,6 +296,8 @@ t_bucket			*get_edge(t_entry *fnd, t_entry *via);
 void				clear_data(t_bucket **ht, t_master *master);
 void				sort_paths(t_distro *paths);
 int					chk_direct_link(t_bucket **ht, t_master *master);
+
+void				build_paths(t_bucket **ht, t_master *master, int set_id);
 
 t_io				*create_io(void);
 void				buf_to_output(t_io **main);
