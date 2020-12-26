@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:29:55 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/25 22:32:19 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/26 10:47:04 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,34 +61,14 @@ void		adj_flows(t_bucket **ht, t_entry *fnd, t_entry *via)
 	t_bucket	*forward;
 	t_bucket	*residual;
 	t_bucket	*head;
-	t_entry		*tmp;
 
-	tmp = NULL;
 	forward = get_edge(fnd, via);
 	residual = get_edge(via, fnd);
 	head = get_head(ht, via->name);
-	ft_printf("fnd: %s | via: %s\n", fnd->name, via->name);
 	head->entry->node_flow = 1;
-	// if (head->entry->flow_to)
-	// {
-	// 	ft_printf("head->entry->flow_to not NULL\n");
-	// 	// tmp = head->entry->flow_to;
-	// 	head->entry->flow_to = NULL;
-	// 	head->entry->flow_to = forward->entry;
-	// 	// free(tmp);
-	// 	// ft_printf("tmp now: %s\n", tmp->name);
-	// 	// free_entry(head->entry->flow_to);
-	// }
-	// else
-	// {
-		// head->entry->flow_to = ft_memalloc(sizeof(t_entry));
-		head->entry->flow_to = forward->entry;
-
-	// }
-	ft_printf("node head: %s | flowing to: %s\n", head->entry->name, head->entry->flow_to->name);
+	head->entry->flow_to = forward->entry;
 	forward->flow += 1;
 	residual->flow -= 1;
-	ft_printf("done adj flows\n");
 }
 
 

@@ -6,61 +6,50 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/25 22:25:27 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/26 15:33:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-// void	map_to_paths(t_master *master, int i)
-// {
-// 	t_bucket	*ll;
-// 	t_pmap		*tmp;
-// 	t_pmap		*cur;
-// 	t_entry		*goal;
+int		flow_chk(t_master *master)
+{
+	t_bucket	*tmp;
 
-// 	ll = NULL;
-// 	cur = master->bfs->map;
-// 	tmp = master->bfs->map->next;
-// 	goal = (i == 1 ? master->start_room : master->end_room);
-// 	append_to_ll(&ll, cur->fnd);
-// 	append_to_ll(&ll, cur->via);
-// 	adj_cap(cur->fnd, cur->via, 0);
-// 	while (tmp)
-// 	{
-// 		if (ft_strequ(tmp->fnd->name, cur->via->name))
-// 		{
-// 			append_to_ll(&ll, tmp->via);
-// 			adj_cap(tmp->fnd, tmp->via, 0);
-// 			if (ft_strequ(tmp->via->name, goal->name))
-// 				break ;
-// 			cur->via = tmp->via;
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// 	i == 1 ? insert_to_lol(&master->bfs->s2e, ll) : insert_to_lol(&master->bfs->e2s, ll);
-// }
-
-// int		flow_chk(t_entry *start)
-// {
-// 	t_bucket *tmp;
-
-// 	tmp = start->links;
-// 	while (tmp)
-// 	{
-// 		if (tmp->flow == 1)
-// 			return (1)
-// 	}
-
-// }
+	tmp = master->start_room->links;
+	while (tmp)
+	{
+		if (!tmp->entry->used)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
 
 
-// void	create_path_set(t_bucket **ht, t_master *master, int set_id)
+// void	explore_flows(t_master *master, t_entry *cur, t_bucket *ll)
 // {
 	
 // }
 
-void	augment_flow(t_bucket **ht, t_master *master, int set_id)
+// void	create_path_set(t_master *master, int set_id)
+// {
+// 	t_bucket *ll;
+
+// 	ll = NULL;
+// 	append_to_ll(&master->bfs->q, master->start_room);
+// 	while (flow_chk(master))
+// 	{
+// 		append_to_ll(&ll, master->start_room);
+// 		ft_printf("path: ");
+// 		print_ll(ll);
+// 		ft_printf("set id: %d\n", set_id);
+// 		explore_flows(ht, master, ll);
+// 		ft_error("Exiting after 1 round\n");
+// 	}
+// }
+
+void	augment_flow(t_bucket **ht, t_master *master)
 {
 	t_bucket	*ll;
 	t_pmap		*tmp;
@@ -88,33 +77,15 @@ void	augment_flow(t_bucket **ht, t_master *master, int set_id)
 	}
 	// create_path_set(ht, master, set_id);
 
-	ft_printf("current path. Set id: %d\n", set_id);
 	print_ll(ll);
 	print_ht(ht);
 	while (ll)
 		pop_from_ll(&ll);
 }
 
-// void	node_flow_chk(t_master *master, t_entry *node, t_entry *cur)
-// {
-// 	t_bucket	*links;
-// 	// cur is 4:
-// 	// links is : 1, 2
-// 	links = cur->links;
-// 	if (node->node_flow)
-// 	{
-// 		while (links)
-// 		{
-// 			if (!links->next)
-// 			{
-// 				append_to_ll(&master->bfs->q, )
-// 			}
-// 		}
-// 	}
-// }
 
 
-void	find_augment(t_bucket **ht, t_master *master, int set_id)
+void	find_augment(t_bucket **ht, t_master *master)
 {
 	t_entry		*cur;
 	t_bucket	*tmp;
@@ -124,23 +95,21 @@ void	find_augment(t_bucket **ht, t_master *master, int set_id)
 	cur->visited = 1;
 	while (tmp)
 	{
-		if (tmp->cap - tmp->flow > 0)
+		if (tmp->cap - tmp->flow > 0 && !tmp->entry->visited)
 		{
 			if (ft_strequ(tmp->entry->name, master->end_room->name))
 			{
 				unshift_to_map(&master->bfs->map, tmp->entry, cur);
-				augment_flow(ht, master, set_id);
+				augment_flow(ht, master);
 				clear_data(ht, master);
 				return ;
 			}
-			else if (!tmp->entry->visited)
+			else
 			{
-				// node_flow_chk(master, tmp->entry, cur);
 				append_to_ll(&master->bfs->q, tmp->entry);
 				unshift_to_map(&master->bfs->map, tmp->entry, cur);
 				tmp->entry->visited = 1;
 			}
-
 		}
 		tmp = tmp->next;
 	}
@@ -212,12 +181,13 @@ void	edmonds_karp(t_bucket **ht, t_master *master)
 			master->bfs->cur = master->bfs->q->entry;
 			pop_from_ll(&master->bfs->q);
 			// build_paths2(ht, master);
-			find_augment(ht, master, set_id);
+			find_augment(ht, master);
 		}
+			// create_path_set(master, set_id);
 	}
 		// print_ht(ht);
 		
-		system("leaks lem-in");
+		// system("leaks lem-in");
 		ft_error("exiting after 1 pass\n");
 	// if (!master->bfs->s2e && !master->bfs->e2s)
 	// 	master->flags.errors ? \
