@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 13:23:00 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 20:47:51 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/27 18:18:47 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,17 +95,22 @@ void	moves_parsing(t_master *master, t_distro *lol, int len)
 void	ants_marching(t_master *master)
 {
 	t_distro	*tmp;
-	int		len;
+	int			len;
 
-	tmp = master->bfs->paths;
+	// tmp = master->bfs->paths;
+	// ft_printf("printing best set: %d\n", master->best_set);
+	// print_distro(&master->paths[master->best_set]);
+	tmp = master->paths[master->best_set];
 	len = ft_int_arr_len(master->bfs->moves);
+	// ft_printf("len: %d\n", len);
 	while (master->ants->ants_e != master->nbr_ants)
 	{
 		moves_parsing(master, tmp, len);
 		master->ants->n_moves++;
 		ft_strcat(master->moves->buf, "\n");
 		master->moves->b_len += 1;
-		tmp = master->bfs->paths;
+		// tmp = master->bfs->paths;
+		tmp = master->paths[master->best_set];
 		master->ants->i = 0;
 	}
 	if (master->moves->b_len < IO_BUF)

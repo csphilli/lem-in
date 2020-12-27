@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 08:34:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 20:42:19 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/27 17:18:49 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,10 @@ void	create_path_array(t_distro *paths)
 void	build_distro_array(t_master *master)
 {
 	t_distro *tmp;
+	int		i;
 
-	tmp = master->bfs->paths;
+	i = -1;
+	tmp = master->paths[master->best_set];
 	while (tmp)
 	{
 		if (tmp->nbr_ants > 0)
@@ -72,4 +74,10 @@ void	build_distro_array(t_master *master)
 		}
 		tmp = tmp->next;
 	}
+	// print_distro(&master->paths[master->best_set]);
+	// while (master->bfs->s_distro[++i])
+	// {
+	// 	ft_putnbr(master->bfs->s_distro[i]);
+	// 	write(1, ",", 1);
+	// }
 }

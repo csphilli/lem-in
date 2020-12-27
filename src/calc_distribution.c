@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/27 17:02:46 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/27 18:18:39 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,23 @@ void	calc_total_moves(t_master *master, t_distro *paths, int set_id)
 	while (tmp)
 	{
 		tmp->total_moves = tmp->nbr_ants + tmp->cap - 1;
+		// ft_printf("tmp->total moves; %d\n", tmp->total_moves);
 		if (tmp->total_moves > max)
 			max = tmp->total_moves;
 		tmp->ants_left = tmp->nbr_ants;
 		tmp = tmp->next;
 	}
+	// print_distro(&master->paths);
 	// ft_printf("set_id: %d | min: %d | max: %d\n", set_id, min, max);
-	if (min == 0)
-		min = max;
-	else if (max < min)
+	if (max > 0)
 	{
-		min = max;
-		master->best_set = set_id;
+		if (min == 0)
+			min = max;
+		else if (max < min)
+		{
+			min = max;
+			master->best_set = set_id;
+		}
 	}
 }
 
@@ -110,6 +115,7 @@ void	calc_distro(t_master *master)
 		calc_total_moves(master, moves, i);
 		// print_distro(&master->paths[i]);
 		i++;
+		// ft_printf("\nchecking new set\n");
 	}
 	// ft_printf("best set id: %d\n", master->best_set);
 }
