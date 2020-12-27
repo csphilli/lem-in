@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/27 11:14:21 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/27 11:59:08 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ t_bucket	**do_lemin(t_master *master, t_bucket **ht)
 	validate_input(master);
 	edmonds_karp(ht, master);
 	// system("leaks lem-in");
-	ft_error("exiting after EK\n");
 	if (!chk_direct_link(ht, master))
 	{
 		calc_distro(master);
+		ft_error("exiting after distro\n");
 		master->bfs->paths = optimal_solution(master);
 		build_distro_array(master);
 		ants_marching(master);

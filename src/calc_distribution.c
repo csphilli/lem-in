@@ -6,22 +6,36 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 20:42:19 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/27 17:02:46 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	calc_total_moves(t_distro *paths)
+void	calc_total_moves(t_master *master, t_distro *paths, int set_id)
 {
-	t_distro *tmp;
+	// ft_printf("best set: %d\n", master->best_set);
+	t_distro 	*tmp;
+	int			max;
+	static int	min;
 
+	max = 0;
 	tmp = paths;
 	while (tmp)
 	{
 		tmp->total_moves = tmp->nbr_ants + tmp->cap - 1;
+		if (tmp->total_moves > max)
+			max = tmp->total_moves;
 		tmp->ants_left = tmp->nbr_ants;
 		tmp = tmp->next;
+	}
+	// ft_printf("set_id: %d | min: %d | max: %d\n", set_id, min, max);
+	if (min == 0)
+		min = max;
+	else if (max < min)
+	{
+		min = max;
+		master->best_set = set_id;
 	}
 }
 
@@ -34,7 +48,7 @@ void	chk_unlock(t_master **master, t_distro **tmp)
 	}
 }
 
-void	cascade(t_master *master, t_distro *paths)
+void	cascade(t_master *master, t_distro *paths, int set_id)
 {
 	t_distro	*tmp;
 	int		ant_count;
@@ -52,7 +66,7 @@ void	cascade(t_master *master, t_distro *paths)
 			{
 				system("clear");
 				print_distro(&paths);
-				calc_total_moves(paths);
+				calc_total_moves(master, paths, set_id);
 				usleep(100000);
 			}
 			tmp = (tmp->index == master->bfs->max_index ? paths : tmp->next);
@@ -80,19 +94,43 @@ void	unlocks(t_master *master, t_distro *paths)
 void	calc_distro(t_master *master)
 {
 	t_distro	*moves;
-	int		*arr;
-	int		i;
+	int			*arr;
+	int			i;
 
 	arr = NULL;
 	i = 0;
 	moves = NULL;
-	while (i < 2)
+	while (i < MAX_SETS)
 	{
-		moves = (i == 1 ? master->bfs->s2e : master->bfs->e2s);
+		// ft_printf("set: %d\n", i);
+		moves = master->paths[i];
 		init_moves(moves);
 		unlocks(master, moves);
-		cascade(master, moves);
-		calc_total_moves(moves);
+		cascade(master, moves, i);
+		calc_total_moves(master, moves, i);
+		// print_distro(&master->paths[i]);
 		i++;
 	}
+	// ft_printf("best set id: %d\n", master->best_set);
 }
+
+// void	calc_distro(t_master *master)
+// {
+// 	t_distro	*moves;
+// 	int		*arr;
+// 	int		i;
+
+// 	arr = NULL;
+// 	i = 0;
+// 	moves = NULL;
+// 	while (i < 2)
+// 	{
+// 		moves = (i == 1 ? master->bfs->s2e : master->bfs->e2s);
+// 		init_moves(moves);
+// 		unlocks(master, moves);
+// 		cascade(master, moves);
+// 		calc_total_moves(moves);
+// 		i++;
+// 	}
+// }
+

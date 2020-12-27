@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/27 11:50:32 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/27 17:02:13 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ typedef struct		s_master
 	char			*comment;
 	t_entry			*start_room;
 	t_entry			*end_room;
+	int				best_set;
 	int				nbr_ants;	
 	int				line_nbr;
 	int				link;

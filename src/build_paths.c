@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 00:06:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/27 11:29:58 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/27 11:58:33 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,9 +161,9 @@ void	build_paths(t_bucket **ht, t_master *master, int set_id)
 		// system("leaks lem-in");
 	}
 	set_used(master, set_id, 0);
-	ft_printf("set id: %d\n", set_id);
-	ft_printf("printing sets\n");
-	print_path_sets(master);
+	// ft_printf("set id: %d\n", set_id);
+	// ft_printf("printing sets\n");
+	// print_path_sets(master);
 	// ft_error("exiting after 1 round\n");
 	// print_ht(ht);
 }
