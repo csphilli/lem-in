@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/27 00:56:08 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/27 10:47:56 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,12 +110,13 @@ void	edmonds_karp(t_bucket **ht, t_master *master)
 			find_augment(ht, master);
 		}
 		build_paths(ht, master, set_id);
+		set_id++;
 			// create_path_set(master, set_id);
 	}
 		// print_ht(ht);
 		
 		// system("leaks lem-in");
-		ft_error("exiting after 1 pass\n");
+		// ft_error("exiting after 1 pass\n");
 	// if (!master->bfs->s2e && !master->bfs->e2s)
 	// 	master->flags.errors ? \
 	// 	ft_error("ERROR: No solution. No link between start and end.") : \

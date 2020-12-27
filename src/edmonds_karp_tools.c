@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:29:55 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/26 23:59:29 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/27 10:10:09 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		reset_data(t_bucket **ht)
 		{
 			tmp->entry->visited = 0;
 			// if (x == 1)
-			tmp->entry->used = 0;
+			// tmp->entry->used = 0;
 			tmp = tmp->next;
 		}
 		i++;
