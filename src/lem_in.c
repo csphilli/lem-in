@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/27 10:48:25 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/27 11:14:21 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_bucket	**do_lemin(t_master *master, t_bucket **ht)
 	ht = get_data(ht, master);
 	validate_input(master);
 	edmonds_karp(ht, master);
-	system("leaks lem-in");
+	// system("leaks lem-in");
 	ft_error("exiting after EK\n");
 	if (!chk_direct_link(ht, master))
 	{

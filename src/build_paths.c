@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 00:06:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/27 10:46:36 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/27 11:29:58 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,10 @@ void	assemble_path(t_master *master, int set_id)
 		tmp = tmp->next;
 	}
 	append_to_distro(&master->paths[set_id], ll);
-	ft_printf("path: ");
-	print_ll(ll);
+	// ft_printf("path: ");
+	// print_ll(ll);
 	// set_used(ht, master, ll);
-	ft_printf("printing sets\n");
-	print_path_sets(master);
+	
 	// system("leaks lem-in");
 	// ft_error("exit after path print\n");
 }
@@ -115,8 +114,8 @@ void	build_paths_2(t_bucket **ht, t_master *master, t_bucket *links, int set_id)
 {
 	while (links)
 	{
-		ft_printf("name: %s | vis: %d | used: %d | flow: %d\n", \
-		links->entry->name, links->entry->visited, links->entry->used, links->flow);
+		// ft_printf("name: %s | vis: %d | used: %d | flow: %d\n", \
+		// links->entry->name, links->entry->visited, links->entry->used, links->flow);
 		if (!links->entry->visited && !links->entry->used && links->flow)
 		{
 			if (ft_strequ(links->entry->name, master->end_room->name))
@@ -150,8 +149,8 @@ void	build_paths(t_bucket **ht, t_master *master, int set_id)
 		append_to_ll(&master->bfs->q, master->start_room);
 		while (master->bfs->q)
 		{
-			ft_printf("q: ");
-			print_ll(master->bfs->q);
+			// ft_printf("q: ");
+			// print_ll(master->bfs->q);
 			master->bfs->cur = master->bfs->q->entry;
 			pop_from_ll(&master->bfs->q);
 			master->bfs->cur->visited = 1;
@@ -162,6 +161,9 @@ void	build_paths(t_bucket **ht, t_master *master, int set_id)
 		// system("leaks lem-in");
 	}
 	set_used(master, set_id, 0);
+	ft_printf("set id: %d\n", set_id);
+	ft_printf("printing sets\n");
+	print_path_sets(master);
 	// ft_error("exiting after 1 round\n");
 	// print_ht(ht);
 }

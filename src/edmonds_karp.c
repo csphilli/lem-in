@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/27 10:47:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/27 11:49:38 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	augment_flow(t_bucket **ht, t_master *master)
 		}
 		tmp = tmp->next;
 	}
-	print_ll(ll);
-	print_ht(ht);
+	// print_ll(ll);
+	// print_ht(ht);
 	while (ll)
 		pop_from_ll(&ll);
 }
@@ -74,19 +74,21 @@ void	find_augment(t_bucket **ht, t_master *master)
 	}
 }
 
-int		cap_chk(t_entry *start)
-{
-	t_bucket *tmp;
+// int		cap_chk(t_master *master)
+// {
+// 	t_bucket 	*tmp;
+// 	int			i;
 
-	tmp = start->links;
-	while (tmp)
-	{
-		if (tmp->cap - tmp->flow > 0)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
+// 	i = 0;
+// 	tmp = master->start_room->links;
+// 	while (tmp)
+// 	{
+// 		if (tmp->cap - tmp->flow > 0)
+// 			i = 1;
+// 		tmp = tmp->next;
+// 	}
+// 	return (i);
+// }
 
 void	edmonds_karp(t_bucket **ht, t_master *master)
 {
@@ -95,15 +97,17 @@ void	edmonds_karp(t_bucket **ht, t_master *master)
 	set_id = 0;
 	init_caps(ht);
 	// reset_data(ht, 1);
-	ft_printf("starting capacities:\n");
-	print_ht(ht);
-	while (cap_chk(master->start_room))
+	// ft_printf("starting capacities:\n");
+	// print_ht(ht);
+	// while (cap_chk(master->start_room))
+	while (set_id < MAX_SETS)
 	{
+		// print_ht(ht);
 		append_to_ll(&master->bfs->q, master->start_room);
 		while (master->bfs->q)
 		{
-			ft_printf("Q: ");
-			print_ll(master->bfs->q);
+			// ft_printf("Q: ");
+			// print_ll(master->bfs->q);
 			master->bfs->cur = master->bfs->q->entry;
 			pop_from_ll(&master->bfs->q);
 			// build_paths2(ht, master);
