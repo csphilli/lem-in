@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 11:11:02 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 20:45:00 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/28 11:58:58 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,13 @@ void	print_line_break(int nbr, int amount)
 
 void	print_cascade_header(void)
 {
-	ft_printf("%-11sIndex position of list of list.\n", "Index:");
-	ft_printf("%-11sLength of the list at index.\n", "Length:");
-	ft_printf("%-11sMin moves to get 1 ant through path.\n", "Moves:");
-	ft_printf("%-11sNumber of ants allocated to specific", "Ants:");
-	ft_printf(" path.\n");
-	ft_printf("%-11sMin number of ants to unlock allocation", "Unlock:");
-	ft_printf(" at next index.\n\n");
+	ft_printf("%-11sIndex position of path in set.\n", "Index:");
+	ft_printf("%-11sNbr of nodes in path.\n", "Length:");
+	ft_printf("%-11sNbr moves to get 1 ant through path.\n", "Min:");
+	ft_printf("%-11sNumber of ants allocated to path\n", "Ants:");
+	ft_printf("%-11sMin number of ants to unlock next path\n", "Unlock:");
 	ft_printf("|%-11s%-11s", "Index", "Length");
-	ft_printf("%-11s%-11s", "Moves", "Ants");
+	ft_printf("%-11s%-11s", "Min", "Ants");
 	ft_printf("%-11s%-11s|\n", "Unlock", "Total Moves");
 	print_line_break(6, 11);
 }

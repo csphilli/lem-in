@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/27 17:27:02 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/27 22:33:29 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LEM_IN_H
 # define IO_BUF 1025
 # define TABLE_SIZE 20023
-# define MAX_SETS 20
+# define MAX_SETS 10
 // # include "../libft/libft/includes/libft.h"
 # include "libft.h"
 # include "ft_printf.h"

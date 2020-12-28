@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/27 21:01:41 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/28 12:46:09 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ void	find_augment(t_bucket **ht, t_master *master)
 	while (tmp)
 	{
 		// ft_printf("cur: %s\n", master->bfs->cur->name);
-		if (tmp->cap - tmp->flow > 0 && !tmp->entry->visited)
+		// if (tmp->cap - tmp->flow > 0 && !tmp->entry->visited)
+		if (tmp->cap - tmp->flow > 0)
 		{
 			// ft_printf("%s flow satisfied\n", tmp->entry->name);
 			if (ft_strequ(tmp->entry->name, master->end_room->name))
@@ -115,11 +116,17 @@ void	find_augment(t_bucket **ht, t_master *master)
 			else
 			{
 				// ft_printf("adding %s\n", tmp->entry->name);
-				append_to_ll(&master->bfs->q, tmp->entry);
 				// unshift_to_map(&master->bfs->map, tmp->entry, cur);
-				unshift_to_map(&master->bfs->map, tmp->entry, master->bfs->cur);
-				// tmp->entry->visited = 1;
+				if (!tmp->entry->visited || (tmp->entry->visited && tmp->entry->flow_to \
+					&& ft_strequ(tmp->entry->flow_to->name, master->bfs->cur->name) && \
+					!ft_strequ(tmp->entry->name, master->start_room->name)))
+					{
+						append_to_ll(&master->bfs->q, tmp->entry);
+						unshift_to_map(&master->bfs->map, tmp->entry, master->bfs->cur);
+					}
+					tmp->entry->visited = 1;
 			}
+			// ft_printf("here\n");
 		}
 		tmp = tmp->next;
 	}
@@ -154,6 +161,7 @@ void	edmonds_karp(t_bucket **ht, t_master *master)
 	while (set_id < MAX_SETS)
 	{
 		// print_ht(ht);
+		// clear_data(ht, master);
 		append_to_ll(&master->bfs->q, master->start_room);
 		while (master->bfs->q)
 		{

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/27 18:48:03 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/28 12:19:02 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_bucket	**do_lemin(t_master *master, t_bucket **ht)
 		ants_marching(master);
 		// ft_printf("here?\n");
 	}
+	// print_ll(master->paths[master->best_set]->list);
 	return (ht);
 }
 
@@ -78,7 +79,7 @@ int			main(int ac, char **av)
 		do_extras(ht, master);
 	end = clock();
 	time = (double)(end - begin) / CLOCKS_PER_SEC;
-	printf("%lf\n", time);
+	// printf("%lf\n", time);
 	// system ("leaks lem-in");
 	return (0);
 }
