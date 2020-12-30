@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/28 12:46:09 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/31 01:08:21 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,35 +25,22 @@ int		shared_flow(t_bucket *links, t_entry *tgt)
 	return (0);
 }
 
-int		node_flow_chk(t_master *master)
+void	print_map(t_master *master)
 {
-	t_bucket *tmp;
+	t_pmap *tmp;
 
-	tmp = master->bfs->cur->links;
-	
-	// ft_printf("NFC: %s->links: ", master->bfs->cur->name);
-	// print_ll(tmp);
+	tmp = master->bfs->map;
 	while (tmp)
 	{
-		if (!tmp->entry->visited)
-		{
-			// ft_printf("examining: %s ", tmp->entry->name);
-			// if (tmp->entry->flow_to)
-			// 	ft_printf("| flow_to: %s\n", tmp->entry->flow_to->name);
-			// else
-			// 	write(1, "\n", 1);
-			if (!tmp->entry->flow_to || (tmp->entry->flow_to && \
-			!shared_flow(master->bfs->cur->links, tmp->entry->flow_to)))
-			{
-				if (!ft_strequ(master->end_room->name, tmp->entry->name))
-					tmp->entry->visited = 1;
-				return (1);
-			}
-		}
+		ft_printf("%s/%s", tmp->fnd->name, tmp->via->name);
+		if (tmp->next)
+			write(1, ",", 1);
 		tmp = tmp->next;
 	}
-	return (0);
+	write(1, "\n", 1);
 }
+
+
 
 void	augment_flow(t_bucket **ht, t_master *master)
 {
@@ -79,74 +66,84 @@ void	augment_flow(t_bucket **ht, t_master *master)
 		}
 		tmp = tmp->next;
 	}
-	// ft_printf("found flow: ");
+	// ft_printf("----------------------- found flow: ");
 	// print_ll(ll);
+	// print_map(master);
 	// print_ht(ht);
 	while (ll)
 		pop_from_ll(&ll);
 }
 
+// int		mapping_prio(t_master *master, t_lol *que)
+// {
+// 	t_lol *tmp;
+
+// 	tmp = que;
+// 	while (tmp)
+// 	{
+// 		if (tmp->list->cap - tmp->list->edge_flow > 0)
+// 		{
+// 			unshift_to_map(&master->bfs->map, tmp->list->entry,\
+// 			master->bfs->cur);
+// 			if (!ft_strequ(master->end_room->name, tmp->list->entry->name))
+// 				tmp->list->entry->visited = 1;
+// 			if (ft_strequ(tmp->list->entry->name, master->end_room->name))
+// 				return (1);
+// 		}
+// 		tmp = tmp->next;
+// 	}
+// 	return (0);
+// }
+
+int		mapping_prio(t_master *master, t_bucket *head)
+{
+	unshift_to_map(&master->bfs->map, head->entry,\
+	master->bfs->cur);
+	if (!ft_strequ(master->end_room->name, head->entry->name))
+		head->entry->visited = 1;
+	if (ft_strequ(head->entry->name, master->end_room->name))
+		return (1);
+	return (0);
+}
+
+
 void	find_augment(t_bucket **ht, t_master *master)
 {
-	// t_entry		*cur;
-	t_bucket	*tmp;
-	
-	// cur = get_entry(ht, master, master->bfs->cur->name);
-	// tmp = cur->links;
-	tmp = master->bfs->cur->links;
-	// cur->visited = 1;
+	t_bucket	*links;
+
+	links = master->bfs->cur->links;
 	master->bfs->cur->visited = 1;
-	while (tmp)
+	while (links)
 	{
-		// ft_printf("cur: %s\n", master->bfs->cur->name);
-		// if (tmp->cap - tmp->flow > 0 && !tmp->entry->visited)
-		if (tmp->cap - tmp->flow > 0)
+		if (!links->entry->visited && links->cap - links->edge_flow > 0)
 		{
-			// ft_printf("%s flow satisfied\n", tmp->entry->name);
-			if (ft_strequ(tmp->entry->name, master->end_room->name))
+			append_to_ll(&master->bfs->q, links->entry);
+			if (mapping_prio(master, links))
 			{
-				// ft_printf("found end room\n");
-				// unshift_to_map(&master->bfs->map, tmp->entry, cur);
-				unshift_to_map(&master->bfs->map, tmp->entry, master->bfs->cur);
 				augment_flow(ht, master);
 				clear_data(ht, master);
 				return ;
 			}
-			// else if (node_flow_chk(master))
-			else
-			{
-				// ft_printf("adding %s\n", tmp->entry->name);
-				// unshift_to_map(&master->bfs->map, tmp->entry, cur);
-				if (!tmp->entry->visited || (tmp->entry->visited && tmp->entry->flow_to \
-					&& ft_strequ(tmp->entry->flow_to->name, master->bfs->cur->name) && \
-					!ft_strequ(tmp->entry->name, master->start_room->name)))
-					{
-						append_to_ll(&master->bfs->q, tmp->entry);
-						unshift_to_map(&master->bfs->map, tmp->entry, master->bfs->cur);
-					}
-					tmp->entry->visited = 1;
-			}
-			// ft_printf("here\n");
 		}
-		tmp = tmp->next;
+		links = links->next;
 	}
 }
 
-// int		cap_chk(t_master *master)
-// {
-// 	t_bucket 	*tmp;
-// 	int			i;
+int		cap_chk(t_master *master)
+{
+	t_bucket 	*tmp;
+	int			i;
 
-// 	i = 0;
-// 	tmp = master->start_room->links;
-// 	while (tmp)
-// 	{
-// 		if (tmp->cap - tmp->flow > 0)
-// 			i = 1;
-// 		tmp = tmp->next;
-// 	}
-// 	return (i);
-// }
+	i = 0;
+	tmp = master->start_room->links;
+	while (tmp)
+	{
+		if (tmp->cap - tmp->edge_flow > 0)
+			i = 1;
+		tmp = tmp->next;
+	}
+	return (i);
+}
 
 void	edmonds_karp(t_bucket **ht, t_master *master)
 {
@@ -157,11 +154,13 @@ void	edmonds_karp(t_bucket **ht, t_master *master)
 	// reset_data(ht, 1);
 	// ft_printf("starting capacities:\n");
 	// print_ht(ht);
-	// while (cap_chk(master->start_room))
+	
 	while (set_id < MAX_SETS)
+	// while (cap_chk(master))
 	{
 		// print_ht(ht);
-		// clear_data(ht, master);
+		// ft_putnbr(set_id);
+		clear_data(ht, master);
 		append_to_ll(&master->bfs->q, master->start_room);
 		while (master->bfs->q)
 		{
@@ -172,14 +171,18 @@ void	edmonds_karp(t_bucket **ht, t_master *master)
 			// build_paths2(ht, master);
 			find_augment(ht, master);
 		}
+		// system("leaks lem-in");
 		build_paths(ht, master, set_id);
 		set_id++;
+		// print_ht(ht);
 			// create_path_set(master, set_id);
 	}
+	// ft_printf(" END OF EK\n");
+	
+		// system("leaks lem-in");
 	// ft_error("exiting after EK\n");
 		// print_ht(ht);
 		
-		// system("leaks lem-in");
 		// ft_error("exiting after 1 pass\n");
 	// if (!master->bfs->s2e && !master->bfs->e2s)
 	// 	master->flags.errors ? \

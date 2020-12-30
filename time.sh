@@ -4,7 +4,7 @@ GEN="./generator"
 TEST="./lem-in"
 FLAG=" --flow-one"
 SRC="cat file.txt"
-OUTPUT="cat output.txt"
+OUTPUT="cat timedump.txt"
 I=0
 TOTAL=0
 AVG=0
@@ -13,7 +13,7 @@ echo "MAP			:	AVG TIME" >> time.txt
 while [ $I -lt 100 ]
 do
 	$GEN $FLAG > file.txt
-	$TEST < file.txt > output.txt
+	$TEST < file.txt > timedump.txt
 	calc1=$($OUTPUT | tail -n 1)
 	echo $I: $calc1
 	TOTAL=$(echo "$TOTAL + $calc1" | bc)

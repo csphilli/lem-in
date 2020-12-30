@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/27 22:33:29 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/30 22:31:08 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LEM_IN_H
 # define IO_BUF 1025
 # define TABLE_SIZE 20023
-# define MAX_SETS 10
+# define MAX_SETS 30
 // # include "../libft/libft/includes/libft.h"
 # include "libft.h"
 # include "ft_printf.h"
@@ -48,11 +48,17 @@ typedef struct		s_bucket
 {
 	char			*input;
 	struct s_entry	*entry;
-	unsigned int	cap;
-	unsigned int	flow;
+	int				cap;
+	int				edge_flow;
 	// struct s_bucket	*res;
 	struct s_bucket	*next;
 }					t_bucket;
+
+typedef struct		s_lol
+{
+	t_bucket		*list;
+	struct s_lol	*next;
+}					t_lol;
 
 typedef struct		s_entry
 {
@@ -61,13 +67,14 @@ typedef struct		s_entry
 	t_bucket		*links;
 	int				x;
 	int				y;
-	int				key;
+	int				key; // needed? key is name
 	int				visited;
 	int				used;
 	int				occ;
 	int				ant_id;
-	int				node_flow; // new
-	struct s_entry	*flow_to; // new
+	int				node_flow;
+	// int				node_flow; // new
+	// struct s_entry	*flow_to; // new
 }					t_entry;
 
 // typedef struct		s_paths
@@ -104,8 +111,8 @@ typedef struct		s_bfs
 	t_bucket		*q;
 	t_pmap			*map;
 	t_distro		*paths;
-	t_distro		*s2e;
-	t_distro		*e2s;
+	// t_distro		*s2e;
+	// t_distro		*e2s;
 	int				*s_distro;
 	int				*moves;
 	t_bucket		*edge;
@@ -260,10 +267,10 @@ void				reverse_ll(t_bucket **new, t_bucket *list);
 */
 
 // void				unshift_distro(t_distro **lol, t_bucket *ll);
-// void				insert_to_lol(t_distro **lol, t_bucket *ll);
-// void				pop_from_lol(t_distro **list);
-// void				append_to_lol(t_distro **lol, t_bucket *ll);
-// int					lol_length(t_distro *lol);
+void				insert_to_lol(t_lol **lol, t_bucket *ll);
+void				pop_from_lol(t_lol **list);
+void				append_to_lol(t_lol **lol, t_bucket *ll);
+int					lol_length(t_lol *lol);
 // void				print_distro(t_distro **list);
 void				unshift_distro(t_distro **distro, t_bucket *ll);
 void				insert_to_distro(t_distro **distro, t_bucket *ll);

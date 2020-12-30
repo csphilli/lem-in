@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 00:06:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/27 22:50:06 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/31 01:08:09 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		flow_chk(t_master *master)
 	tmp = master->start_room->links;
 	while (tmp)
 	{
-		if (tmp->flow == 1)
+		if (tmp->edge_flow == 1)
 			flow_count++;
 		tmp = tmp->next;
 	}
@@ -116,7 +116,7 @@ void	build_paths_2(t_bucket **ht, t_master *master, t_bucket *links, int set_id)
 	{
 		// ft_printf("name: %s | vis: %d | used: %d | flow: %d\n", \
 		// links->entry->name, links->entry->visited, links->entry->used, links->flow);
-		if (!links->entry->visited && !links->entry->used && links->flow)
+		if (!links->entry->visited && !links->entry->used && links->edge_flow)
 		{
 			if (ft_strequ(links->entry->name, master->end_room->name))
 			{
