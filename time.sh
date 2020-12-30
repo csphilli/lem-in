@@ -1,5 +1,22 @@
 #!/bin/bash
 # Calculates the average run time of map type based on 20 iterations each.
+# You must have time calculations capture and printed in your lem-in
+# Example:
+# Declarations:
+# 	clock_t begin;
+# 	clock_t end;
+# 	double time;
+# Time stamp capturing the time at the start of your program.
+# 	begin clock();
+# <Your program from start to finish printing out both commands and ant movements>
+# Time stamp capturing the time at the end of your program.
+# 	end clock();
+# Calculation of total elapsed time
+# 	time = (double)(end - begin) / CLOCKS_PER_SEC;
+# Necessary print statement. This will output to the end of the timedump.txt file and be
+# captured by the script to record the total time.
+# 	printf("%lf\n", time);
+# end program
 GEN="./generator"
 TEST="./lem-in"
 FLAG=" --flow-one"
