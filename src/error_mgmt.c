@@ -6,11 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 21:05:06 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/23 21:47:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/31 09:01:39 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+// Could get rid of these and just us basic error messages. Remove line functionality. who cares...
 
 void	ft_error(char *error_msg)
 {

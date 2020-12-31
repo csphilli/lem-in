@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 00:06:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/31 01:08:09 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/31 15:18:46 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,26 @@ int		flow_chk(t_master *master)
 	return (flow_count);
 }
 
+// int		flow_chk(t_master *master)
+// {
+// 	t_bucket	*tmp;
+// 	int			flow_count;
+
+// 	flow_count = 0;
+// 	tmp = master->start_room->links;
+// 	while (tmp)
+// 	{
+// 		if (tmp->cap - tmp->edge_flow == 0)
+// 			flow_count++;
+// 		tmp = tmp->next;
+// 	}
+// 	return (flow_count);
+// }
+
 void	print_path_sets(t_master *master)
 {
 	int			i;
 	int			j;
-	// t_bucket	**paths;
 	t_distro	*tmp;
 
 	i = 0;
@@ -109,6 +124,8 @@ void	assemble_path(t_master *master, int set_id)
 	// system("leaks lem-in");
 	// ft_error("exit after path print\n");
 }
+
+// Refactor these to be more streamlined Like the EK functions.
 
 void	build_paths_2(t_bucket **ht, t_master *master, t_bucket *links, int set_id)
 {

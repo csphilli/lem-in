@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/30 22:31:08 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/31 15:20:14 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ typedef struct		s_bucket
 	struct s_bucket	*next;
 }					t_bucket;
 
-typedef struct		s_lol
-{
-	t_bucket		*list;
-	struct s_lol	*next;
-}					t_lol;
+// typedef struct		s_lol
+// {
+// 	t_bucket		*list;
+// 	struct s_lol	*next;
+// }					t_lol;
 
 typedef struct		s_entry
 {
@@ -184,7 +184,7 @@ t_master			*create_structs(void);
 void				free_node(t_bucket *node);
 void				free_entry(t_entry *entry);
 void				free_bucket(t_bucket *bucket);
-void				free_intarray(int *src, int len);
+// void				free_intarray(int *src, int len);
 
 /*
 **	DATA CAPTURING
@@ -267,10 +267,10 @@ void				reverse_ll(t_bucket **new, t_bucket *list);
 */
 
 // void				unshift_distro(t_distro **lol, t_bucket *ll);
-void				insert_to_lol(t_lol **lol, t_bucket *ll);
-void				pop_from_lol(t_lol **list);
-void				append_to_lol(t_lol **lol, t_bucket *ll);
-int					lol_length(t_lol *lol);
+// void				insert_to_lol(t_lol **lol, t_bucket *ll);
+// void				pop_from_lol(t_lol **list);
+// void				append_to_lol(t_lol **lol, t_bucket *ll);
+// int					lol_length(t_lol *lol);
 // void				print_distro(t_distro **list);
 void				unshift_distro(t_distro **distro, t_bucket *ll);
 void				insert_to_distro(t_distro **distro, t_bucket *ll);

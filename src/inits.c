@@ -6,13 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/30 14:42:45 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/31 15:20:36 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-
 
 void	init_moves(t_distro *moves)
 {
@@ -33,47 +31,6 @@ void	init_moves(t_distro *moves)
 		}
 	}
 }
-
-// void	init_caps2(t_bucket *head)
-// {
-// 	t_bucket	*tmp;
-// 	t_bucket	*links;
-
-// 	tmp = head;
-// 	while (tmp)
-// 	{
-// 		links = tmp->entry->links;
-// 		while (links)
-// 		{
-// 			links->cap = 1;
-// 			links->res->cap = 1;
-// 			links = links->next;
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// }
-
-// void	init_caps(t_bucket **ht)
-// {
-// 	t_bucket	*tmp;
-// 	t_bucket	*links;
-// 	size_t		i;
-
-// 	i = 0;
-// 	tmp = NULL;
-// 	links = NULL;
-// 	while (i < TABLE_SIZE)
-// 	{
-// 		if (ht[i])
-// 		{
-// 			tmp = ht[i];
-// 			init_caps2(tmp);
-// 		}
-// 		i++;
-// 	}
-// }
-
-
 
 void	init_caps(t_bucket **ht)
 {
@@ -96,7 +53,6 @@ void	init_caps(t_bucket **ht)
 				{
 					links->cap = 1;
 					links->edge_flow = 0;
-					// links->res->cap = 1;
 					links = links->next;
 				}
 				tmp = tmp->next;
@@ -105,19 +61,6 @@ void	init_caps(t_bucket **ht)
 		i++;
 	}
 }
+// Needed?
 
-void	free_intarray(int *src, int len)
-{
-	int	i;
-
-	i = 0;
-	if (src)
-	{
-		while (i < len)
-		{
-			src[i] = '\0';
-			i++;
-		}
-	}
-}
 

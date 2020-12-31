@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 08:34:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/27 17:18:49 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/31 15:19:56 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@ int		ft_int_arr_len(int *n)
 	while (n[i])
 		i++;
 	return (i);
+}
+
+void	free_intarray(int *src, int len)
+{
+	int	i;
+
+	i = 0;
+	if (src)
+	{
+		while (i < len)
+		{
+			src[i] = '\0';
+			i++;
+		}
+	}
 }
 
 int		*ft_intcat(int *src, int to_add)
@@ -74,10 +89,4 @@ void	build_distro_array(t_master *master)
 		}
 		tmp = tmp->next;
 	}
-	// print_distro(&master->paths[master->best_set]);
-	// while (master->bfs->s_distro[++i])
-	// {
-	// 	ft_putnbr(master->bfs->s_distro[i]);
-	// 	write(1, ",", 1);
-	// }
 }

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:29:55 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/30 18:22:49 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/31 14:13:47 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void		reset_visited(t_bucket **ht)
 	}
 }
 
-
 void		adj_flows(t_bucket **ht, t_entry *fnd, t_entry *via)
 {
 	t_bucket	*forward;
@@ -42,13 +41,10 @@ void		adj_flows(t_bucket **ht, t_entry *fnd, t_entry *via)
 	forward = get_edge(fnd, via);
 	residual = get_edge(via, fnd);
 	head = get_head(ht, via->name);
-	// head->entry->flow_to = forward->entry;
 	head->entry->node_flow++;
 	forward->edge_flow++;
 	residual->edge_flow--;
 }
-
-
 
 t_bucket	*get_edge(t_entry *fnd, t_entry *via)
 {
@@ -65,7 +61,6 @@ t_bucket	*get_edge(t_entry *fnd, t_entry *via)
 	return (NULL);
 }
 
-
 void		clear_data(t_bucket **ht, t_master *master)
 {
 	while (master->bfs->map)
@@ -74,26 +69,3 @@ void		clear_data(t_bucket **ht, t_master *master)
 	while (master->bfs->q)
 		pop_from_ll(&master->bfs->q);
 }
-
-// void		reverse_paths(t_distro **lol)
-// {
-// 	t_distro		*tmp;
-// 	t_bucket		*newll;
-// 	t_distro		*newlol;
-
-// 	tmp = *lol;
-// 	newll = NULL;
-// 	newlol = NULL;
-// 	while (tmp->list)
-// 	{
-// 		while (tmp->list)
-// 		{
-// 			unshift_ll(&newll, tmp->list->entry);
-// 			pop_from_ll(&tmp->list);
-// 		}
-// 		append_to_distro(&newlol, newll);
-// 		newll = NULL;
-// 		pop_from_distro(&tmp);
-// 	}
-// 	*lol = newlol;
-// }

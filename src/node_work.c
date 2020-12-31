@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:20:56 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 01:48:05 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/31 15:13:18 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,25 @@ void		unshift_entry(t_bucket **head, t_entry *entry, int index)
 	new->next = tmp;
 }
 
-t_bucket	*insert_node_to_path(t_bucket *head, t_entry *node)
-{
-	t_bucket	*bucket;
-	t_bucket	*tmp;
+// t_bucket	*insert_node_to_path(t_bucket *head, t_entry *node)
+// {
+// 	t_bucket	*bucket;
+// 	t_bucket	*tmp;
 
-	tmp = NULL;
-	bucket = ft_memalloc(sizeof(t_bucket));
-	bucket->entry = node;
-	if (head == NULL)
-		head = bucket;
-	else
-	{
-		tmp = head;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = bucket;
-	}
-	return (head);
-}
+// 	tmp = NULL;
+// 	bucket = ft_memalloc(sizeof(t_bucket));
+// 	bucket->entry = node;
+// 	if (head == NULL)
+// 		head = bucket;
+// 	else
+// 	{
+// 		tmp = head;
+// 		while (tmp->next)
+// 			tmp = tmp->next;
+// 		tmp->next = bucket;
+// 	}
+// 	return (head);
+// }
 
 int			dupe(t_bucket *head, t_entry *entry)
 {
@@ -81,7 +81,7 @@ int			dupe(t_bucket *head, t_entry *entry)
 	}
 	return (0);
 }
-
+// could optimize this. Just insert to the head of the index.
 void		insert_node(t_master *master, t_bucket **ht,\
 			t_entry *entry, int index)
 {

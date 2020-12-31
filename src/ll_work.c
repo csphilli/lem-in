@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 09:29:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/30 15:48:26 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/31 14:17:56 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ void	insert_to_ll(t_bucket **src, t_entry *entry)
 	t_bucket	*new;
 
 	new = ft_memalloc(sizeof(t_bucket));
-	// new->res = ft_memalloc(sizeof(t_bucket));
 	new->entry = entry;
-	// new->res->entry = entry;
 	if (*src == NULL)
 		*src = new;
 	else

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/27 18:18:39 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/31 14:08:57 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	calc_total_moves(t_master *master, t_distro *paths, int set_id)
 {
-	// ft_printf("best set: %d\n", master->best_set);
 	t_distro 	*tmp;
 	int			max;
 	static int	min;
@@ -24,14 +23,11 @@ void	calc_total_moves(t_master *master, t_distro *paths, int set_id)
 	while (tmp)
 	{
 		tmp->total_moves = tmp->nbr_ants + tmp->cap - 1;
-		// ft_printf("tmp->total moves; %d\n", tmp->total_moves);
 		if (tmp->total_moves > max)
 			max = tmp->total_moves;
 		tmp->ants_left = tmp->nbr_ants;
 		tmp = tmp->next;
 	}
-	// print_distro(&master->paths);
-	// ft_printf("set_id: %d | min: %d | max: %d\n", set_id, min, max);
 	if (max > 0)
 	{
 		if (min == 0)
@@ -107,36 +103,11 @@ void	calc_distro(t_master *master)
 	moves = NULL;
 	while (i < MAX_SETS)
 	{
-		// ft_printf("set: %d\n", i);
 		moves = master->paths[i];
 		init_moves(moves);
 		unlocks(master, moves);
 		cascade(master, moves, i);
 		calc_total_moves(master, moves, i);
-		// print_distro(&master->paths[i]);
 		i++;
-		// ft_printf("\nchecking new set\n");
 	}
-	// ft_printf("best set id: %d\n", master->best_set);
 }
-
-// void	calc_distro(t_master *master)
-// {
-// 	t_distro	*moves;
-// 	int		*arr;
-// 	int		i;
-
-// 	arr = NULL;
-// 	i = 0;
-// 	moves = NULL;
-// 	while (i < 2)
-// 	{
-// 		moves = (i == 1 ? master->bfs->s2e : master->bfs->e2s);
-// 		init_moves(moves);
-// 		unlocks(master, moves);
-// 		cascade(master, moves);
-// 		calc_total_moves(moves);
-// 		i++;
-// 	}
-// }
-
