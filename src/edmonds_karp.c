@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/31 01:08:21 by cphillip         ###   ########.fr       */
+/*   Updated: 2020/12/31 08:58:54 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,28 +74,7 @@ void	augment_flow(t_bucket **ht, t_master *master)
 		pop_from_ll(&ll);
 }
 
-// int		mapping_prio(t_master *master, t_lol *que)
-// {
-// 	t_lol *tmp;
-
-// 	tmp = que;
-// 	while (tmp)
-// 	{
-// 		if (tmp->list->cap - tmp->list->edge_flow > 0)
-// 		{
-// 			unshift_to_map(&master->bfs->map, tmp->list->entry,\
-// 			master->bfs->cur);
-// 			if (!ft_strequ(master->end_room->name, tmp->list->entry->name))
-// 				tmp->list->entry->visited = 1;
-// 			if (ft_strequ(tmp->list->entry->name, master->end_room->name))
-// 				return (1);
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// 	return (0);
-// }
-
-int		mapping_prio(t_master *master, t_bucket *head)
+int		mapping(t_master *master, t_bucket *head)
 {
 	unshift_to_map(&master->bfs->map, head->entry,\
 	master->bfs->cur);
@@ -118,7 +97,7 @@ void	find_augment(t_bucket **ht, t_master *master)
 		if (!links->entry->visited && links->cap - links->edge_flow > 0)
 		{
 			append_to_ll(&master->bfs->q, links->entry);
-			if (mapping_prio(master, links))
+			if (mapping(master, links))
 			{
 				augment_flow(ht, master);
 				clear_data(ht, master);
@@ -142,6 +121,7 @@ int		cap_chk(t_master *master)
 			i = 1;
 		tmp = tmp->next;
 	}
+	ft_printf("Cap Check: %d\n", i);
 	return (i);
 }
 
@@ -158,6 +138,7 @@ void	edmonds_karp(t_bucket **ht, t_master *master)
 	while (set_id < MAX_SETS)
 	// while (cap_chk(master))
 	{
+		cap_chk(master);
 		// print_ht(ht);
 		// ft_putnbr(set_id);
 		clear_data(ht, master);
