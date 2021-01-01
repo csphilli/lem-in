@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 00:12:03 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 13:39:51 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 20:26:15 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_master	*create_structs(void)
 	new = ft_memalloc(sizeof(t_master));
 	new->ants = ft_memalloc(sizeof(t_ants));
 	new->bfs = ft_memalloc(sizeof(t_bfs));
+	new->paths = ft_memalloc(sizeof(t_distro*) * MAX_SETS);
 	new->flags.s_toggle = false;
 	new->flags.e_toggle = false;
 	new->flags.print_hash_table = false;

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 00:06:11 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 14:54:32 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 21:06:03 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,11 @@ void	assemble_path(t_master *master, int set_id)
 	master->solution = 1;
 }
 
-// Refactor these to be more streamlined Like the EK functions.
-
 void	build_paths_2(t_bucket **ht, t_master *master, t_bucket *links, int set_id)
 {
 	while (links)
 	{
-		if (!links->entry->visited && !links->entry->used && links->edge_flow)
+		if (!links->entry->visited && !links->entry->used && links->cap - links->edge_flow == 0)
 		{
 			if (ft_strequ(links->entry->name, master->end_room->name))
 			{
@@ -134,10 +132,8 @@ void	build_paths(t_bucket **ht, t_master *master, int set_id)
 	t_bucket	*tmp;
 	int			i;
 
-	i = flow_chk(master);
-	if (!master->paths)
-		master->paths = ft_memalloc(sizeof(t_distro*) * MAX_SETS);
-	while (i--)
+	i = 0;
+	while (i < MAX_SETS)
 	{
 		append_to_ll(&master->bfs->q, master->start_room);
 		while (master->bfs->q)
@@ -148,6 +144,7 @@ void	build_paths(t_bucket **ht, t_master *master, int set_id)
 			tmp = master->bfs->cur->links;
 			build_paths_2(ht, master, tmp, set_id);
 		}
+		i++;
 	}
 	set_used(master, set_id, 0);
 }

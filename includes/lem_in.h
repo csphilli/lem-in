@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 19:16:14 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 21:05:57 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -309,6 +309,7 @@ void				sort_paths(t_distro *paths);
 int					direct_link(t_bucket **ht, t_master *master);
 
 void				build_paths(t_bucket **ht, t_master *master, int set_id);
+// void				build_paths(t_bucket **ht, t_master *master);
 
 t_io				*create_io(void);
 void				buf_to_output(t_io **main);
