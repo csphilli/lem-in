@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 19:04:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:07:51 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,9 @@ void	capture_links(t_bucket **ht, t_master *master, char *line)
 		if (!(dupe_link(entry, get_entry(ht, master, data[j]))))
 			insert_to_ll(&entry->links, get_entry(ht, master, data[j]));
 		i++;
-		j--;		
+		j--;
 	}
 	master->link = 1;
 	free_strsplit(&data);
 	data = NULL;
 }
-

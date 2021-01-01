@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 14:51:07 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/31 15:20:36 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:26:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_moves(t_distro *moves)
 {
 	t_distro	*tmp;
-	int		i;
+	int			i;
 
 	tmp = moves;
 	i = 0;
@@ -39,8 +39,6 @@ void	init_caps(t_bucket **ht)
 	size_t		i;
 
 	i = 0;
-	tmp = NULL;
-	links = NULL;
 	while (i < TABLE_SIZE)
 	{
 		if (ht[i])
@@ -61,6 +59,3 @@ void	init_caps(t_bucket **ht)
 		i++;
 	}
 }
-// Needed?
-
-

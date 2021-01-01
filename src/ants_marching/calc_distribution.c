@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/31 14:08:57 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:24:05 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	calc_total_moves(t_master *master, t_distro *paths, int set_id)
 {
-	t_distro 	*tmp;
+	t_distro	*tmp;
 	int			max;
 	static int	min;
 
@@ -52,7 +52,7 @@ void	chk_unlock(t_master **master, t_distro **tmp)
 void	cascade(t_master *master, t_distro *paths, int set_id)
 {
 	t_distro	*tmp;
-	int		ant_count;
+	int			ant_count;
 
 	tmp = paths;
 	ant_count = master->nbr_ants;

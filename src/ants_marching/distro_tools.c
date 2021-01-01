@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 14:42:58 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/26 23:58:08 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:08:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	append_to_distro(t_distro **distro, t_bucket *ll)
 int		distro_length(t_distro *distro)
 {
 	t_distro	*tmp;
-	int		i;
+	int			i;
 
 	tmp = distro;
 	i = 0;
@@ -92,7 +92,7 @@ void	insert_to_distro(t_distro **distro, t_bucket *ll)
 	t_distro	*head;
 	t_distro	*tmp;
 	t_distro	*new;
-	int		l;
+	int			l;
 
 	head = *distro;
 	tmp = head;

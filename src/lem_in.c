@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 19:08:24 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:30:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,5 @@ int			main(int ac, char **av)
 		do_extras(ht, master);
 	end = clock();
 	time = (double)(end - begin) / CLOCKS_PER_SEC;
-	// printf("%lf\n", time);
-	// system ("leaks lem-in");
 	return (0);
 }

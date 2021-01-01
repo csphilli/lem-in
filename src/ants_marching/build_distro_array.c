@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 08:34:27 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/31 15:19:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:29:06 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		*ft_intcat(int *src, int to_add)
 void	create_path_array(t_distro *paths)
 {
 	t_distro		*tmp;
-	int			*arr;
+	int				*arr;
 
 	arr = NULL;
 	tmp = paths;
@@ -75,8 +75,8 @@ void	create_path_array(t_distro *paths)
 
 void	build_distro_array(t_master *master)
 {
-	t_distro *tmp;
-	int		i;
+	t_distro	*tmp;
+	int			i;
 
 	i = -1;
 	tmp = master->paths[master->best_set];
@@ -84,8 +84,10 @@ void	build_distro_array(t_master *master)
 	{
 		if (tmp->nbr_ants > 0)
 		{
-			master->bfs->s_distro = ft_intcat(master->bfs->s_distro, tmp->nbr_ants);
-			master->bfs->moves = ft_intcat(master->bfs->moves, tmp->total_moves);
+			master->bfs->s_distro = ft_intcat(master->bfs->s_distro,\
+			tmp->nbr_ants);
+			master->bfs->moves = ft_intcat(master->bfs->moves, \
+			tmp->total_moves);
 		}
 		tmp = tmp->next;
 	}

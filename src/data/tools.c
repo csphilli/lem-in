@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:23:28 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 14:47:57 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:25:09 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ int		solvable(t_master *master)
 	if (links)
 		return (1);
 	else
-		return (0);	
+		return (0);
 }

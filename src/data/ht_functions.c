@@ -6,16 +6,17 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:24:25 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 19:04:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:21:04 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 int			hash(char *str)
-{	
+{
 	int		hash_value;
 	int		i;
+
 	hash_value = 1;
 	i = 0;
 	while (*str)
@@ -60,7 +61,7 @@ t_bucket	*get_head(t_bucket **ht, char *name)
 void		assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry)
 {
 	size_t	index;
-	
+
 	index = hash(entry->name);
 	insert_node(master, ht, entry, index);
 	master->a_room = 1;

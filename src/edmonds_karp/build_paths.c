@@ -6,27 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 00:06:11 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 21:06:03 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:20:08 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-int		flow_chk(t_master *master)
-{
-	t_bucket	*tmp;
-	int			flow_count;
-
-	flow_count = 0;
-	tmp = master->start_room->links;
-	while (tmp)
-	{
-		if (tmp->edge_flow == 1)
-			flow_count++;
-		tmp = tmp->next;
-	}
-	return (flow_count);
-}
 
 void	print_path_sets(t_master *master)
 {
@@ -103,15 +87,18 @@ void	assemble_path(t_master *master, int set_id)
 	master->solution = 1;
 }
 
-void	build_paths_2(t_bucket **ht, t_master *master, t_bucket *links, int set_id)
+void	build_paths_2(t_bucket **ht, t_master *master,\
+		t_bucket *links, int set_id)
 {
 	while (links)
 	{
-		if (!links->entry->visited && !links->entry->used && links->cap - links->edge_flow == 0)
+		if (!links->entry->visited && !links->entry->used\
+			&& links->cap - links->edge_flow == 0)
 		{
 			if (ft_strequ(links->entry->name, master->end_room->name))
 			{
-				unshift_to_map(&master->bfs->map, links->entry, master->bfs->cur);
+				unshift_to_map(&master->bfs->map,\
+					links->entry, master->bfs->cur);
 				assemble_path(master, set_id);
 				clear_data(ht, master);
 				return ;
@@ -119,7 +106,8 @@ void	build_paths_2(t_bucket **ht, t_master *master, t_bucket *links, int set_id)
 			else
 			{
 				append_to_ll(&master->bfs->q, links->entry);
-				unshift_to_map(&master->bfs->map, links->entry, master->bfs->cur);
+				unshift_to_map(&master->bfs->map, links->entry,\
+					master->bfs->cur);
 				links->entry->visited = 1;
 			}
 		}

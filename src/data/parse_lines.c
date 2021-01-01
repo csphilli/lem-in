@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 19:04:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:19:37 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		room_or_link(char *line)
 	{
 		if (line[i] == ' ' || line[i] == '-')
 			break ;
-		i++;		
+		i++;
 	}
 	if (line[i] == ' ')
 		return (1);

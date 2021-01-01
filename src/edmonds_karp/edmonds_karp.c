@@ -6,26 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 21:28:23 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:17:26 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-// void	print_map(t_master *master) // Not needed
-// {
-// 	t_pmap *tmp;
-
-// 	tmp = master->bfs->map;
-// 	while (tmp)
-// 	{
-// 		ft_printf("%s/%s", tmp->fnd->name, tmp->via->name);
-// 		if (tmp->next)
-// 			write(1, ",", 1);
-// 		tmp = tmp->next;
-// 	}
-// 	write(1, "\n", 1);
-// }
 
 void	augment_flow(t_bucket **ht, t_master *master)
 {

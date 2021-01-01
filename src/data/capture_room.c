@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 19:04:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:21:26 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,13 @@ void	capture_room(t_bucket **ht, t_master *master, char *line)
 	dst->name = ft_strdup(data[0]);
 	dst->x = c_atoi(data[1]);
 	dst->y = c_atoi(data[2]);
-	// dst->key = hash(dst->name);
 	if (master->comment != NULL)
 	{
 		dst->comment = ft_strdup(master->comment);
 		start_or_end(master, dst);
 		ft_strdel(&master->comment);
 	}
-	assign_entry_to_ht(ht, master, dst); // make own function name
+	assign_entry_to_ht(ht, master, dst);
 	free_strsplit(&data);
 	data = NULL;
 }

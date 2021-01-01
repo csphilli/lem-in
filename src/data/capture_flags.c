@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 19:04:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:27:11 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	toggle_bools(t_master *master)
 			master->flags.print_hash_table = true;
 		else if (*s == 'd')
 			master->flags.vis_distro = true;
-		// else if (*s == 'e')
-		// 	master->flags.errors = true;
 		s++;
 	}
 }
@@ -47,9 +45,7 @@ void	verify_flags(t_master *master, int nbr_size)
 			if (*tmp == 'l')
 				tmp = tmp + nbr_size + 1;
 			else if (!ft_strchr(master->flags.accepted_flags, *tmp))
-				master->flags.errors ? \
-				ft_errorExit("ERROR: Invalid flag. See -h for options.") :\
-				ft_errorExit("ERROR");
+				ft_errorExit("ERROR: Invalid flag. See -h for options.");
 			tmp++;
 		}
 	}
