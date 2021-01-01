@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 00:06:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/31 15:18:46 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 14:54:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,6 @@ int		flow_chk(t_master *master)
 	}
 	return (flow_count);
 }
-
-// int		flow_chk(t_master *master)
-// {
-// 	t_bucket	*tmp;
-// 	int			flow_count;
-
-// 	flow_count = 0;
-// 	tmp = master->start_room->links;
-// 	while (tmp)
-// 	{
-// 		if (tmp->cap - tmp->edge_flow == 0)
-// 			flow_count++;
-// 		tmp = tmp->next;
-// 	}
-// 	return (flow_count);
-// }
 
 void	print_path_sets(t_master *master)
 {
@@ -100,7 +84,6 @@ void	assemble_path(t_master *master, int set_id)
 	cur = master->bfs->map;
 	tmp = master->bfs->map->next;
 	append_to_ll(&ll, cur->fnd);
-	// cur->fnd->used = 1;
 	append_to_ll(&ll, cur->via);
 	cur->via->used = 1;
 	while (tmp)
@@ -117,12 +100,7 @@ void	assemble_path(t_master *master, int set_id)
 		tmp = tmp->next;
 	}
 	append_to_distro(&master->paths[set_id], ll);
-	// ft_printf("path: ");
-	// print_ll(ll);
-	// set_used(ht, master, ll);
-	
-	// system("leaks lem-in");
-	// ft_error("exit after path print\n");
+	master->solution = 1;
 }
 
 // Refactor these to be more streamlined Like the EK functions.
@@ -131,8 +109,6 @@ void	build_paths_2(t_bucket **ht, t_master *master, t_bucket *links, int set_id)
 {
 	while (links)
 	{
-		// ft_printf("name: %s | vis: %d | used: %d | flow: %d\n", \
-		// links->entry->name, links->entry->visited, links->entry->used, links->flow);
 		if (!links->entry->visited && !links->entry->used && links->edge_flow)
 		{
 			if (ft_strequ(links->entry->name, master->end_room->name))
@@ -166,8 +142,6 @@ void	build_paths(t_bucket **ht, t_master *master, int set_id)
 		append_to_ll(&master->bfs->q, master->start_room);
 		while (master->bfs->q)
 		{
-			// ft_printf("q: ");
-			// print_ll(master->bfs->q);
 			master->bfs->cur = master->bfs->q->entry;
 			pop_from_ll(&master->bfs->q);
 			master->bfs->cur->visited = 1;
@@ -176,9 +150,4 @@ void	build_paths(t_bucket **ht, t_master *master, int set_id)
 		}
 	}
 	set_used(master, set_id, 0);
-	// ft_printf("set id: %d\n", set_id);
-	// ft_printf("printing sets\n");
-	// print_path_sets(master);
-	// ft_error("exiting after sets\n");
-	// print_ht(ht);
 }

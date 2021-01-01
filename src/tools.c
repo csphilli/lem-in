@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:23:28 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 11:34:58 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 14:47:57 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,21 @@ int		list_length(t_bucket *head)
 		tmp = tmp->next;
 	}
 	return (len);
+}
+
+int		solvable(t_master *master)
+{
+	t_bucket *links;
+
+	links = master->start_room->links;
+	while (links)
+	{
+		if (ft_strequ(links->entry->name, master->end_room->name))
+			break ;
+		links = links->next;
+	}
+	if (links)
+		return (1);
+	else
+		return (0);	
 }

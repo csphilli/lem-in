@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 01:46:34 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 13:40:12 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	toggle_bools(t_master *master)
 			master->flags.print_hash_table = true;
 		else if (*s == 'd')
 			master->flags.vis_distro = true;
-		else if (*s == 'e')
-			master->flags.errors = true;
+		// else if (*s == 'e')
+		// 	master->flags.errors = true;
 		s++;
 	}
 }

@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 01:46:42 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 14:29:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	chk_link_format(t_master *master, char *line)
+void	chk_link_format(char *line)
 {
 	int	i;
 	int	x;
@@ -26,8 +26,7 @@ void	chk_link_format(t_master *master, char *line)
 		i++;
 	}
 	if (x > 1)
-		master->flags.errors ? ft_error("ERROR: Invalid link format.") :\
-		ft_error("ERROR");
+		ft_error("ERROR: Invalid link format\n");
 }
 
 int		dupe_link(t_entry *src, t_entry *add)
@@ -56,8 +55,10 @@ void	capture_links(t_bucket **ht, t_master *master, char *line)
 
 	i = 0;
 	j = 1;
-	chk_link_format(master, line);
+	chk_link_format(line);
 	data = ft_strsplit(line, '-');
+	if (!master->a_room)
+		ft_error("ERROR: Cannot insert link. No rooms defined.\n");
 	while (i < 2)
 	{
 		entry = get_entry(ht, master, data[i]);

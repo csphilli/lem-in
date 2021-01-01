@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 23:27:17 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 11:20:01 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 14:40:54 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,25 +59,4 @@ void	cat_move(t_master *master, int ant_id, char *name)
 		master->moves->buf = ft_strnew(IO_BUF);
 		master->moves->b_len = 0;
 	}
-}
-
-void	do_one_move(t_master *master)
-{
-	int			ants_e;
-	int			id;
-
-	ants_e = 1;
-	id = 2;
-	while (ants_e < master->nbr_ants)
-	{
-		cat_move(master, id, master->end_room->name);
-		ants_e++;
-		id++;
-	}
-	if (master->moves->b_len < IO_BUF)
-	{
-		ft_strcat(master->moves->buf, "\0");
-		buf_to_output(&master->moves);
-	}
-	master->ants->n_moves++;
 }

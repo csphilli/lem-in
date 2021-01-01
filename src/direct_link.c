@@ -1,18 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chk_direct_link.c                                  :+:      :+:    :+:   */
+/*   direct_link.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:55:58 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/31 14:13:14 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 14:42:11 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		chk_direct_link(t_bucket **ht, t_master *master)
+void	do_one_move(t_master *master)
+{
+	int			ants_e;
+	int			id;
+
+	ants_e = 1;
+	id = 2;
+	while (ants_e < master->nbr_ants)
+	{
+		cat_move(master, id, master->end_room->name);
+		ants_e++;
+		id++;
+	}
+	if (master->moves->b_len < IO_BUF)
+	{
+		ft_strcat(master->moves->buf, "\0");
+		buf_to_output(&master->moves);
+	}
+	master->ants->n_moves++;
+}
+
+int		direct_link(t_bucket **ht, t_master *master)
 {
 	t_entry		*start;
 	t_bucket	*end_links;

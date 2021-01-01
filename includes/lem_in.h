@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/31 15:20:14 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 16:43:43 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # define IO_BUF 1025
 # define TABLE_SIZE 20023
 # define MAX_SETS 30
-// # include "../libft/libft/includes/libft.h"
 # include "libft.h"
 # include "ft_printf.h"
 # include <time.h>
@@ -144,6 +143,8 @@ typedef struct		s_master
 	char			*comment;
 	t_entry			*start_room;
 	t_entry			*end_room;
+	int				a_room;
+	int				solution;
 	int				best_set;
 	int				nbr_ants;	
 	int				line_nbr;
@@ -194,7 +195,7 @@ void				capture_ants(t_master *master, char *line);
 void				capture_flags(t_master *master, int ac, char **av);
 void				capture_comment(t_master *master, char *str);
 void				load_help(void);
-void				validate_coords(t_master *master, char *n1, char *n2);
+void				validate_coords(char *n1, char *n2);
 void				validate_rooms(t_bucket **ht, t_master *master);
 void				duplicate_room_check(t_master *master, t_bucket **ht);
 void				capture_links(t_bucket **ht, t_master *master, char *line);
@@ -238,7 +239,8 @@ int					list_length(t_bucket *head);
 int					*ft_intcat(int *src, int to_add);
 int					ft_int_arr_len(int *n);
 int					most_ants(int *arr);
-int					dupe(t_bucket *head, t_entry *entry);
+int					solvable(t_master *master);
+// int					dupe(t_bucket *head, t_entry *entry);
 
 /*
 **	PRINTING
@@ -249,7 +251,7 @@ void				print_ll(t_bucket *ll);
 void				print_ht(t_bucket **ht);
 void				print_int_arr(int *ants);
 void				print_distro(t_distro **list);
-void				do_one_move(t_master *master);
+// void				do_one_move(t_master *master);
 
 /*
 **	LINK WORK
@@ -303,7 +305,7 @@ t_bucket			*get_edge(t_entry *fnd, t_entry *via);
 // void				clear_data(t_bucket **ht, t_master *master, int i);
 void				clear_data(t_bucket **ht, t_master *master);
 void				sort_paths(t_distro *paths);
-int					chk_direct_link(t_bucket **ht, t_master *master);
+int					direct_link(t_bucket **ht, t_master *master);
 
 void				build_paths(t_bucket **ht, t_master *master, int set_id);
 

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:24:25 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 11:27:59 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 17:16:22 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_entry		*get_entry(t_bucket **ht, t_master *master, char *name)
 		if (ft_strequ(tmp->entry->name, name))
 			return (tmp->entry);
 		else if (!tmp->next && !ft_strequ(tmp->entry->name, name))
-			exit_room_not_found(master, name);
+			ft_error("ERROR: Failed to insert link. Room not found.\n");
 		tmp = tmp->next;
 	}
 	return (0);
@@ -60,12 +60,8 @@ t_bucket	*get_head(t_bucket **ht, char *name)
 void		assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry)
 {
 	size_t	index;
-
-	if (!dup_coord(ht, entry))
-	{
-		index = hash(entry->name);
-		insert_node(master, ht, entry, index);
-	}
-	else
-		exit_dup_coord(master);
+	
+	index = hash(entry->name);
+	insert_node(master, ht, entry, index);
+	master->a_room = 1;
 }

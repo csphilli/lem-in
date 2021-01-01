@@ -6,54 +6,40 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/22 11:24:43 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 16:40:15 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	validate_coords(t_master *master, char *n1, char *n2)
+int		digit(char c)
 {
-	int i;
-
-	i = 0;
-	while (n1[i])
-	{
-		if (!ft_isdigit(n1[i]))
-			exit_coord(master);
-		i++;
-	}
-	i = 0;
-	while (n2[i])
-	{
-		if (!ft_isdigit(n2[i]))
-			exit_coord(master);
-		i++;
-	}
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		ft_error("ERROR: Coordinate contains non-digit value.\n");
+	return (0);
 }
 
-int		dup_coord(t_bucket **ht, t_entry *entry)
+int		c_atoi(const char *str)
 {
-	size_t		i;
-	t_bucket	*tmp;
+	int i;
+	int sign;
+	int res;
 
 	i = 0;
-	tmp = NULL;
-	while (i < TABLE_SIZE)
+	sign = 1;
+	res = 0;
+	if (str[i] == '-')
+		sign = -1;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] && digit(str[i]))
 	{
-		if (ht[i])
-		{
-			tmp = ht[i];
-			while (tmp)
-			{
-				if (tmp->entry->x == entry->x && tmp->entry->y == entry->y)
-					return (1);
-				tmp = tmp->next;
-			}
-		}
+		res = res * 10 + (str[i] - 48);
 		i++;
 	}
-	return (0);
+	return (res * sign);
 }
 
 int		split_len(char **src)
@@ -71,13 +57,9 @@ int		split_len(char **src)
 void	chk_valid_entry(t_master *master, char **data)
 {
 	if (data[0][0] == 'L')
-		master->flags.errors ? \
-		ft_error("ERROR: Room names cannot begin with 'L'") :\
-		ft_error("ERROR");
+		ft_error("ERROR: Room names cannot begin with 'L'.\n");
 	if (split_len(data) != 3)
-		master->flags.errors ? \
-		ft_error("ERROR: Invalid room definition.") : \
-		ft_error("ERROR");
+		ft_error("ERROR: Invalid room input.\n");
 }
 
 void	capture_room(t_bucket **ht, t_master *master, char *line)
@@ -89,16 +71,16 @@ void	capture_room(t_bucket **ht, t_master *master, char *line)
 	data = ft_strsplit(line, ' ');
 	chk_valid_entry(master, data);
 	dst->name = ft_strdup(data[0]);
-	dst->x = ft_atoi(data[1]);
-	dst->y = ft_atoi(data[2]);
-	dst->key = hash(dst->name);
+	dst->x = c_atoi(data[1]);
+	dst->y = c_atoi(data[2]);
+	// dst->key = hash(dst->name);
 	if (master->comment != NULL)
 	{
 		dst->comment = ft_strdup(master->comment);
 		start_or_end(master, dst);
 		ft_strdel(&master->comment);
 	}
-	assign_entry_to_ht(ht, master, dst);
+	assign_entry_to_ht(ht, master, dst); // make own function name
 	free_strsplit(&data);
 	data = NULL;
 }
