@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 17:43:18 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 19:08:24 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ void		check_inputs(t_master *master, int ac, int mode)
 	if (mode == 1)
 	{
 		if (master->flags.input_flags && master->flags.flag_count + 1 != ac)
-			ft_error("ERROR: Invalid use. '-h' for help.\n");
+			ft_errorExit("ERROR: Invalid use. '-h' for help.\n");
 	}
 	if (mode == 2)
 	{
 		if (!master->start_room)
-			ft_error("ERROR: No start room specified.\n");
+			ft_errorExit("ERROR: No start room specified.\n");
 		if (!master->end_room)
-			ft_error("ERROR: No end room specified.\n");
+			ft_errorExit("ERROR: No end room specified.\n");
 		if (!master->link)
-			ft_error("ERROR: No room links specified.\n");
+			ft_errorExit("ERROR: No room links specified.\n");
 		if (!master->a_room)
-			ft_error("ERROR: No rooms specified.\n");
+			ft_errorExit("ERROR: No rooms specified.\n");
 	}
 }
 
@@ -51,7 +51,7 @@ t_bucket	**do_lemin(t_master *master, t_bucket **ht, int ac)
 	check_inputs(master, ac, 2);
 	edmonds_karp(ht, master);
 	if (!master->solution)
-		ft_error("ERROR: No solution. No path between start and end.\n");
+		ft_errorExit("ERROR: No solution. No path between start and end.\n");
 	if (!direct_link(ht, master))
 	{
 		calc_distro(master);
@@ -88,7 +88,7 @@ int			main(int ac, char **av)
 		do_extras(ht, master);
 	end = clock();
 	time = (double)(end - begin) / CLOCKS_PER_SEC;
-	printf("%lf\n", time);
+	// printf("%lf\n", time);
 	// system ("leaks lem-in");
 	return (0);
 }

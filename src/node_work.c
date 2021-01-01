@@ -6,12 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:20:56 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 17:40:55 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 19:08:53 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
 
 void		unshift_entry(t_bucket **head, t_entry *entry, int index)
 {
@@ -33,7 +32,7 @@ void		dupe_chk(t_bucket *head, t_entry *entry)
 	while (tmp)
 	{
 		if (ft_strequ(entry->name, tmp->entry->name))
-			ft_error("ERROR: Duplicate room found.\n");
+			ft_errorExit("ERROR: Duplicate room found.\n");
 		tmp = tmp->next;
 	}
 }

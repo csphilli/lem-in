@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 16:43:43 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 19:16:14 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "libft.h"
 # include "ft_printf.h"
 # include <time.h>
+# include <stdbool.h>
 
 typedef struct		s_flags
 {
@@ -159,11 +160,11 @@ typedef struct		s_master
 **	ERROR HANDLING
 */
 
-void				exit_coord(t_master *master);
-void				exit_dup(t_master *master, char *room_name);
-void				exit_room_not_found(t_master *master, char *str);
-void				exit_dup_coord(t_master *master);
-void				ft_error(char *error_msg);
+// void				exit_coord(t_master *master);
+// void				exit_dup(t_master *master, char *room_name);
+// void				exit_room_not_found(t_master *master, char *str);
+// void				exit_dup_coord(t_master *master);
+// void				ft_error(char *error_msg);
 
 /*
 **	INITIALIZATION

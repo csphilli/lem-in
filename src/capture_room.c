@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 16:40:15 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 19:04:11 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		digit(char c)
 	if (c >= '0' && c <= '9')
 		return (1);
 	else
-		ft_error("ERROR: Coordinate contains non-digit value.\n");
+		ft_errorExit("ERROR: Coordinate contains non-digit value.\n");
 	return (0);
 }
 
@@ -57,9 +57,9 @@ int		split_len(char **src)
 void	chk_valid_entry(t_master *master, char **data)
 {
 	if (data[0][0] == 'L')
-		ft_error("ERROR: Room names cannot begin with 'L'.\n");
+		ft_errorExit("ERROR: Room names cannot begin with 'L'.\n");
 	if (split_len(data) != 3)
-		ft_error("ERROR: Invalid room input.\n");
+		ft_errorExit("ERROR: Invalid room input.\n");
 }
 
 void	capture_room(t_bucket **ht, t_master *master, char *line)
