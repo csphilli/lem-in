@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 21:05:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 21:28:23 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ void	edmonds_karp(t_bucket **ht, t_master *master)
 			pop_from_ll(&master->bfs->q);
 			find_augment(ht, master);
 		}
-		// build_paths(ht, master, set_id);
 		build_paths(ht, master, set_id);
 		set_id++;
 	}

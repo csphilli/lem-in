@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2020/12/27 00:51:28 by cphillip         ###   ########.fr        #
+#    Updated: 2021/01/01 21:47:17 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,20 @@ LINK_LIBFT = -L $(LIBFT) -lft -I$(LIBFT)/includes
 FT_PRINTF = ./ft_printf/
 LINK_FT_PRINTF = -L $(FT_PRINTF) -lft_printf -I$(FT_PRINTF)/includes
 
-SRC_DIR = ./src/
-
 SRC = 	*.c
+SRC_DIR = ./src/
+DATA_DIR = ./src/data/
+EK_DIR = ./src/edmonds_karp/
+AM_DIR = ./src/ants_marching/
+IO_DIR = ./src/io/
 
-SRC_FILES = $(addprefix $(SRC_DIR), $(SRC))
+
+SRC_FILES = $(addprefix $(SRC_DIR), $(SRC))\
+			$(addprefix $(DATA_DIR), $(SRC))\
+			$(addprefix $(EK_DIR), $(SRC))\
+			$(addprefix $(AM_DIR), $(SRC))\
+			$(addprefix $(IO_DIR), $(SRC))\
+
 
 OBJ_FILES = $(SRC:.c=.o)
 
@@ -44,7 +53,7 @@ $(NAME): $(SRC_FILES) $(INC)/lem_in.h
 	$(LINK_LIBFT) $(LINK_FT_PRINTF)	
 
 clean:
-	@rm -rf $(OBJ_FILES)
+	@rm -rf obj/
 	@rm -rf $(LIBFT)/obj
 
 fclean: clean

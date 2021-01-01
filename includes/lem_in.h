@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 21:05:57 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 21:31:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,12 +269,6 @@ void				reverse_ll(t_bucket **new, t_bucket *list);
 **	LIST OF LIST WORK
 */
 
-// void				unshift_distro(t_distro **lol, t_bucket *ll);
-// void				insert_to_lol(t_lol **lol, t_bucket *ll);
-// void				pop_from_lol(t_lol **list);
-// void				append_to_lol(t_lol **lol, t_bucket *ll);
-// int					lol_length(t_lol *lol);
-// void				print_distro(t_distro **list);
 void				unshift_distro(t_distro **distro, t_bucket *ll);
 void				insert_to_distro(t_distro **distro, t_bucket *ll);
 void				pop_from_distro(t_distro **list);
@@ -294,22 +288,18 @@ void				pop_from_map(t_pmap **map);
 */
 
 void				reverse_paths(t_distro **lol);
-t_distro				*optimal_solution(t_master *master);
+// t_distro				*optimal_solution(t_master *master);
 void				build_distro_array(t_master *master);
 // void				reset_data(t_bucket **ht, int x);
 void				reset_data(t_bucket **ht);
 void				edmonds_karp(t_bucket **ht, t_master *master);
-// void				adj_cap(t_entry *fnd, t_entry *via, int cap);
-// void				adj_flows(t_entry *fnd, t_entry *via);
 void				adj_flows(t_bucket **ht, t_entry *fnd, t_entry *via);
 t_bucket			*get_edge(t_entry *fnd, t_entry *via);
-// void				clear_data(t_bucket **ht, t_master *master, int i);
 void				clear_data(t_bucket **ht, t_master *master);
 void				sort_paths(t_distro *paths);
 int					direct_link(t_bucket **ht, t_master *master);
 
 void				build_paths(t_bucket **ht, t_master *master, int set_id);
-// void				build_paths(t_bucket **ht, t_master *master);
 
 t_io				*create_io(void);
 void				buf_to_output(t_io **main);
