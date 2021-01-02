@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:03:49 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 22:24:05 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/02 14:50:06 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	chk_unlock(t_master **master, t_distro **tmp)
 	}
 }
 
-void	cascade(t_master *master, t_distro *paths, int set_id)
+void	cascade(t_master *master, t_distro *paths)
 {
 	t_distro	*tmp;
 	int			ant_count;
@@ -63,13 +63,6 @@ void	cascade(t_master *master, t_distro *paths, int set_id)
 			tmp->nbr_ants++;
 			ant_count--;
 			chk_unlock(&master, &tmp);
-			if (master->flags.vis_distro)
-			{
-				system("clear");
-				print_distro(&paths);
-				calc_total_moves(master, paths, set_id);
-				usleep(100000);
-			}
 			tmp = (tmp->index == master->bfs->max_index ? paths : tmp->next);
 		}
 		tmp = paths;
@@ -106,7 +99,7 @@ void	calc_distro(t_master *master)
 		moves = master->paths[i];
 		init_moves(moves);
 		unlocks(master, moves);
-		cascade(master, moves, i);
+		cascade(master, moves);
 		calc_total_moves(master, moves, i);
 		i++;
 	}

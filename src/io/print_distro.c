@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 11:11:02 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 22:16:14 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/02 13:27:21 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_cascade_header(void)
 	ft_printf("%-11sNbr of nodes in path.\n", "Length:");
 	ft_printf("%-11sNbr moves to get 1 ant through path.\n", "Min:");
 	ft_printf("%-11sNumber of ants allocated to path\n", "Ants:");
-	ft_printf("%-11sMin number of ants to unlock next path\n", "Unlock:");
+	ft_printf("%-11sMin number of ants to unlock next path\n\n", "Unlock:");
 	ft_printf("|%-11s%-11s", "Index", "Length");
 	ft_printf("%-11s%-11s", "Min", "Ants");
 	ft_printf("%-11s%-11s|\n", "Unlock", "Total Moves");
@@ -60,4 +60,5 @@ void	print_distro(t_distro **list)
 			tmp = tmp->next;
 		}
 	}
+	write(1, "\n", 1);
 }

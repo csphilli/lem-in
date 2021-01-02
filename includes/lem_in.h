@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/02 12:09:39 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/02 16:17:02 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ typedef struct		s_flags
 	bool			e_toggle;
 	bool			print_paths;
 	bool			print_hash_table;
+	bool			print_input;
+	bool			print_time;
+	bool			leak_check;
 	bool			vis_distro;
 	bool			ants_added;
 	bool			errors;
@@ -124,6 +127,7 @@ typedef struct		s_master
 	char			*comment;
 	t_entry			*start_room;
 	t_entry			*end_room;
+	int				direct;
 	int				a_room;
 	int				solution;
 	int				best_set;
@@ -208,6 +212,8 @@ void				print_io(t_io *tgt, int i);
 void				print_ll(t_bucket *ll);
 void				print_ht(t_bucket **ht);
 void				print_distro(t_distro **list);
+void				print_paths(t_master *master);
+void				print_cascade(t_master *master);
 
 /*
 **	LINK WORK

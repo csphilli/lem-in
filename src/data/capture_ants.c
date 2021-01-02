@@ -6,13 +6,13 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 10:12:54 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 19:04:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/02 16:14:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		validate_ants(char *line)
+void	validate_ants(char *line)
 {
 	char	*tmp;
 
@@ -22,12 +22,10 @@ int		validate_ants(char *line)
 		while (*tmp)
 		{
 			if (!ft_isdigit(*tmp))
-				return (0);
+				ft_errorexit("ERROR: Ant amount must be unsigned integer\n");
 			tmp++;
 		}
-		return (1);
 	}
-	return (0);
 }
 
 void	capture_ants(t_master *master, char *line)
@@ -36,11 +34,12 @@ void	capture_ants(t_master *master, char *line)
 	int			ants;
 
 	ants = 0;
-	if (*line == '\0' || *line == ' ' || !validate_ants(line))
-		ft_errorExit("ERROR: Missing ant amount or space preceding number.\n");
+	if (*line == '\0' || *line == ' ')
+		ft_errorexit("ERROR: Missing ant amount or space preceding number.\n");
+	validate_ants(line);
 	max_ants = ft_atoimax(line);
 	if (max_ants < 1 || max_ants > 2147483647)
-		ft_errorExit("ERROR: Ant amount must be integer size.\n");
+		ft_errorexit("ERROR: Ant amount must be integer size and > 0.\n");
 	ants = ft_atoi(line);
 	master->nbr_ants = ants;
 	master->flags.ants_added = true;

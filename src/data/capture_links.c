@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 22:37:24 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/02 12:49:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	chk_link_format(char *line)
 		i++;
 	}
 	if (x > 1)
-		ft_errorExit("ERROR: Invalid link format\n");
+		ft_errorexit("ERROR: Invalid link format\n");
 }
 
 int		dupe_link(t_entry *src, t_entry *add)
@@ -58,7 +58,7 @@ void	capture_links(t_bucket **ht, t_master *master, char *line)
 	chk_link_format(line);
 	data = ft_strsplit(line, '-');
 	if (!master->a_room)
-		ft_errorExit("ERROR: Cannot insert link. No rooms defined.\n");
+		ft_errorexit("ERROR: Cannot insert link. No rooms defined.\n");
 	while (i < 2)
 	{
 		entry = get_entry(ht, data[i]);

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/02 12:10:04 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/02 16:19:15 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ void		check_inputs(t_master *master, int ac, int mode)
 	if (mode == 1)
 	{
 		if (master->flags.input_flags && master->flags.flag_count + 1 != ac)
-			ft_errorExit("ERROR: Invalid use. '-h' for help.\n");
+			ft_errorexit("ERROR: Invalid use. '-h' for help.\n");
 	}
 	if (mode == 2)
 	{
 		if (!master->start_room)
-			ft_errorExit("ERROR: No start room specified.\n");
+			ft_errorexit("ERROR: No start room specified.\n");
 		if (!master->end_room)
-			ft_errorExit("ERROR: No end room specified.\n");
+			ft_errorexit("ERROR: No end room specified.\n");
 		if (!master->link)
-			ft_errorExit("ERROR: No room links specified.\n");
+			ft_errorexit("ERROR: No room links specified.\n");
 		if (!master->a_room)
-			ft_errorExit("ERROR: No rooms specified.\n");
+			ft_errorexit("ERROR: No rooms specified.\n");
 	}
 }
 
@@ -51,7 +51,7 @@ t_bucket	**do_lemin(t_master *master, t_bucket **ht, int ac)
 	check_inputs(master, ac, 2);
 	edmonds_karp(ht, master);
 	if (!master->solution)
-		ft_errorExit("ERROR: No solution. No path between start and end.\n");
+		ft_errorexit("ERROR: No solution. No path between start and end.\n");
 	if (!direct_link(ht, master))
 	{
 		calc_distro(master);
@@ -61,12 +61,25 @@ t_bucket	**do_lemin(t_master *master, t_bucket **ht, int ac)
 	return (ht);
 }
 
-void		do_extras(t_bucket **ht, t_master *master)
+void		print_outputs_and_extras(t_bucket **ht, \
+			t_master *master, double time)
 {
+	if (!master->direct)
+	{
+		if (!master->flags.print_input)
+			print_io(master->map, 1);
+		print_io(master->moves, 0);
+	}
+	if (master->flags.print_time)
+		ft_printf("%lf", time);
+	if (master->flags.print_paths)
+		print_paths(master);
 	if (master->flags.print_hash_table)
 		print_ht(ht);
-	if (master->flags.print_paths)
-		print_distro(&master->bfs->paths);
+	if (master->flags.vis_distro)
+		print_cascade(master);
+	if (master->flags.leak_check)
+		system("leaks lem-in");
 }
 
 int			main(int ac, char **av)
@@ -84,11 +97,8 @@ int			main(int ac, char **av)
 	ht = ft_memalloc(sizeof(t_bucket*) * TABLE_SIZE);
 	check_inputs(master, ac, 1);
 	ht = do_lemin(master, ht, ac);
-	if (master->flags.input_flags)
-		do_extras(ht, master);
 	end = clock();
-	print_io(master->map, 1);
-	print_io(master->moves, 0);
 	time = (double)(end - begin) / CLOCKS_PER_SEC;
+	print_outputs_and_extras(ht, master, time);
 	return (0);
 }

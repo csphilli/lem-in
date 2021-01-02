@@ -18,7 +18,7 @@ do
 		MAP=$($GEN $flag > file.txt)
 		declare -i EXP=$(cat file.txt | tail -n 1 | cut -d ' ' -f 8)
 		declare -i FILE=$(cat file.txt | wc -l)
-		declare -i LINES=$($LEM < file.txt | wc -l)
+		declare -i LINES=$($LEM -q < file.txt | wc -l)
 		declare -i DIFF=$(($LINES - $EXP))
 		echo "I: $I | MINE: $LINES | EXPECTED $EXP | DIFFERENCE $DIFF"
 		AVG=$[$AVG+$DIFF]

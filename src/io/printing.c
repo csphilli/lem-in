@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 22:18:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/02 15:00:49 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	print_ht(t_bucket **ht)
 
 	i = 0;
 	tmp = NULL;
+	ft_printf(BCYN"\n---------- HASH TABLE ----------\n"RESET);
 	while (i < TABLE_SIZE)
 	{
 		if (ht[i] != NULL)

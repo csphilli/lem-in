@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 09:05:39 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 22:18:43 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/02 12:49:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	validate_comment(t_master *master)
 		if (ft_strequ(master->comment, "start"))
 		{
 			if (master->flags.s_toggle == true)
-				ft_errorExit("ERROR: Start room already defined.\n");
+				ft_errorexit("ERROR: Start room already defined.\n");
 			master->flags.s_toggle = true;
 		}
 		else if (ft_strequ(master->comment, "end"))
 		{
 			if (master->flags.e_toggle == true)
-				ft_errorExit("ERROR: End node already defined.\n");
+				ft_errorexit("ERROR: End node already defined.\n");
 			master->flags.e_toggle = true;
 		}
 	}

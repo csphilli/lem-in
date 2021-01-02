@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 22:19:37 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/02 12:49:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	parse_lines(t_master *master, char *line, t_bucket **ht)
 	else if (line[i] == '#')
 		capture_comment(master, line);
 	else if (line[i] == ' ')
-		ft_errorExit("ERROR. Space preceeding instruction.");
+		ft_errorexit("ERROR. Space preceeding instruction.");
 	else if (master->flags.ants_added == true && line[i] != '#')
 	{
 		if (room_or_link(line))

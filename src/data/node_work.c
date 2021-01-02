@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:20:56 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 22:38:25 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/02 12:49:07 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		dupe_chk(t_bucket *head, t_entry *entry)
 	while (tmp)
 	{
 		if (ft_strequ(entry->name, tmp->entry->name))
-			ft_errorExit("ERROR: Duplicate room found.\n");
+			ft_errorexit("ERROR: Duplicate room found.\n");
 		tmp = tmp->next;
 	}
 }

@@ -30,7 +30,7 @@ echo "MAP			:	AVG TIME" >> time.txt
 while [ $I -lt 100 ]
 do
 	$GEN $FLAG > file.txt
-	$TEST < file.txt > timedump.txt
+	$TEST -c < file.txt > timedump.txt
 	calc1=$($OUTPUT | tail -n 1)
 	echo $I: $calc1
 	TOTAL=$(echo "$TOTAL + $calc1" | bc)
