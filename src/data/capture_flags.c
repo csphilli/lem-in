@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 11:01:49 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/02 16:16:05 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/02 22:33:10 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	toggle_bools(t_master *master)
 			master->flags.print_input = true;
 		else if (*s == 'c')
 			master->flags.print_time = true;
-		else if (*s == 'k')
+		else if (*s == 'l')
 			master->flags.leak_check = true;
 		s++;
 	}
