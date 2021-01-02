@@ -1,5 +1,7 @@
 #!/bin/sh
 # This uses a -q flag to surpress the graph printing within lem-in program.
+# Add this file to where your lem-in executable will be located.
+# The program 'generator' must also be included and at the same location.
 GEN="./generator"
 LEM="./lem-in"
 flag=" --flow-one"

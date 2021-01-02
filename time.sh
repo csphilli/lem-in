@@ -1,7 +1,12 @@
 #!/bin/bash
-# REQUIRED: This uses a -c flag to append a timestamp to end of output file.
+# REQUIRED:
+# This uses a -c flag to append a timestamp to end of output file.
+# Place this file in the same location as your lem-in file.
+# The program 'generator' must also be included and in the same location.
+
 # Calculates the average run time of map type based on 20 iterations each.
-# You must have time calculations capture and printed in your lem-in
+# YOU MUST HAVE TIME CALCULATIONS CAPTURED AND PRINTED IN YOUR LEM-IN
+
 # Example:
 # Declarations:
 # 	clock_t begin;
