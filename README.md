@@ -42,7 +42,7 @@ During the pathfinding phase, path sets are added in ascending order. Naturally 
 
 The amount of ants to use in each path depends on ```nbr_ants + (path length - 2) = moves```. If the path length (node count) was 4, it would take 1 ant 3 moves to get from start to finish. If the second path had a length of 8, it would take ```1 + (8 - 2) = 7``` moves. Using that information, we can also derive how many ants we can push through path 1 to equal 1 ant through path 2.
 
-The equation would be ```moves - (path length - 2) = nbr_ants```. So you can push ```7-(4-2) = ``` 5 ants through path 1 before the number of moves equals 1 ant moving through path 2.
+The equation would be ```moves - (path length - 2) = nbr_ants```. So you can push ```7-(4-2) = 5 ``` ants through path 1 before the number of moves equals 1 ant moving through path 2 (7);
 
 If this sounds confusing, check out the visual below. This is how the algorithm distributes the ants. The *unlock* field is the amount of ants needed in that particular path to *unlock* access to the next path. When it reaches that, ants trickle there too and repeats until the required ants are used up.
 
