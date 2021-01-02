@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/01/02 11:35:13 by cphillip         ###   ########.fr        #
+#    Updated: 2021/01/02 16:46:59 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,9 +46,9 @@ $(NAME): $(SRC_FILES) $(INC)/lem_in.h
 		echo "INFO: Initializing git submodules"; \
 		git submodule update --init --recursive; \
 	fi
-	@echo "Compiling $(NAME)..."
 	@make -C $(LIBFT)
 	@make -C $(FT_PRINTF)
+	@echo "Compiling $(NAME)..."
 	@gcc $(FLAGS) -o $(NAME) $(SRC_FILES) -I$(INC) \
 	$(LINK_LIBFT) $(LINK_FT_PRINTF)	
 
@@ -60,7 +60,6 @@ fclean: clean
 	@rm -rf $(NAME)
 	@rm -rf $(LIBFT)/libft.a
 	@rm -rf $(FT_PRINTF)/libft_printf.a
-	@rm -rf test
 
 re: fclean all
 
