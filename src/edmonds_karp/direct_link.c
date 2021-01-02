@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:55:58 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/02 15:49:59 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/02 16:29:51 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int		direct_link(t_bucket **ht, t_master *master)
 		{
 			master->ants->i = 1;
 			do_one_move(master);
+			write(1, "\n", 1);
 			print_io(master->map, 1);
 			ft_printf("L%d-%s", 1, master->end_room->name);
 			print_io(master->moves, 0);
