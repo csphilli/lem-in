@@ -1,4 +1,5 @@
 #!/bin/sh
+# This uses a -q flag to surpress the graph printing within lem-in program.
 GEN="./generator"
 LEM="./lem-in"
 flag=" --flow-one"

@@ -1,4 +1,5 @@
 #!/bin/bash
+# REQUIRED: This uses a -c flag to append a timestamp to end of output file.
 # Calculates the average run time of map type based on 20 iterations each.
 # You must have time calculations capture and printed in your lem-in
 # Example:
