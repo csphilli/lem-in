@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/01/01 21:47:17 by cphillip         ###   ########.fr        #
+#    Updated: 2021/01/02 11:35:13 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,12 @@ LINK_LIBFT = -L $(LIBFT) -lft -I$(LIBFT)/includes
 FT_PRINTF = ./ft_printf/
 LINK_FT_PRINTF = -L $(FT_PRINTF) -lft_printf -I$(FT_PRINTF)/includes
 
-SRC = 	*.c
+SRC = *.c
 SRC_DIR = ./src/
-DATA_DIR = ./src/data/
-EK_DIR = ./src/edmonds_karp/
-AM_DIR = ./src/ants_marching/
-IO_DIR = ./src/io/
+DATA_DIR = $(SRC_DIR)data/
+EK_DIR = $(SRC_DIR)edmonds_karp/
+AM_DIR = $(SRC_DIR)ants_marching/
+IO_DIR = $(SRC_DIR)io/
 
 
 SRC_FILES = $(addprefix $(SRC_DIR), $(SRC))\

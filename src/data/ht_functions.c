@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:24:25 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 22:21:04 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:39:35 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			hash(char *str)
 	return (hash_value);
 }
 
-t_entry		*get_entry(t_bucket **ht, t_master *master, char *name)
+t_entry		*get_entry(t_bucket **ht, char *name)
 {
 	t_bucket	*tmp;
 	int			index;
@@ -63,6 +63,6 @@ void		assign_entry_to_ht(t_bucket **ht, t_master *master, t_entry *entry)
 	size_t	index;
 
 	index = hash(entry->name);
-	insert_node(master, ht, entry, index);
+	insert_node(ht, entry, index);
 	master->a_room = 1;
 }

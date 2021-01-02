@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 22:30:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/02 12:10:04 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ int			main(int ac, char **av)
 	if (master->flags.input_flags)
 		do_extras(ht, master);
 	end = clock();
+	print_io(master->map, 1);
+	print_io(master->moves, 0);
 	time = (double)(end - begin) / CLOCKS_PER_SEC;
 	return (0);
 }

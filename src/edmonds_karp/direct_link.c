@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:55:58 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 14:42:11 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:35:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		direct_link(t_bucket **ht, t_master *master)
 	t_bucket	*end_links;
 
 	end_links = master->end_room->links;
-	start = get_entry(ht, master, master->start_room->name);
+	start = get_entry(ht, master->start_room->name);
 	while (end_links)
 	{
 		if (ft_strequ(end_links->entry->name, start->name))

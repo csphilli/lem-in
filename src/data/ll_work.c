@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 09:29:45 by cphillip          #+#    #+#             */
-/*   Updated: 2020/12/31 14:17:56 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/02 11:48:32 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,6 @@ void	pop_from_ll(t_bucket **ll)
 		tmp->next = NULL;
 		free(tmp);
 		tmp = NULL;
-	}
-	*ll = head;
-}
-
-void	unshift_ll(t_bucket **ll, t_entry *entry)
-{
-	t_bucket	*tmp;
-	t_bucket	*head;
-
-	head = *ll;
-	tmp = head;
-	if (!head)
-	{
-		head = ft_memalloc(sizeof(t_bucket));
-		head->entry = entry;
-	}
-	else
-	{
-		tmp = ft_memalloc(sizeof(t_bucket));
-		tmp->entry = entry;
-		tmp->next = head;
-		head = tmp;
 	}
 	*ll = head;
 }

@@ -6,33 +6,11 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 14:42:58 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 22:08:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/02 11:50:33 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-void	unshift_distro(t_distro **distro, t_bucket *ll)
-{
-	t_distro	*head;
-	t_distro	*tmp;
-
-	head = *distro;
-	tmp = head;
-	if (head == NULL)
-	{
-		head = ft_memalloc(sizeof(t_distro));
-		head->list = ll;
-	}
-	else
-	{
-		tmp = ft_memalloc(sizeof(t_distro));
-		tmp->list = ll;
-		tmp->next = head;
-		head = tmp;
-	}
-	*distro = head;
-}
 
 void	pop_from_distro(t_distro **list)
 {
@@ -85,30 +63,4 @@ int		distro_length(t_distro *distro)
 		tmp = tmp->next;
 	}
 	return (i);
-}
-
-void	insert_to_distro(t_distro **distro, t_bucket *ll)
-{
-	t_distro	*head;
-	t_distro	*tmp;
-	t_distro	*new;
-	int			l;
-
-	head = *distro;
-	tmp = head;
-	new = NULL;
-	l = list_length(ll);
-	if (head == NULL || list_length(ll) < list_length(head->list))
-		unshift_distro(&head, ll);
-	else
-	{
-		new = ft_memalloc(sizeof(t_distro));
-		new->list = ll;
-		while (tmp->next && (l > list_length(tmp->list) \
-			&& l >= list_length(tmp->next->list)))
-			tmp = tmp->next;
-		new->next = tmp->next;
-		tmp->next = new;
-	}
-	*distro = head;
 }

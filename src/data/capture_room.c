@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 22:21:26 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:33:52 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		split_len(char **src)
 	return (i);
 }
 
-void	chk_valid_entry(t_master *master, char **data)
+void	chk_valid_entry(char **data)
 {
 	if (data[0][0] == 'L')
 		ft_errorExit("ERROR: Room names cannot begin with 'L'.\n");
@@ -69,7 +69,7 @@ void	capture_room(t_bucket **ht, t_master *master, char *line)
 
 	dst = ft_memalloc(sizeof(t_entry));
 	data = ft_strsplit(line, ' ');
-	chk_valid_entry(master, data);
+	chk_valid_entry(data);
 	dst->name = ft_strdup(data[0]);
 	dst->x = c_atoi(data[1]);
 	dst->y = c_atoi(data[2]);

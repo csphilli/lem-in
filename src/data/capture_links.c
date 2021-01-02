@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 22:07:51 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:37:24 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void	capture_links(t_bucket **ht, t_master *master, char *line)
 		ft_errorExit("ERROR: Cannot insert link. No rooms defined.\n");
 	while (i < 2)
 	{
-		entry = get_entry(ht, master, data[i]);
+		entry = get_entry(ht, data[i]);
 		index = hash(entry->name);
-		if (!(dupe_link(entry, get_entry(ht, master, data[j]))))
-			insert_to_ll(&entry->links, get_entry(ht, master, data[j]));
+		if (!(dupe_link(entry, get_entry(ht, data[j]))))
+			insert_to_ll(&entry->links, get_entry(ht, data[j]));
 		i++;
 		j--;
 	}
