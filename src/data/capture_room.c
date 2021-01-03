@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/03 20:48:45 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/03 21:22:59 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ int		capture_room(t_bucket **ht, t_master *master, char *line)
 	char	**data;
 	t_entry	*dst;
 
-	dst = ft_memalloc(sizeof(t_entry));
 	data = ft_strsplit(line, ' ');
 	if (split_len(data) == 3)
 	{
+		dst = ft_memalloc(sizeof(t_entry));
 		valid_room_name(data[0]);
 		dst->name = ft_strdup(data[0]);
 		dst->x = c_atoi(data[1]);
@@ -89,6 +89,8 @@ int		capture_room(t_bucket **ht, t_master *master, char *line)
 			ft_strdel(&master->comment);
 		}
 		assign_entry_to_ht(ht, master, dst);
+		free_strsplit(&data);
+		data = NULL;
 		return (1);
 	}
 	free_strsplit(&data);
