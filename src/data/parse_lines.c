@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/03 20:46:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/03 21:40:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ void	parse_phase(t_bucket **ht, t_master *master, char *line)
 	else if (master->phase == 0 && capture_ants(master, line))
 		master->phase++;
 	else if (master->phase == 1 && !capture_room(ht, master, line))
+	{
+		capture_links(ht, master, line);
 		master->phase++;
+	}
 	else if (master->phase == 2)
 		capture_links(ht, master, line);
 	store_map(master, line);
