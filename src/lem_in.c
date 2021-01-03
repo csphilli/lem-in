@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:17:17 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/02 16:19:15 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/03 11:50:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,11 @@ t_bucket	**get_data(t_bucket **ht, t_master *master)
 
 	line = NULL;
 	while (get_next_line(0, &line) > 0)
+	{
+		if (line[0] == '\0')
+			ft_errorexit("ERROR: Empty line.\n");
 		parse_lines(master, line, ht);
+	}
 	buf_to_output(&master->map);
 	ft_strdel(&master->map->buf);
 	line = NULL;

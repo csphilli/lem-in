@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 18:47:11 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/02 12:49:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/03 11:55:06 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	chk_link_format(char *line)
 	x = 0;
 	while (line[i] != '\0')
 	{
+		if (line[0] == 'L')
+			ft_errorexit("ERROR: Room name cannot begin with 'L'\n.");
 		if (line[i] == '-')
 			x++;
 		i++;
