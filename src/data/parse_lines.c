@@ -6,25 +6,23 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/03 11:59:36 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/03 20:46:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		room_or_link(char *line)
+int		link_chk(char *line)
 {
 	int		i;
 
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == ' ' || line[i] == '-')
-			break ;
+		if (line[i] == '-')
+			return (1);
 		i++;
 	}
-	if (line[i] == ' ')
-		return (1);
 	return (0);
 }
 
@@ -61,27 +59,22 @@ void	store_map(t_master *master, char *line)
 	}
 }
 
-void	parse_lines(t_master *master, char *line, t_bucket **ht)
+void	parse_phase(t_bucket **ht, t_master *master, char *line)
 {
-	int			i;
-	t_entry		*entry;
-
-	i = 0;
-	entry = NULL;
-	if (!master->flags.ants_added)
-		capture_ants(master, line);
-	else if (line[i] == '#')
-		capture_comment(master, line);
-	else if (line[i] == ' ')
+	if (line[0] == '\0')
+		ft_errorexit("ERROR: Empty line.\n");
+	if (ft_isspace(line[0]))
 		ft_errorexit("ERROR. Space preceeding instruction.\n");
-	else if (master->flags.ants_added == true && line[i] != '#')
-	{
-		if (room_or_link(line))
-			capture_room(ht, master, line);
-		else
-			capture_links(ht, master, line);
-	}
+	if (master->phase == 0 && line[0] == '#')
+		ft_errorexit("ERROR: First input must be integer ant value.\n");
+	if (line[0] == '#')
+		capture_comment(master, line);
+	else if (master->phase == 0 && capture_ants(master, line))
+		master->phase++;
+	else if (master->phase == 1 && !capture_room(ht, master, line))
+		master->phase++;
+	else if (master->phase == 2)
+		capture_links(ht, master, line);
 	store_map(master, line);
 	ft_strdel(&line);
-	master->line_nbr++;
 }

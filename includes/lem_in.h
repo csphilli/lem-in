@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/02 16:17:02 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/03 20:46:31 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ typedef struct		s_master
 	int				solution;
 	int				best_set;
 	int				nbr_ants;
-	int				line_nbr;
+	int				phase;
 	int				link;
 	char			*input;
 	t_io			*map;
@@ -157,14 +157,17 @@ void				init_instrux(t_ants *instrux);
 **	DATA CAPTURING
 */
 
-void				capture_ants(t_master *master, char *line);
+int					capture_ants(t_master *master, char *line);
 void				capture_flags(t_master *master, int ac, char **av);
 void				capture_comment(t_master *master, char *str);
 void				capture_links(t_bucket **ht, t_master *master, char *line);
 void				parse_lines(t_master *master, char *line, t_bucket **ht);
 void				store_input(t_master *master, char *line, int p);
-void				capture_room(t_bucket **ht, t_master *master, char *line);
+int					capture_room(t_bucket **ht, t_master *master, char *line);
 void				buf_to_output(t_io **main);
+void				parse_phase(t_bucket **ht, t_master *master, char *line);
+void				valid_room_name(char *name);
+void				room_name_parse(t_master *master, char *line);
 
 /*
 **	Hash Table Functions
@@ -203,6 +206,7 @@ int					*ft_intcat(int *src, int to_add);
 int					ft_int_arr_len(int *n);
 void				load_help(void);
 int					solvable(t_master *master);
+int					split_len(char **src);
 
 /*
 **	PRINTING

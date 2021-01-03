@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 20:24:25 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/02 12:49:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/03 20:12:05 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,9 @@ t_entry		*get_entry(t_bucket **ht, char *name)
 	{
 		if (ft_strequ(tmp->entry->name, name))
 			return (tmp->entry);
-		else if (!tmp->next && !ft_strequ(tmp->entry->name, name))
-			ft_errorexit("ERROR: Failed to insert link. Room not found.\n");
 		tmp = tmp->next;
 	}
-	return (0);
+	return (NULL);
 }
 
 t_bucket	*get_head(t_bucket **ht, char *name)

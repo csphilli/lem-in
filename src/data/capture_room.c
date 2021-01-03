@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/02 12:49:07 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/03 20:48:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,32 +54,44 @@ int		split_len(char **src)
 	return (i);
 }
 
-void	chk_valid_entry(char **data)
+void	valid_room_name(char *name)
 {
-	if (data[0][0] == 'L')
-		ft_errorexit("ERROR: Room names cannot begin with 'L'.\n");
-	if (split_len(data) != 3)
-		ft_errorexit("ERROR: Invalid room input.\n");
+	int	i;
+
+	i = 0;
+	while (name[i])
+	{
+		if (i == 0 && name[i] == 'L')
+			ft_errorexit("ERROR: Room names cannot begin with 'L'.\n");
+		else if (name[i] == '-')
+			ft_errorexit("ERROR: Room names cannot contain '-'.\n");
+		i++;
+	}
 }
 
-void	capture_room(t_bucket **ht, t_master *master, char *line)
+int		capture_room(t_bucket **ht, t_master *master, char *line)
 {
 	char	**data;
 	t_entry	*dst;
 
 	dst = ft_memalloc(sizeof(t_entry));
 	data = ft_strsplit(line, ' ');
-	chk_valid_entry(data);
-	dst->name = ft_strdup(data[0]);
-	dst->x = c_atoi(data[1]);
-	dst->y = c_atoi(data[2]);
-	if (master->comment != NULL)
+	if (split_len(data) == 3)
 	{
-		dst->comment = ft_strdup(master->comment);
-		start_or_end(master, dst);
-		ft_strdel(&master->comment);
+		valid_room_name(data[0]);
+		dst->name = ft_strdup(data[0]);
+		dst->x = c_atoi(data[1]);
+		dst->y = c_atoi(data[2]);
+		if (master->comment != NULL)
+		{
+			dst->comment = ft_strdup(master->comment);
+			start_or_end(master, dst);
+			ft_strdel(&master->comment);
+		}
+		assign_entry_to_ht(ht, master, dst);
+		return (1);
 	}
-	assign_entry_to_ht(ht, master, dst);
 	free_strsplit(&data);
 	data = NULL;
+	return (0);
 }

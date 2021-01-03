@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 10:12:54 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/02 16:14:17 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/03 20:48:18 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	validate_ants(char *line)
 	}
 }
 
-void	capture_ants(t_master *master, char *line)
+int		capture_ants(t_master *master, char *line)
 {
 	intmax_t	max_ants;
 	int			ants;
@@ -42,5 +42,5 @@ void	capture_ants(t_master *master, char *line)
 		ft_errorexit("ERROR: Ant amount must be integer size and > 0.\n");
 	ants = ft_atoi(line);
 	master->nbr_ants = ants;
-	master->flags.ants_added = true;
+	return (1);
 }

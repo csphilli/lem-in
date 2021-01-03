@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 00:12:03 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/02 22:33:03 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/03 20:48:58 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_master	*create_structs(void)
 	new->flags.print_paths = false;
 	new->flags.vis_distro = false;
 	new->flags.accepted_flags = "dhptqcl";
-	new->line_nbr = 1;
 	new->ants->ant_id = 1;
 	return (new);
 }
