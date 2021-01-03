@@ -6,7 +6,7 @@
 #    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/01/02 16:46:59 by cphillip         ###   ########.fr        #
+#    Updated: 2021/01/03 22:20:01 by cphillip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,8 @@ $(NAME): $(SRC_FILES) $(INC)/lem_in.h
 clean:
 	@rm -rf obj/
 	@rm -rf $(LIBFT)/obj
+	@rm -rf $(FT_PRINTF)/obj
+	@rm -rf $(FT_PRINTF)/libft/obj
 
 fclean: clean
 	@rm -rf $(NAME)
