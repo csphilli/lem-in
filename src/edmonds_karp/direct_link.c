@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:55:58 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/02 16:29:51 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/04 14:26:42 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	do_one_move(t_master *master)
 {
 	int			ants_e;
-	int			id;
 
-	ants_e = 1;
-	id = 2;
-	while (ants_e < master->nbr_ants)
+	ants_e = 0;
+	while (ants_e++ < master->nbr_ants)
 	{
-		cat_move(master, id, master->end_room->name);
-		ants_e++;
-		id++;
+		if (ants_e == 1)
+			master->ants->i = 0;
+		else
+			master->ants->i = 1;
+		cat_move(master, ants_e, master->end_room->name);
 	}
 	if (master->moves->b_len < IO_BUF)
 	{
@@ -44,11 +44,9 @@ int		direct_link(t_bucket **ht, t_master *master)
 	{
 		if (ft_strequ(end_links->entry->name, start->name))
 		{
-			master->ants->i = 1;
+			master->ants->i = 0;
 			do_one_move(master);
-			write(1, "\n", 1);
 			print_io(master->map, 1);
-			ft_printf("L%d-%s", 1, master->end_room->name);
 			print_io(master->moves, 0);
 			write(1, "\n", 1);
 			free(master->ants);
