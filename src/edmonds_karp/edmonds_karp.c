@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 22:17:26 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/05 22:41:48 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,45 +51,50 @@ int		mapping(t_master *master, t_bucket *head)
 	return (0);
 }
 
-void	find_augment(t_bucket **ht, t_master *master)
+int		ek_bfs(t_bucket **ht, t_master *master)
 {
 	t_bucket	*links;
 
-	links = master->bfs->cur->links;
-	master->bfs->cur->visited = 1;
-	while (links)
+	append_to_ll(&master->bfs->q, master->start_room);
+	while (master->bfs->q)
 	{
-		if (!links->entry->visited && links->cap - links->edge_flow > 0)
+		master->bfs->cur = master->bfs->q->entry;
+		pop_from_ll(&master->bfs->q);
+		links = master->bfs->cur->links;
+		while (links)
 		{
-			append_to_ll(&master->bfs->q, links->entry);
-			if (mapping(master, links))
+			if (!links->entry->visited && residual_capacity(links))
 			{
-				augment_flow(ht, master);
-				clear_data(ht, master);
-				return ;
+				append_to_ll(&master->bfs->q, links->entry);
+				if (mapping(master, links))
+				{
+					augment_flow(ht, master);
+					clear_data(ht, master);
+					return (1);
+				}
 			}
+			links = links->next;
 		}
-		links = links->next;
 	}
+	return (0);
 }
 
 void	edmonds_karp(t_bucket **ht, t_master *master)
 {
 	int	set_id;
+	int	ret;
 
+	ret = 1;
 	set_id = 0;
 	init_caps(ht);
-	while (set_id < MAX_SETS)
+	while (ret && set_id < MAX_SETS)
 	{
 		clear_data(ht, master);
-		append_to_ll(&master->bfs->q, master->start_room);
-		while (master->bfs->q)
+		ret = ek_bfs(ht, master);
+		if (ret)
 		{
-			master->bfs->cur = master->bfs->q->entry;
-			pop_from_ll(&master->bfs->q);
-			find_augment(ht, master);
+			build_paths(ht, master, set_id);
+			set_id++;
 		}
-		build_paths(ht, master, set_id);
-		set_id++;
 	}
 }

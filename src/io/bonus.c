@@ -6,37 +6,43 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 13:00:25 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/02 16:01:02 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/05 22:40:19 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	print_paths(t_master *master)
+void	print_set(t_master *master, t_distro *head, int set_id)
 {
 	t_distro	*tmp;
-	int			i;
 	int			j;
 
-	i = 0;
 	j = 0;
+	tmp = head;
+	if (set_id == master->best_set)
+		ft_printf(BGRN);
+	ft_printf("SET [%d]\n", set_id);
+	while (tmp)
+	{
+		ft_printf(" [%d]: ", j++);
+		print_ll(tmp->list);
+		tmp = tmp->next;
+	}
+	ft_printf(RESET);
+}
+
+void	print_paths(t_master *master)
+{
+	int			i;
+
+	i = 0;
 	ft_printf(UCYN"\nSOLUTION SETS\n"RESET);
 	ft_printf(BGRN"GREEN"RESET" = best\n");
 	ft_printf("note: paths are in reverse order\n\n");
 	while (i < MAX_SETS)
 	{
-		if (i == master->best_set)
-			ft_printf(BGRN);
-		ft_printf("SET [%d]\n", i);
-		tmp = master->paths[i];
-		j = 0;
-		while (tmp)
-		{
-			ft_printf(" [%d]: ", j++);
-			print_ll(tmp->list);
-			tmp = tmp->next;
-		}
-		ft_printf(RESET);
+		if (master->paths[i])
+			print_set(master, master->paths[i], i);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:29:55 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/01 21:25:27 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/05 22:40:44 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,6 @@ void		adj_flows(t_bucket **ht, t_entry *fnd, t_entry *via)
 	residual->edge_flow--;
 }
 
-t_bucket	*get_edge(t_entry *fnd, t_entry *via)
-{
-	t_bucket	*links;
-
-	links = NULL;
-	links = via->links;
-	while (links)
-	{
-		if (ft_strequ(links->entry->name, fnd->name))
-			return (links);
-		links = links->next;
-	}
-	return (NULL);
-}
-
 void		clear_data(t_bucket **ht, t_master *master)
 {
 	while (master->bfs->map)
@@ -68,4 +53,9 @@ void		clear_data(t_bucket **ht, t_master *master)
 	reset_visited(ht);
 	while (master->bfs->q)
 		pop_from_ll(&master->bfs->q);
+}
+
+int			residual_capacity(t_bucket *head)
+{
+	return (head->cap - head->edge_flow);
 }

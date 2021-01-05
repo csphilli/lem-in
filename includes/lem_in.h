@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/04 15:49:34 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/05 21:34:21 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,5 +245,6 @@ void				adj_flows(t_bucket **ht, t_entry *fnd, t_entry *via);
 void				clear_data(t_bucket **ht, t_master *master);
 int					direct_link(t_bucket **ht, t_master *master);
 void				build_paths(t_bucket **ht, t_master *master, int set_id);
+int					residual_capacity(t_bucket *head);
 
 #endif
