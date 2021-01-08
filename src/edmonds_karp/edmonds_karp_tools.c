@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:29:55 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/05 22:40:44 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/08 16:30:14 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		adj_flows(t_bucket **ht, t_entry *fnd, t_entry *via)
 	forward = get_edge(fnd, via);
 	residual = get_edge(via, fnd);
 	head = get_head(ht, via->name);
-	head->entry->node_flow++;
+	head->entry->flow_to = forward->entry;
 	forward->edge_flow++;
 	residual->edge_flow--;
 }

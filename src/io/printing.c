@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 15:08:18 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/02 15:00:49 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/08 16:29:05 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ void	print_ht(t_bucket **ht)
 			tmp = ht[i];
 			while (tmp != NULL)
 			{
-				ft_printf("{Name: %s", tmp->entry->name,\
-					tmp->entry->visited);
+				ft_printf("{Name: %s", tmp->entry->name);
 				print_extras(tmp->entry);
 				if (tmp->next)
 					ft_printf("-->");

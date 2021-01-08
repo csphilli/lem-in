@@ -32,7 +32,7 @@ TOTAL=0
 AVG=0
 avg() { awk "BEGIN{print $*}"; }
 echo "MAP			:	AVG TIME" >> time.txt
-while [ $I -lt 3000 ]
+while [ $I -lt 100 ]
 do
 	$GEN $FLAG > file.txt
 	$TEST -c < file.txt > timedump.txt
@@ -55,13 +55,13 @@ do
 		TOTAL=0
 		AVG=0
 	fi
-	if ! ((I % 1000 ))
+	if ! ((I % 20 ))
 	then
 		case $I in
-			1000) FLAG=" --flow-ten";;
-			2000) FLAG=" --flow-thousand";;
+			20) FLAG=" --flow-ten";;
+			40) FLAG=" --flow-thousand";;
 			60) FLAG=" --big";;
-			# 80) FLAG=" --big-superposition";;
+			80) FLAG=" --big-superposition";;
 		esac
 	fi
 done

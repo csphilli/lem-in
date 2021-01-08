@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/05 22:41:48 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/08 16:30:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,37 @@ void	augment_flow(t_bucket **ht, t_master *master)
 		pop_from_ll(&ll);
 }
 
+int		is_in(t_master *master, t_entry *flow_to)
+{
+	t_bucket	*tmp;
+
+	tmp = master->bfs->cur->links;
+	while (tmp)
+	{
+		if (ft_strequ(tmp->entry->name, flow_to->name))
+		{
+			flow_to->flow_to = NULL;
+			return (1);
+		}
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 int		mapping(t_master *master, t_bucket *head)
 {
-	unshift_to_map(&master->bfs->map, head->entry,\
-	master->bfs->cur);
+	if (!head->entry->flow_to)
+		unshift_to_map(&master->bfs->map, head->entry,\
+		master->bfs->cur);
+	else if (head->entry->flow_to)
+	{
+		if (!is_in(master, head->entry->flow_to) && \
+			!ft_strequ(master->start_room->name, head->entry->name))
+		{
+			unshift_to_map(&master->bfs->map, head->entry,\
+			master->bfs->cur);
+		}
+	}
 	if (!ft_strequ(master->end_room->name, head->entry->name))
 		head->entry->visited = 1;
 	if (ft_strequ(head->entry->name, master->end_room->name))

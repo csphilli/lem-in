@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/05 21:34:21 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/08 09:37:17 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct		s_entry
 	int				occ;
 	int				ant_id;
 	int				node_flow;
+	struct s_entry	*flow_to;
 }					t_entry;
 
 typedef struct		s_ants
