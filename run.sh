@@ -37,6 +37,10 @@ do
 		then
 			MIN=$DIFF
 		fi
+		if [ $LINES -eq 0 ]
+		then
+			exit
+		fi
 		I=$[$I+1]
 		if ! ((I % 100))
 		then
