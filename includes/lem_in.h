@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:52:10 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/08 09:37:17 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/11 13:51:43 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,7 @@ int					*ft_intcat(int *src, int to_add);
 int					ft_int_arr_len(int *n);
 void				load_help(void);
 int					solvable(t_master *master);
-int					split_len(char **src);
+int					split_len(t_master *master, char **src);
 
 /*
 **	PRINTING

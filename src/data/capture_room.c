@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 07:58:33 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/03 21:28:46 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/11 15:06:13 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		c_atoi(const char *str)
 	return (res * sign);
 }
 
-int		split_len(char **src)
+int		split_len(t_master *master, char **src)
 {
 	int		i;
 	char	**tmp;
@@ -51,6 +51,8 @@ int		split_len(char **src)
 	tmp = src;
 	while (*tmp++)
 		i++;
+	if (i > 3 && master->phase == 1)
+		ft_errorexit("ERROR: Invalid room name format.\n");
 	return (i);
 }
 
@@ -75,7 +77,7 @@ int		capture_room(t_bucket **ht, t_master *master, char *line)
 	t_entry	*dst;
 
 	data = ft_strsplit(line, ' ');
-	if (split_len(data) == 3)
+	if (split_len(master, data) == 3)
 	{
 		dst = ft_memalloc(sizeof(t_entry));
 		valid_room_name(data[0]);

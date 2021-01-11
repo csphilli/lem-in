@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/30 13:04:27 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/03 21:40:17 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/11 13:27:31 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	parse_phase(t_bucket **ht, t_master *master, char *line)
 	if (line[0] == '\0')
 		ft_errorexit("ERROR: Empty line.\n");
 	if (ft_isspace(line[0]))
-		ft_errorexit("ERROR. Space preceeding instruction.\n");
+		ft_errorexit("ERROR: Space preceeding instruction.\n");
 	if (master->phase == 0 && line[0] == '#')
 		ft_errorexit("ERROR: First input must be integer ant value.\n");
 	if (line[0] == '#')
