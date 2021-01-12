@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 09:38:45 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/11 16:38:20 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/12 08:54:45 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,6 @@ void	augment_flow(t_bucket **ht, t_master *master)
 	}
 	while (ll)
 		pop_from_ll(&ll);
-}
-
-int		is_in(t_master *master, t_entry *flow_to)
-{
-	t_bucket	*tmp;
-
-	tmp = master->bfs->cur->links;
-	while (tmp)
-	{
-		if (ft_strequ(tmp->entry->name, flow_to->name))
-		{
-			flow_to->flow_to = NULL;
-			return (1);
-		}
-		tmp = tmp->next;
-	}
-	return (0);
 }
 
 int		mapping(t_master *master, t_bucket *head)
