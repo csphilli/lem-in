@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_help.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 12:03:09 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/02 16:16:42 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/04/11 21:10:08 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	load_help(void)
 	ft_printf("c: Outputs timestamp of solving time. Used with time.sh\n");
 	ft_printf("d: Enables a visual illustration of ant distribution\n");
 	ft_printf("h: Displays this help list.\n");
-	ft_printf("k: Performs a memory leak test at end of program\n");
+	ft_printf("l: Performs a memory leak test at end of program\n");
 	ft_printf("p: Prints the list of all available paths found.\n");
 	ft_printf("q: Quiet mode. Eliminates map printing. Used with run.sh\n");
 	ft_printf("t: Displays the hash table of graph.\n");
