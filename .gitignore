@@ -4,3 +4,4 @@ lem-in
 *.o
 *.txt
 src/movecalc.c
+test_maps.zip
